@@ -34,7 +34,7 @@ export function usd(n, dp = 2) {
 export function compact(n, dp = 2) {
   if (n == null || !isFinite(n)) return '--';
   const a = Math.abs(n);
-  const units = { zht: ['兆', '億', '萬'], ja: ['兆', '億', '万'] }[getLang()];
+  const units = { zhs: ['万亿', '亿', '万'], zht: ['兆', '億', '萬'], ja: ['兆', '億', '万'] }[getLang()];
   if (units) {
     if (a >= 1e12) return fmt(n / 1e12, dp) + units[0];
     if (a >= 1e8) return fmt(n / 1e8, dp) + units[1];
@@ -59,7 +59,7 @@ export function countdown(ms) {
   const h = Math.floor((s % 86400) / 3600);
   const m = Math.floor((s % 3600) / 60);
   const sec = s % 60;
-  const unit = { zht: '天 ', ja: '日 ', ko: '일 ', ms: 'h ', es: 'd ', fil: 'a ' }[getLang()] || 'd ';
+  const unit = { zhs: '天 ', zht: '天 ', ja: '日 ', ko: '일 ', ms: 'h ', es: 'd ', fil: 'a ' }[getLang()] || 'd ';
   return (d > 0 ? d + unit : '') + pad2(h) + ':' + pad2(m) + ':' + pad2(sec);
 }
 

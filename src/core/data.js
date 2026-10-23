@@ -274,7 +274,7 @@ export const FIATS = [
 ];
 export const FIAT = Object.fromEntries(FIATS.map((f) => [f.code, f]));
 // Default fiat per UI language
-export const LANG_FIAT = { zht: 'TWD', en: 'USD', ko: 'KRW', ja: 'JPY', ms: 'MYR', es: 'EUR', fil: 'PHP' };
+export const LANG_FIAT = { zhs: 'USD', zht: 'TWD', en: 'USD', ko: 'KRW', ja: 'JPY', ms: 'MYR', es: 'EUR', fil: 'PHP' };
 
 export const PAY_METHODS = {
   smbc: { name: ['三井住友銀行 SMBC', 'SMBC'], color: '#00875A', bank: true, mark: 'SMBC' },
@@ -303,11 +303,11 @@ function seeded(seed) {
   };
 }
 
-export function otcMerchants(side, crypto, fiat) {
+export function otcMerchants(side, crypto, fiat, jpBanks = false) {
   const r = seeded(side.length * 97 + crypto.charCodeAt(0) * 31 + fiat.charCodeAt(1) * 7 + 11);
   const f = FIAT[fiat];
   const base = COIN[crypto].price * f.rate;
-  const methodsPool = fiat === 'JPY' ? ['smbc', 'mufg', 'rakuten', 'mizuho'] : fiat === 'EUR' ? ['sepa', 'wise', 'revolut'] : fiat === 'USD' || fiat === 'GBP' ? ['bank', 'wise', 'revolut'] : ['bank', 'wise'];
+  const methodsPool = fiat === 'JPY' ? (jpBanks ? ['smbc', 'mufg', 'rakuten', 'mizuho'] : ['bank', 'wise']) : fiat === 'EUR' ? ['sepa', 'wise', 'revolut'] : fiat === 'USD' || fiat === 'GBP' ? ['bank', 'wise', 'revolut'] : ['bank', 'wise'];
   return MERCHANT_NAMES.map((name, i) => {
     const prem = side === 'buy' ? 0.002 + r() * 0.018 : -0.004 - r() * 0.016;
     const price = base * (1 + prem);

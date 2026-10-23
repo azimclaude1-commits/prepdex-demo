@@ -82,14 +82,16 @@ function CardBuy() {
   const [fiat, setFiat] = useState(LANG_FIAT[getLang()] || 'USD');
   const [crypto, setCrypto] = useState('USDT');
   const [fiatAmt, setFiatAmt] = useState(() => String(Math.round(300 * (FIAT[LANG_FIAT[getLang()] || 'USD'].rate))));
-  const [method, setMethod] = useState('smbc');
+  // Japanese bank cards are offered only in the Japanese UI
+  const jpBanks = getLang() === 'ja';
+  const [method, setMethod] = useState(jpBanks ? 'smbc' : 'card');
   const [pick, setPick] = useState(null);
   const [checkout, setCheckout] = useState(null);
   const f = parseFloat(fiatAmt) || 0;
   const quotes = CARD_PROVIDERS.filter((p) => p.methods.includes(method)).map((p) => ({ p, q: providerQuote(p, crypto, fiat, f) }));
   const best = [...quotes].sort((a, b) => b.q.got - a.q.got)[0];
   const chosen = quotes.find((x) => x.p.id === pick) || best;
-  const banks = ['smbc', 'mufg', 'rakuten', 'mizuho'];
+  const banks = jpBanks ? ['smbc', 'mufg', 'rakuten', 'mizuho'] : [];
   const methods = ['card', 'applepay', 'googlepay', 'bank', 'sepa'];
   const dp = crypto === 'BTC' || crypto === 'ETH' ? 6 : 2;
 
@@ -114,13 +116,13 @@ function CardBuy() {
         </div>
         <div>
           <div className="field-label">{L('支付方式', 'Payment method')}</div>
-          <div className="bank-grid">
+          {banks.length > 0 && <div className="bank-grid">
             {banks.map((m) => (
               <button key={m} className={cx('bank-tile', m === method && 'on')} onClick={() => { setMethod(m); setPick(null); }}>
                 <BankMark m={m} /><span>{L(...PAY_METHODS[m].name)}</span><small>{L('銀行卡', 'Bank card')}</small>
               </button>
             ))}
-          </div>
+          </div>}
           <div className="net-chips other-methods">{methods.map((m) => <button key={m} className={cx('net-chip', m === method && 'on')} onClick={() => { setMethod(m); setPick(null); }}>{L(...PAY_METHODS[m].name)}</button>)}</div>
         </div>
         <div>
@@ -160,7 +162,7 @@ function CardBuy() {
               <div key={p.id} className="provider static">
                 <span className="prov-logo" style={{ background: p.color }}>{p.name[0]}</span>
                 <span><b>{p.name}</b><small>{L('參考手續費', 'Ref. fee')} {(p.fee * 100).toFixed(2)}% · {L('最低', 'Min')} ${p.min}</small></span>
-                <span className="pay-tags">{p.methods.map((m) => <PayTag key={m} m={m} />)}</span>
+                <span className="pay-tags">{p.methods.filter((m) => jpBanks || !PAY_METHODS[m].bank).map((m) => <PayTag key={m} m={m} />)}</span>
               </div>
             ))}
           </div>
@@ -254,7 +256,7 @@ function P2P({ onOrder }) {
   const [pay, setPay] = useState('all');
   const [amtFilter, setAmtFilter] = useState('');
   const [openId, setOpenId] = useState(null);
-  const list = useMemo(() => otcMerchants(side, crypto, fiat), [side, crypto, fiat]);
+  const list = useMemo(() => otcMerchants(side, crypto, fiat, getLang() === 'ja'), [side, crypto, fiat]);
   const af = parseFloat(amtFilter) || 0;
   const rows = list.filter((m) => (pay === 'all' || m.methods.includes(pay)) && (!af || (af >= m.minF && af <= m.maxF)));
   const methods = [...new Set(list.flatMap((m) => m.methods))];

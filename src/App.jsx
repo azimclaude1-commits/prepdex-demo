@@ -51,7 +51,7 @@ export default function App() {
     <>
       <Backdrop />
       <Header />
-      <main className="main" key={route.page + (route.arg || '')}>{page}</main>
+      <main className="main" key={route.page + (route.arg || '') + s.lang}>{page}</main>
       <Footer />
       <DemoPanel />
       <ModalHost />
