@@ -18,7 +18,7 @@ export const COINS = [
   { sym: 'TRX', name: 'TRON', price: 0.1221, color: '#EB0029', vol: 0.0009, chg: 0.0034, v24: 380e6 },
   { sym: 'DOT', name: 'Polkadot', price: 5.912, color: '#E6007A', vol: 0.0017, chg: -0.0098, v24: 190e6 },
   { sym: 'ARB', name: 'Arbitrum', price: 0.7815, color: '#28A0F0', vol: 0.002, chg: 0.0311, v24: 260e6 },
-  { sym: 'NVX', name: 'Novarix Token', price: 0.4218, color: '#3D8BFF', vol: 0.0022, chg: 0.0645, v24: 48e6 },
+  { sym: 'NVX', name: 'Novarix Token', price: 0.4218, color: '#FF9A3D', vol: 0.0022, chg: 0.0645, v24: 48e6 },
   // Launchpad graduates (listed after TGE)
   { sym: 'ORBX', name: 'Orbix', price: 0.0842, color: '#FF7A45', vol: 0.003, chg: 0.0921, v24: 12.4e6, launch: true },
   { sym: 'HALO', name: 'Halo Network', price: 0.0514, color: '#5B8CFF', vol: 0.003, chg: -0.0315, v24: 8.1e6, launch: true },

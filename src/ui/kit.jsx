@@ -184,14 +184,14 @@ export function BrandMark({ size = 28 }) {
     <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden="true" className="brand-mark">
       <defs>
         <linearGradient id="bm-g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#6FE3FF" />
-          <stop offset="0.5" stopColor="#3D7BFF" />
-          <stop offset="1" stopColor="#7B5CFF" />
+          <stop offset="0" stopColor="#FFD27A" />
+          <stop offset="0.55" stopColor="#FF9A3D" />
+          <stop offset="1" stopColor="#FF5E3A" />
         </linearGradient>
       </defs>
       <rect x="1" y="1" width="38" height="38" rx="11" fill="url(#bm-g)" />
-      <path d="M12.5 28V12.5L27.5 27.5V12" fill="none" stroke="#fff" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="29.5" cy="10.5" r="2.4" fill="#fff" />
+      <path d="M12.5 28V12.5L27.5 27.5V12" fill="none" stroke="#170B02" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="29.5" cy="10.5" r="2.4" fill="#170B02" />
     </svg>
   );
 }
