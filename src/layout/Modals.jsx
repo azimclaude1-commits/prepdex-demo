@@ -174,7 +174,7 @@ function AccountModal() {
 // ----------------------------------------------------------------------------
 // Deposit
 // ----------------------------------------------------------------------------
-const DEPOSIT_COINS = ['USDT', 'USDC', 'ETH', 'BTC', 'SOL', 'BNB', 'TON', 'TRX', 'ARB', 'LINK', 'DOGE', 'PDX'];
+const DEPOSIT_COINS = ['USDT', 'USDC', 'ETH', 'BTC', 'SOL', 'BNB', 'TON', 'TRX', 'ARB', 'LINK', 'DOGE', 'NVX'];
 
 function DepositModal({ sym: initSym = 'USDT' }) {
   useMarket();
@@ -466,7 +466,7 @@ function TransferModal({ from: f0 = 'spot' }) {
 // ----------------------------------------------------------------------------
 // Convert (flash swap)
 // ----------------------------------------------------------------------------
-const CONVERT_COINS = ['USDT', 'USDC', 'BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'TON', 'ADA', 'AVAX', 'LINK', 'TRX', 'DOT', 'ARB', 'PDX', 'ORBX', 'HALO', 'TESS', 'LUMN', 'ZEPH'];
+const CONVERT_COINS = ['USDT', 'USDC', 'BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'TON', 'ADA', 'AVAX', 'LINK', 'TRX', 'DOT', 'ARB', 'NVX', 'ORBX', 'HALO', 'TESS', 'LUMN', 'ZEPH'];
 
 export function ConvertBox({ initFrom = 'USDT', initTo = 'USDC', onDone, compactMode }) {
   useMarket();

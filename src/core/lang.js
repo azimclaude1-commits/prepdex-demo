@@ -1,5 +1,53 @@
-// Tiny bilingual helper: L('中文', 'English') returns the string for the active language.
+// Language helper. Call sites pass Chinese and English: L('中文', 'English').
+// Other languages are looked up by the English string in the generated dictionary;
+// strings with interpolated values are matched against "{0}" templates.
+import DICT from './i18n-dict.js';
+
+export const LANGS = [
+  { code: 'zh', label: '简体中文', short: '中文', html: 'zh-CN' },
+  { code: 'en', label: 'English', short: 'EN', html: 'en' },
+  { code: 'ko', label: '한국어', short: 'KO', html: 'ko' },
+  { code: 'ja', label: '日本語', short: 'JA', html: 'ja' },
+  { code: 'ms', label: 'Bahasa Melayu', short: 'MS', html: 'ms' },
+  { code: 'es', label: 'Español', short: 'ES', html: 'es' },
+  { code: 'fil', label: 'Filipino', short: 'FIL', html: 'fil' },
+];
+const COL = { ko: 0, ja: 1, ms: 2, es: 3, fil: 4 };
+
 let current = 'zh';
-export const setLang = (l) => { current = l; };
+export const setLang = (l) => { current = LANGS.some((x) => x.code === l) ? l : 'zh'; };
 export const getLang = () => current;
-export const L = (zh, en) => (current === 'en' && en != null ? en : zh);
+
+const esc = (s) => s.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
+const TEMPLATES = Object.keys(DICT)
+  .filter((k) => /\{\d\}/.test(k))
+  .map((k) => ({ k, re: new RegExp('^' + esc(k).replace(/\{(\d)\}/g, '([\\s\\S]+?)') + '$'), order: [...k.matchAll(/\{(\d)\}/g)].map((m) => +m[1]) }))
+  .sort((a, b) => b.k.length - a.k.length);
+
+const cache = new Map();
+function translate(en, col) {
+  const hit = DICT[en];
+  if (hit) return hit[col];
+  for (const t of TEMPLATES) {
+    const m = t.re.exec(en);
+    if (!m) continue;
+    const vals = {};
+    t.order.forEach((n, i) => { const v = m[i + 1]; vals[n] = DICT[v] ? DICT[v][col] : v; });
+    return DICT[t.k][col].replace(/\{(\d)\}/g, (_, n) => vals[n] ?? '');
+  }
+  return en;
+}
+
+export function L(zh, en) {
+  if (current === 'zh' || en == null) return zh;
+  if (current === 'en') return en;
+  const col = COL[current];
+  const key = current + '\u0000' + en;
+  let v = cache.get(key);
+  if (v === undefined) {
+    v = translate(en, col);
+    if (cache.size > 4000) cache.clear();
+    cache.set(key, v);
+  }
+  return v;
+}

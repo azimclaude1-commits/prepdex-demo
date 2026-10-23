@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { setLang } from './core/lang.js';
+import { setLang, LANGS } from './core/lang.js';
 import { useApp, useUI } from './core/store.js';
-import { Header, Footer, Toasts, DemoPanel, Backdrop } from './layout/Shell.jsx';
+import { Header, Footer, SiteFooter, Toasts, DemoPanel, Backdrop } from './layout/Shell.jsx';
 import { ModalHost } from './layout/Modals.jsx';
 import { Launchpad, ProjectPage } from './pages/Launchpad.jsx';
 import { Spot } from './pages/Spot.jsx';
@@ -34,7 +34,7 @@ export default function App() {
   const resolved = s.theme || (hostTheme === 'light' || hostTheme === 'dark' ? hostTheme : sysDark ? 'dark' : 'light');
   if (s.theme) root.setAttribute('data-theme', s.theme);
   root.dataset.resolved = resolved;
-  root.lang = s.lang === 'en' ? 'en' : 'zh-CN';
+  root.lang = LANGS.find((x) => x.code === s.lang)?.html || 'zh-CN';
 
   let page;
   switch (route.page) {
@@ -52,6 +52,7 @@ export default function App() {
       <Backdrop />
       <Header />
       <main className="main" key={route.page + (route.arg || '')}>{page}</main>
+      <SiteFooter />
       <Footer />
       <DemoPanel />
       <ModalHost />

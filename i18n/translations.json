@@ -1,0 +1,4685 @@
+{
+" Perp": [
+" 무기한",
+" 無期限",
+" Kekal",
+" Perpetuo",
+" Perpetual"
+],
+" flexible": [
+" 자유형",
+" フレキシブル",
+" fleksibel",
+" flexible",
+" flexible"
+],
+"-day fixed": [
+"일 고정형",
+"日間定期",
+"-hari tetap",
+" días fijo",
+"-araw na fixed"
+],
+"0 (included in quote)": [
+"0 (견적에 포함)",
+"0（見積に含む）",
+"0 (termasuk dalam sebut harga)",
+"0 (incluida en la cotización)",
+"0 (kasama na sa quote)"
+],
+"0.42% historical default rate, 11.8% weighted APY": [
+"과거 부도율 0.42%, 가중 APY 11.8%",
+"過去のデフォルト率 0.42%、加重 APY 11.8%",
+"Kadar mungkir sejarah 0.42%, APY berwajaran 11.8%",
+"Tasa histórica de impago del 0,42 %, APY ponderado del 11,8 %",
+"0.42% makasaysayang default rate, 11.8% weighted APY"
+],
+"12 yrs in structured finance": [
+"구조화 금융 경력 12년",
+"ストラクチャードファイナンス歴 12 年",
+"12 tahun dalam kewangan berstruktur",
+"12 años en finanzas estructuradas",
+"12 taon sa structured finance"
+],
+"18,400 GPUs connected on testnet": [
+"테스트넷에 GPU 18,400개 연결",
+"テストネットに GPU 18,400 台が接続",
+"18,400 GPU disambungkan di testnet",
+"18.400 GPU conectadas en testnet",
+"18,400 GPU na nakakonekta sa testnet"
+],
+"1–5 min": [
+"1–5분",
+"1〜5 分",
+"1–5 minit",
+"1–5 min",
+"1–5 minuto"
+],
+"21M inference requests per day": [
+"일일 추론 요청 2,100만 건",
+"1 日あたり 2,100 万件の推論リクエスト",
+"21 juta permintaan inferens sehari",
+"21 M de solicitudes de inferencia al día",
+"21M inference request bawat araw"
+],
+"24h change": [
+"24시간 변동",
+"24時間変動",
+"Perubahan 24j",
+"Cambio 24 h",
+"Pagbabago sa 24h"
+],
+"24h high": [
+"24시간 최고",
+"24時間高値",
+"Tertinggi 24j",
+"Máximo 24 h",
+"Pinakamataas sa 24h"
+],
+"24h low": [
+"24시간 최저",
+"24時間安値",
+"Terendah 24j",
+"Mínimo 24 h",
+"Pinakamababa sa 24h"
+],
+"24h turnover ({0})": [
+"24시간 거래대금({0})",
+"24時間売買代金（{0}）",
+"Nilai dagangan 24j ({0})",
+"Volumen en {0} 24 h",
+"24h turnover ({0})"
+],
+"24h vol ({0})": [
+"24시간 거래량({0})",
+"24時間出来高（{0}）",
+"Volum 24j ({0})",
+"Volumen 24 h ({0})",
+"24h volume ({0})"
+],
+"4 licensed asset managers onboarded, $38.6M under management": [
+"라이선스 자산운용사 4곳 온보딩, 운용자산 $38.6M",
+"認可資産運用会社 4 社が参加、運用資産 $38.6M",
+"4 pengurus aset berlesen, $38.6J aset di bawah pengurusan",
+"4 gestoras con licencia incorporadas, 38,6 M$ bajo gestión",
+"4 lisensyadong asset manager, $38.6M na pinamamahalaan"
+],
+"420K pre-registrations": [
+"사전 등록 42만 명",
+"事前登録 42 万人",
+"420K pra-pendaftaran",
+"420.000 prerregistros",
+"420K pre-registration"
+],
+"; the order cancels after that": [
+"내에 결제하세요. 시간이 지나면 주문이 취소됩니다",
+"以内にお支払いください。過ぎると注文はキャンセルされます",
+"; selepas itu pesanan dibatalkan",
+"; después el pedido se cancela",
+"; pagkatapos nito ay makakansela ang order"
+],
+"A ZK privacy-compute layer 2": [
+"ZK 기반 프라이버시 연산 레이어 2",
+"ZK ベースのプライバシー計算レイヤー2",
+"Lapisan 2 pengkomputeran privasi ZK",
+"Una capa 2 de computación privada con ZK",
+"Isang ZK privacy-compute layer 2"
+],
+"A code was sent to a***@mail.com (auto-filled in this demo)": [
+"a***@mail.com 으로 코드가 발송되었습니다 (데모에서는 자동 입력)",
+"a***@mail.com にコードを送信しました（デモでは自動入力）",
+"Kod dihantar ke a***@mail.com (diisi automatik dalam demo)",
+"Se envió un código a a***@mail.com (se rellena solo en esta demo)",
+"May code na ipinadala sa a***@mail.com (auto-fill sa demo na ito)"
+],
+"A decentralised AI inference network built from idle GPUs": [
+"유휴 GPU로 구축한 탈중앙화 AI 추론 네트워크",
+"遊休 GPU で構築する分散型 AI 推論ネットワーク",
+"Rangkaian inferens AI terdesentralisasi daripada GPU terbiar",
+"Una red descentralizada de inferencia de IA con GPU inactivas",
+"Isang desentralisadong AI inference network mula sa mga idle GPU"
+],
+"AI agents": [
+"AI 에이전트",
+"AI エージェント",
+"Ejen AI",
+"Agentes de IA",
+"Mga AI agent"
+],
+"API docs": [
+"API 문서",
+"API ドキュメント",
+"Dokumen API",
+"Documentación API",
+"API docs"
+],
+"APR": [
+"연이율",
+"年利",
+"APR",
+"TAE",
+"APR"
+],
+"About": [
+"회사 소개",
+"会社情報",
+"Tentang",
+"Acerca de",
+"Tungkol"
+],
+"About us": [
+"회사 소개",
+"私たちについて",
+"Tentang kami",
+"Quiénes somos",
+"Tungkol sa amin"
+],
+"Account": [
+"계좌",
+"口座",
+"Akaun",
+"Cuenta",
+"Account"
+],
+"Accrued": [
+"누적 수익",
+"発生済み",
+"Terkumpul",
+"Acumulado",
+"Naipon"
+],
+"Accrues every second; claim any time": [
+"매초 적립, 언제든 수령 가능",
+"毎秒加算、いつでも受け取り可能",
+"Terkumpul setiap saat; tuntut bila-bila masa",
+"Se acumula cada segundo; reclama cuando quieras",
+"Naiipon bawat segundo; i-claim anumang oras"
+],
+"Actions": [
+"작업",
+"操作",
+"Tindakan",
+"Acciones",
+"Aksyon"
+],
+"Activity": [
+"활동",
+"履歴",
+"Aktiviti",
+"Actividad",
+"Aktibidad"
+],
+"Add margin": [
+"증거금 추가",
+"証拠金を追加",
+"Tambah margin",
+"Añadir margen",
+"Magdagdag ng margin"
+],
+"Address": [
+"주소",
+"アドレス",
+"Alamat",
+"Dirección",
+"Address"
+],
+"Adjust leverage": [
+"레버리지 조정",
+"レバレッジ調整",
+"Laraskan leveraj",
+"Ajustar apalancamiento",
+"I-adjust ang leverage"
+],
+"All": [
+"전체",
+"すべて",
+"Semua",
+"Todo",
+"Lahat"
+],
+"All orders cancelled": [
+"모든 주문이 취소되었습니다",
+"すべての注文をキャンセルしました",
+"Semua pesanan dibatalkan",
+"Todas las órdenes canceladas",
+"Nakansela ang lahat ng order"
+],
+"All payments": [
+"모든 결제 수단",
+"すべての支払方法",
+"Semua kaedah bayaran",
+"Todos los métodos",
+"Lahat ng paraan ng bayad"
+],
+"All positions closed": [
+"모든 포지션이 청산되었습니다",
+"すべてのポジションを決済しました",
+"Semua posisi ditutup",
+"Todas las posiciones cerradas",
+"Naisara ang lahat ng posisyon"
+],
+"All rights reserved.": [
+"모든 권리 보유.",
+"無断転載を禁じます。",
+"Hak cipta terpelihara.",
+"Todos los derechos reservados.",
+"Nakalaan ang lahat ng karapatan."
+],
+"All sales": [
+"전체 세일",
+"すべてのセール",
+"Semua jualan",
+"Todas las ventas",
+"Lahat ng sale"
+],
+"Allocated": [
+"배정",
+"割当",
+"Diperuntukkan",
+"Asignado",
+"Na-allocate"
+],
+"Allocated {0} {1}, refunded {2} USDC": [
+"{0} {1} 배정, {2} USDC 환불",
+"{0} {1} を割当、{2} USDC を返金",
+"{0} {1} diperuntukkan, {2} USDC dipulangkan",
+"Asignados {0} {1}, reembolsados {2} USDC",
+"Na-allocate ang {0} {1}, na-refund ang {2} USDC"
+],
+"Allocation": [
+"배분",
+"配分",
+"Peruntukan",
+"Distribución",
+"Allocation"
+],
+"Amount": [
+"수량",
+"数量",
+"Jumlah",
+"Cantidad",
+"Halaga"
+],
+"Amount must exceed the fee": [
+"금액은 수수료보다 커야 합니다",
+"数量は手数料を上回る必要があります",
+"Jumlah mesti melebihi yuran",
+"El importe debe superar la comisión",
+"Dapat mas malaki ang halaga sa fee"
+],
+"Amount must exceed the network fee": [
+"금액은 네트워크 수수료보다 커야 합니다",
+"数量はネットワーク手数料を上回る必要があります",
+"Jumlah mesti melebihi yuran rangkaian",
+"El importe debe superar la comisión de red",
+"Dapat mas malaki ang halaga sa network fee"
+],
+"Amount to pay": [
+"결제 금액",
+"支払額",
+"Jumlah untuk dibayar",
+"Importe a pagar",
+"Halagang babayaran"
+],
+"An engine for fully on-chain games": [
+"완전 온체인 게임을 위한 엔진",
+"フルオンチェーンゲームのためのエンジン",
+"Enjin untuk permainan sepenuhnya on-chain",
+"Un motor para juegos totalmente on-chain",
+"Isang engine para sa ganap na on-chain na laro"
+],
+"Announcements": [
+"공지사항",
+"お知らせ",
+"Pengumuman",
+"Anuncios",
+"Mga anunsyo"
+],
+"Any time": [
+"언제든지",
+"いつでも",
+"Bila-bila masa",
+"Cuando quieras",
+"Anumang oras"
+],
+"Approve the connection in {0}": [
+"{0}에서 연결을 승인하세요",
+"{0} で接続を承認してください",
+"Luluskan sambungan dalam {0}",
+"Aprueba la conexión en {0}",
+"Aprubahan ang koneksyon sa {0}"
+],
+"Arrival": [
+"도착 시간",
+"着金時間",
+"Ketibaan",
+"Llegada",
+"Pagdating"
+],
+"Arrives": [
+"도착",
+"着金",
+"Tiba",
+"Llega",
+"Darating"
+],
+"Asset": [
+"자산",
+"資産",
+"Aset",
+"Activo",
+"Asset"
+],
+"Assets": [
+"자산",
+"資産",
+"Aset",
+"Activos",
+"Mga asset"
+],
+"At maturity": [
+"만기 시",
+"満期時",
+"Semasa matang",
+"Al vencimiento",
+"Sa maturity"
+],
+"At risk": [
+"위험",
+"危険",
+"Berisiko",
+"En riesgo",
+"Nanganganib"
+],
+"At sale price": [
+"세일 가격 기준",
+"セール価格で",
+"Pada harga jualan",
+"Al precio de venta",
+"Sa presyo ng sale"
+],
+"Audited twice, $250K bug bounty": [
+"2회 감사 완료, 버그 바운티 $250K",
+"監査 2 回実施、バグバウンティ $250K",
+"Diaudit dua kali, ganjaran pepijat $250K",
+"Auditado dos veces, recompensa por errores de 250.000 $",
+"Dalawang beses na na-audit, $250K bug bounty"
+],
+"Audits & ecosystem fund": [
+"감사 및 생태계 펀드",
+"監査とエコシステム基金",
+"Audit & dana ekosistem",
+"Auditorías y fondo de ecosistema",
+"Audit at ecosystem fund"
+],
+"Avail.": [
+"사용 가능",
+"利用可能",
+"Tersedia",
+"Disp.",
+"Available"
+],
+"Available": [
+"사용 가능",
+"利用可能",
+"Tersedia",
+"Disponible",
+"Available"
+],
+"Available / limits": [
+"수량 / 한도",
+"数量 / 限度額",
+"Tersedia / had",
+"Disponible / límites",
+"Available / limitasyon"
+],
+"Available to borrow": [
+"대출 가능",
+"借入可能額",
+"Boleh dipinjam",
+"Disponible para pedir",
+"Puwedeng hiramin"
+],
+"Avg. return (now / sale)": [
+"평균 수익률 (현재가/세일가)",
+"平均リターン（現在値/販売価格）",
+"Purata pulangan (kini / jualan)",
+"Rentabilidad media (actual / venta)",
+"Avg. return (ngayon / sale)"
+],
+"Awaiting buyer": [
+"구매자 대기 중",
+"買い手待ち",
+"Menunggu pembeli",
+"Esperando al comprador",
+"Hinihintay ang buyer"
+],
+"Awaiting payment": [
+"결제 대기",
+"支払待ち",
+"Menunggu bayaran",
+"Pendiente de pago",
+"Hinihintay ang bayad"
+],
+"Awaiting release": [
+"코인 해제 대기",
+"リリース待ち",
+"Menunggu pelepasan",
+"Pendiente de liberación",
+"Hinihintay ang release"
+],
+"Awaiting settlement": [
+"정산 대기",
+"精算待ち",
+"Menunggu penyelesaian",
+"Pendiente de liquidación",
+"Hinihintay ang settlement"
+],
+"Back": [
+"뒤로",
+"戻る",
+"Kembali",
+"Atrás",
+"Bumalik"
+],
+"Backers": [
+"투자사",
+"出資者",
+"Penyokong",
+"Inversores",
+"Mga backer"
+],
+"Bal.": [
+"잔액",
+"残高",
+"Baki",
+"Saldo",
+"Bal."
+],
+"Balance": [
+"잔액",
+"残高",
+"Baki",
+"Saldo",
+"Balanse"
+],
+"Bank transfer": [
+"계좌 이체",
+"銀行振込",
+"Pindahan bank",
+"Transferencia bancaria",
+"Bank transfer"
+],
+"Bank verification (3-D Secure)": [
+"은행 인증 (3-D Secure)",
+"銀行認証（3-D セキュア）",
+"Pengesahan bank (3-D Secure)",
+"Verificación bancaria (3-D Secure)",
+"Bank verification (3-D Secure)"
+],
+"Base cap {0} USDC, multiplied by your NVX tier (up to ×5). Minimum {1} USDC.": [
+"기본 한도 {0} USDC, NVX 등급에 따라 최대 ×5 확대. 최소 {1} USDC.",
+"基本上限 {0} USDC、NVX ティアに応じて最大 ×5。最低 {1} USDC。",
+"Had asas {0} USDC, didarab mengikut tahap NVX anda (sehingga ×5). Minimum {1} USDC.",
+"Límite base de {0} USDC, multiplicado por tu nivel NVX (hasta ×5). Mínimo {1} USDC.",
+"Base cap na {0} USDC, minu-multiply ng NVX tier mo (hanggang ×5). Minimum {1} USDC."
+],
+"Based on your active NVX stake": [
+"활성 NVX 스테이킹 기준",
+"有効な NVX ステーキング量に基づく",
+"Berdasarkan stake NVX aktif anda",
+"Según tu stake activo de NVX",
+"Batay sa aktibong NVX stake mo"
+],
+"Beneficiary": [
+"수취인",
+"受取人",
+"Penerima",
+"Beneficiario",
+"Benepisyaryo"
+],
+"Best market price": [
+"시장 최우선가",
+"市場最良価格",
+"Harga pasaran terbaik",
+"Mejor precio de mercado",
+"Pinakamagandang market price"
+],
+"Best rate": [
+"최적 가격",
+"最良レート",
+"Kadar terbaik",
+"Mejor tasa",
+"Pinakamagandang rate"
+],
+"Borrow": [
+"대출",
+"借入",
+"Pinjam",
+"Pedir prestado",
+"Humiram"
+],
+"Borrow APR": [
+"대출 연이율",
+"借入年利",
+"APR pinjaman",
+"TAE de préstamo",
+"Borrow APR"
+],
+"Borrow limit used": [
+"대출 한도 사용률",
+"借入枠の使用率",
+"Had pinjaman digunakan",
+"Límite de préstamo usado",
+"Nagamit na borrow limit"
+],
+"Borrowed": [
+"대출액",
+"借入額",
+"Dipinjam",
+"Prestado",
+"Hiniram"
+],
+"Brand kit": [
+"브랜드 키트",
+"ブランドキット",
+"Kit jenama",
+"Kit de marca",
+"Brand kit"
+],
+"Broadcast": [
+"브로드캐스트",
+"ブロードキャスト",
+"Disiarkan",
+"Transmitida",
+"Na-broadcast"
+],
+"Bronze": [
+"브론즈",
+"ブロンズ",
+"Gangsa",
+"Bronce",
+"Bronze"
+],
+"Browser extension": [
+"브라우저 확장",
+"ブラウザ拡張",
+"Sambungan pelayar",
+"Extensión del navegador",
+"Browser extension"
+],
+"Browser wallet (on-chain)": [
+"브라우저 지갑 (온체인)",
+"ブラウザウォレット（オンチェーン）",
+"Dompet pelayar (on-chain)",
+"Billetera del navegador (on-chain)",
+"Browser wallet (on-chain)"
+],
+"Bug bounty": [
+"버그 바운티",
+"バグバウンティ",
+"Ganjaran pepijat",
+"Recompensa por errores",
+"Bug bounty"
+],
+"Buy": [
+"매수",
+"買う",
+"Beli",
+"Comprar",
+"Bumili"
+],
+"Buy and sell crypto with fiat": [
+"법정화폐로 암호화폐 매매",
+"法定通貨で暗号資産を売買",
+"Beli dan jual kripto dengan fiat",
+"Compra y vende cripto con dinero fiat",
+"Bumili at magbenta ng crypto gamit ang fiat"
+],
+"Buy crypto": [
+"코인 구매",
+"暗号資産を購入",
+"Beli kripto",
+"Comprar cripto",
+"Bumili ng crypto"
+],
+"Buy instantly with Visa / Mastercard or Apple Pay through MoonPay or Banxa, or trade with verified merchants on the P2P market.": [
+"MoonPay 또는 Banxa를 통해 Visa / Mastercard, Apple Pay로 즉시 구매하거나, P2P 마켓에서 인증된 판매자와 거래하세요.",
+"MoonPay や Banxa を通じて Visa / Mastercard、Apple Pay で即時購入、または P2P マーケットで認証済み業者と取引できます。",
+"Beli serta-merta dengan Visa / Mastercard atau Apple Pay melalui MoonPay atau Banxa, atau berdagang dengan peniaga disahkan di pasaran P2P.",
+"Compra al instante con Visa / Mastercard o Apple Pay a través de MoonPay o Banxa, u opera con comerciantes verificados en el mercado P2P.",
+"Bumili agad gamit ang Visa / Mastercard o Apple Pay sa MoonPay o Banxa, o makipag-trade sa mga verified merchant sa P2P market."
+],
+"Buy with card": [
+"카드로 구매",
+"カードで購入",
+"Beli dengan kad",
+"Comprar con tarjeta",
+"Bumili gamit ang card"
+],
+"Buy {0}": [
+"{0} 매수",
+"{0} を購入",
+"Beli {0}",
+"Comprar {0}",
+"Bumili ng {0}"
+],
+"Buy {0} with {1}": [
+"{1}(으)로 {0} 구매",
+"{1} で {0} を購入",
+"Beli {0} dengan {1}",
+"Comprar {0} con {1}",
+"Bumili ng {0} gamit ang {1}"
+],
+"Buyer has paid": [
+"구매자가 결제했습니다",
+"買い手が支払いました",
+"Pembeli telah membayar",
+"El comprador ha pagado",
+"Nagbayad na ang buyer"
+],
+"Buyer paid": [
+"구매자 결제 완료",
+"買い手支払済み",
+"Pembeli sudah bayar",
+"Comprador pagó",
+"Nagbayad ang buyer"
+],
+"Buyer pays": [
+"구매자 결제",
+"買い手の支払い",
+"Pembeli membayar",
+"El comprador paga",
+"Magbabayad ang buyer"
+],
+"By connecting you accept the Terms and Privacy Policy. This prototype never touches a real wallet.": [
+"연결하면 이용약관 및 개인정보처리방침에 동의하게 됩니다. 이 프로토타입은 실제 지갑에 접근하지 않습니다.",
+"接続すると利用規約とプライバシーポリシーに同意したことになります。このプロトタイプは実際のウォレットに触れません。",
+"Dengan menyambung, anda menerima Terma dan Dasar Privasi. Prototaip ini tidak menyentuh dompet sebenar.",
+"Al conectar aceptas los Términos y la Política de privacidad. Este prototipo nunca accede a una billetera real.",
+"Sa pagkonekta, tinatanggap mo ang Terms at Privacy Policy. Hindi gumagalaw ng totoong wallet ang prototype na ito."
+],
+"Cancel": [
+"취소",
+"キャンセル",
+"Batal",
+"Cancelar",
+"Kanselahin"
+],
+"Cancel all": [
+"전체 취소",
+"すべて取消",
+"Batal semua",
+"Cancelar todo",
+"Kanselahin lahat"
+],
+"Cancel order": [
+"주문 취소",
+"注文をキャンセル",
+"Batal pesanan",
+"Cancelar pedido",
+"Kanselahin ang order"
+],
+"Cancelled": [
+"취소됨",
+"キャンセル済み",
+"Dibatalkan",
+"Cancelado",
+"Nakansela"
+],
+"Candlestick chart": [
+"캔들 차트",
+"ローソク足チャート",
+"Carta lilin",
+"Gráfico de velas",
+"Candlestick chart"
+],
+"Cap": [
+"한도",
+"上限",
+"Had",
+"Límite",
+"Cap"
+],
+"Caps": [
+"한도",
+"上限",
+"Had",
+"Límites",
+"Mga limitasyon"
+],
+"Card number": [
+"카드 번호",
+"カード番号",
+"Nombor kad",
+"Número de tarjeta",
+"Numero ng card"
+],
+"Careers": [
+"채용",
+"採用情報",
+"Kerjaya",
+"Empleo",
+"Mga trabaho"
+],
+"Chain": [
+"체인",
+"チェーン",
+"Rantaian",
+"Cadena",
+"Chain"
+],
+"Choose a provider": [
+"서비스 제공업체 선택",
+"プロバイダーを選択",
+"Pilih penyedia",
+"Elige un proveedor",
+"Pumili ng provider"
+],
+"Claim": [
+"수령",
+"受け取る",
+"Tuntut",
+"Reclamar",
+"I-claim"
+],
+"Claim {0} {1}": [
+"{0} {1} 수령",
+"{0} {1} を受け取る",
+"Tuntut {0} {1}",
+"Reclamar {0} {1}",
+"I-claim ang {0} {1}"
+],
+"Claimed": [
+"수령함",
+"受取済み",
+"Dituntut",
+"Reclamado",
+"Na-claim"
+],
+"Cliff": [
+"락업",
+"クリフ",
+"Cliff",
+"Bloqueo inicial",
+"Cliff"
+],
+"Cliff ends": [
+"락업 종료",
+"クリフ終了",
+"Cliff tamat",
+"Fin del bloqueo",
+"Tapos ang cliff"
+],
+"Clock moved forward": [
+"시간이 앞당겨졌습니다",
+"時刻を進めました",
+"Masa dipercepatkan",
+"Reloj adelantado",
+"Inabante ang oras"
+],
+"Close": [
+"청산",
+"決済",
+"Tutup",
+"Cerrar",
+"Isara"
+],
+"Close all": [
+"전체 청산",
+"一括決済",
+"Tutup semua",
+"Cerrar todo",
+"Isara lahat"
+],
+"Closed 50%": [
+"50% 청산됨",
+"50% 決済しました",
+"50% ditutup",
+"50 % cerrado",
+"Naisara ang 50%"
+],
+"Coin": [
+"코인",
+"通貨",
+"Syiling",
+"Moneda",
+"Coin"
+],
+"Collateral": [
+"담보",
+"担保",
+"Cagaran",
+"Garantía",
+"Collateral"
+],
+"Commit": [
+"청약 금액",
+"申込額",
+"Komit",
+"Compromiso",
+"Ilalaan"
+],
+"Committed": [
+"동결됨",
+"申込済み",
+"Dikomit",
+"Comprometido",
+"Nakalaan"
+],
+"Community": [
+"커뮤니티",
+"コミュニティ",
+"Komuniti",
+"Comunidad",
+"Komunidad"
+],
+"Community holders": [
+"커뮤니티 보유자",
+"コミュニティ保有者",
+"Pemegang komuniti",
+"Holders de la comunidad",
+"Mga holder sa komunidad"
+],
+"Completed": [
+"완료",
+"完了",
+"Selesai",
+"Completado",
+"Kumpleto"
+],
+"Compliant tokenisation for property and bonds": [
+"부동산·채권의 규정 준수 토큰화",
+"不動産と債券のコンプライアンス対応トークン化",
+"Tokenisasi patuh untuk hartanah dan bon",
+"Tokenización regulada de inmuebles y bonos",
+"Compliant na tokenization para sa property at bond"
+],
+"Confirm": [
+"확인",
+"確認",
+"Sahkan",
+"Confirmar",
+"Kumpirmahin"
+],
+"Confirm & release": [
+"확인 후 코인 해제",
+"確認してリリース",
+"Sahkan & lepaskan",
+"Confirmar y liberar",
+"Kumpirmahin at i-release"
+],
+"Confirm in your wallet…": [
+"지갑에서 확인하세요…",
+"ウォレットで確認してください…",
+"Sahkan dalam dompet anda…",
+"Confirma en tu billetera…",
+"Kumpirmahin sa wallet mo…"
+],
+"Confirm receipt, then release": [
+"입금 확인 후 코인을 해제하세요",
+"入金を確認してからリリースしてください",
+"Sahkan penerimaan, kemudian lepaskan",
+"Confirma la recepción y luego libera",
+"Kumpirmahin ang natanggap, saka i-release"
+],
+"Confirm reset": [
+"초기화 확인",
+"リセットを確認",
+"Sahkan tetapan semula",
+"Confirmar reinicio",
+"Kumpirmahin ang reset"
+],
+"Confirm subscription": [
+"청약 확인",
+"申込の確認",
+"Sahkan langganan",
+"Confirmar suscripción",
+"Kumpirmahin ang subscription"
+],
+"Confirm the money is in your account. Releasing cannot be undone.": [
+"계좌에 입금되었는지 확인하세요. 코인 해제는 되돌릴 수 없습니다.",
+"入金済みであることを確認してください。リリースは取り消せません。",
+"Pastikan wang sudah masuk ke akaun anda. Pelepasan tidak boleh dibatalkan.",
+"Confirma que el dinero está en tu cuenta. La liberación no se puede deshacer.",
+"Siguraduhing pumasok na ang pera sa account mo. Hindi na mababawi ang release."
+],
+"Confirmations": [
+"컨펌",
+"承認数",
+"Pengesahan",
+"Confirmaciones",
+"Mga kumpirmasyon"
+],
+"Confirming": [
+"컨펌 중",
+"承認中",
+"Mengesahkan",
+"Confirmando",
+"Kinukumpirma"
+],
+"Connect": [
+"연결",
+"接続",
+"Sambung",
+"Conectar",
+"Kumonekta"
+],
+"Connect a wallet": [
+"지갑 연결",
+"ウォレットを接続",
+"Sambung dompet",
+"Conectar billetera",
+"Ikonekta ang wallet"
+],
+"Connect and sign in first. We will assign deposit addresses to your account.": [
+"먼저 연결하고 로그인하세요. 계정에 입금 주소가 배정됩니다.",
+"まず接続してサインインしてください。入金アドレスを割り当てます。",
+"Sambung dan log masuk dahulu. Kami akan memberikan alamat deposit kepada akaun anda.",
+"Conéctate e inicia sesión primero. Asignaremos direcciones de depósito a tu cuenta.",
+"Kumonekta at mag-sign in muna. Bibigyan namin ng deposit address ang account mo."
+],
+"Connect and sign in to deposit, withdraw and move funds between accounts.": [
+"연결하고 로그인하면 입금, 출금, 계정 간 이체를 할 수 있습니다.",
+"接続してサインインすると、入出金や口座間の振替ができます。",
+"Sambung dan log masuk untuk deposit, keluarkan dan pindahkan dana antara akaun.",
+"Conéctate e inicia sesión para depositar, retirar y mover fondos entre cuentas.",
+"Kumonekta at mag-sign in para mag-deposit, mag-withdraw at maglipat ng pondo."
+],
+"Connect to see your assets": [
+"연결하여 자산 확인",
+"接続して資産を表示",
+"Sambung untuk lihat aset anda",
+"Conéctate para ver tus activos",
+"Kumonekta para makita ang assets mo"
+],
+"Connect to see your tier and caps.": [
+"연결하면 등급과 한도가 표시됩니다.",
+"接続するとティアと上限が表示されます。",
+"Sambung untuk melihat tahap dan had anda.",
+"Conéctate para ver tu nivel y límites.",
+"Kumonekta para makita ang tier at cap mo."
+],
+"Connect wallet": [
+"지갑 연결",
+"ウォレット接続",
+"Sambung dompet",
+"Conectar billetera",
+"Ikonekta ang wallet"
+],
+"Connect wallet & sign in": [
+"지갑 연결 및 로그인",
+"ウォレット接続してサインイン",
+"Sambung dompet & log masuk",
+"Conectar billetera e iniciar sesión",
+"Ikonekta ang wallet at mag-sign in"
+],
+"Connect your wallet first": [
+"먼저 지갑을 연결하세요",
+"先にウォレットを接続してください",
+"Sambung dompet anda dahulu",
+"Conecta tu billetera primero",
+"Ikonekta muna ang wallet mo"
+],
+"Connected": [
+"연결됨",
+"接続済み",
+"Disambung",
+"Conectada",
+"Nakakonekta"
+],
+"Connected and signed in": [
+"연결 및 로그인 완료",
+"接続・サインイン完了",
+"Disambung dan log masuk",
+"Conectado e iniciada la sesión",
+"Nakakonekta at naka-sign in"
+],
+"Contact": [
+"문의하기",
+"お問い合わせ",
+"Hubungi",
+"Contacto",
+"Makipag-ugnayan"
+],
+"Contract": [
+"계약",
+"契約",
+"Kontrak",
+"Contrato",
+"Kontrata"
+],
+"Convert": [
+"간편 환전",
+"コンバート",
+"Tukar",
+"Convertir",
+"I-convert"
+],
+"Converted": [
+"환전 완료",
+"交換しました",
+"Ditukar",
+"Convertido",
+"Na-convert"
+],
+"Copied": [
+"복사됨",
+"コピーしました",
+"Disalin",
+"Copiado",
+"Nakopya"
+],
+"Copy": [
+"복사",
+"コピー",
+"Salin",
+"Copiar",
+"Kopyahin"
+],
+"Credited to spot": [
+"현물 계정에 입금",
+"現物口座に反映",
+"Dikreditkan ke spot",
+"Abonado en spot",
+"Na-credit sa spot"
+],
+"Credited to spot after {0} confirmations.": [
+"{0}회 컨펌 후 현물 계정에 입금됩니다.",
+"{0} 承認後に現物口座へ反映されます。",
+"Dikreditkan ke spot selepas {0} pengesahan.",
+"Se abona en spot tras {0} confirmaciones.",
+"Mapupunta sa spot pagkatapos ng {0} kumpirmasyon."
+],
+"Cross": [
+"교차",
+"クロス",
+"Silang",
+"Cruzado",
+"Cross"
+],
+"Cross-chain liquidity": [
+"크로스체인 유동성",
+"クロスチェーン流動性",
+"Kecairan rentas rantaian",
+"Liquidez cross-chain",
+"Cross-chain liquidity"
+],
+"Crypto": [
+"암호화폐",
+"暗号資産",
+"Kripto",
+"Cripto",
+"Crypto"
+],
+"Crypto lands in your spot account": [
+"암호화폐가 현물 계정에 입금됩니다",
+"暗号資産が現物口座に届きます",
+"Kripto masuk ke akaun spot anda",
+"La cripto llega a tu cuenta spot",
+"Papasok ang crypto sa spot account mo"
+],
+"Crypto market cap": [
+"암호화폐 시가총액",
+"暗号資産時価総額",
+"Permodalan pasaran kripto",
+"Capitalización cripto",
+"Crypto market cap"
+],
+"Currency": [
+"통화",
+"通貨",
+"Mata wang",
+"Moneda",
+"Pera"
+],
+"DBS Bank · ending 8812": [
+"DBS Bank · 끝자리 8812",
+"DBS Bank · 末尾 8812",
+"DBS Bank · berakhir 8812",
+"DBS Bank · termina en 8812",
+"DBS Bank · nagtatapos sa 8812"
+],
+"Debt": [
+"부채",
+"負債",
+"Hutang",
+"Deuda",
+"Utang"
+],
+"Demo": [
+"데모",
+"デモ",
+"Demo",
+"Demo",
+"Demo"
+],
+"Demo console": [
+"데모 콘솔",
+"デモコンソール",
+"Konsol demo",
+"Consola demo",
+"Demo console"
+],
+"Demo data reset": [
+"데모 데이터 초기화됨",
+"デモデータをリセットしました",
+"Data demo ditetapkan semula",
+"Datos de demo reiniciados",
+"Na-reset ang demo data"
+],
+"Demo only: no real charge is made.": [
+"데모 전용: 실제 결제가 발생하지 않습니다.",
+"デモ専用：実際の請求は発生しません。",
+"Demo sahaja: tiada caj sebenar.",
+"Solo demo: no se realiza ningún cargo real.",
+"Demo lang: walang totoong singil."
+],
+"Deposit": [
+"입금",
+"入金",
+"Deposit",
+"Depositar",
+"Mag-deposito"
+],
+"Deposit complete": [
+"입금 완료",
+"入金完了",
+"Deposit selesai",
+"Depósito completado",
+"Kumpleto ang deposit"
+],
+"Deposit credited": [
+"입금 반영됨",
+"入金が反映されました",
+"Deposit dikreditkan",
+"Depósito abonado",
+"Na-credit ang deposit"
+],
+"Deposit more": [
+"추가 입금",
+"さらに入金",
+"Deposit lagi",
+"Depositar más",
+"Mag-deposito pa"
+],
+"Deposit to exchange": [
+"거래소로 입금",
+"取引所へ入金",
+"Deposit ke bursa",
+"Depositar en el exchange",
+"I-deposito sa exchange"
+],
+"Details": [
+"상세",
+"詳細",
+"Butiran",
+"Detalles",
+"Detalye"
+],
+"Detected": [
+"감지됨",
+"検出済み",
+"Dikesan",
+"Detectada",
+"Natukoy"
+],
+"Dev fund": [
+"개발자 펀드",
+"開発者基金",
+"Dana pembangun",
+"Fondo de desarrolladores",
+"Dev fund"
+],
+"Diamond": [
+"다이아몬드",
+"ダイヤモンド",
+"Berlian",
+"Diamante",
+"Diamond"
+],
+"Disconnect": [
+"연결 해제",
+"切断",
+"Putuskan sambungan",
+"Desconectar",
+"Idiskonekta"
+],
+"Disconnected": [
+"연결 해제됨",
+"切断しました",
+"Sambungan diputuskan",
+"Desconectada",
+"Nadiskonekta"
+],
+"Distributed systems, ex-Cloudflare": [
+"분산 시스템 전문가, 전 Cloudflare",
+"分散システム専門、元 Cloudflare",
+"Sistem teragih, bekas Cloudflare",
+"Sistemas distribuidos, ex Cloudflare",
+"Distributed systems, dating Cloudflare"
+],
+"Distribution": [
+"배포",
+"配布",
+"Pengagihan",
+"Distribución",
+"Pamamahagi"
+],
+"Done": [
+"완료",
+"完了",
+"Selesai",
+"Listo",
+"Tapos"
+],
+"Early penalty": [
+"조기 해지 페널티",
+"早期解約ペナルティ",
+"Penalti awal",
+"Penalización anticipada",
+"Early penalty"
+],
+"Early redemption forfeits {0}% of accrued rewards; principal is returned in full.": [
+"조기 해지 시 누적 보상의 {0}%가 차감되며 원금은 전액 반환됩니다.",
+"早期解約すると発生済み報酬の {0}% が没収されます。元本は全額返還されます。",
+"Penebusan awal melucutkan {0}% ganjaran terkumpul; prinsipal dipulangkan sepenuhnya.",
+"El rescate anticipado pierde el {0} % de las recompensas acumuladas; el capital se devuelve íntegro.",
+"Sa early redemption, mawawala ang {0}% ng naipong reward; buo ang ibabalik na principal."
+],
+"Early-stage tokens are volatile and you can lose everything. Do your own research.": [
+"초기 토큰은 변동성이 커서 전액 손실될 수 있습니다. 직접 조사하세요.",
+"初期トークンは変動が大きく、全額を失う可能性があります。ご自身で調査してください。",
+"Token peringkat awal tidak menentu dan anda boleh kehilangan semuanya. Buat kajian sendiri.",
+"Los tokens en fase temprana son volátiles y puedes perderlo todo. Investiga por tu cuenta.",
+"Pabagu-bago ang early-stage token at puwede mong mawala ang lahat. Mag-research ka muna."
+],
+"Earning": [
+"이자 발생 중",
+"運用中",
+"Menjana",
+"Generando",
+"Kumikita"
+],
+"Ecosystem": [
+"생태계",
+"エコシステム",
+"Ekosistem",
+"Ecosistema",
+"Ecosystem"
+],
+"Energy DePIN": [
+"에너지 DePIN",
+"エネルギー DePIN",
+"DePIN tenaga",
+"DePIN de energía",
+"Energy DePIN"
+],
+"Engine": [
+"엔진",
+"エンジン",
+"Enjin",
+"Motor",
+"Engine"
+],
+"Enter a price": [
+"가격을 입력하세요",
+"価格を入力してください",
+"Masukkan harga",
+"Introduce un precio",
+"Maglagay ng presyo"
+],
+"Enter a size": [
+"수량을 입력하세요",
+"数量を入力してください",
+"Masukkan saiz",
+"Introduce un tamaño",
+"Maglagay ng size"
+],
+"Enter a valid address": [
+"올바른 주소를 입력하세요",
+"有効なアドレスを入力してください",
+"Masukkan alamat yang sah",
+"Introduce una dirección válida",
+"Maglagay ng valid na address"
+],
+"Enter an amount": [
+"금액을 입력하세요",
+"金額を入力してください",
+"Masukkan jumlah",
+"Introduce un importe",
+"Maglagay ng halaga"
+],
+"Enter card details and pass 3-D Secure": [
+"카드 정보를 입력하고 3-D Secure 인증을 완료하세요",
+"カード情報を入力し 3-D セキュアを通過",
+"Masukkan butiran kad dan lepasi 3-D Secure",
+"Introduce los datos de la tarjeta y supera 3-D Secure",
+"Ilagay ang detalye ng card at pumasa sa 3-D Secure"
+],
+"Entry": [
+"진입가",
+"建値",
+"Masuk",
+"Entrada",
+"Entry"
+],
+"Equity": [
+"자산 총액",
+"証拠金残高",
+"Ekuiti",
+"Patrimonio",
+"Equity"
+],
+"Est. PnL {0} USDT": [
+"예상 손익 {0} USDT",
+"想定損益 {0} USDT",
+"Anggaran PnL {0} USDT",
+"PnL estimado {0} USDT",
+"Est. PnL {0} USDT"
+],
+"Est. allocation": [
+"예상 배정",
+"割当見込み",
+"Anggaran peruntukan",
+"Asignación estimada",
+"Est. allocation"
+],
+"Est. daily": [
+"예상 일일 수익",
+"1日あたり見込み",
+"Anggaran harian",
+"Estimado diario",
+"Est. araw-araw"
+],
+"Est. fee": [
+"예상 수수료",
+"手数料見込み",
+"Anggaran yuran",
+"Comisión estimada",
+"Est. fee"
+],
+"Est. fill rate": [
+"예상 배정 비율",
+"約定見込み率",
+"Anggaran kadar isian",
+"Tasa de asignación estimada",
+"Est. fill rate"
+],
+"Est. gas": [
+"예상 가스비",
+"ガス代見込み",
+"Anggaran gas",
+"Gas estimado",
+"Est. gas"
+],
+"Est. liq.": [
+"예상 청산가",
+"強制決済見込み",
+"Anggaran liku.",
+"Liq. estimada",
+"Est. liq."
+],
+"Est. refund": [
+"예상 환불",
+"返金見込み",
+"Anggaran bayaran balik",
+"Reembolso estimado",
+"Est. refund"
+],
+"Estimated net worth": [
+"추정 순자산",
+"推定純資産",
+"Anggaran nilai bersih",
+"Patrimonio neto estimado",
+"Tinatayang net worth"
+],
+"Ex-Google Brain researcher": [
+"전 Google Brain 연구원",
+"元 Google Brain 研究員",
+"Bekas penyelidik Google Brain",
+"Ex investigadora de Google Brain",
+"Dating researcher sa Google Brain"
+],
+"Ex-Riot Games producer": [
+"전 Riot Games 프로듀서",
+"元 Riot Games プロデューサー",
+"Bekas penerbit Riot Games",
+"Ex productor de Riot Games",
+"Dating producer sa Riot Games"
+],
+"Ex-Unity engine architect": [
+"전 Unity 엔진 아키텍트",
+"元 Unity エンジンアーキテクト",
+"Bekas arkitek enjin Unity",
+"Ex arquitecta del motor de Unity",
+"Dating engine architect sa Unity"
+],
+"Ex-VP, Apollo credit": [
+"전 Apollo 크레딧 부사장",
+"元 Apollo クレジット部門 VP",
+"Bekas VP, Apollo kredit",
+"Ex VP de crédito en Apollo",
+"Dating VP, Apollo credit"
+],
+"Ex-core engineer, Aave": [
+"전 Aave 코어 엔지니어",
+"元 Aave コアエンジニア",
+"Bekas jurutera teras, Aave",
+"Ex ingeniero principal de Aave",
+"Dating core engineer sa Aave"
+],
+"Exceeds borrow limit": [
+"대출 한도 초과",
+"借入枠を超えています",
+"Melebihi had pinjaman",
+"Supera el límite de préstamo",
+"Lampas sa borrow limit"
+],
+"Exceeds your tier cap": [
+"등급 한도 초과",
+"ティア上限を超えています",
+"Melebihi had tahap anda",
+"Supera el límite de tu nivel",
+"Lampas sa tier cap mo"
+],
+"Exit": [
+"청산가",
+"決済価格",
+"Keluar",
+"Salida",
+"Exit"
+],
+"Expiry": [
+"유효기간",
+"有効期限",
+"Tarikh luput",
+"Caducidad",
+"Expiry"
+],
+"Extension / app": [
+"확장 / 앱",
+"拡張機能 / アプリ",
+"Sambungan / aplikasi",
+"Extensión / app",
+"Extension / app"
+],
+"External links are disabled in this demo": [
+"데모에서는 외부 링크가 비활성화됩니다",
+"デモでは外部リンクは無効です",
+"Pautan luar dilumpuhkan dalam demo ini",
+"Los enlaces externos están desactivados en esta demo",
+"Naka-disable ang external link sa demo na ito"
+],
+"FDV": [
+"완전 희석 가치",
+"完全希薄化評価額",
+"FDV",
+"FDV",
+"FDV"
+],
+"Fast-forward": [
+"시간 앞당기기",
+"早送り",
+"Percepat masa",
+"Adelantar tiempo",
+"I-fast-forward"
+],
+"Fee": [
+"수수료",
+"手数料",
+"Yuran",
+"Comisión",
+"Fee"
+],
+"Fee rate": [
+"수수료율",
+"手数料率",
+"Kadar yuran",
+"Tasa de comisión",
+"Fee rate"
+],
+"Fees": [
+"수수료",
+"手数料",
+"Yuran",
+"Comisiones",
+"Mga fee"
+],
+"Filled": [
+"체결",
+"約定",
+"Diisi",
+"Ejecutado",
+"Na-fill"
+],
+"Filter by amount": [
+"금액으로 필터",
+"金額で絞り込み",
+"Tapis mengikut jumlah",
+"Filtrar por importe",
+"I-filter ayon sa halaga"
+],
+"Final ratio": [
+"최종 청약 비율",
+"最終申込倍率",
+"Nisbah akhir",
+"Ratio final",
+"Final ratio"
+],
+"Fixed": [
+"고정형",
+"定期",
+"Tetap",
+"Fijo",
+"Fixed"
+],
+"Flex": [
+"자유형",
+"フレックス",
+"Fleks",
+"Flex",
+"Flex"
+],
+"Flexible": [
+"자유형",
+"フレキシブル",
+"Fleksibel",
+"Flexible",
+"Flexible"
+],
+"Flexible products redeem any time; fixed terms pay more. Staking NVX also raises your launchpad tier and fee discount.": [
+"자유형 상품은 언제든 해지할 수 있고, 고정형은 수익률이 더 높습니다. NVX를 스테이킹하면 런치패드 등급과 수수료 할인도 올라갑니다.",
+"フレキシブルはいつでも解約でき、定期はより高利回りです。NVX をステーキングするとローンチパッドのティアと手数料割引も上がります。",
+"Produk fleksibel boleh ditebus bila-bila masa; tempoh tetap membayar lebih. Stake NVX juga menaikkan tahap launchpad dan diskaun yuran anda.",
+"Los productos flexibles se rescatan cuando quieras; los plazos fijos pagan más. Hacer staking de NVX también sube tu nivel en el launchpad y tu descuento en comisiones.",
+"Puwedeng i-redeem anumang oras ang flexible; mas malaki ang kita sa fixed term. Ang pag-stake ng NVX ay nagpapataas din ng launchpad tier at fee discount mo."
+],
+"Flip": [
+"방향 전환",
+"反転",
+"Tukar arah",
+"Invertir",
+"Baligtarin"
+],
+"From": [
+"보내는 곳",
+"振替元",
+"Dari",
+"Desde",
+"Mula sa"
+],
+"From connected wallet": [
+"연결된 지갑에서",
+"接続済みウォレットから",
+"Daripada dompet yang disambung",
+"Desde la billetera conectada",
+"Mula sa nakakonektang wallet"
+],
+"Funded spot account": [
+"현물 계정에 입금됨",
+"現物口座に入金しました",
+"Akaun spot didanai",
+"Cuenta spot recargada",
+"Napondohan ang spot account"
+],
+"Funding / next": [
+"펀딩비 / 다음",
+"資金調達率 / 次回",
+"Pembiayaan / seterusnya",
+"Financiación / próxima",
+"Funding / susunod"
+],
+"Funds": [
+"자금",
+"資金",
+"Dana",
+"Fondos",
+"Pondo"
+],
+"Funds are locked until settlement; any excess is refunded automatically.": [
+"정산 전까지 자금이 동결되며, 초과분은 자동 환불됩니다.",
+"精算まで資金はロックされ、超過分は自動返金されます。",
+"Dana dikunci sehingga penyelesaian; lebihan dipulangkan secara automatik.",
+"Los fondos quedan bloqueados hasta la liquidación; el exceso se reembolsa automáticamente.",
+"Naka-lock ang pondo hanggang settlement; awtomatikong ire-refund ang sobra."
+],
+"Futures": [
+"선물",
+"先物",
+"Niaga hadapan",
+"Futuros",
+"Futures"
+],
+"Futures account": [
+"선물 계정",
+"先物口座",
+"Akaun niaga hadapan",
+"Cuenta de futuros",
+"Futures account"
+],
+"Futures limit order filled": [
+"선물 지정가 주문 체결",
+"先物指値注文が約定",
+"Pesanan had niaga hadapan diisi",
+"Orden límite de futuros ejecutada",
+"Na-fill ang futures limit order"
+],
+"Get quote": [
+"견적 받기",
+"見積を取得",
+"Dapatkan sebut harga",
+"Obtener cotización",
+"Kumuha ng quote"
+],
+"Get test tokens": [
+"테스트 토큰 받기",
+"テストトークンを受け取る",
+"Dapatkan token ujian",
+"Obtener tokens de prueba",
+"Kumuha ng test token"
+],
+"Gold": [
+"골드",
+"ゴールド",
+"Emas",
+"Oro",
+"Gold"
+],
+"Got it, on it.": [
+"확인했습니다, 처리 중입니다.",
+"承知しました、対応中です。",
+"Baik, sedang diuruskan.",
+"Entendido, en ello.",
+"Sige, inaasikaso na."
+],
+"Governance & cross-chain": [
+"거버넌스 및 크로스체인",
+"ガバナンスとクロスチェーン",
+"Tadbir urus & rentas rantaian",
+"Gobernanza y cross-chain",
+"Governance at cross-chain"
+],
+"Hard cap": [
+"하드캡",
+"ハードキャップ",
+"Had keras",
+"Tope máximo",
+"Hard cap"
+],
+"Health factor": [
+"건전성 지수",
+"ヘルスファクター",
+"Faktor kesihatan",
+"Factor de salud",
+"Health factor"
+],
+"Health factor = collateral × liquidation threshold ÷ debt. Below 1 the position is liquidated with a 5% penalty.": [
+"건전성 지수 = 담보 × 청산 기준 ÷ 부채. 1 미만이면 5% 페널티와 함께 청산됩니다.",
+"ヘルスファクター = 担保 × 清算閾値 ÷ 負債。1 を下回ると 5% のペナルティ付きで清算されます。",
+"Faktor kesihatan = cagaran × ambang likuidasi ÷ hutang. Di bawah 1, posisi dilikuidasi dengan penalti 5%.",
+"Factor de salud = garantía × umbral de liquidación ÷ deuda. Por debajo de 1, la posición se liquida con una penalización del 5 %.",
+"Health factor = collateral × liquidation threshold ÷ utang. Kapag mas mababa sa 1, lili-liquidate ang posisyon na may 5% penalty."
+],
+"Health factor fell below 1; 50% of debt was liquidated": [
+"건전성 지수가 1 미만으로 떨어져 부채의 50%가 청산되었습니다",
+"ヘルスファクターが 1 を下回り、負債の 50% が清算されました",
+"Faktor kesihatan jatuh di bawah 1; 50% hutang dilikuidasi",
+"El factor de salud bajó de 1; se liquidó el 50 % de la deuda",
+"Bumaba sa 1 ang health factor; na-liquidate ang 50% ng utang"
+],
+"Health factor will be low; price moves could trigger liquidation.": [
+"건전성 지수가 낮아집니다. 가격 변동 시 청산될 수 있습니다.",
+"ヘルスファクターが低くなります。価格変動で清算される可能性があります。",
+"Faktor kesihatan akan rendah; pergerakan harga boleh mencetuskan likuidasi.",
+"El factor de salud será bajo; un movimiento de precio podría provocar la liquidación.",
+"Magiging mababa ang health factor; puwedeng ma-liquidate kapag gumalaw ang presyo."
+],
+"Health factor would be too low": [
+"건전성 지수가 너무 낮아집니다",
+"ヘルスファクターが低くなりすぎます",
+"Faktor kesihatan akan terlalu rendah",
+"El factor de salud quedaría demasiado bajo",
+"Masyadong bababa ang health factor"
+],
+"Help center": [
+"고객센터",
+"ヘルプセンター",
+"Pusat bantuan",
+"Centro de ayuda",
+"Help center"
+],
+"Hi! Please pay the exact amount with the reference code, then tap \"I have paid\".": [
+"안녕하세요! 참조 번호를 메모에 적고 정확한 금액을 결제한 뒤 \"결제 완료\"를 눌러주세요.",
+"こんにちは！参照番号を添えて正確な金額をお支払いのうえ、「支払いました」を押してください。",
+"Hai! Sila bayar jumlah tepat dengan kod rujukan, kemudian tekan \"Saya sudah bayar\".",
+"¡Hola! Paga el importe exacto con el código de referencia y luego pulsa \"He pagado\".",
+"Hi! Bayaran ang eksaktong halaga gamit ang reference code, tapos pindutin ang \"Nakabayad na ako\"."
+],
+"Hi, paying now. One moment.": [
+"안녕하세요, 지금 결제합니다. 잠시만요.",
+"こんにちは、今支払います。少々お待ちください。",
+"Hai, sedang bayar sekarang. Sekejap.",
+"Hola, pagando ahora. Un momento.",
+"Hi, nagbabayad na. Sandali lang."
+],
+"Hide balances": [
+"잔액 숨기기",
+"残高を隠す",
+"Sembunyikan baki",
+"Ocultar saldos",
+"Itago ang balanse"
+],
+"Hide zero balances": [
+"0 잔액 숨기기",
+"ゼロ残高を隠す",
+"Sembunyikan baki sifar",
+"Ocultar saldos cero",
+"Itago ang zero balance"
+],
+"High leverage greatly raises liquidation risk.": [
+"높은 레버리지는 청산 위험을 크게 높입니다.",
+"高レバレッジは強制決済リスクを大きく高めます。",
+"Leveraj tinggi sangat meningkatkan risiko likuidasi.",
+"Un apalancamiento alto eleva mucho el riesgo de liquidación.",
+"Malaki ang itinataas ng mataas na leverage sa liquidation risk."
+],
+"Highlights": [
+"핵심 포인트",
+"ハイライト",
+"Sorotan",
+"Puntos destacados",
+"Highlights"
+],
+"History": [
+"내역",
+"履歴",
+"Sejarah",
+"Historial",
+"History"
+],
+"Hot launches": [
+"인기 청약",
+"人気の申込",
+"Pelancaran hangat",
+"Lanzamientos destacados",
+"Mainit na launch"
+],
+"How it works": [
+"이용 방법",
+"ご利用の流れ",
+"Cara ia berfungsi",
+"Cómo funciona",
+"Paano ito gumagana"
+],
+"I agree to the Staking Terms": [
+"스테이킹 약관에 동의합니다",
+"ステーキング規約に同意します",
+"Saya bersetuju dengan Terma Staking",
+"Acepto los Términos de staking",
+"Sumasang-ayon ako sa Staking Terms"
+],
+"I have paid": [
+"결제 완료",
+"支払いました",
+"Saya sudah bayar",
+"He pagado",
+"Nakabayad na ako"
+],
+"I have read the rules and risk notice": [
+"규칙과 위험 고지를 읽었습니다",
+"ルールとリスク告知を読みました",
+"Saya telah membaca peraturan dan notis risiko",
+"He leído las reglas y el aviso de riesgos",
+"Nabasa ko ang mga patakaran at risk notice"
+],
+"I have received payment": [
+"입금을 확인했습니다",
+"入金を受け取りました",
+"Saya telah menerima bayaran",
+"He recibido el pago",
+"Natanggap ko na ang bayad"
+],
+"I pay": [
+"지불 금액",
+"支払額",
+"Saya bayar",
+"Pago",
+"Babayaran ko"
+],
+"I receive": [
+"받을 금액",
+"受取額",
+"Saya terima",
+"Recibo",
+"Matatanggap ko"
+],
+"I sell": [
+"판매 수량",
+"売却数量",
+"Saya jual",
+"Vendo",
+"Ibebenta ko"
+],
+"Identity and payments for on-chain AI agents": [
+"온체인 AI 에이전트를 위한 신원 및 결제 레이어",
+"オンチェーン AI エージェントの ID と決済",
+"Identiti dan pembayaran untuk ejen AI on-chain",
+"Identidad y pagos para agentes de IA on-chain",
+"Identity at bayad para sa mga on-chain AI agent"
+],
+"If total commitments exceed the hard cap, each user gets commitment ÷ oversubscription ratio; the rest is refunded to spot at settlement.": [
+"총 청약액이 하드캡을 넘으면 각 사용자는 청약액 ÷ 초과 청약 배수만큼 배정받고, 나머지는 정산 시 현물 계정으로 환불됩니다.",
+"申込総額がハードキャップを超えた場合、各ユーザーの割当は申込額 ÷ 超過倍率となり、残りは精算時に現物口座へ返金されます。",
+"Jika jumlah komitmen melebihi had keras, setiap pengguna mendapat komitmen ÷ nisbah lebihan langganan; bakinya dipulangkan ke spot semasa penyelesaian.",
+"Si los compromisos superan el tope, cada usuario recibe compromiso ÷ ratio de sobresuscripción; el resto se reembolsa a spot en la liquidación.",
+"Kapag lumampas sa hard cap ang kabuuang commitment, makukuha ng bawat user ang commitment ÷ oversubscription ratio; ire-refund sa spot ang natitira sa settlement."
+],
+"In orders": [
+"주문 중",
+"注文中",
+"Dalam pesanan",
+"En órdenes",
+"Nasa order"
+],
+"In spot": [
+"현물 보유",
+"現物残高",
+"Dalam spot",
+"En spot",
+"Nasa spot"
+],
+"Inference": [
+"추론",
+"推論",
+"Inferens",
+"Inferencia",
+"Inference"
+],
+"Initial mcap": [
+"초기 유통 시가총액",
+"初期時価総額",
+"Permodalan awal",
+"Capitalización inicial",
+"Initial mcap"
+],
+"Instant": [
+"즉시",
+"即時",
+"Serta-merta",
+"Instantáneo",
+"Agad"
+],
+"Institutional": [
+"기관 서비스",
+"法人向け",
+"Institusi",
+"Institucional",
+"Institutional"
+],
+"Institutional private credit, on-chain and auditable": [
+"기관급 사모 대출을 온체인에서 감사 가능하게",
+"機関向けプライベートクレジットをオンチェーンで監査可能に",
+"Kredit persendirian institusi, on-chain dan boleh diaudit",
+"Crédito privado institucional, on-chain y auditable",
+"Institutional private credit, on-chain at auditable"
+],
+"Insufficient available balance": [
+"사용 가능 잔액 부족",
+"利用可能残高が不足しています",
+"Baki tersedia tidak mencukupi",
+"Saldo disponible insuficiente",
+"Kulang ang available na balanse"
+],
+"Insufficient balance": [
+"잔액 부족",
+"残高不足",
+"Baki tidak mencukupi",
+"Saldo insuficiente",
+"Kulang ang balanse"
+],
+"Insufficient balance to repay": [
+"상환할 잔액이 부족합니다",
+"返済に必要な残高が不足しています",
+"Baki tidak mencukupi untuk bayar balik",
+"Saldo insuficiente para devolver",
+"Kulang ang balanse para magbayad"
+],
+"Insufficient wallet balance": [
+"지갑 잔액 부족",
+"ウォレット残高が不足しています",
+"Baki dompet tidak mencukupi",
+"Saldo insuficiente en la billetera",
+"Kulang ang balanse ng wallet"
+],
+"Insufficient {0}": [
+"{0} 잔액 부족",
+"{0} が不足しています",
+"{0} tidak mencukupi",
+"{0} insuficiente",
+"Kulang ang {0}"
+],
+"Investors": [
+"투자자",
+"投資家",
+"Pelabur",
+"Inversores",
+"Mga investor"
+],
+"Isolated": [
+"격리",
+"分離",
+"Terasing",
+"Aislado",
+"Isolated"
+],
+"It will be broadcast after risk review. Track it under wallet activity.": [
+"리스크 검토 후 브로드캐스트됩니다. 지갑 활동에서 확인하세요.",
+"リスク審査後にブロードキャストされます。ウォレットの履歴で確認できます。",
+"Ia akan disiarkan selepas semakan risiko. Jejaki di aktiviti dompet.",
+"Se transmitirá tras la revisión de riesgos. Síguelo en la actividad de la billetera.",
+"Iba-broadcast ito pagkatapos ng risk review. Subaybayan sa wallet activity."
+],
+"Its flagship title Driftline has 420K pre-registered players.": [
+"대표작 Driftline의 사전 등록자는 42만 명입니다.",
+"旗艦タイトル Driftline の事前登録者は 42 万人です。",
+"Tajuk utamanya Driftline mempunyai 420K pemain pra-daftar.",
+"Su título estrella, Driftline, tiene 420.000 jugadores prerregistrados.",
+"May 420K pre-registered na player ang flagship title nitong Driftline."
+],
+"Keep earning": [
+"지속적인 수익",
+"継続的に収益を",
+"Terus menjana",
+"Sigue ganando",
+"Patuloy na kumita"
+],
+"Key data": [
+"주요 데이터",
+"主要データ",
+"Data utama",
+"Datos clave",
+"Pangunahing data"
+],
+"Kink": [
+"변곡점",
+"キンク",
+"Titik lengkuk",
+"Punto de inflexión",
+"Kink"
+],
+"Kora AI pools idle consumer GPUs worldwide into a decentralised inference network, letting developers call open-source models at up to 60% less than centralised clouds.": [
+"Kora AI는 전 세계 유휴 소비자 GPU를 탈중앙화 추론 네트워크로 묶어, 개발자가 중앙화 클라우드보다 최대 60% 저렴하게 오픈소스 모델을 호출할 수 있게 합니다.",
+"Kora AI は世界中の遊休コンシューマー GPU を分散型推論ネットワークに束ね、開発者は集中型クラウドより最大 60% 安くオープンソースモデルを呼び出せます。",
+"Kora AI menghimpunkan GPU pengguna terbiar di seluruh dunia ke dalam rangkaian inferens terdesentralisasi, membolehkan pembangun memanggil model sumber terbuka sehingga 60% lebih murah berbanding awan berpusat.",
+"Kora AI reúne GPU de consumo inactivas de todo el mundo en una red de inferencia descentralizada, para que los desarrolladores usen modelos de código abierto hasta un 60 % más baratos que en nubes centralizadas.",
+"Pinagsasama ng Kora AI ang mga idle na consumer GPU sa buong mundo bilang desentralisadong inference network, kaya nakakatawag ang mga developer ng open-source model nang hanggang 60% na mas mura kaysa sa centralized cloud."
+],
+"LTV / Liq.": [
+"LTV / 청산",
+"LTV / 清算",
+"LTV / Liku.",
+"LTV / Liq.",
+"LTV / Liq."
+],
+"LTV / Liq. threshold": [
+"LTV / 청산 기준",
+"LTV / 清算閾値",
+"LTV / Ambang liku.",
+"LTV / Umbral de liq.",
+"LTV / Liq. threshold"
+],
+"Last": [
+"최신가",
+"最新",
+"Terkini",
+"Último",
+"Huli"
+],
+"Latency": [
+"지연",
+"遅延",
+"Kependaman",
+"Latencia",
+"Latency"
+],
+"Launchpad": [
+"런치패드",
+"ローンチパッド",
+"Launchpad",
+"Launchpad",
+"Launchpad"
+],
+"Launchpad tier": [
+"런치패드 등급",
+"ローンチパッドのティア",
+"Tahap launchpad",
+"Nivel de launchpad",
+"Launchpad tier"
+],
+"Law enforcement": [
+"수사기관 요청",
+"法執行機関からの要請",
+"Penguatkuasaan undang-undang",
+"Fuerzas del orden",
+"Law enforcement"
+],
+"Legal & security": [
+"법률 및 보안",
+"法務とセキュリティ",
+"Undang-undang & keselamatan",
+"Legal y seguridad",
+"Legal at seguridad"
+],
+"Lending": [
+"대출",
+"レンディング",
+"Pinjaman",
+"Préstamos",
+"Lending"
+],
+"Lev.": [
+"레버리지",
+"レバ",
+"Lev.",
+"Apal.",
+"Lev."
+],
+"Leverage": [
+"레버리지",
+"レバレッジ",
+"Leveraj",
+"Apalancamiento",
+"Leverage"
+],
+"Limit": [
+"지정가",
+"指値",
+"Had",
+"Límite",
+"Limit"
+],
+"Limit order filled": [
+"지정가 주문 체결",
+"指値注文が約定",
+"Pesanan had diisi",
+"Orden límite ejecutada",
+"Na-fill ang limit order"
+],
+"Limit order placed": [
+"지정가 주문 접수",
+"指値注文を発注しました",
+"Pesanan had dibuat",
+"Orden límite colocada",
+"Nailagay ang limit order"
+],
+"Limit used": [
+"한도 사용률",
+"枠使用率",
+"Had digunakan",
+"Límite usado",
+"Nagamit na limit"
+],
+"Limit {0} – {1} {2}": [
+"한도 {0} – {1} {2}",
+"限度額 {0} – {1} {2}",
+"Had {0} – {1} {2}",
+"Límite {0} – {1} {2}",
+"Limit {0} – {1} {2}"
+],
+"Linear vesting": [
+"선형 베스팅",
+"線形ベスティング",
+"Peletakhakan linear",
+"Vesting lineal",
+"Linear vesting"
+],
+"Liq.": [
+"청산가",
+"清算",
+"Liku.",
+"Liq.",
+"Liq."
+],
+"Liquidated": [
+"강제 청산",
+"強制決済",
+"Dilikuidasi",
+"Liquidada",
+"Na-liquidate"
+],
+"Liquidity": [
+"유동성",
+"流動性",
+"Kecairan",
+"Liquidez",
+"Liquidity"
+],
+"Listed": [
+"상장됨",
+"上場済み",
+"Disenaraikan",
+"Listado",
+"Naka-list"
+],
+"Listing application": [
+"상장 신청",
+"上場申請",
+"Permohonan penyenaraian",
+"Solicitud de listado",
+"Listing application"
+],
+"Live": [
+"진행 중",
+"開催中",
+"Langsung",
+"En curso",
+"Live"
+],
+"Live now": [
+"진행 중",
+"開催中",
+"Sedang berlangsung",
+"En curso ahora",
+"Live ngayon"
+],
+"Loan partially liquidated": [
+"대출 포지션 일부 청산",
+"ローンが一部清算されました",
+"Pinjaman dilikuidasi sebahagian",
+"Préstamo liquidado parcialmente",
+"Bahagyang na-liquidate ang loan"
+],
+"Locked / in use": [
+"잠김 / 사용 중",
+"ロック / 使用中",
+"Dikunci / digunakan",
+"Bloqueado / en uso",
+"Naka-lock / ginagamit"
+],
+"Long": [
+"롱",
+"ロング",
+"Long",
+"Largo",
+"Long"
+],
+"Mainnet beta": [
+"메인넷 베타",
+"メインネットベータ",
+"Beta mainnet",
+"Mainnet beta",
+"Mainnet beta"
+],
+"Margin": [
+"증거금",
+"証拠金",
+"Margin",
+"Margen",
+"Margin"
+],
+"Margin added": [
+"증거금 추가됨",
+"証拠金を追加しました",
+"Margin ditambah",
+"Margen añadido",
+"Naidagdag ang margin"
+],
+"Margin asset": [
+"증거금 자산",
+"証拠金通貨",
+"Aset margin",
+"Activo de margen",
+"Margin asset"
+],
+"Margin in use": [
+"사용 중 증거금",
+"使用中の証拠金",
+"Margin digunakan",
+"Margen en uso",
+"Margin na ginagamit"
+],
+"Margin ratio": [
+"증거금 비율",
+"証拠金率",
+"Nisbah margin",
+"Ratio de margen",
+"Margin ratio"
+],
+"Mark": [
+"마크 가격",
+"マーク価格",
+"Tanda",
+"Marca",
+"Mark"
+],
+"Marked as paid. Waiting for the merchant to release.": [
+"결제 완료로 표시했습니다. 판매자의 코인 해제를 기다리는 중입니다.",
+"支払済みにしました。業者のリリースを待っています。",
+"Ditanda sebagai sudah bayar. Menunggu peniaga melepaskan.",
+"Marcado como pagado. Esperando a que el comerciante libere.",
+"Minarkahang bayad na. Hinihintay ang merchant na mag-release."
+],
+"Market": [
+"시장가",
+"成行",
+"Pasaran",
+"Mercado",
+"Market"
+],
+"Market order filled": [
+"시장가 주문 체결",
+"成行注文が約定",
+"Pesanan pasaran diisi",
+"Orden de mercado ejecutada",
+"Na-fill ang market order"
+],
+"Markets": [
+"마켓",
+"マーケット",
+"Pasaran",
+"Mercados",
+"Mga market"
+],
+"Matured": [
+"만기됨",
+"満期",
+"Matang",
+"Vencido",
+"Matured"
+],
+"Maturity": [
+"만기",
+"満期日",
+"Tarikh matang",
+"Vencimiento",
+"Maturity"
+],
+"Max": [
+"최대",
+"最大",
+"Maks",
+"Máx.",
+"Max"
+],
+"Max borrow": [
+"최대 대출",
+"最大借入",
+"Pinjaman maks",
+"Préstamo máx.",
+"Max na hiram"
+],
+"Max size": [
+"최대 수량",
+"最大数量",
+"Saiz maks",
+"Tamaño máx.",
+"Max size"
+],
+"Merchant": [
+"판매자",
+"業者",
+"Peniaga",
+"Comerciante",
+"Merchant"
+],
+"Merchant notified": [
+"판매자에게 알렸습니다",
+"業者に通知しました",
+"Peniaga dimaklumkan",
+"Comerciante notificado",
+"Naabisuhan ang merchant"
+],
+"Merchant payment details": [
+"판매자 결제 정보",
+"業者の支払先情報",
+"Butiran pembayaran peniaga",
+"Datos de pago del comerciante",
+"Payment details ng merchant"
+],
+"Merchant terms": [
+"판매자 조건",
+"業者の取引条件",
+"Terma peniaga",
+"Condiciones del comerciante",
+"Mga tuntunin ng merchant"
+],
+"Message": [
+"메시지",
+"メッセージ",
+"Mesej",
+"Mensaje",
+"Mensahe"
+],
+"Min": [
+"최소",
+"最低",
+"Min",
+"Mín.",
+"Min"
+],
+"Min {0} USDC": [
+"최소 {0} USDC",
+"最低 {0} USDC",
+"Min {0} USDC",
+"Mín. {0} USDC",
+"Min {0} USDC"
+],
+"Minimum deposit {0} {1}": [
+"최소 입금 {0} {1}",
+"最低入金額 {0} {1}",
+"Deposit minimum {0} {1}",
+"Depósito mínimo {0} {1}",
+"Minimum deposit {0} {1}"
+],
+"Minimum is {0} USDC": [
+"최소 {0} USDC입니다",
+"最低 {0} USDC です",
+"Minimum ialah {0} USDC",
+"El mínimo es {0} USDC",
+"Ang minimum ay {0} USDC"
+],
+"Minimum {0} {1}": [
+"최소 {0} {1}",
+"最低 {0} {1}",
+"Minimum {0} {1}",
+"Mínimo {0} {1}",
+"Minimum {0} {1}"
+],
+"Mirage Labs ships an on-chain game engine and ECS framework. Developers write gameplay with familiar tools while state and rules live on Base, so player assets are composable by default.": [
+"Mirage Labs는 온체인 게임 엔진과 ECS 프레임워크를 제공합니다. 개발자는 익숙한 도구로 게임플레이를 만들고, 상태와 규칙은 Base에 올라가 플레이어 자산이 기본적으로 조합 가능합니다.",
+"Mirage Labs はオンチェーンゲームエンジンと ECS フレームワークを提供します。開発者は慣れたツールでゲームを作り、状態とルールは Base 上に置かれるため、プレイヤー資産は標準でコンポーザブルです。",
+"Mirage Labs menyediakan enjin permainan on-chain dan rangka kerja ECS. Pembangun menulis permainan dengan alatan biasa manakala keadaan dan peraturan berada di Base, jadi aset pemain boleh digubah secara lalai.",
+"Mirage Labs ofrece un motor de juegos on-chain y un framework ECS. Los desarrolladores programan con herramientas conocidas mientras el estado y las reglas viven en Base, así que los activos de los jugadores son componibles por defecto.",
+"Nagbibigay ang Mirage Labs ng on-chain game engine at ECS framework. Gumagamit ang mga developer ng pamilyar na tool habang nasa Base ang state at rules, kaya composable ang assets ng player."
+],
+"Mobile app": [
+"모바일 앱",
+"モバイルアプリ",
+"Aplikasi mudah alih",
+"App móvil",
+"Mobile app"
+],
+"Months after TGE": [
+"TGE 이후 개월",
+"TGE 後の月数",
+"Bulan selepas TGE",
+"Meses tras el TGE",
+"Buwan pagkatapos ng TGE"
+],
+"More than supplied": [
+"예치액을 초과합니다",
+"預入額を超えています",
+"Lebih daripada yang dibekalkan",
+"Más de lo depositado",
+"Higit sa na-supply"
+],
+"My borrows": [
+"내 대출",
+"借入一覧",
+"Pinjaman saya",
+"Mis préstamos",
+"Mga hiniram ko"
+],
+"My launchpad tier": [
+"내 런치패드 등급",
+"私のローンチパッドティア",
+"Tahap launchpad saya",
+"Mi nivel de launchpad",
+"Launchpad tier ko"
+],
+"My orders": [
+"내 주문",
+"注文履歴",
+"Pesanan saya",
+"Mis pedidos",
+"Mga order ko"
+],
+"My position": [
+"내 포지션",
+"私のポジション",
+"Posisi saya",
+"Mi posición",
+"Posisyon ko"
+],
+"My stakes": [
+"내 스테이킹",
+"私のステーキング",
+"Stake saya",
+"Mis stakes",
+"Mga stake ko"
+],
+"My subscriptions": [
+"내 청약",
+"私の申込",
+"Langganan saya",
+"Mis suscripciones",
+"Mga subscription ko"
+],
+"My supplies": [
+"내 예치",
+"預入一覧",
+"Bekalan saya",
+"Mis depósitos",
+"Mga supply ko"
+],
+"NVX tier benefits": [
+"NVX 등급 혜택",
+"NVX ティア特典",
+"Faedah tahap NVX",
+"Beneficios por nivel NVX",
+"Benepisyo ng NVX tier"
+],
+"Name": [
+"이름",
+"名義",
+"Nama",
+"Nombre",
+"Pangalan"
+],
+"Net APY": [
+"순 APY",
+"純 APY",
+"APY bersih",
+"APY neto",
+"Net APY"
+],
+"Net worth": [
+"순자산",
+"純資産",
+"Nilai bersih",
+"Patrimonio neto",
+"Net worth"
+],
+"Network": [
+"네트워크",
+"ネットワーク",
+"Rangkaian",
+"Red",
+"Network"
+],
+"Network fee": [
+"네트워크 수수료",
+"ネットワーク手数料",
+"Yuran rangkaian",
+"Comisión de red",
+"Network fee"
+],
+"Network switched": [
+"네트워크 전환됨",
+"ネットワークを切り替えました",
+"Rangkaian ditukar",
+"Red cambiada",
+"Napalitan ang network"
+],
+"Network: healthy": [
+"네트워크: 정상",
+"ネットワーク：正常",
+"Rangkaian: sihat",
+"Red: estable",
+"Network: maayos"
+],
+"No": [
+"아니요",
+"いいえ",
+"Tidak",
+"No",
+"Hindi"
+],
+"No OTC orders yet": [
+"아직 OTC 주문이 없습니다",
+"OTC 注文はまだありません",
+"Tiada pesanan OTC lagi",
+"Aún no hay pedidos OTC",
+"Wala pang OTC order"
+],
+"No activity yet": [
+"아직 활동이 없습니다",
+"履歴はまだありません",
+"Tiada aktiviti lagi",
+"Aún no hay actividad",
+"Wala pang aktibidad"
+],
+"No ads match your filters": [
+"조건에 맞는 광고가 없습니다",
+"条件に合う広告はありません",
+"Tiada iklan sepadan dengan penapis",
+"Ningún anuncio coincide con tus filtros",
+"Walang ad na tugma sa filter"
+],
+"No borrows": [
+"대출 없음",
+"借入なし",
+"Tiada pinjaman",
+"Sin préstamos",
+"Walang hiniram"
+],
+"No favourites yet. Tap a star to add.": [
+"즐겨찾기가 없습니다. 별을 눌러 추가하세요.",
+"お気に入りはまだありません。星をタップして追加。",
+"Tiada kegemaran lagi. Ketik bintang untuk tambah.",
+"Aún no hay favoritos. Toca una estrella para añadir.",
+"Wala pang favorite. I-tap ang star para magdagdag."
+],
+"No history": [
+"내역 없음",
+"履歴なし",
+"Tiada sejarah",
+"Sin historial",
+"Walang history"
+],
+"No margin in futures.": [
+"선물 계정에 증거금이 없습니다.",
+"先物口座に証拠金がありません。",
+"Tiada margin dalam niaga hadapan.",
+"No hay margen en futuros.",
+"Walang margin sa futures."
+],
+"No open orders": [
+"미체결 주문 없음",
+"未約定の注文はありません",
+"Tiada pesanan terbuka",
+"Sin órdenes abiertas",
+"Walang open order"
+],
+"No open positions": [
+"보유 포지션 없음",
+"保有ポジションなし",
+"Tiada posisi terbuka",
+"Sin posiciones abiertas",
+"Walang bukas na posisyon"
+],
+"No orders": [
+"주문 없음",
+"注文なし",
+"Tiada pesanan",
+"Sin órdenes",
+"Walang order"
+],
+"No provider supports this method": [
+"이 결제 수단을 지원하는 제공업체가 없습니다",
+"この支払方法に対応するプロバイダーはありません",
+"Tiada penyedia menyokong kaedah ini",
+"Ningún proveedor admite este método",
+"Walang provider na sumusuporta rito"
+],
+"No spot assets": [
+"현물 자산 없음",
+"現物資産なし",
+"Tiada aset spot",
+"Sin activos spot",
+"Walang spot asset"
+],
+"No stakes yet. Pick a product above to start earning.": [
+"아직 스테이킹이 없습니다. 위에서 상품을 골라 수익을 시작하세요.",
+"ステーキングはまだありません。上の商品を選んで始めましょう。",
+"Belum ada stake. Pilih produk di atas untuk mula menjana.",
+"Aún no tienes stakes. Elige un producto arriba para empezar a ganar.",
+"Wala pang stake. Pumili ng produkto sa itaas para magsimulang kumita."
+],
+"No subscriptions yet": [
+"아직 청약이 없습니다",
+"申込はまだありません",
+"Tiada langganan lagi",
+"Aún no hay suscripciones",
+"Wala pang subscription"
+],
+"No trades yet": [
+"아직 체결 내역이 없습니다",
+"約定はまだありません",
+"Tiada dagangan lagi",
+"Aún no hay operaciones",
+"Wala pang trade"
+],
+"Node rewards": [
+"노드 보상",
+"ノード報酬",
+"Ganjaran nod",
+"Recompensas de nodos",
+"Node rewards"
+],
+"Not enough USDC. Deposit or convert first.": [
+"USDC가 부족합니다. 먼저 입금하거나 환전하세요.",
+"USDC が不足しています。先に入金またはコンバートしてください。",
+"USDC tidak mencukupi. Deposit atau tukar dahulu.",
+"No tienes suficiente USDC. Deposita o convierte primero.",
+"Kulang ang USDC. Mag-deposito o mag-convert muna."
+],
+"Not enough available margin": [
+"사용 가능한 증거금이 부족합니다",
+"利用可能な証拠金が不足しています",
+"Margin tersedia tidak mencukupi",
+"Margen disponible insuficiente",
+"Kulang ang available na margin"
+],
+"Not enough margin. Transfer funds to futures first.": [
+"증거금이 부족합니다. 먼저 선물 계정으로 이체하세요.",
+"証拠金が不足しています。先に先物口座へ振り替えてください。",
+"Margin tidak mencukupi. Pindahkan dana ke niaga hadapan dahulu.",
+"Margen insuficiente. Transfiere fondos a futuros primero.",
+"Kulang ang margin. Maglipat muna ng pondo sa futures."
+],
+"Not enough pool liquidity": [
+"풀 유동성이 부족합니다",
+"プールの流動性が不足しています",
+"Kecairan kolam tidak mencukupi",
+"Liquidez del pool insuficiente",
+"Kulang ang liquidity ng pool"
+],
+"Not enough. Convert to NVX": [
+"부족합니다. NVX로 환전",
+"不足しています。NVX にコンバート",
+"Tidak cukup. Tukar ke NVX",
+"Insuficiente. Convertir a NVX",
+"Kulang. I-convert sa NVX"
+],
+"Not enough. Deposit {0}": [
+"부족합니다. {0} 입금",
+"不足しています。{0} を入金",
+"Tidak cukup. Deposit {0}",
+"Insuficiente. Depositar {0}",
+"Kulang. Mag-deposito ng {0}"
+],
+"Not yet": [
+"아직이요",
+"まだです",
+"Belum lagi",
+"Todavía no",
+"Hindi pa"
+],
+"Nothing here yet": [
+"아직 내용이 없습니다",
+"まだ何もありません",
+"Belum ada apa-apa",
+"Aún no hay nada",
+"Wala pang laman"
+],
+"Nothing supplied": [
+"예치 없음",
+"預入なし",
+"Tiada bekalan",
+"Nada depositado",
+"Walang na-supply"
+],
+"Nothing to claim": [
+"수령할 항목 없음",
+"受け取れるものはありません",
+"Tiada untuk dituntut",
+"Nada que reclamar",
+"Walang ike-claim"
+],
+"Now": [
+"현재",
+"現在",
+"Kini",
+"Ahora",
+"Ngayon"
+],
+"OTC order completed": [
+"OTC 주문 완료",
+"OTC 注文が完了しました",
+"Pesanan OTC selesai",
+"Pedido OTC completado",
+"Kumpleto ang OTC order"
+],
+"On-chain": [
+"온체인",
+"オンチェーン",
+"On-chain",
+"On-chain",
+"On-chain"
+],
+"On-chain games": [
+"온체인 게임",
+"オンチェーンゲーム",
+"Permainan on-chain",
+"Juegos on-chain",
+"On-chain na laro"
+],
+"On-chain settlement for distributed solar & storage": [
+"분산형 태양광·ESS를 위한 온체인 정산",
+"分散型太陽光と蓄電のオンチェーン決済",
+"Penyelesaian on-chain untuk solar & storan teragih",
+"Liquidación on-chain para solar y almacenamiento distribuidos",
+"On-chain settlement para sa distributed solar at storage"
+],
+"On-chain wallet balance (demo)": [
+"온체인 지갑 잔액 (데모)",
+"オンチェーンのウォレット残高（デモ）",
+"Baki dompet on-chain (demo)",
+"Saldo de billetera on-chain (demo)",
+"On-chain wallet balance (demo)"
+],
+"One liquidity pool across 12 chains": [
+"12개 체인을 아우르는 하나의 유동성 풀",
+"12 チェーンにまたがる 1 つの流動性プール",
+"Satu kolam kecairan merentasi 12 rantaian",
+"Un pool de liquidez en 12 cadenas",
+"Isang liquidity pool sa 12 chain"
+],
+"One secure, transparent home for launches, trading, staking and lending.": [
+"청약, 거래, 스테이킹, 대출을 한 곳에서 안전하고 투명하게.",
+"申込、取引、ステーキング、レンディングを安全かつ透明に一か所で。",
+"Satu tempat selamat dan telus untuk pelancaran, dagangan, staking dan pinjaman.",
+"Un lugar seguro y transparente para lanzamientos, trading, staking y préstamos.",
+"Isang ligtas at transparent na tahanan para sa launch, trading, staking at lending."
+],
+"Only send {0} on {1}. Other assets sent here are lost.": [
+"{1}에서 {0}만 보내세요. 다른 자산을 보내면 복구할 수 없습니다.",
+"{1} の {0} のみ送金してください。他の資産は失われます。",
+"Hanya hantar {0} pada {1}. Aset lain yang dihantar ke sini akan hilang.",
+"Envía solo {0} en {1}. Otros activos enviados aquí se pierden.",
+"{0} lang sa {1} ang ipadala. Mawawala ang ibang asset na ipapadala rito."
+],
+"Open": [
+"개설",
+"新規",
+"Buka",
+"Abrir",
+"Bukas"
+],
+"Open orders": [
+"미체결 주문",
+"未約定注文",
+"Pesanan terbuka",
+"Órdenes abiertas",
+"Mga open order"
+],
+"Open-source engine, 6.8K GitHub stars": [
+"오픈소스 엔진, GitHub 스타 6.8K",
+"オープンソースエンジン、GitHub スター 6.8K",
+"Enjin sumber terbuka, 6.8K bintang GitHub",
+"Motor de código abierto, 6.800 estrellas en GitHub",
+"Open-source engine, 6.8K GitHub star"
+],
+"Order": [
+"주문",
+"注文",
+"Pesanan",
+"Orden",
+"Order"
+],
+"Order book": [
+"호가창",
+"板情報",
+"Buku pesanan",
+"Libro de órdenes",
+"Order book"
+],
+"Order cancelled": [
+"주문이 취소되었습니다",
+"注文をキャンセルしました",
+"Pesanan dibatalkan",
+"Orden cancelada",
+"Nakansela ang order"
+],
+"Order history": [
+"주문 내역",
+"注文履歴",
+"Sejarah pesanan",
+"Historial de órdenes",
+"Order history"
+],
+"Order no.": [
+"주문 번호",
+"注文番号",
+"No. pesanan",
+"N.º de pedido",
+"Order no."
+],
+"Order placed": [
+"주문 접수됨",
+"注文を発注しました",
+"Pesanan dibuat",
+"Orden colocada",
+"Nailagay ang order"
+],
+"Ordered": [
+"주문 완료",
+"注文済み",
+"Dipesan",
+"Pedido",
+"Na-order"
+],
+"Over your cap": [
+"한도 초과",
+"上限超過",
+"Melebihi had anda",
+"Supera tu límite",
+"Lampas sa cap mo"
+],
+"Oversubscription": [
+"초과 청약",
+"超過申込",
+"Lebihan langganan",
+"Sobresuscripción",
+"Oversubscription"
+],
+"Overview": [
+"개요",
+"概要",
+"Gambaran keseluruhan",
+"Resumen",
+"Overview"
+],
+"P2P market": [
+"P2P 마켓",
+"P2P マーケット",
+"Pasaran P2P",
+"Mercado P2P",
+"P2P market"
+],
+"PERP": [
+"무기한",
+"無期限",
+"KEKAL",
+"PERP",
+"PERP"
+],
+"Paid. Please check and release.": [
+"결제했습니다. 확인 후 코인을 해제해 주세요.",
+"支払いました。確認してリリースしてください。",
+"Sudah bayar. Sila semak dan lepaskan.",
+"Pagado. Revisa y libera, por favor.",
+"Nakabayad na. Pakitingnan at i-release."
+],
+"Pair": [
+"거래쌍",
+"通貨ペア",
+"Pasangan",
+"Par",
+"Pair"
+],
+"Participants": [
+"참여자",
+"参加者",
+"Peserta",
+"Participantes",
+"Mga kalahok"
+],
+"Partner providers": [
+"파트너 제공업체",
+"提携プロバイダー",
+"Penyedia rakan kongsi",
+"Proveedores asociados",
+"Mga partner provider"
+],
+"Partnered with 3 open-model communities": [
+"오픈 모델 커뮤니티 3곳과 파트너십",
+"3 つのオープンモデルコミュニティと提携",
+"Bekerjasama dengan 3 komuniti model terbuka",
+"Alianzas con 3 comunidades de modelos abiertos",
+"Ka-partner ang 3 open-model community"
+],
+"Paste or type an address": [
+"주소를 붙여넣거나 입력하세요",
+"アドレスを貼り付けまたは入力",
+"Tampal atau taip alamat",
+"Pega o escribe una dirección",
+"I-paste o i-type ang address"
+],
+"Pay": [
+"결제",
+"支払う",
+"Bayar",
+"Pagar",
+"Magbayad"
+],
+"Pay from an account in your own name. Put only the order reference in the memo.": [
+"본인 명의 계좌로 결제하고, 메모에는 주문 참조 번호만 적으세요.",
+"ご本人名義の口座からお支払いください。メモには注文参照番号のみ記入してください。",
+"Bayar daripada akaun atas nama anda sendiri. Masukkan hanya rujukan pesanan dalam memo.",
+"Paga desde una cuenta a tu nombre. Pon solo la referencia del pedido en el concepto.",
+"Magbayad mula sa account na nakapangalan sa iyo. Reference ng order lang ang ilagay sa memo."
+],
+"Pay within": [
+"남은 시간",
+"残り",
+"Bayar dalam",
+"Paga en",
+"Magbayad sa loob ng"
+],
+"Pay {0} {1}": [
+"{0} {1} 결제",
+"{0} {1} を支払う",
+"Bayar {0} {1}",
+"Pagar {0} {1}",
+"Magbayad ng {0} {1}"
+],
+"Payment": [
+"결제",
+"支払",
+"Bayaran",
+"Pago",
+"Bayad"
+],
+"Payment and identity checks (KYC) are handled by the provider. Crypto goes straight to your spot account.": [
+"결제와 본인 인증(KYC)은 제공업체가 처리하며, 암호화폐는 현물 계정으로 바로 입금됩니다.",
+"支払いと本人確認（KYC）はプロバイダーが行い、暗号資産は現物口座に直接届きます。",
+"Pembayaran dan semakan identiti (KYC) dikendalikan oleh penyedia. Kripto terus masuk ke akaun spot anda.",
+"El proveedor gestiona el pago y la verificación de identidad (KYC). La cripto va directa a tu cuenta spot.",
+"Ang provider ang bahala sa bayad at identity check (KYC). Diretso sa spot account mo ang crypto."
+],
+"Payment method": [
+"결제 수단",
+"支払方法",
+"Kaedah pembayaran",
+"Método de pago",
+"Paraan ng bayad"
+],
+"Payout": [
+"지급",
+"支払い",
+"Pembayaran",
+"Pago",
+"Payout"
+],
+"Pending": [
+"대기 중",
+"保留中",
+"Belum selesai",
+"Pendiente",
+"Nakabinbin"
+],
+"Pending rewards": [
+"미수령 보상",
+"未受取報酬",
+"Ganjaran belum dituntut",
+"Recompensas pendientes",
+"Nakabinbing reward"
+],
+"Pick amount and provider": [
+"금액과 제공업체 선택",
+"金額とプロバイダーを選ぶ",
+"Pilih jumlah dan penyedia",
+"Elige importe y proveedor",
+"Pumili ng halaga at provider"
+],
+"Pick an account and approve in the wallet pop-up": [
+"지갑 팝업에서 계정을 선택하고 승인하세요",
+"ウォレットのポップアップでアカウントを選んで承認",
+"Pilih akaun dan luluskan dalam tetingkap dompet",
+"Elige una cuenta y aprueba en la ventana de la billetera",
+"Pumili ng account at aprubahan sa wallet pop-up"
+],
+"Place order": [
+"주문하기",
+"注文する",
+"Buat pesanan",
+"Hacer pedido",
+"Mag-order"
+],
+"Player rewards": [
+"플레이어 보상",
+"プレイヤー報酬",
+"Ganjaran pemain",
+"Recompensas para jugadores",
+"Player rewards"
+],
+"Policy: oversubscribed sales are allocated pro rata and the remainder refunded.": [
+"정책: 초과 청약 시 비례 배분하며 나머지는 환불합니다.",
+"ポリシー：超過申込は按分で割当、残りは返金します。",
+"Dasar: jualan terlebih langgan diperuntukkan secara pro rata dan bakinya dipulangkan.",
+"Política: las ventas sobresuscritas se asignan a prorrata y el resto se reembolsa.",
+"Patakaran: pro rata ang allocation sa oversubscribed na sale at ire-refund ang natitira."
+],
+"Pool usage": [
+"풀 사용률",
+"プール使用率",
+"Penggunaan kolam",
+"Uso del pool",
+"Pool usage"
+],
+"Position closed": [
+"포지션 청산됨",
+"ポジションを決済しました",
+"Posisi ditutup",
+"Posición cerrada",
+"Naisara ang posisyon"
+],
+"Position liquidated": [
+"포지션 강제 청산됨",
+"ポジションが強制決済されました",
+"Posisi dilikuidasi",
+"Posición liquidada",
+"Na-liquidate ang posisyon"
+],
+"Positions": [
+"포지션",
+"ポジション",
+"Posisi",
+"Posiciones",
+"Mga posisyon"
+],
+"Press": [
+"보도자료",
+"プレス",
+"Akhbar",
+"Prensa",
+"Press"
+],
+"Preview": [
+"사전 공개",
+"プレビュー",
+"Pratonton",
+"Vista previa",
+"Preview"
+],
+"Price": [
+"가격",
+"価格",
+"Harga",
+"Precio",
+"Presyo"
+],
+"Price now": [
+"현재 가격",
+"現在価格",
+"Harga kini",
+"Precio actual",
+"Presyo ngayon"
+],
+"Price shock (test liquidations)": [
+"가격 충격 (청산 테스트)",
+"価格ショック（清算テスト）",
+"Kejutan harga (uji likuidasi)",
+"Shock de precio (probar liquidaciones)",
+"Price shock (test ng liquidation)"
+],
+"Principal": [
+"원금",
+"元本",
+"Prinsipal",
+"Capital",
+"Principal"
+],
+"Principal + rewards at maturity": [
+"만기 시 원금 + 보상",
+"満期時に元本＋報酬",
+"Prinsipal + ganjaran semasa matang",
+"Capital + recompensas al vencimiento",
+"Principal + reward sa maturity"
+],
+"Privacy L2": [
+"프라이버시 L2",
+"プライバシー L2",
+"L2 privasi",
+"L2 de privacidad",
+"Privacy L2"
+],
+"Privacy policy": [
+"개인정보처리방침",
+"プライバシーポリシー",
+"Dasar privasi",
+"Política de privacidad",
+"Privacy policy"
+],
+"Private credit": [
+"사모 대출",
+"プライベートクレジット",
+"Kredit persendirian",
+"Crédito privado",
+"Private credit"
+],
+"Processing": [
+"처리 중",
+"処理中",
+"Memproses",
+"Procesando",
+"Pinoproseso"
+],
+"Processing payment": [
+"결제 처리 중",
+"決済処理中",
+"Memproses pembayaran",
+"Procesando el pago",
+"Pinoproseso ang bayad"
+],
+"Product": [
+"상품",
+"商品",
+"Produk",
+"Producto",
+"Produkto"
+],
+"Product prototype: all projects, prices and balances are simulated.": [
+"제품 프로토타입: 모든 프로젝트, 가격, 잔액은 시뮬레이션입니다.",
+"製品プロトタイプ：すべてのプロジェクト、価格、残高はシミュレーションです。",
+"Prototaip produk: semua projek, harga dan baki adalah simulasi.",
+"Prototipo de producto: todos los proyectos, precios y saldos son simulados.",
+"Product prototype: simulated lahat ng project, presyo at balanse."
+],
+"Products": [
+"상품",
+"商品",
+"Produk",
+"Productos",
+"Mga produkto"
+],
+"Project": [
+"프로젝트",
+"プロジェクト",
+"Projek",
+"Proyecto",
+"Project"
+],
+"Projects launched": [
+"출시된 프로젝트",
+"ローンチ済みプロジェクト",
+"Projek dilancarkan",
+"Proyectos lanzados",
+"Mga na-launch na project"
+],
+"Proof of reserves": [
+"준비금 증명",
+"準備金証明",
+"Bukti rizab",
+"Prueba de reservas",
+"Proof of reserves"
+],
+"Provider fee": [
+"제공업체 수수료",
+"プロバイダー手数料",
+"Yuran penyedia",
+"Comisión del proveedor",
+"Provider fee"
+],
+"Pseudonymous team, KYC-verified": [
+"가명 팀, KYC 인증 완료",
+"匿名チーム、KYC 認証済み",
+"Pasukan nama samaran, disahkan KYC",
+"Equipo seudónimo, verificado con KYC",
+"Pseudonymous na team, KYC-verified"
+],
+"Public sale": [
+"공개 세일",
+"パブリックセール",
+"Jualan awam",
+"Venta pública",
+"Public sale"
+],
+"Public-sale tokens unlocked": [
+"공개 세일 토큰 언락",
+"パブリックセール分のアンロック",
+"Token jualan awam dibuka",
+"Tokens de venta pública desbloqueados",
+"Na-unlock na public-sale token"
+],
+"Purchase complete": [
+"구매 완료",
+"購入完了",
+"Pembelian selesai",
+"Compra completada",
+"Kumpleto ang pagbili"
+],
+"Quantity": [
+"수량",
+"数量",
+"Kuantiti",
+"Cantidad",
+"Dami"
+],
+"Quick fund": [
+"빠른 입금",
+"ワンクリック入金",
+"Dana pantas",
+"Fondos rápidos",
+"Quick fund"
+],
+"Quotes are demo figures; the provider checkout shows the final price.": [
+"견적은 데모 수치이며, 최종 가격은 제공업체 결제 페이지에 표시됩니다.",
+"見積はデモ用の数値です。最終価格はプロバイダーの決済画面に表示されます。",
+"Sebut harga ialah angka demo; halaman pembayaran penyedia menunjukkan harga akhir.",
+"Las cotizaciones son cifras de demo; el pago del proveedor muestra el precio final.",
+"Demo figure ang mga quote; ang checkout ng provider ang magpapakita ng huling presyo."
+],
+"RWA tokenisation": [
+"RWA 토큰화",
+"RWA トークン化",
+"Tokenisasi RWA",
+"Tokenización RWA",
+"RWA tokenization"
+],
+"Raised": [
+"모집액",
+"調達額",
+"Terkumpul",
+"Recaudado",
+"Nalikom"
+],
+"Rate": [
+"환율",
+"レート",
+"Kadar",
+"Tasa",
+"Rate"
+],
+"Rate model": [
+"금리 모델",
+"金利モデル",
+"Model kadar",
+"Modelo de tasas",
+"Rate model"
+],
+"Rate model (borrow APR vs utilisation)": [
+"금리 모델 (대출 연이율 vs 사용률)",
+"金利モデル（借入年利 vs 利用率）",
+"Model kadar (APR pinjaman vs penggunaan)",
+"Modelo de tasas (TAE de préstamo vs. utilización)",
+"Rate model (borrow APR vs utilization)"
+],
+"Realised PnL": [
+"실현 손익",
+"実現損益",
+"PnL direalisasi",
+"PnL realizado",
+"Realized PnL"
+],
+"Receive": [
+"수령",
+"受け取り",
+"Terima",
+"Recibir",
+"Tanggapin"
+],
+"Recent deposits": [
+"최근 입금",
+"最近の入金",
+"Deposit terkini",
+"Depósitos recientes",
+"Mga kamakailang deposit"
+],
+"Redeem": [
+"해지",
+"解約",
+"Tebus",
+"Rescatar",
+"I-redeem"
+],
+"Redeem anyway": [
+"그래도 해지",
+"それでも解約",
+"Tebus juga",
+"Rescatar de todos modos",
+"I-redeem pa rin"
+],
+"Redeemable": [
+"해지 가능",
+"解約可能",
+"Boleh ditebus",
+"Rescatable",
+"Puwedeng i-redeem"
+],
+"Redeemed": [
+"해지됨",
+"解約済み",
+"Ditebus",
+"Rescatado",
+"Na-redeem"
+],
+"Redirecting to your bank…": [
+"은행으로 이동 중…",
+"銀行へ移動中…",
+"Mengalih ke bank anda…",
+"Redirigiendo a tu banco…",
+"Nire-redirect sa bangko mo…"
+],
+"Ref. fee": [
+"참고 수수료",
+"参考手数料",
+"Yuran rujukan",
+"Comisión ref.",
+"Ref. fee"
+],
+"Reference": [
+"참조 번호",
+"参照番号",
+"Rujukan",
+"Referencia",
+"Reference"
+],
+"Refunded": [
+"환불됨",
+"返金済み",
+"Dipulangkan",
+"Reembolsado",
+"Na-refund"
+],
+"Release": [
+"코인 해제",
+"リリース",
+"Lepaskan",
+"Liberar",
+"I-release"
+],
+"Released. Funds are in your spot account.": [
+"코인이 해제되었습니다. 자금이 현물 계정에 입금되었습니다.",
+"リリースされました。資金は現物口座にあります。",
+"Dilepaskan. Dana berada dalam akaun spot anda.",
+"Liberado. Los fondos están en tu cuenta spot.",
+"Na-release. Nasa spot account mo na ang pondo."
+],
+"Released. Order complete": [
+"코인 해제 완료. 주문 완료",
+"リリースしました。注文完了",
+"Dilepaskan. Pesanan selesai",
+"Liberado. Pedido completado",
+"Na-release. Kumpleto ang order"
+],
+"Remind me": [
+"알림 받기",
+"リマインド",
+"Ingatkan saya",
+"Recuérdamelo",
+"Paalalahanan ako"
+],
+"Reminder removed": [
+"알림이 해제되었습니다",
+"リマインダーを削除しました",
+"Peringatan dibuang",
+"Recordatorio eliminado",
+"Inalis ang paalala"
+],
+"Reminder set": [
+"알림 설정됨",
+"リマインダー設定済み",
+"Peringatan ditetapkan",
+"Recordatorio activado",
+"Naka-set ang paalala"
+],
+"Repay": [
+"상환",
+"返済",
+"Bayar balik",
+"Devolver",
+"Magbayad"
+],
+"Reserve": [
+"준비금",
+"準備金",
+"Rizab",
+"Reserva",
+"Reserve"
+],
+"Reset all demo data": [
+"모든 데모 데이터 초기화",
+"すべてのデモデータをリセット",
+"Tetapkan semula semua data demo",
+"Reiniciar todos los datos de demo",
+"I-reset ang lahat ng demo data"
+],
+"Results are secured by verifiable inference (optimistic execution with sampled re-computation). Nodes stake KORA to accept jobs and are slashed for misbehaviour.": [
+"결과는 검증 가능한 추론(낙관적 실행 + 샘플 재계산)으로 보장됩니다. 노드는 KORA를 스테이킹해야 작업을 받을 수 있으며, 부정행위 시 슬래싱됩니다.",
+"結果は検証可能な推論（楽観的実行とサンプリング再計算）で担保されます。ノードはジョブ受注に KORA をステークし、不正時はスラッシュされます。",
+"Keputusan dijamin oleh inferens boleh disahkan (pelaksanaan optimistik dengan pengiraan semula sampel). Nod stake KORA untuk menerima kerja dan dipotong jika berkelakuan buruk.",
+"Los resultados se aseguran con inferencia verificable (ejecución optimista con recomputación por muestreo). Los nodos hacen staking de KORA para aceptar trabajos y se penalizan si actúan mal.",
+"Sinisiguro ang resulta ng verifiable inference (optimistic execution na may sampled re-computation). Nag-i-stake ng KORA ang mga node para tumanggap ng job at sina-slash kapag nandaya."
+],
+"Rewards claimed": [
+"보상 수령 완료",
+"報酬を受け取りました",
+"Ganjaran dituntut",
+"Recompensas reclamadas",
+"Na-claim ang reward"
+],
+"Risk": [
+"위험",
+"リスク",
+"Risiko",
+"Riesgo",
+"Panganib"
+],
+"Risk disclosure": [
+"위험 고지",
+"リスク開示",
+"Pendedahan risiko",
+"Divulgación de riesgos",
+"Risk disclosure"
+],
+"Risk warning: digital asset prices are highly volatile. Trading, derivatives and lending can result in the loss of your entire principal. Participate only after you understand the risks. Services are not available in restricted jurisdictions.": [
+"위험 경고: 디지털 자산 가격은 변동성이 매우 큽니다. 거래, 파생상품, 대출로 원금 전액을 잃을 수 있습니다. 위험을 충분히 이해한 후 참여하세요. 제한된 관할 지역에서는 서비스를 이용할 수 없습니다.",
+"リスク警告：デジタル資産の価格は大きく変動します。取引、デリバティブ、レンディングにより元本をすべて失う可能性があります。リスクを理解したうえでご参加ください。制限対象地域ではサービスをご利用いただけません。",
+"Amaran risiko: harga aset digital sangat tidak menentu. Dagangan, derivatif dan pinjaman boleh menyebabkan kehilangan keseluruhan prinsipal anda. Sertai hanya selepas anda memahami risikonya. Perkhidmatan tidak tersedia di bidang kuasa terhad.",
+"Advertencia de riesgo: los precios de los activos digitales son muy volátiles. El trading, los derivados y los préstamos pueden hacerte perder todo el capital. Participa solo si entiendes los riesgos. Los servicios no están disponibles en jurisdicciones restringidas.",
+"Babala sa panganib: napakapabagu-bago ng presyo ng digital asset. Puwedeng maubos ang buong principal mo sa trading, derivatives at lending. Sumali lang kapag naiintindihan mo ang panganib. Hindi available ang serbisyo sa mga restricted na hurisdiksyon."
+],
+"Roadmap": [
+"로드맵",
+"ロードマップ",
+"Peta jalan",
+"Hoja de ruta",
+"Roadmap"
+],
+"Role": [
+"역할",
+"役割",
+"Peranan",
+"Rol",
+"Papel"
+],
+"Rules": [
+"규칙",
+"ルール",
+"Peraturan",
+"Reglas",
+"Mga patakaran"
+],
+"SL": [
+"손절",
+"損切り",
+"SL",
+"SL",
+"SL"
+],
+"SL trigger": [
+"손절 트리거",
+"損切りトリガー",
+"Pencetus SL",
+"Activación SL",
+"SL trigger"
+],
+"Safe": [
+"안전",
+"安全",
+"Selamat",
+"Seguro",
+"Ligtas"
+],
+"Sale cap": [
+"청약 한도",
+"申込上限",
+"Had jualan",
+"Límite de venta",
+"Sale cap"
+],
+"Sale ended. Spot listing soon.": [
+"세일 종료. 곧 현물 상장 예정.",
+"セール終了。まもなく現物上場。",
+"Jualan tamat. Penyenaraian spot tidak lama lagi.",
+"Venta finalizada. Pronto en spot.",
+"Tapos na ang sale. Malapit nang i-list sa spot."
+],
+"Sale opens in": [
+"세일 시작까지",
+"セール開始まで",
+"Jualan dibuka dalam",
+"La venta abre en",
+"Magbubukas ang sale sa"
+],
+"Sale price": [
+"세일 가격",
+"セール価格",
+"Harga jualan",
+"Precio de venta",
+"Presyo ng sale"
+],
+"Sale price {0} USDC": [
+"세일 가격 {0} USDC",
+"セール価格 {0} USDC",
+"Harga jualan {0} USDC",
+"Precio de venta {0} USDC",
+"Presyo ng sale {0} USDC"
+],
+"Save": [
+"저장",
+"保存",
+"Simpan",
+"Guardar",
+"I-save"
+],
+"Scan with a mobile wallet": [
+"모바일 지갑으로 스캔",
+"モバイルウォレットでスキャン",
+"Imbas dengan dompet mudah alih",
+"Escanea con una billetera móvil",
+"I-scan gamit ang mobile wallet"
+],
+"Search": [
+"검색",
+"検索",
+"Cari",
+"Buscar",
+"Maghanap"
+],
+"Search coins": [
+"코인 검색",
+"通貨を検索",
+"Cari syiling",
+"Buscar monedas",
+"Maghanap ng coin"
+],
+"Security check": [
+"보안 인증",
+"セキュリティ確認",
+"Semakan keselamatan",
+"Control de seguridad",
+"Security check"
+],
+"See live sales": [
+"진행 중 세일 보기",
+"開催中のセールを見る",
+"Lihat jualan langsung",
+"Ver ventas en curso",
+"Tingnan ang live na sale"
+],
+"Sell": [
+"매도",
+"売る",
+"Jual",
+"Vender",
+"Magbenta"
+],
+"Sell {0}": [
+"{0} 매도",
+"{0} を売る",
+"Jual {0}",
+"Vender {0}",
+"Magbenta ng {0}"
+],
+"Send": [
+"보내기",
+"送信",
+"Hantar",
+"Enviar",
+"Ipadala"
+],
+"Send to address": [
+"주소로 송금",
+"アドレスへ送金",
+"Hantar ke alamat",
+"Enviar a la dirección",
+"Ipadala sa address"
+],
+"Services": [
+"서비스",
+"サービス",
+"Perkhidmatan",
+"Servicios",
+"Mga serbisyo"
+],
+"Session keys for Web2-like UX": [
+"세션 키로 Web2 수준의 사용성",
+"セッションキーで Web2 並みの UX",
+"Kunci sesi untuk UX seperti Web2",
+"Claves de sesión para una experiencia tipo Web2",
+"Session key para sa UX na parang Web2"
+],
+"Settled": [
+"정산됨",
+"精算済み",
+"Selesai",
+"Liquidado",
+"Na-settle"
+],
+"Settles": [
+"정산일",
+"精算日",
+"Diselesaikan",
+"Se liquida",
+"Ise-settle"
+],
+"Share": [
+"비중",
+"割合",
+"Bahagian",
+"Porcentaje",
+"Bahagi"
+],
+"Short": [
+"숏",
+"ショート",
+"Short",
+"Corto",
+"Short"
+],
+"Side": [
+"방향",
+"売買",
+"Arah",
+"Lado",
+"Side"
+],
+"Sign": [
+"서명",
+"署名",
+"Tandatangan",
+"Firmar",
+"Pirmahan"
+],
+"Sign in with your wallet": [
+"지갑으로 로그인",
+"ウォレットでサインイン",
+"Log masuk dengan dompet anda",
+"Inicia sesión con tu billetera",
+"Mag-sign in gamit ang wallet mo"
+],
+"Signing proves you own this address. It sends no transaction and costs no gas.": [
+"서명은 이 주소의 소유를 증명합니다. 거래를 보내지 않으며 가스비도 들지 않습니다.",
+"署名はこのアドレスの所有を証明します。取引は送信されず、ガス代もかかりません。",
+"Tandatangan membuktikan anda memiliki alamat ini. Tiada transaksi dihantar dan tiada kos gas.",
+"Firmar demuestra que eres dueño de esta dirección. No envía ninguna transacción ni cuesta gas.",
+"Pinapatunayan ng pagpirma na sa iyo ang address na ito. Walang transaksyon at walang gas fee."
+],
+"Silver": [
+"실버",
+"シルバー",
+"Perak",
+"Plata",
+"Silver"
+],
+"Sim time": [
+"시뮬레이션 시간",
+"シミュレーション時刻",
+"Masa simulasi",
+"Hora simulada",
+"Sim time"
+],
+"Simulate an incoming transfer": [
+"외부 입금 시뮬레이션",
+"外部からの入金をシミュレート",
+"Simulasi pindahan masuk",
+"Simular una transferencia entrante",
+"I-simulate ang papasok na transfer"
+],
+"Size": [
+"수량",
+"数量",
+"Saiz",
+"Tamaño",
+"Size"
+],
+"Spot": [
+"현물",
+"現物",
+"Spot",
+"Spot",
+"Spot"
+],
+"Spot fee": [
+"현물 수수료",
+"現物手数料",
+"Yuran spot",
+"Comisión spot",
+"Spot fee"
+],
+"Spread": [
+"스프레드",
+"スプレッド",
+"Sebaran",
+"Diferencial",
+"Spread"
+],
+"Stake": [
+"스테이킹",
+"ステーク",
+"Stake",
+"Hacer staking",
+"I-stake"
+],
+"Stake NVX": [
+"NVX 스테이킹",
+"NVX をステーク",
+"Stake NVX",
+"Hacer staking de NVX",
+"I-stake ang NVX"
+],
+"Staked": [
+"스테이킹됨",
+"ステーク済み",
+"Di-stake",
+"En staking",
+"Naka-stake"
+],
+"Staked value": [
+"스테이킹 가치",
+"ステーキング評価額",
+"Nilai stake",
+"Valor en staking",
+"Halaga ng stake"
+],
+"Staking": [
+"스테이킹",
+"ステーキング",
+"Staking",
+"Staking",
+"Staking"
+],
+"Standard": [
+"일반",
+"スタンダード",
+"Standard",
+"Estándar",
+"Standard"
+],
+"Start": [
+"시작",
+"開始",
+"Mula",
+"Inicio",
+"Simula"
+],
+"Start / maturity": [
+"시작 / 만기",
+"開始 / 満期",
+"Mula / matang",
+"Inicio / vencimiento",
+"Simula / maturity"
+],
+"Starts": [
+"시작",
+"開始",
+"Bermula",
+"Empieza",
+"Magsisimula"
+],
+"Status": [
+"상태",
+"状態",
+"Status",
+"Estado",
+"Status"
+],
+"Stop-loss hit": [
+"손절 발동",
+"損切りが発動",
+"Henti rugi dicetuskan",
+"Stop-loss activado",
+"Na-hit ang stop-loss"
+],
+"Subscribe": [
+"청약",
+"申し込む",
+"Langgan",
+"Suscribirse",
+"Mag-subscribe"
+],
+"Subscribe to VELA": [
+"VELA 청약하기",
+"VELA に申し込む",
+"Langgan VELA",
+"Suscribirse a VELA",
+"Mag-subscribe sa VELA"
+],
+"Subscribed": [
+"청약 완료",
+"申込完了",
+"Dilanggan",
+"Suscrito",
+"Naka-subscribe"
+],
+"Subscription": [
+"청약",
+"申込",
+"Langganan",
+"Suscripción",
+"Subscription"
+],
+"Supplied": [
+"예치액",
+"預入額",
+"Dibekalkan",
+"Depositado",
+"Na-supply"
+],
+"Supply": [
+"예치",
+"預入",
+"Bekal",
+"Depositar",
+"Mag-supply"
+],
+"Supply APY": [
+"예치 APY",
+"預入 APY",
+"APY bekalan",
+"APY de depósito",
+"Supply APY"
+],
+"Supply assets to earn variable interest and use them as collateral to borrow. Rates move with pool utilisation.": [
+"자산을 예치해 변동 이자를 받고, 이를 담보로 대출할 수 있습니다. 금리는 풀 사용률에 따라 변합니다.",
+"資産を預けて変動金利を得て、それを担保に借り入れできます。金利はプールの利用率で変動します。",
+"Bekalkan aset untuk menjana faedah berubah dan gunakannya sebagai cagaran untuk meminjam. Kadar berubah mengikut penggunaan kolam.",
+"Deposita activos para ganar interés variable y úsalos como garantía para pedir prestado. Las tasas cambian según la utilización del pool.",
+"Mag-supply ng asset para kumita ng variable interest at gamitin ito bilang collateral sa paghiram. Gumagalaw ang rate ayon sa utilization ng pool."
+],
+"Supply to earn, borrow against it": [
+"예치해서 벌고, 담보로 대출하기",
+"預けて稼ぎ、担保に借りる",
+"Bekal untuk menjana, pinjam dengan cagaran",
+"Deposita para ganar, pide prestado con garantía",
+"Mag-supply para kumita, humiram laban dito"
+],
+"Swap": [
+"스왑",
+"スワップ",
+"Tukar",
+"Intercambiar",
+"Swap"
+],
+"TGE": [
+"TGE",
+"TGE",
+"TGE",
+"TGE",
+"TGE"
+],
+"TGE & listing": [
+"TGE 및 상장",
+"TGE と上場",
+"TGE & penyenaraian",
+"TGE y listado",
+"TGE at listing"
+],
+"TGE unlock": [
+"TGE 언락",
+"TGE アンロック",
+"Buka kunci TGE",
+"Desbloqueo en TGE",
+"TGE unlock"
+],
+"TP": [
+"익절",
+"利確",
+"TP",
+"TP",
+"TP"
+],
+"TP / SL": [
+"익절 / 손절",
+"利確 / 損切り",
+"TP / SL",
+"TP / SL",
+"TP / SL"
+],
+"TP trigger": [
+"익절 트리거",
+"利確トリガー",
+"Pencetus TP",
+"Activación TP",
+"TP trigger"
+],
+"TP/SL": [
+"익절/손절",
+"利確/損切り",
+"TP/SL",
+"TP/SL",
+"TP/SL"
+],
+"TP/SL saved": [
+"익절/손절 저장됨",
+"利確/損切りを保存しました",
+"TP/SL disimpan",
+"TP/SL guardado",
+"Na-save ang TP/SL"
+],
+"TVL / AUM": [
+"TVL / 운용자산",
+"TVL / 運用資産",
+"TVL / AUM",
+"TVL / AUM",
+"TVL / AUM"
+],
+"Take profit / stop loss": [
+"익절 / 손절",
+"利確 / 損切り",
+"Ambil untung / henti rugi",
+"Take profit / stop loss",
+"Take profit / stop loss"
+],
+"Take-profit hit": [
+"익절 발동",
+"利確が発動",
+"Ambil untung dicetuskan",
+"Take-profit activado",
+"Na-hit ang take-profit"
+],
+"Team": [
+"팀",
+"チーム",
+"Pasukan",
+"Equipo",
+"Team"
+],
+"Team & backers": [
+"팀 및 투자사",
+"チームと出資者",
+"Pasukan & penyokong",
+"Equipo e inversores",
+"Team at mga backer"
+],
+"Terms of use": [
+"이용약관",
+"利用規約",
+"Terma penggunaan",
+"Términos de uso",
+"Terms of use"
+],
+"Test tokens received": [
+"테스트 토큰 수령",
+"テストトークンを受け取りました",
+"Token ujian diterima",
+"Tokens de prueba recibidos",
+"Natanggap ang test token"
+],
+"Test tokens sent to wallet": [
+"지갑으로 테스트 토큰 전송됨",
+"ウォレットにテストトークンを送りました",
+"Token ujian dihantar ke dompet",
+"Tokens de prueba enviados a la billetera",
+"Naipadala sa wallet ang test token"
+],
+"Testnet live": [
+"테스트넷 출시",
+"テストネット公開",
+"Testnet dilancarkan",
+"Testnet en marcha",
+"Live ang testnet"
+],
+"The merchant is checking the payment, usually within 1–5 minutes…": [
+"판매자가 입금을 확인 중입니다. 보통 1–5분 내에 완료됩니다…",
+"業者が入金を確認しています。通常 1〜5 分で完了します…",
+"Peniaga sedang menyemak bayaran, biasanya dalam 1–5 minit…",
+"El comerciante está comprobando el pago, normalmente en 1–5 minutos…",
+"Tinitingnan ng merchant ang bayad, karaniwan sa loob ng 1–5 minuto…"
+],
+"The provider is buying your crypto": [
+"제공업체가 암호화폐를 구매하고 있습니다",
+"プロバイダーが暗号資産を購入しています",
+"Penyedia sedang membeli kripto anda",
+"El proveedor está comprando tu cripto",
+"Binibili ng provider ang crypto mo"
+],
+"The sale is not open": [
+"세일이 열려 있지 않습니다",
+"セールは開催されていません",
+"Jualan tidak dibuka",
+"La venta no está abierta",
+"Hindi bukas ang sale"
+],
+"The token is listed on Novarix spot, and subscribers unlock linearly per the vesting schedule.": [
+"토큰은 Novarix 현물에 상장되었으며, 청약자는 베스팅 일정에 따라 선형으로 언락됩니다.",
+"トークンは Novarix 現物に上場済みで、申込者はベスティング計画に沿って線形にアンロックされます。",
+"Token disenaraikan di spot Novarix, dan pelanggan dibuka kunci secara linear mengikut jadual peletakhakan.",
+"El token cotiza en spot de Novarix y los suscriptores desbloquean de forma lineal según el calendario de vesting.",
+"Naka-list ang token sa Novarix spot, at linear na nag-a-unlock ang subscribers ayon sa vesting schedule."
+],
+"These controls only change demo data in this browser.": [
+"이 컨트롤은 이 브라우저의 데모 데이터만 변경합니다.",
+"この操作はこのブラウザのデモデータのみを変更します。",
+"Kawalan ini hanya mengubah data demo dalam pelayar ini.",
+"Estos controles solo cambian los datos de demo en este navegador.",
+"Demo data lang sa browser na ito ang binabago ng mga kontrol na ito."
+],
+"These funds are still in your own wallet. Deposit them to trade.": [
+"이 자금은 아직 본인 지갑에 있습니다. 거래하려면 입금하세요.",
+"この資金はまだご自身のウォレットにあります。取引するには入金してください。",
+"Dana ini masih dalam dompet anda sendiri. Deposit untuk berdagang.",
+"Estos fondos siguen en tu propia billetera. Deposítalos para operar.",
+"Nasa sarili mong wallet pa ang pondong ito. I-deposito para makapag-trade."
+],
+"This fixed product has not matured. Redeeming now forfeits part of the rewards.": [
+"이 고정형 상품은 아직 만기 전입니다. 지금 해지하면 보상 일부를 잃습니다.",
+"この定期商品はまだ満期前です。今解約すると報酬の一部を失います。",
+"Produk tetap ini belum matang. Menebus sekarang melucutkan sebahagian ganjaran.",
+"Este producto fijo aún no ha vencido. Si lo rescatas ahora pierdes parte de las recompensas.",
+"Hindi pa mature ang fixed product na ito. Mawawala ang bahagi ng reward kapag ni-redeem ngayon."
+],
+"Tier after": [
+"스테이킹 후 등급",
+"ステーク後のティア",
+"Tahap selepas",
+"Nivel después",
+"Tier pagkatapos"
+],
+"Time": [
+"시간",
+"時間",
+"Masa",
+"Hora",
+"Oras"
+],
+"Tip: use the Demo console (bottom left) to fast-forward into the sale.": [
+"팁: 왼쪽 아래 데모 콘솔로 시간을 앞당겨 세일 기간으로 이동하세요.",
+"ヒント：左下のデモコンソールで時間を進めてセール期間に入れます。",
+"Petua: guna Konsol demo (kiri bawah) untuk mempercepat masa ke jualan.",
+"Consejo: usa la Consola demo (abajo a la izquierda) para adelantar hasta la venta.",
+"Tip: gamitin ang Demo console (kaliwang ibaba) para i-fast-forward sa sale."
+],
+"To": [
+"받는 곳",
+"振替先",
+"Ke",
+"Hacia",
+"Papunta sa"
+],
+"To (your deposit address)": [
+"받는 곳 (내 입금 주소)",
+"宛先（あなたの入金アドレス）",
+"Ke (alamat deposit anda)",
+"A (tu dirección de depósito)",
+"Papunta sa (deposit address mo)"
+],
+"Today's PnL": [
+"오늘 손익",
+"本日の損益",
+"PnL hari ini",
+"PnL de hoy",
+"PnL ngayong araw"
+],
+"Toggle theme": [
+"테마 전환",
+"テーマ切替",
+"Tukar tema",
+"Cambiar tema",
+"Palitan ang tema"
+],
+"Tokenomics": [
+"토크노믹스",
+"トークノミクス",
+"Tokenomik",
+"Tokenómica",
+"Tokenomics"
+],
+"Tokens": [
+"토큰 수",
+"トークン数",
+"Token",
+"Tokens",
+"Mga token"
+],
+"Tokens for sale": [
+"판매 토큰 수",
+"販売トークン数",
+"Token untuk dijual",
+"Tokens a la venta",
+"Token na ibinebenta"
+],
+"Top tier": [
+"최고 등급",
+"最上位ティア",
+"Tahap tertinggi",
+"Nivel máximo",
+"Pinakamataas na tier"
+],
+"Total": [
+"합계",
+"合計",
+"Jumlah",
+"Total",
+"Kabuuan"
+],
+"Total borrowed": [
+"총 대출",
+"総借入",
+"Jumlah dipinjam",
+"Total prestado",
+"Kabuuang hiniram"
+],
+"Total earned": [
+"총 수령액",
+"累計受取",
+"Jumlah diperoleh",
+"Total ganado",
+"Kabuuang kinita"
+],
+"Total raised": [
+"총 모집액",
+"累計調達額",
+"Jumlah terkumpul",
+"Total recaudado",
+"Kabuuang nalikom"
+],
+"Total supplied": [
+"총 예치",
+"総預入",
+"Jumlah dibekalkan",
+"Total depositado",
+"Kabuuang na-supply"
+],
+"Total supply": [
+"총 발행량",
+"総供給量",
+"Jumlah bekalan",
+"Suministro total",
+"Kabuuang supply"
+],
+"Trade": [
+"거래",
+"取引",
+"Dagang",
+"Operar",
+"Mag-trade"
+],
+"Trade complete": [
+"거래 완료",
+"取引完了",
+"Dagangan selesai",
+"Operación completada",
+"Kumpleto ang trade"
+],
+"Trade history": [
+"체결 내역",
+"約定履歴",
+"Sejarah dagangan",
+"Historial de operaciones",
+"Trade history"
+],
+"Trade now": [
+"지금 거래",
+"今すぐ取引",
+"Dagang sekarang",
+"Operar ahora",
+"Mag-trade ngayon"
+],
+"Trade {0}": [
+"{0} 거래",
+"{0} を取引",
+"Dagang {0}",
+"Operar {0}",
+"I-trade ang {0}"
+],
+"Trades": [
+"체결",
+"約定",
+"Dagangan",
+"Operaciones",
+"Mga trade"
+],
+"Traditional private credit is a $1.7T market that is hard to access, opaque and illiquid. Vela records every disbursement, repayment and delinquency in smart contracts, turning monthly reports into verifiable on-chain state, and lets LP shares trade on a secondary market.": [
+"전통적인 사모 대출은 1.7조 달러 규모지만 접근이 어렵고 불투명하며 유동성이 낮습니다. Vela는 모든 대출 실행·상환·연체를 스마트 컨트랙트에 기록해 월간 보고서를 검증 가능한 온체인 상태로 바꾸고, LP 지분을 2차 시장에서 거래할 수 있게 합니다.",
+"従来のプライベートクレジットは 1.7 兆ドル規模ですが、参入が難しく不透明で流動性に乏しい市場です。Vela はすべての貸付・返済・延滞をスマートコントラクトに記録し、月次報告を検証可能なオンチェーン状態に変え、LP 持分をセカンダリー市場で取引可能にします。",
+"Kredit persendirian tradisional ialah pasaran $1.7T yang sukar diakses, legap dan tidak cair. Vela merekod setiap pengeluaran, pembayaran balik dan tunggakan dalam kontrak pintar, menukar laporan bulanan kepada keadaan on-chain yang boleh disahkan, dan membolehkan saham LP diniagakan di pasaran sekunder.",
+"El crédito privado tradicional es un mercado de 1,7 billones de dólares difícil de acceder, opaco e ilíquido. Vela registra cada desembolso, pago y mora en contratos inteligentes, convierte los informes mensuales en un estado on-chain verificable y permite negociar participaciones LP en un mercado secundario.",
+"Ang tradisyonal na private credit ay $1.7T na market na mahirap pasukin, malabo at hindi likido. Itinatala ng Vela ang bawat disbursement, bayad at delinquency sa smart contract, ginagawang verifiable na on-chain state ang buwanang report, at pinapayagang i-trade ang LP share sa secondary market."
+],
+"Transfer": [
+"이체",
+"振替",
+"Pindah",
+"Transferir",
+"Ilipat"
+],
+"Transfer from spot": [
+"현물에서 이체",
+"現物から振替",
+"Pindah dari spot",
+"Transferir desde spot",
+"Ilipat mula sa spot"
+],
+"Transferred": [
+"이체 완료",
+"振替完了",
+"Dipindahkan",
+"Transferido",
+"Nailipat"
+],
+"Treasury": [
+"트레저리",
+"トレジャリー",
+"Perbendaharaan",
+"Tesorería",
+"Treasury"
+],
+"Type": [
+"유형",
+"種類",
+"Jenis",
+"Tipo",
+"Uri"
+],
+"USDC from your spot account only. Convert USDT to USDC with Convert.": [
+"현물 계정의 USDC만 사용할 수 있습니다. 간편 환전으로 USDT를 USDC로 바꾸세요.",
+"現物口座の USDC のみ利用できます。コンバートで USDT を USDC に交換してください。",
+"USDC daripada akaun spot anda sahaja. Tukar USDT kepada USDC dengan Tukar.",
+"Solo USDC de tu cuenta spot. Convierte USDT a USDC con Convertir.",
+"USDC lang mula sa spot account mo. I-convert ang USDT sa USDC gamit ang Convert."
+],
+"Unlisted": [
+"미상장",
+"未上場",
+"Belum disenaraikan",
+"No listado",
+"Hindi pa naka-list"
+],
+"Unlocked": [
+"언락됨",
+"アンロック済み",
+"Dibuka",
+"Desbloqueado",
+"Na-unlock"
+],
+"Unrealised PnL": [
+"미실현 손익",
+"未実現損益",
+"PnL belum direalisasi",
+"PnL no realizado",
+"Unrealized PnL"
+],
+"Upcoming": [
+"예정",
+"開催予定",
+"Akan datang",
+"Próximos",
+"Paparating"
+],
+"Use as collateral": [
+"담보로 사용",
+"担保として使用",
+"Guna sebagai cagaran",
+"Usar como garantía",
+"Gamitin bilang collateral"
+],
+"Use my connected wallet": [
+"연결된 내 지갑 사용",
+"接続中のウォレットを使う",
+"Guna dompet saya yang disambung",
+"Usar mi billetera conectada",
+"Gamitin ang nakakonekta kong wallet"
+],
+"Used": [
+"사용됨",
+"使用済み",
+"Digunakan",
+"Usado",
+"Nagamit"
+],
+"Used as collateral": [
+"담보 사용",
+"担保に使用",
+"Digunakan sebagai cagaran",
+"Usado como garantía",
+"Ginamit bilang collateral"
+],
+"Utilisation": [
+"사용률",
+"利用率",
+"Penggunaan",
+"Utilización",
+"Utilization"
+],
+"VELA is used for governance, first-loss reserve staking and fee discounts. Stakers absorb first-loss risk and earn a share of protocol revenue.": [
+"VELA는 거버넌스, 1차 손실 준비금 스테이킹, 수수료 할인에 사용됩니다. 스테이커는 1차 손실 위험을 부담하고 프로토콜 수익을 분배받습니다.",
+"VELA はガバナンス、ファーストロス準備金のステーキング、手数料割引に使われます。ステーカーはファーストロスのリスクを負い、プロトコル収益の分配を受けます。",
+"VELA digunakan untuk tadbir urus, staking rizab kerugian pertama dan diskaun yuran. Pen-stake menanggung risiko kerugian pertama dan memperoleh bahagian hasil protokol.",
+"VELA se usa para gobernanza, staking en la reserva de primera pérdida y descuentos en comisiones. Quienes hacen staking asumen el riesgo de primera pérdida y reciben parte de los ingresos del protocolo.",
+"Ginagamit ang VELA sa governance, first-loss reserve staking at fee discount. Sinasalo ng mga staker ang first-loss risk at may bahagi sila sa kita ng protocol."
+],
+"VIP program": [
+"VIP 프로그램",
+"VIP プログラム",
+"Program VIP",
+"Programa VIP",
+"VIP program"
+],
+"Value": [
+"평가액",
+"評価額",
+"Nilai",
+"Valor",
+"Halaga"
+],
+"Vela Finance is a private-credit protocol for real-world assets. It packages SME receivables, trade finance and supply-chain notes into standardised on-chain credit pools. Licensed asset managers run diligence and servicing, and investors can subscribe per pool and track the underlying loans in real time.": [
+"Vela Finance는 실물자산(RWA)을 위한 사모 대출 프로토콜입니다. 중소기업 매출채권, 무역금융, 공급망 어음을 표준화된 온체인 대출 풀로 묶고, 라이선스 자산운용사가 실사와 사후 관리를 맡습니다. 투자자는 풀별로 청약하고 기초 대출을 실시간으로 추적할 수 있습니다.",
+"Vela Finance は現実資産（RWA）向けのプライベートクレジットプロトコルです。中小企業の売掛債権、貿易金融、サプライチェーン手形を標準化されたオンチェーン融資プールにまとめ、認可資産運用会社が審査と管理を担います。投資家はプールごとに申し込み、裏付けとなる貸付をリアルタイムで追跡できます。",
+"Vela Finance ialah protokol kredit persendirian untuk aset dunia sebenar. Ia membungkus akaun belum terima PKS, pembiayaan perdagangan dan nota rantaian bekalan ke dalam kolam kredit on-chain yang standard. Pengurus aset berlesen menjalankan usaha wajar dan servis, dan pelabur boleh melanggan setiap kolam serta menjejaki pinjaman asas secara masa nyata.",
+"Vela Finance es un protocolo de crédito privado para activos del mundo real. Agrupa cuentas por cobrar de pymes, financiación comercial y pagarés de cadena de suministro en pools de crédito on-chain estandarizados. Gestoras con licencia hacen la diligencia y el seguimiento, y los inversores pueden suscribirse por pool y seguir los préstamos subyacentes en tiempo real.",
+"Ang Vela Finance ay private-credit protocol para sa real-world asset. Pinagsasama nito ang receivables ng SME, trade finance at supply-chain note sa mga standardized na on-chain credit pool. Mga lisensyadong asset manager ang humahawak ng diligence at servicing, at puwedeng mag-subscribe ang investor kada pool at subaybayan ang mga loan nang real time."
+],
+"Vesting": [
+"베스팅",
+"ベスティング",
+"Peletakhakan",
+"Vesting",
+"Vesting"
+],
+"Vesting curve": [
+"베스팅 곡선",
+"ベスティング曲線",
+"Lengkung peletakhakan",
+"Curva de vesting",
+"Vesting curve"
+],
+"Vetted early-stage projects, subscribed in USDC. Oversubscribed sales allocate pro rata with automatic refunds, and tokens trade on spot right after TGE.": [
+"검증된 초기 프로젝트를 USDC로 청약하세요. 초과 청약 시 비례 배분과 자동 환불이 이뤄지며, TGE 직후 현물에서 바로 거래됩니다.",
+"審査済みの初期プロジェクトに USDC で申し込めます。超過申込は按分割当と自動返金、トークンは TGE 直後から現物で取引できます。",
+"Projek peringkat awal yang disaring, dilanggan dalam USDC. Jualan terlebih langgan diperuntukkan pro rata dengan bayaran balik automatik, dan token diniagakan di spot sejurus selepas TGE.",
+"Proyectos en fase temprana verificados, suscritos en USDC. Las ventas sobresuscritas se asignan a prorrata con reembolso automático y los tokens cotizan en spot justo después del TGE.",
+"Mga na-vet na early-stage project, sina-subscribe gamit ang USDC. Pro rata ang allocation kapag oversubscribed na may awtomatikong refund, at agad na nate-trade sa spot ang token pagkatapos ng TGE."
+],
+"View activity": [
+"활동 보기",
+"履歴を見る",
+"Lihat aktiviti",
+"Ver actividad",
+"Tingnan ang aktibidad"
+],
+"View wallet": [
+"지갑 보기",
+"ウォレットを見る",
+"Lihat dompet",
+"Ver billetera",
+"Tingnan ang wallet"
+],
+"Vision": [
+"비전",
+"ビジョン",
+"Visi",
+"Visión",
+"Bisyon"
+],
+"Waiting for confirmations": [
+"컨펌 대기 중",
+"承認待ち",
+"Menunggu pengesahan",
+"Esperando confirmaciones",
+"Hinihintay ang mga kumpirmasyon"
+],
+"Wallet": [
+"지갑",
+"ウォレット",
+"Dompet",
+"Billetera",
+"Wallet"
+],
+"Wallet balance": [
+"지갑 잔액",
+"ウォレット残高",
+"Baki dompet",
+"Saldo de la billetera",
+"Balanse ng wallet"
+],
+"Wallet faucet": [
+"지갑 파우셋",
+"ウォレット用フォーセット",
+"Faucet dompet",
+"Faucet de billetera",
+"Wallet faucet"
+],
+"Watch": [
+"주의",
+"注意",
+"Awas",
+"Vigilar",
+"Bantayan"
+],
+"We compare quotes and flag the best one": [
+"견적을 비교해 가장 좋은 곳을 표시합니다",
+"見積を比較して最良のものを表示",
+"Kami bandingkan sebut harga dan tandakan yang terbaik",
+"Comparamos cotizaciones y marcamos la mejor",
+"Ikinukumpara namin ang quote at minamarkahan ang pinakamaganda"
+],
+"We will remind you 10 min before": [
+"시작 10분 전에 알려드립니다",
+"開始 10 分前にお知らせします",
+"Kami akan ingatkan 10 minit sebelum",
+"Te avisaremos 10 minutos antes",
+"Paaalalahanan ka namin 10 minuto bago"
+],
+"Website": [
+"웹사이트",
+"ウェブサイト",
+"Laman web",
+"Sitio web",
+"Website"
+],
+"Whitepaper": [
+"백서",
+"ホワイトペーパー",
+"Kertas putih",
+"Whitepaper",
+"Whitepaper"
+],
+"Withdraw": [
+"출금",
+"出金",
+"Keluarkan",
+"Retirar",
+"Mag-withdraw"
+],
+"Withdrawal complete": [
+"출금 완료",
+"出金完了",
+"Pengeluaran selesai",
+"Retiro completado",
+"Kumpleto ang withdrawal"
+],
+"Withdrawal submitted": [
+"출금 신청 완료",
+"出金申請を受け付けました",
+"Pengeluaran dihantar",
+"Retiro enviado",
+"Naisumite ang withdrawal"
+],
+"Yes": [
+"예",
+"はい",
+"Ya",
+"Sí",
+"Oo"
+],
+"You get": [
+"받을 수량",
+"受取額",
+"Anda dapat",
+"Recibes",
+"Makukuha mo"
+],
+"You pay": [
+"지불",
+"支払額",
+"Anda bayar",
+"Pagas",
+"Babayaran mo"
+],
+"You receive": [
+"받을 금액",
+"受取額",
+"Anda terima",
+"Recibes",
+"Matatanggap mo"
+],
+"You receive (est.)": [
+"받을 금액 (예상)",
+"受取額（見込み）",
+"Anda terima (anggaran)",
+"Recibes (estimado)",
+"Matatanggap mo (tantiya)"
+],
+"Your cap": [
+"내 한도",
+"あなたの上限",
+"Had anda",
+"Tu límite",
+"Cap mo"
+],
+"Your device wallet will open to confirm": [
+"기기의 지갑이 열려 결제를 확인합니다",
+"端末のウォレットが開いて確認します",
+"Dompet peranti anda akan dibuka untuk pengesahan",
+"Se abrirá la billetera de tu dispositivo para confirmar",
+"Magbubukas ang wallet ng device mo para kumpirmahin"
+],
+"Your spot account is empty.": [
+"현물 계정이 비어 있습니다.",
+"現物口座は空です。",
+"Akaun spot anda kosong.",
+"Tu cuenta spot está vacía.",
+"Walang laman ang spot account mo."
+],
+"Your {0} deposit address": [
+"내 {0} 입금 주소",
+"あなたの {0} 入金アドレス",
+"Alamat deposit {0} anda",
+"Tu dirección de depósito de {0}",
+"Ang {0} deposit address mo"
+],
+"confirmations": [
+"회 컨펌",
+"承認",
+"pengesahan",
+"confirmaciones",
+"kumpirmasyon"
+],
+"demo": [
+"데모",
+"デモ",
+"demo",
+"demo",
+"demo"
+],
+"earlier": [
+"이전에",
+"以前に",
+"sebelum ini",
+"anteriormente",
+"dati"
+],
+"ends in": [
+"종료까지",
+"終了まで",
+"tamat dalam",
+"termina en",
+"magtatapos sa"
+],
+"fee": [
+"수수료",
+"手数料",
+"yuran",
+"comisión",
+"fee"
+],
+"min": [
+"분",
+"分",
+"minit",
+"min",
+"min"
+],
+"mo": [
+"개월",
+"か月",
+"bln",
+"meses",
+"buwan"
+],
+"orders": [
+"건",
+"件",
+"pesanan",
+"pedidos",
+"order"
+],
+"oversubscribed": [
+"초과 청약",
+"超過申込",
+"terlebih langgan",
+"sobresuscrito",
+"oversubscribed"
+],
+"starts in": [
+"시작까지",
+"開始まで",
+"bermula dalam",
+"empieza en",
+"magsisimula sa"
+],
+"subscribed": [
+"청약률",
+"申込率",
+"dilanggan",
+"suscrito",
+"naka-subscribe"
+],
+"uPnL (ROE)": [
+"미실현 손익 (ROE)",
+"未実現損益（ROE）",
+"PnL belum realisasi (ROE)",
+"PnL no realizado (ROE)",
+"uPnL (ROE)"
+],
+"vs. sale": [
+"세일가 대비",
+"販売価格比",
+"vs. jualan",
+"vs. venta",
+"vs. sale"
+],
+"vs. sale price": [
+"세일가 대비",
+"販売価格比",
+"vs. harga jualan",
+"vs. precio de venta",
+"vs. presyo ng sale"
+],
+"{0} NVX to {1}": [
+"{1}까지 {0} NVX",
+"{1} まであと {0} NVX",
+"{0} NVX lagi ke {1}",
+"{0} NVX para {1}",
+"{0} NVX pa para sa {1}"
+],
+"{0} done": [
+"{0} 완료",
+"{0} 完了",
+"{0} selesai",
+"{0} completado",
+"Tapos ang {0}"
+],
+"{0} max leverage": [
+"{0} 최대 레버리지",
+"{0} 最大レバレッジ",
+"Leveraj maks {0}",
+"Apalancamiento máx. de {0}",
+"Max leverage ng {0}"
+],
+"{0} minimum is {1} {2}": [
+"{0} 최소 구매액은 {1} {2}입니다",
+"{0} の最低購入額は {1} {2} です",
+"Minimum {0} ialah {1} {2}",
+"El mínimo de {0} es {1} {2}",
+"Ang minimum sa {0} ay {1} {2}"
+],
+"{0} sale settled": [
+"{0} 세일 정산 완료",
+"{0} のセールが精算されました",
+"Jualan {0} diselesaikan",
+"Venta de {0} liquidada",
+"Na-settle ang sale ng {0}"
+],
+"{0} {1} is in escrow. Waiting for the buyer to pay…": [
+"{0} {1}이(가) 에스크로에 보관되었습니다. 구매자의 결제를 기다리는 중…",
+"{0} {1} はエスクローに保管中。買い手の支払いを待っています…",
+"{0} {1} dalam eskrow. Menunggu pembeli membayar…",
+"{0} {1} en custodia. Esperando el pago del comprador…",
+"Naka-escrow ang {0} {1}. Hinihintay ang bayad ng buyer…"
+],
+"{0} {1} is in your spot account": [
+"{0} {1}이(가) 현물 계정에 입금되었습니다",
+"{0} {1} が現物口座に入りました",
+"{0} {1} berada dalam akaun spot anda",
+"{0} {1} ya está en tu cuenta spot",
+"Nasa spot account mo na ang {0} {1}"
+],
+"{0}% at TGE; after a {1}-month cliff the rest unlocks linearly over {2} months. Claim unlocked tokens any time.": [
+"TGE 시 {0}% 지급, {1}개월 락업 후 나머지는 {2}개월 동안 선형 언락됩니다. 언락된 토큰은 언제든 수령할 수 있습니다.",
+"TGE で {0}%、{1} か月のクリフ後、残りは {2} か月かけて線形にアンロックされます。アンロック分はいつでも受け取れます。",
+"{0}% semasa TGE; selepas cliff {1} bulan, bakinya dibuka secara linear selama {2} bulan. Tuntut token yang dibuka bila-bila masa.",
+"{0} % en el TGE; tras un bloqueo de {1} meses, el resto se desbloquea linealmente durante {2} meses. Reclama los tokens desbloqueados cuando quieras.",
+"{0}% sa TGE; pagkatapos ng {1}-buwang cliff, linear na mag-a-unlock ang natitira sa loob ng {2} buwan. I-claim ang na-unlock na token anumang oras."
+],
+"{0}% subscribed": [
+"청약률 {0}%",
+"申込率 {0}%",
+"{0}% dilanggan",
+"{0} % suscrito",
+"{0}% naka-subscribe"
+],
+"{0}: {1}. The public sale finished {2} at {3}% of the hard cap; oversubscribed funds were refunded pro rata.": [
+"{0}: {1}. 공개 세일은 {2} 하드캡의 {3}%로 마감되었으며, 초과 청약 자금은 비례 환불되었습니다.",
+"{0}：{1}。パブリックセールは{2}ハードキャップの {3}% で終了し、超過分は按分返金されました。",
+"{0}: {1}. Jualan awam tamat {2} pada {3}% daripada had keras; dana lebihan langganan dipulangkan secara pro rata.",
+"{0}: {1}. La venta pública cerró {2} al {3} % del tope; los fondos sobresuscritos se reembolsaron a prorrata.",
+"{0}: {1}. Natapos {2} ang public sale sa {3}% ng hard cap; pro rata na na-refund ang sobrang pondo."
+]
+}

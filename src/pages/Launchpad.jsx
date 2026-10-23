@@ -132,7 +132,7 @@ function TierCard() {
           <div className="muted small">{L('我的认购等级', 'My launchpad tier')}</div>
           <div className="tier-name">{L(...t.name)} <span className="mono">×{t.mult}</span></div>
         </div>
-        <Btn variant="soft" size="sm" onClick={() => go('staking')}>{L('质押 PDX 升级', 'Stake PDX')}<ChevronRight size={14} /></Btn>
+        <Btn variant="soft" size="sm" onClick={() => go('staking')}>{L('质押 NVX 升级', 'Stake NVX')}<ChevronRight size={14} /></Btn>
       </div>
       <div className="tier-ladder">
         {TIERS.slice(1).map((x) => (
@@ -143,8 +143,8 @@ function TierCard() {
       </div>
       <Progress value={prog} thin />
       <div className="row-between small muted">
-        <span>{L('已质押', 'Staked')} <b className="mono">{fmt(t.staked, 0)} PDX</b></span>
-        <span>{next ? L(`距 ${next.name[0]} 还差 ${fmt(next.min - t.staked, 0)} PDX`, `${fmt(next.min - t.staked, 0)} PDX to ${next.name[1]}`) : L('已达最高等级', 'Top tier')}</span>
+        <span>{L('已质押', 'Staked')} <b className="mono">{fmt(t.staked, 0)} NVX</b></span>
+        <span>{next ? L(`距 ${next.name[0]} 还差 ${fmt(next.min - t.staked, 0)} NVX`, `${fmt(next.min - t.staked, 0)} NVX to ${next.name[1]}`) : L('已达最高等级', 'Top tier')}</span>
       </div>
       {!s.wallet.connected && <p className="fine">{L('连接钱包后显示你的等级与认购上限。', 'Connect to see your tier and caps.')}</p>}
     </div>
@@ -165,8 +165,8 @@ export function Launchpad() {
     <div className="page">
       <section className="lp-hero">
         <div className="lp-hero-copy">
-          <div className="eyebrow"><Sparkles size={14} />PrepDEX Launchpad</div>
-          <h1 className="display hero-title">{L('抢先认购', 'Get in early on')}<br /><span className="grad-text">{L('下一代链上资产', 'the next on-chain assets')}</span></h1>
+          <div className="eyebrow"><Sparkles size={14} />Novarix Launchpad</div>
+          <h1 className="display hero-title"><span className="grad-text">{L('热门申购', 'Hot launches')}</span></h1>
           <p className="hero-sub">{L('经过尽调的早期项目，统一以 USDC 认购。超募按比例分配并自动退款，TGE 后直接在现货交易。', 'Vetted early-stage projects, subscribed in USDC. Oversubscribed sales allocate pro rata with automatic refunds, and tokens trade on spot right after TGE.')}</p>
           <div className="hero-cta">
             <Btn size="lg" onClick={() => document.getElementById('lp-live')?.scrollIntoView({ behavior: 'smooth' })}><Flame size={17} />{L('查看进行中项目', 'See live sales')}</Btn>
@@ -387,7 +387,7 @@ export function ProjectPage({ id }) {
             <div className="card prose">
               <ul className="rules">
                 <li><b>{L('认购资产', 'Currency')}</b>{L('仅支持现货账户中的 USDC。可通过闪兑把 USDT 换成 USDC。', 'USDC from your spot account only. Convert USDT to USDC with Convert.')}</li>
-                <li><b>{L('认购上限', 'Caps')}</b>{L(`基础上限 ${p.baseMax} USDC，按 PDX 质押等级放大（最高 ×5）。最低 ${p.minBuy} USDC。`, `Base cap ${p.baseMax} USDC, multiplied by your PDX tier (up to ×5). Minimum ${p.minBuy} USDC.`)}</li>
+                <li><b>{L('认购上限', 'Caps')}</b>{L(`基础上限 ${p.baseMax} USDC，按 NVX 质押等级放大（最高 ×5）。最低 ${p.minBuy} USDC。`, `Base cap ${p.baseMax} USDC, multiplied by your NVX tier (up to ×5). Minimum ${p.minBuy} USDC.`)}</li>
                 <li><b>{L('超募处理', 'Oversubscription')}</b>{L('若认购总额超过硬顶，按“个人认购额 ÷ 超募倍数”分配，剩余 USDC 在结算时自动退回现货账户。', 'If total commitments exceed the hard cap, each user gets commitment ÷ oversubscription ratio; the rest is refunded to spot at settlement.')}</li>
                 <li><b>{L('代币发放', 'Distribution')}</b>{L(`TGE 时发放 ${p.vesting.tge * 100}%，锁定 ${p.vesting.cliff} 个月后在 ${p.vesting.months} 个月内线性解锁，可随时领取已解锁部分。`, `${p.vesting.tge * 100}% at TGE; after a ${p.vesting.cliff}-month cliff the rest unlocks linearly over ${p.vesting.months} months. Claim unlocked tokens any time.`)}</li>
                 <li><b>{L('风险提示', 'Risk')}</b>{L('早期项目波动大，可能损失全部本金。认购前请阅读项目资料并独立判断。', 'Early-stage tokens are volatile and you can lose everything. Do your own research.')}</li>

@@ -1,7 +1,7 @@
-// Static demo data for the PrepDEX prototype. All projects, merchants and pools are fictional.
+// Static demo data for the Novarix prototype. All projects, merchants and pools are fictional.
 
-export const BRAND = 'PrepDEX';
-export const PLATFORM_TOKEN = 'PDX';
+export const BRAND = 'Novarix';
+export const PLATFORM_TOKEN = 'NVX';
 
 // sym, name, base price (USD), brand color, volatility per tick, 24h change seed, 24h volume (USD)
 export const COINS = [
@@ -18,7 +18,7 @@ export const COINS = [
   { sym: 'TRX', name: 'TRON', price: 0.1221, color: '#EB0029', vol: 0.0009, chg: 0.0034, v24: 380e6 },
   { sym: 'DOT', name: 'Polkadot', price: 5.912, color: '#E6007A', vol: 0.0017, chg: -0.0098, v24: 190e6 },
   { sym: 'ARB', name: 'Arbitrum', price: 0.7815, color: '#28A0F0', vol: 0.002, chg: 0.0311, v24: 260e6 },
-  { sym: 'PDX', name: 'PrepDEX Token', price: 0.4218, color: '#FF9A3D', vol: 0.0022, chg: 0.0645, v24: 48e6 },
+  { sym: 'NVX', name: 'Novarix Token', price: 0.4218, color: '#3D8BFF', vol: 0.0022, chg: 0.0645, v24: 48e6 },
   // Launchpad graduates (listed after TGE)
   { sym: 'ORBX', name: 'Orbix', price: 0.0842, color: '#FF7A45', vol: 0.003, chg: 0.0921, v24: 12.4e6, launch: true },
   { sym: 'HALO', name: 'Halo Network', price: 0.0514, color: '#5B8CFF', vol: 0.003, chg: -0.0315, v24: 8.1e6, launch: true },
@@ -36,8 +36,8 @@ export const COIN = Object.fromEntries(COINS.map((c) => [c.sym, c]));
 export const QUOTES = ['USDT', 'USDC'];
 export const SPOT_BASES = COINS.filter((c) => !c.stable).map((c) => c.sym);
 
-export const FUTURES = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'TON', 'AVAX', 'LINK', 'PDX'];
-export const MAX_LEV = { BTC: 125, ETH: 100, SOL: 75, BNB: 75, XRP: 50, DOGE: 50, TON: 50, AVAX: 50, LINK: 50, PDX: 20 };
+export const FUTURES = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'TON', 'AVAX', 'LINK', 'NVX'];
+export const MAX_LEV = { BTC: 125, ETH: 100, SOL: 75, BNB: 75, XRP: 50, DOGE: 50, TON: 50, AVAX: 50, LINK: 50, NVX: 20 };
 
 // Deposit / withdrawal networks
 export const NETWORKS = {
@@ -191,7 +191,7 @@ export const PROJECTS = [
     vision: [
       [`${name} ${tagline[0]}。项目于 ${PLATFORM_LAUNCH_NOTE[0]}完成公开认购，认购倍数 ${(ratio * 100).toFixed(1)}%，超额部分已按比例退还。`,
         `${name}: ${tagline[1]}. The public sale finished ${PLATFORM_LAUNCH_NOTE[1]} at ${(ratio * 100).toFixed(1)}% of the hard cap; oversubscribed funds were refunded pro rata.`],
-      ['代币已在 PrepDEX 现货上线，认购用户按释放计划线性解锁。', 'The token is listed on PrepDEX spot, and subscribers unlock linearly per the vesting schedule.'],
+      ['代币已在 Novarix 现货上线，认购用户按释放计划线性解锁。', 'The token is listed on Novarix spot, and subscribers unlock linearly per the vesting schedule.'],
     ],
     highlights: [[`认购倍数 ${(ratio * 100).toFixed(1)}%`, `${(ratio * 100).toFixed(1)}% subscribed`], [`认购价 ${price} USDC`, `Sale price ${price} USDC`]],
     metrics: { tvl: hardCap * ratio * 6, holders: Math.round(hardCap / 40), apy: null },
@@ -205,7 +205,7 @@ export const PROJECTS = [
 
 export const PROJECT = Object.fromEntries(PROJECTS.map((p) => [p.id, p]));
 
-// PDX staking tiers drive launchpad allocation and fee discounts
+// NVX staking tiers drive launchpad allocation and fee discounts
 export const TIERS = [
   { id: 'none', name: ['普通', 'Standard'], min: 0, mult: 1, fee: 0, color: '#8A96AD' },
   { id: 'bronze', name: ['青铜', 'Bronze'], min: 1000, mult: 1.5, fee: 0.05, color: '#C98A5A' },
@@ -218,10 +218,10 @@ export const TIERS = [
 // Staking (Earn)
 // ----------------------------------------------------------------------------
 export const STAKE_PRODUCTS = [
-  { id: 'pdx-flex', sym: 'PDX', days: 0, apr: 0.085, cap: 60e6, filled: 0.41, min: 10, tier: true },
-  { id: 'pdx-30', sym: 'PDX', days: 30, apr: 0.15, cap: 30e6, filled: 0.68, min: 100, tier: true },
-  { id: 'pdx-90', sym: 'PDX', days: 90, apr: 0.24, cap: 20e6, filled: 0.83, min: 100, tier: true, hot: true },
-  { id: 'pdx-180', sym: 'PDX', days: 180, apr: 0.36, cap: 10e6, filled: 0.92, min: 500, tier: true },
+  { id: 'nvx-flex', sym: 'NVX', days: 0, apr: 0.085, cap: 60e6, filled: 0.41, min: 10, tier: true },
+  { id: 'nvx-30', sym: 'NVX', days: 30, apr: 0.15, cap: 30e6, filled: 0.68, min: 100, tier: true },
+  { id: 'nvx-90', sym: 'NVX', days: 90, apr: 0.24, cap: 20e6, filled: 0.83, min: 100, tier: true, hot: true },
+  { id: 'nvx-180', sym: 'NVX', days: 180, apr: 0.36, cap: 10e6, filled: 0.92, min: 500, tier: true },
   { id: 'usdt-flex', sym: 'USDT', days: 0, apr: 0.062, cap: 80e6, filled: 0.57, min: 1 },
   { id: 'usdt-30', sym: 'USDT', days: 30, apr: 0.088, cap: 25e6, filled: 0.74, min: 50 },
   { id: 'usdt-90', sym: 'USDT', days: 90, apr: 0.115, cap: 15e6, filled: 0.88, min: 100, hot: true },
@@ -245,7 +245,7 @@ export const LEND_MARKETS = [
   { sym: 'ETH', ltv: 0.75, lt: 0.8, supply: 41200, borrow: 12100, base: 0.005, s1: 0.04, s2: 0.8 },
   { sym: 'BTC', ltv: 0.73, lt: 0.78, supply: 1840, borrow: 410, base: 0.005, s1: 0.035, s2: 0.8 },
   { sym: 'SOL', ltv: 0.65, lt: 0.7, supply: 820000, borrow: 310000, base: 0.01, s1: 0.06, s2: 1 },
-  { sym: 'PDX', ltv: 0.4, lt: 0.5, supply: 38e6, borrow: 7.5e6, base: 0.02, s1: 0.1, s2: 1.5 },
+  { sym: 'NVX', ltv: 0.4, lt: 0.5, supply: 38e6, borrow: 7.5e6, base: 0.02, s1: 0.1, s2: 1.5 },
 ];
 export const RESERVE_FACTOR = 0.1;
 export const KINK = 0.8;
@@ -261,28 +261,34 @@ export function supplyRate(m, u) {
 // OTC
 // ----------------------------------------------------------------------------
 export const FIATS = [
-  { code: 'CNY', sym: '¥', rate: 7.182, flag: '🇨🇳' },
   { code: 'USD', sym: '$', rate: 1, flag: '🇺🇸' },
-  { code: 'HKD', sym: 'HK$', rate: 7.786, flag: '🇭🇰' },
   { code: 'EUR', sym: '€', rate: 0.921, flag: '🇪🇺' },
+  { code: 'GBP', sym: '£', rate: 0.772, flag: '🇬🇧' },
+  { code: 'HKD', sym: 'HK$', rate: 7.786, flag: '🇭🇰' },
+  { code: 'SGD', sym: 'S$', rate: 1.336, flag: '🇸🇬' },
   { code: 'JPY', sym: '¥', rate: 151.6, flag: '🇯🇵' },
-  { code: 'TWD', sym: 'NT$', rate: 32.14, flag: '🇹🇼' },
   { code: 'KRW', sym: '₩', rate: 1381, flag: '🇰🇷' },
+  { code: 'MYR', sym: 'RM', rate: 4.47, flag: '🇲🇾' },
+  { code: 'PHP', sym: '₱', rate: 57.9, flag: '🇵🇭' },
+  { code: 'TWD', sym: 'NT$', rate: 32.14, flag: '🇹🇼' },
 ];
 export const FIAT = Object.fromEntries(FIATS.map((f) => [f.code, f]));
+// Default fiat per UI language
+export const LANG_FIAT = { zh: 'USD', en: 'USD', ko: 'KRW', ja: 'JPY', ms: 'MYR', es: 'EUR', fil: 'PHP' };
 
 export const PAY_METHODS = {
-  bank: { name: ['银行卡', 'Bank transfer'], color: '#F5B841' },
-  alipay: { name: ['支付宝', 'Alipay'], color: '#1677FF' },
-  wechat: { name: ['微信支付', 'WeChat Pay'], color: '#07C160' },
+  card: { name: ['Visa / Mastercard', 'Visa / Mastercard'], color: '#5B8CFF' },
+  applepay: { name: ['Apple Pay', 'Apple Pay'], color: '#E6E8EC' },
+  googlepay: { name: ['Google Pay', 'Google Pay'], color: '#34A853' },
+  bank: { name: ['银行转账', 'Bank transfer'], color: '#F5B841' },
+  sepa: { name: ['SEPA', 'SEPA'], color: '#2E6BE6' },
   wise: { name: ['Wise', 'Wise'], color: '#9FE870' },
-  revolut: { name: ['Revolut', 'Revolut'], color: '#E6E8EC' },
-  card: { name: ['信用卡', 'Card'], color: '#B98CFF' },
+  revolut: { name: ['Revolut', 'Revolut'], color: '#B98CFF' },
 };
 
 export const OTC_CRYPTOS = ['USDT', 'USDC', 'BTC', 'ETH'];
 
-const MERCHANT_NAMES = ['极光商行', 'North Star OTC', '稳稳兑', 'CryptoLion', '蓝鲸承兑', 'Harbor Desk', '星河 OTC', 'Maple Exchange', '老周币行', 'Kite Pay', '金桥数字', 'Atlas Trading'];
+const MERCHANT_NAMES = ['Aurora Desk', 'North Star OTC', 'Bluefin Trade', 'CryptoLion', 'Sakura Crypto', 'Harbor Desk', 'Han River OTC', 'Maple Exchange', 'Manila Bay Desk', 'Kite Pay', 'Meridian OTC', 'Atlas Trading'];
 
 // Deterministic pseudo-random so merchant lists stay stable across renders
 function seeded(seed) {
@@ -297,13 +303,13 @@ export function otcMerchants(side, crypto, fiat) {
   const r = seeded(side.length * 97 + crypto.charCodeAt(0) * 31 + fiat.charCodeAt(1) * 7 + 11);
   const f = FIAT[fiat];
   const base = COIN[crypto].price * f.rate;
-  const methodsPool = fiat === 'CNY' ? ['bank', 'alipay', 'wechat'] : fiat === 'USD' || fiat === 'EUR' ? ['bank', 'wise', 'revolut'] : ['bank', 'wise'];
+  const methodsPool = fiat === 'EUR' ? ['sepa', 'wise', 'revolut'] : fiat === 'USD' || fiat === 'GBP' ? ['bank', 'wise', 'revolut'] : ['bank', 'wise'];
   return MERCHANT_NAMES.map((name, i) => {
     const prem = side === 'buy' ? 0.002 + r() * 0.018 : -0.004 - r() * 0.016;
     const price = base * (1 + prem);
     const avail = crypto === 'BTC' ? 0.3 + r() * 4 : crypto === 'ETH' ? 4 + r() * 60 : 2000 + r() * 180000;
-    const minF = Math.round((200 + r() * 1800) * (f.rate / 7.182) / 10) * 10;
-    const maxF = Math.round(Math.min(avail * price, (20000 + r() * 400000) * (f.rate / 7.182)) / 100) * 100;
+    const minF = Math.round((30 + r() * 250) * f.rate / 10) * 10;
+    const maxF = Math.round(Math.min(avail * price, (3000 + r() * 55000) * f.rate) / 100) * 100;
     const methods = methodsPool.filter(() => r() > 0.35);
     if (!methods.length) methods.push(methodsPool[0]);
     return {
@@ -323,9 +329,10 @@ export function otcMerchants(side, crypto, fiat) {
   }).sort((a, b) => (side === 'buy' ? a.price - b.price : b.price - a.price));
 }
 
+// Third-party card on-ramps (quotes are simulated)
 export const CARD_PROVIDERS = [
-  { id: 'moonrail', name: 'Moonrail', fee: [0.012, 0.02], eta: ['即时', 'Instant'], methods: ['card', 'bank'], color: '#B98CFF' },
-  { id: 'paystream', name: 'Paystream', fee: [0.015, 0.025], eta: ['1-5 分钟', '1-5 min'], methods: ['card'], color: '#4FD1C5' },
+  { id: 'moonpay', name: 'MoonPay', fee: 0.035, spread: 0.006, eta: ['即时到账', 'Instant'], methods: ['card', 'applepay', 'googlepay', 'bank'], color: '#7D00FF', min: 20 },
+  { id: 'banxa', name: 'Banxa', fee: 0.0199, spread: 0.012, eta: ['1–5 分钟', '1–5 min'], methods: ['card', 'applepay', 'googlepay', 'sepa'], color: '#00C2FF', min: 30 },
 ];
 
 export const WALLETS = [

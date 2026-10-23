@@ -1,4 +1,4 @@
-// App state, persistence and all user actions for the PrepDEX prototype.
+// App state, persistence and all user actions for the Novarix prototype.
 import { useSyncExternalStore } from 'react';
 import {
   COIN, ONCHAIN_START, PROJECTS, PROJECT, TIERS, STAKE_PRODUCTS, EARLY_REDEEM_PENALTY,
@@ -8,7 +8,7 @@ import { price, pairPrice, subscribe as subscribeMarket } from './market.js';
 import { uid, randHex } from './fmt.js';
 import { L } from './lang.js';
 
-const KEY = 'prepdex-demo-v1';
+const KEY = 'novarix-demo-v2';
 const HOUR = 3600e3;
 const DAY = 24 * HOUR;
 const YEAR = 365 * DAY;
@@ -36,7 +36,7 @@ function fresh() {
     subs: [],
     reminders: {},
     stakes: [],
-    lend: { supply: {}, borrow: {}, coll: { USDT: true, USDC: true, ETH: true, BTC: true, SOL: true, PDX: false } },
+    lend: { supply: {}, borrow: {}, coll: { USDT: true, USDC: true, ETH: true, BTC: true, SOL: true, NVX: false } },
     otc: [],
     records: [],
     favs: ['BTC', 'ETH', 'SOL'],

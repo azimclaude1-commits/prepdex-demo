@@ -58,7 +58,8 @@ export function countdown(ms) {
   const h = Math.floor((s % 86400) / 3600);
   const m = Math.floor((s % 3600) / 60);
   const sec = s % 60;
-  return (d > 0 ? d + (getLang() === 'zh' ? '天 ' : 'd ') : '') + pad2(h) + ':' + pad2(m) + ':' + pad2(sec);
+  const unit = { zh: '天 ', ja: '日 ', ko: '일 ', ms: 'h ', es: 'd ', fil: 'a ' }[getLang()] || 'd ';
+  return (d > 0 ? d + unit : '') + pad2(h) + ':' + pad2(m) + ':' + pad2(sec);
 }
 
 export function dateTime(ts, withSec = false) {

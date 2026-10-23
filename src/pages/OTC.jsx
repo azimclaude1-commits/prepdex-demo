@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState, useRef } from 'react';
 import {
   BadgeDollarSign, BadgeCheck, Zap, CreditCard, Clock, ShieldCheck, MessageSquare, Send, CheckCircle2, Loader2, AlertTriangle, ChevronDown, Filter, Copy, ArrowRight, Lock,
 } from 'lucide-react';
-import { FIATS, FIAT, OTC_CRYPTOS, otcMerchants, PAY_METHODS, CARD_PROVIDERS, COIN } from '../core/data.js';
-import { L } from '../core/lang.js';
+import { FIATS, FIAT, OTC_CRYPTOS, otcMerchants, PAY_METHODS, CARD_PROVIDERS, COIN, LANG_FIAT } from '../core/data.js';
+import { L, getLang } from '../core/lang.js';
 import { useApp, createOtc, otcMarkPaid, otcCancel, otcRelease, otcChat, cardBuy, toast, bal, openModal, go } from '../core/store.js';
 import { useMarket } from '../core/market.js';
 import { fmt, dateTime, pad2, floorTo, adp } from '../core/fmt.js';
@@ -44,15 +44,15 @@ function FiatSelect({ value, onChange }) {
 
 export function OTC() {
   const s = useApp();
-  const [tab, setTab] = useState('quick');
+  const [tab, setTab] = useState('card');
   const [orderId, setOrderId] = useState(null);
   const active = s.otc.filter((o) => ['unpaid', 'paid', 'waiting', 'buyerPaid'].includes(o.status)).length;
   return (
     <div className="page">
       <PageHead eyebrow={<><BadgeDollarSign size={14} />OTC</>} title={L('法币买卖加密货币', 'Buy and sell crypto with fiat')}
-        sub={L('认证商家担保交易，平台托管放币；也可通过第三方渠道用银行卡直接购买。', 'Escrow-protected trades with verified merchants, or buy instantly with a card through a third-party provider.')}
-        right={<Tabs value={tab} onChange={setTab} items={[['quick', L('快捷买币', 'Quick buy')], ['p2p', L('自选交易', 'P2P market')], ['orders', L('我的订单', 'My orders'), active || null]]} />} />
-      {tab === 'quick' && <QuickBuy onOrder={setOrderId} />}
+        sub={L('通过 MoonPay、Banxa 等第三方渠道用 Visa / Mastercard、Apple Pay 直接买币；也可以在 P2P 市场与认证商家交易。', 'Buy instantly with Visa / Mastercard or Apple Pay through MoonPay or Banxa, or trade with verified merchants on the P2P market.')}
+        right={<Tabs value={tab} onChange={setTab} items={[['card', L('银行卡买币', 'Buy with card')], ['p2p', L('P2P 交易', 'P2P market')], ['orders', L('我的订单', 'My orders'), active || null]]} />} />
+      {tab === 'card' && <CardBuy />}
       {tab === 'p2p' && <P2P onOrder={setOrderId} />}
       {tab === 'orders' && <MyOrders onOpen={setOrderId} />}
       {orderId && <OrderModal id={orderId} onClose={() => setOrderId(null)} />}
@@ -61,50 +61,46 @@ export function OTC() {
 }
 
 // ----------------------------------------------------------------------------
-// Quick buy
+// Card purchase through third-party on-ramps
 // ----------------------------------------------------------------------------
-function QuickBuy({ onOrder }) {
+function providerQuote(p, crypto, fiat, amount) {
+  const mid = COIN[crypto].price * FIAT[fiat].rate;
+  const rate = mid * (1 + p.spread);
+  const fee = amount * p.fee;
+  const minF = p.min * FIAT[fiat].rate;
+  return { rate, fee, got: Math.max(0, (amount - fee) / rate), minF, ok: amount >= minF };
+}
+
+function CardBuy() {
   useMarket();
   const s = useApp();
-  const [side, setSide] = useState('buy');
-  const [fiat, setFiat] = useState('CNY');
+  const [fiat, setFiat] = useState(LANG_FIAT[getLang()] || 'USD');
   const [crypto, setCrypto] = useState('USDT');
-  const [fiatAmt, setFiatAmt] = useState('2000');
-  const [method, setMethod] = useState('bank');
-  const [card, setCard] = useState(null);
-  const ms = otcMerchants(side, crypto, fiat).filter((m) => m.online);
+  const [fiatAmt, setFiatAmt] = useState(() => String(Math.round(300 * (FIAT[LANG_FIAT[getLang()] || 'USD'].rate))));
+  const [method, setMethod] = useState('card');
+  const [pick, setPick] = useState(null);
+  const [checkout, setCheckout] = useState(null);
   const f = parseFloat(fiatAmt) || 0;
-  const best = ms.find((m) => m.methods.includes(method) && f >= m.minF && f <= m.maxF) || null;
-  const px = best ? best.price : ms[0]?.price;
-  const cryptoAmt = px ? f / px : 0;
-  const methods = [...new Set(ms.flatMap((m) => m.methods))];
-  useEffect(() => { if (!methods.includes(method)) setMethod(methods[0]); }, [fiat]);
-
-  const go1 = () => {
-    if (!best) { toast(L('暂无匹配的商家，请调整金额或支付方式', 'No merchant matches. Change the amount or payment method.'), 'err'); return; }
-    const r = createOtc({ side, crypto, fiat, merchant: best, fiatAmt: f, cryptoAmt: floorTo(cryptoAmt, 6), method });
-    if (r.err) { toast(r.err, 'err'); return; }
-    onOrder(r.id);
-  };
+  const quotes = CARD_PROVIDERS.filter((p) => p.methods.includes(method)).map((p) => ({ p, q: providerQuote(p, crypto, fiat, f) }));
+  const best = [...quotes].sort((a, b) => b.q.got - a.q.got)[0];
+  const chosen = quotes.find((x) => x.p.id === pick) || best;
+  const methods = ['card', 'applepay', 'googlepay', 'bank', 'sepa'];
+  const dp = crypto === 'BTC' || crypto === 'ETH' ? 6 : 2;
 
   return (
     <div className="otc-quick">
       <div className="card quick-card">
-        <div className={cx('side-toggle', side)}>
-          <button className={cx(side === 'buy' && 'on')} onClick={() => setSide('buy')}>{L('购买', 'Buy')}</button>
-          <button className={cx(side === 'sell' && 'on')} onClick={() => setSide('sell')}>{L('出售', 'Sell')}</button>
-        </div>
         <div className="swap-box">
-          <div className="swap-top"><span>{side === 'buy' ? L('我要支付', 'You pay') : L('我将收到', 'You receive')}</span></div>
+          <div className="swap-top"><span>{L('我要支付', 'You pay')}</span></div>
           <div className="swap-mid">
-            <input className="swap-input mono" inputMode="decimal" value={fiatAmt} onChange={(e) => /^\d*\.?\d*$/.test(e.target.value) && setFiatAmt(e.target.value)} />
-            <FiatSelect value={fiat} onChange={setFiat} />
+            <input className="swap-input mono" inputMode="decimal" value={fiatAmt} onChange={(e) => /^\d*\.?\d*$/.test(e.target.value) && setFiatAmt(e.target.value)} aria-label={L('支付金额', 'Amount to pay')} />
+            <FiatSelect value={fiat} onChange={(v) => { setFiat(v); setFiatAmt(String(Math.round(300 * FIAT[v].rate))); }} />
           </div>
         </div>
         <div className="swap-box">
-          <div className="swap-top"><span>{side === 'buy' ? L('我将收到', 'You receive') : L('我要出售', 'You sell')}</span>{side === 'sell' && <span className="muted small">{L('可用', 'Avail.')} <span className="mono">{fmt(bal(crypto), 4)}</span></span>}</div>
+          <div className="swap-top"><span>{L('我将收到（约）', 'You receive (est.)')}</span></div>
           <div className="swap-mid">
-            <div className="swap-input mono out">{fmt(cryptoAmt, crypto === 'BTC' || crypto === 'ETH' ? 6 : 2)}</div>
+            <div className="swap-input mono out">{chosen ? fmt(chosen.q.got, dp) : '0'}</div>
             <div className="crypto-chips">
               {OTC_CRYPTOS.map((c) => <button key={c} className={cx('cc', c === crypto && 'on')} onClick={() => setCrypto(c)}><CoinIcon sym={c} size={18} />{c}</button>)}
             </div>
@@ -112,58 +108,72 @@ function QuickBuy({ onOrder }) {
         </div>
         <div>
           <div className="field-label">{L('支付方式', 'Payment method')}</div>
-          <div className="net-chips">{methods.map((m) => <button key={m} className={cx('net-chip', m === method && 'on')} onClick={() => setMethod(m)}>{L(...PAY_METHODS[m].name)}</button>)}</div>
+          <div className="net-chips">{methods.map((m) => <button key={m} className={cx('net-chip', m === method && 'on')} onClick={() => { setMethod(m); setPick(null); }}>{L(...PAY_METHODS[m].name)}</button>)}</div>
         </div>
-        <div className="summary">
-          <KV k={L('参考单价', 'Price')} v={px ? `${fmt(px, 3)} ${fiat}/${crypto}` : '--'} />
-          <KV k={L('匹配商家', 'Matched merchant')} v={best ? <span className="row-gap">{best.name}{best.verified && <BadgeCheck size={14} className="accent-text" />}</span> : L('无', 'None')} mono={false} />
-          <KV k={L('限额', 'Limits')} v={best ? `${fmt(best.minF, 0)} – ${fmt(best.maxF, 0)} ${fiat}` : '--'} />
-          <KV k={L('手续费', 'Fee')} v={<span className="up">0</span>} />
-        </div>
-        {!s.wallet.connected ? <ConnectGate /> : (
-          <Btn block size="lg" variant={side === 'buy' ? 'up' : 'down'} onClick={go1} disabled={!f}>{side === 'buy' ? L(`购买 ${crypto}`, `Buy ${crypto}`) : L(`出售 ${crypto}`, `Sell ${crypto}`)}<ArrowRight size={16} /></Btn>
-        )}
-        <div className="assure"><ShieldCheck size={14} />{L('平台托管：商家的币在下单时即被锁定，付款确认后自动放行。', 'Escrow: the merchant’s crypto is locked when you order and released after payment.')}</div>
-      </div>
-
-      <div className="otc-side">
-        <div className="card">
-          <h3 className="sub-h"><CreditCard size={16} />{L('银行卡 / 信用卡直购', 'Buy with a card')}</h3>
-          <p className="muted small">{L('由第三方支付服务商处理，支持 Visa / Mastercard / Apple Pay，币直接到账现货账户。', 'Processed by third-party providers. Visa, Mastercard and Apple Pay supported; crypto goes straight to spot.')}</p>
-          <div className="provider-list">
-            {CARD_PROVIDERS.map((p) => (
-              <button key={p.id} className="provider" onClick={() => (s.wallet.connected ? setCard(p) : openModal('connect'))}>
+        <div>
+          <div className="field-label">{L('选择服务商', 'Choose a provider')}</div>
+          <div className="prov-quotes">
+            {quotes.length === 0 && <div className="hint-box">{L('暂无服务商支持该支付方式', 'No provider supports this method')}</div>}
+            {quotes.map(({ p, q }) => (
+              <button key={p.id} className={cx('prov-quote', chosen?.p.id === p.id && 'on')} onClick={() => setPick(p.id)}>
+                <span className="radio" />
                 <span className="prov-logo" style={{ background: p.color }}>{p.name[0]}</span>
-                <span><b>{p.name}</b><small>{L('手续费', 'Fees')} {p.fee[0] * 100}–{p.fee[1] * 100}% · {L(...p.eta)}</small></span>
-                <span className="row-gap">{p.methods.map((m) => <PayTag key={m} m={m} />)}</span>
-                <ArrowRight size={16} className="muted" />
+                <span className="pq-main">
+                  <b>{p.name}{best?.p.id === p.id && <Pill tone="up">{L('最优价', 'Best rate')}</Pill>}</b>
+                  <small>{L('手续费', 'Fee')} {(p.fee * 100).toFixed(2)}% · {L(...p.eta)}</small>
+                </span>
+                <span className="pq-out">
+                  <b className="mono">{fmt(q.got, dp)} {crypto}</b>
+                  <small className="mono">1 {crypto} ≈ {fmt(q.rate, crypto === 'BTC' || crypto === 'ETH' ? 0 : 3)} {fiat}</small>
+                </span>
               </button>
             ))}
           </div>
         </div>
+        {chosen && !chosen.q.ok && f > 0 && <div className="warn-box"><AlertTriangle size={15} />{L(`${chosen.p.name} 最低购买 ${fmt(chosen.q.minF, 0)} ${fiat}`, `${chosen.p.name} minimum is ${fmt(chosen.q.minF, 0)} ${fiat}`)}</div>}
+        {!s.wallet.connected ? <ConnectGate /> : (
+          <Btn block size="lg" disabled={!chosen || !chosen.q.ok} onClick={() => setCheckout(chosen)}>
+            {chosen ? L(`通过 ${chosen.p.name} 购买 ${crypto}`, `Buy ${crypto} with ${chosen.p.name}`) : L('购买', 'Buy')}<ArrowRight size={16} />
+          </Btn>
+        )}
+        <div className="assure"><ShieldCheck size={14} />{L('支付与身份验证（KYC）由第三方服务商完成，币直接到账你的现货账户。', 'Payment and identity checks (KYC) are handled by the provider. Crypto goes straight to your spot account.')}</div>
+      </div>
+
+      <div className="otc-side">
+        <div className="card">
+          <h3 className="sub-h"><CreditCard size={16} />{L('合作服务商', 'Partner providers')}</h3>
+          <div className="provider-list">
+            {CARD_PROVIDERS.map((p) => (
+              <div key={p.id} className="provider static">
+                <span className="prov-logo" style={{ background: p.color }}>{p.name[0]}</span>
+                <span><b>{p.name}</b><small>{L('参考手续费', 'Ref. fee')} {(p.fee * 100).toFixed(2)}% · {L('最低', 'Min')} ${p.min}</small></span>
+                <span className="pay-tags">{p.methods.map((m) => <PayTag key={m} m={m} />)}</span>
+              </div>
+            ))}
+          </div>
+          <p className="fine">{L('报价为演示数据，实际以服务商结算页为准。', 'Quotes are demo figures; the provider checkout shows the final price.')}</p>
+        </div>
         <div className="card steps-card">
-          <h3 className="sub-h">{L('交易流程', 'How it works')}</h3>
+          <h3 className="sub-h">{L('购买流程', 'How it works')}</h3>
           <ol className="steps">
-            <li><b>{L('下单', 'Place order')}</b><span>{L('系统锁定商家的币', 'Merchant crypto is locked in escrow')}</span></li>
-            <li><b>{L('付款', 'Pay')}</b><span>{L('15 分钟内按商家收款信息转账', 'Pay the merchant within 15 minutes')}</span></li>
-            <li><b>{L('放币', 'Release')}</b><span>{L('商家确认收款后，币自动到账', 'Crypto is released once payment is confirmed')}</span></li>
+            <li><b>{L('选择金额与服务商', 'Pick amount and provider')}</b><span>{L('对比两家报价，自动标出到账最多的一家', 'We compare quotes and flag the best one')}</span></li>
+            <li><b>{L('完成支付', 'Pay')}</b><span>{L('在服务商页面填写卡信息并完成 3-D Secure 验证', 'Enter card details and pass 3-D Secure')}</span></li>
+            <li><b>{L('自动到账', 'Receive')}</b><span>{L('服务商处理完成后，币到账现货账户', 'Crypto lands in your spot account')}</span></li>
           </ol>
         </div>
       </div>
-      {card && <CardCheckout p={card} fiat={fiat} crypto={crypto} amount={f} onClose={() => setCard(null)} />}
+      {checkout && <CardCheckout p={checkout.p} q={checkout.q} fiat={fiat} crypto={crypto} amount={f} method={method} onClose={() => setCheckout(null)} />}
     </div>
   );
 }
 
-function CardCheckout({ p, fiat, crypto, amount, onClose }) {
-  useMarket();
+function CardCheckout({ p, q, fiat, crypto, amount, method, onClose }) {
   const [step, setStep] = useState('form');
   const [num, setNum] = useState('4242 4242 4242 4242');
   const [exp, setExp] = useState('12/28');
   const [cvc, setCvc] = useState('123');
-  const rate = otcMerchants('buy', crypto, fiat)[0].price * 1.004;
-  const fee = amount * p.fee[0];
-  const got = (amount - fee) / rate;
+  const wallet = method === 'applepay' || method === 'googlepay';
+  const got = q.got;
   const pay = () => {
     setStep('3ds');
     setTimeout(() => setStep('processing'), 1600);
@@ -175,16 +185,29 @@ function CardCheckout({ p, fiat, crypto, amount, onClose }) {
         <div className="stack">
           <div className="summary">
             <KV k={L('支付', 'You pay')} v={`${fmt(amount, 2)} ${fiat}`} />
-            <KV k={L('服务商手续费', 'Provider fee')} v={`${fmt(fee, 2)} ${fiat}`} />
+            <KV k={L('服务商手续费', 'Provider fee')} v={`${fmt(q.fee, 2)} ${fiat}`} />
+            <KV k={L('汇率', 'Rate')} v={`1 ${crypto} ≈ ${fmt(q.rate, 3)} ${fiat}`} />
             <KV k={L('预计到账', 'You get')} v={<b className="accent-text">{fmt(got, 6)} {crypto}</b>} />
           </div>
-          <label className="txt" htmlFor="cc-num"><span className="num-label">{L('卡号', 'Card number')}</span><input id="cc-num" className="mono" value={num} onChange={(e) => setNum(e.target.value)} /></label>
-          <div className="grid2">
-            <label className="txt" htmlFor="cc-exp"><span className="num-label">{L('有效期', 'Expiry')}</span><input id="cc-exp" className="mono" value={exp} onChange={(e) => setExp(e.target.value)} /></label>
-            <label className="txt" htmlFor="cc-cvc"><span className="num-label">CVC</span><input id="cc-cvc" className="mono" value={cvc} onChange={(e) => setCvc(e.target.value)} /></label>
-          </div>
-          <p className="fine"><Lock size={12} /> {L('演示环境：卡号为测试数据，不会产生真实扣款。', 'Demo only: test card details, no real charge.')}</p>
-          <Btn block size="lg" onClick={pay} disabled={amount <= 0}>{L(`支付 ${fmt(amount, 2)} ${fiat}`, `Pay ${fmt(amount, 2)} ${fiat}`)}</Btn>
+          {wallet ? (
+            <div className="wallet-pay"><b>{L(...PAY_METHODS[method].name)}</b><span className="muted small">{L('将调起设备上的钱包完成支付', 'Your device wallet will open to confirm')}</span></div>
+          ) : method === 'bank' || method === 'sepa' ? (
+            <div className="summary">
+              <KV k={L('收款方', 'Beneficiary')} v={`${p.name} Payments Ltd.`} mono={false} />
+              <KV k="IBAN" v="GB82 •••• •••• 4432" />
+              <KV k={L('付款备注', 'Reference')} v={'NVX' + Math.floor(100000 + amount)} />
+            </div>
+          ) : (
+            <>
+              <label className="txt" htmlFor="cc-num"><span className="num-label">{L('卡号', 'Card number')}</span><input id="cc-num" className="mono" value={num} onChange={(e) => setNum(e.target.value)} /></label>
+              <div className="grid2">
+                <label className="txt" htmlFor="cc-exp"><span className="num-label">{L('有效期', 'Expiry')}</span><input id="cc-exp" className="mono" value={exp} onChange={(e) => setExp(e.target.value)} /></label>
+                <label className="txt" htmlFor="cc-cvc"><span className="num-label">CVC</span><input id="cc-cvc" className="mono" value={cvc} onChange={(e) => setCvc(e.target.value)} /></label>
+              </div>
+            </>
+          )}
+          <p className="fine"><Lock size={12} /> {L('演示环境：不会产生真实扣款。', 'Demo only: no real charge is made.')}</p>
+          <Btn block size="lg" onClick={pay}>{L(`支付 ${fmt(amount, 2)} ${fiat}`, `Pay ${fmt(amount, 2)} ${fiat}`)}</Btn>
         </div>
       )}
       {step === '3ds' && <div className="stack center"><ShieldCheck size={40} className="accent-text" /><h3>{L('银行安全验证', 'Bank verification (3-D Secure)')}</h3><p className="muted">{L('正在跳转发卡行验证…', 'Redirecting to your bank…')}</p><Loader2 className="spin" size={22} /></div>}
@@ -208,7 +231,7 @@ function P2P({ onOrder }) {
   const s = useApp();
   const [side, setSide] = useState('buy');
   const [crypto, setCrypto] = useState('USDT');
-  const [fiat, setFiat] = useState('CNY');
+  const [fiat, setFiat] = useState(LANG_FIAT[getLang()] || 'USD');
   const [pay, setPay] = useState('all');
   const [amtFilter, setAmtFilter] = useState('');
   const [openId, setOpenId] = useState(null);
@@ -280,7 +303,7 @@ function P2PForm({ m, side, crypto, fiat, onDone }) {
     <div className="p2p-form">
       <div className="p2p-terms">
         <b>{L('商家条款', 'Merchant terms')}</b>
-        <p className="muted small">{L('请使用本人实名账户付款，付款备注只填订单参考号，不要备注“USDT”“数字货币”等字样。', 'Pay from an account in your own name. Put only the order reference in the memo.')}</p>
+        <p className="muted small">{L('请使用本人实名账户付款，付款备注只填订单参考号，不要备注“USDT”“加密货币”等字样。', 'Pay from an account in your own name. Put only the order reference in the memo.')}</p>
       </div>
       <div className="p2p-inputs">
         <NumInput id={'p2p-' + m.id} label={side === 'buy' ? L('我要支付', 'I pay') : L('我将收到', 'I receive')} value={fv} onChange={setFv} suffix={fiat} error={err}
@@ -346,7 +369,7 @@ function OrderModal({ id, onClose }) {
     ? { unpaid: 1, paid: 2, completed: 3, cancelled: 0 }[o.status]
     : { waiting: 1, buyerPaid: 2, completed: 3, cancelled: 0 }[o.status];
   const steps = o.side === 'buy' ? [L('下单', 'Ordered'), L('付款', 'Pay'), L('放币', 'Release')] : [L('下单', 'Ordered'), L('买家付款', 'Buyer pays'), L('确认放币', 'Release')];
-  const acct = { bank: ['招商银行 · 尾号 8812', 'CMB · ending 8812'], alipay: ['alipay: 138****2290', 'alipay: 138****2290'], wechat: ['微信：jg_otc_88', 'WeChat: jg_otc_88'], wise: ['Wise · GB29 •••• 6011', 'Wise · GB29 •••• 6011'], revolut: ['Revolut · @harbordesk', 'Revolut · @harbordesk'], card: ['--', '--'] }[o.method];
+  const acct = { bank: ['DBS Bank · 尾号 8812', 'DBS Bank · ending 8812'], sepa: ['IBAN DE89 •••• 3000', 'IBAN DE89 •••• 3000'], wise: ['Wise · GB29 •••• 6011', 'Wise · GB29 •••• 6011'], revolut: ['Revolut · @harbordesk', 'Revolut · @harbordesk'] }[o.method] || ['--', '--'];
   return (
     <Modal title={<span className="row-gap">{o.side === 'buy' ? L('购买', 'Buy') : L('出售', 'Sell')} {o.crypto}<Pill tone={STATUS[o.status][0]}>{L(...STATUS[o.status][1])}</Pill></span>} onClose={onClose} width={760}>
       <div className="otc-order">
@@ -366,7 +389,7 @@ function OrderModal({ id, onClose }) {
           {o.side === 'buy' && ['unpaid', 'paid'].includes(o.status) && (
             <div className="pay-info">
               <div className="field-label">{L('商家收款信息', 'Merchant payment details')} · <PayTag m={o.method} /></div>
-              <KV k={L('收款人', 'Name')} v={<span className="row-gap">{L('张*明', 'J. Zhang')}<CopyBtn text="张明" /></span>} />
+              <KV k={L('收款人', 'Name')} v={<span className="row-gap">J. Tan<CopyBtn text="J. Tan" /></span>} />
               <KV k={L('账户', 'Account')} v={<span className="row-gap">{L(...acct)}<CopyBtn text={acct[0]} /></span>} />
               <KV k={L('付款备注（参考号）', 'Reference')} v={<span className="row-gap accent-text">{o.ref}<CopyBtn text={o.ref} /></span>} />
             </div>

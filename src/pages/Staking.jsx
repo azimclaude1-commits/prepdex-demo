@@ -24,12 +24,12 @@ export function Staking() {
 
   const coins = [...new Set(STAKE_PRODUCTS.map((p) => p.sym))];
   const prods = (sym) => STAKE_PRODUCTS.filter((p) => p.sym === sym && (filter === 'all' || (filter === 'flex' ? p.days === 0 : filter === 'fixed' ? p.days > 0 : true)));
-  const shown = coins.filter((c) => (filter === 'pdx' ? c === 'PDX' : prods(c).length));
+  const shown = coins.filter((c) => (filter === 'pdx' ? c === 'NVX' : prods(c).length));
 
   return (
     <div className="page">
-      <PageHead eyebrow={<><Layers size={14} />{L('质押理财', 'Staking')}</>} title={L('让闲置资产持续产生收益', 'Put idle assets to work')}
-        sub={L('活期随存随取，定期锁仓收益更高。质押 PDX 还能提升认购等级与手续费折扣。', 'Flexible products redeem any time; fixed terms pay more. Staking PDX also raises your launchpad tier and fee discount.')} />
+      <PageHead eyebrow={<><Layers size={14} />{L('质押理财', 'Staking')}</>} title={L('持续产生收益', 'Keep earning')}
+        sub={L('活期随存随取，定期锁仓收益更高。质押 NVX 还能提升认购等级与手续费折扣。', 'Flexible products redeem any time; fixed terms pay more. Staking NVX also raises your launchpad tier and fee discount.')} />
 
       <div className="stat-row">
         <div className="stat"><span>{L('质押总值', 'Staked value')}</span><b className="mono">{usd(totalV)}</b></div>
@@ -39,13 +39,13 @@ export function Staking() {
       </div>
 
       <div className="card tier-table">
-        <div className="row-between"><h3 className="sub-h"><Trophy size={16} />{L('PDX 质押等级权益', 'PDX tier benefits')}</h3><span className="muted small">{L('按活跃中的 PDX 质押总量计算', 'Based on your active PDX stake')}</span></div>
+        <div className="row-between"><h3 className="sub-h"><Trophy size={16} />{L('NVX 质押等级权益', 'NVX tier benefits')}</h3><span className="muted small">{L('按活跃中的 NVX 质押总量计算', 'Based on your active NVX stake')}</span></div>
         <div className="tiers">
           {TIERS.map((x) => (
             <div key={x.id} className={cx('tier-cell', x.id === t.id && 'on')} style={{ '--c': x.color }}>
               <i className="tier-gem" />
               <b>{L(...x.name)}</b>
-              <span className="mono">≥ {compact(x.min, 0)} PDX</span>
+              <span className="mono">≥ {compact(x.min, 0)} NVX</span>
               <span>{L('认购上限', 'Sale cap')} <b className="mono">×{x.mult}</b></span>
               <span>{L('现货手续费', 'Spot fee')} <b className="mono">-{x.fee * 100}%</b></span>
             </div>
@@ -55,7 +55,7 @@ export function Staking() {
 
       <div className="sec-head">
         <h2 className="display sec-title">{L('质押产品', 'Products')}</h2>
-        <Tabs value={filter} onChange={setFilter} items={[['all', L('全部', 'All')], ['flex', L('活期', 'Flexible')], ['fixed', L('定期', 'Fixed')], ['pdx', 'PDX']]} />
+        <Tabs value={filter} onChange={setFilter} items={[['all', L('全部', 'All')], ['flex', L('活期', 'Flexible')], ['fixed', L('定期', 'Fixed')], ['pdx', 'NVX']]} />
       </div>
       <div className="earn-list">
         {shown.map((sym) => (
@@ -133,7 +133,7 @@ function StakeModal({ p, onClose }) {
   const daily = (a * p.apr) / 365;
   const start = now();
   const t = tier();
-  const nextTier = p.sym === 'PDX' ? [...TIERS].reverse().find((x) => t.staked + a >= x.min) : null;
+  const nextTier = p.sym === 'NVX' ? [...TIERS].reverse().find((x) => t.staked + a >= x.min) : null;
   return (
     <Modal title={<span className="row-gap"><CoinIcon sym={p.sym} size={22} />{p.sym} {p.days ? `${p.days}${L(' 天定期', '-day fixed')}` : L(' 活期', ' flexible')}</span>} onClose={onClose} width={460}>
       <div className="stack">
@@ -155,7 +155,7 @@ function StakeModal({ p, onClose }) {
         {p.days > 0 && <div className="warn-box"><AlertTriangle size={15} />{L(`提前赎回将扣除 ${EARLY_REDEEM_PENALTY * 100}% 已产生收益，本金全额返还。`, `Early redemption forfeits ${EARLY_REDEEM_PENALTY * 100}% of accrued rewards; principal is returned in full.`)}</div>}
         <label className="check"><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />{L('我已阅读并同意《质押服务协议》', 'I agree to the Staking Terms')}</label>
         {!s.wallet.connected ? <ConnectGate /> : avail < p.min ? (
-          <Btn block variant="soft" onClick={() => { onClose(); openModal(p.sym === 'PDX' ? 'convert' : 'deposit', p.sym === 'PDX' ? { from: 'USDT', to: 'PDX' } : { sym: p.sym }); }}>{p.sym === 'PDX' ? L('余额不足，去闪兑 PDX', 'Not enough. Convert to PDX') : L(`余额不足，去充值 ${p.sym}`, `Not enough. Deposit ${p.sym}`)}</Btn>
+          <Btn block variant="soft" onClick={() => { onClose(); openModal(p.sym === 'NVX' ? 'convert' : 'deposit', p.sym === 'NVX' ? { from: 'USDT', to: 'NVX' } : { sym: p.sym }); }}>{p.sym === 'NVX' ? L('余额不足，去闪兑 NVX', 'Not enough. Convert to NVX') : L(`余额不足，去充值 ${p.sym}`, `Not enough. Deposit ${p.sym}`)}</Btn>
         ) : (
           <Btn block size="lg" disabled={!agree || a < p.min} onClick={() => { const r = stake(p.id, a); if (r.err) toast(r.err, 'err'); else { toast(L('质押成功', 'Staked'), 'ok', `${fmt(a, 6)} ${p.sym} · ${(p.apr * 100).toFixed(1)}% APR`); onClose(); } }}>{L('确认质押', 'Stake')}</Btn>
         )}
