@@ -146,33 +146,12 @@
 "Agentes de IA",
 "Mga AI agent"
 ],
-"API docs": [
-"API 문서",
-"API ドキュメント",
-"Dokumen API",
-"Documentación API",
-"API docs"
-],
 "APR": [
 "연이율",
 "年利",
 "APR",
 "TAE",
 "APR"
-],
-"About": [
-"회사 소개",
-"会社情報",
-"Tentang",
-"Acerca de",
-"Tungkol"
-],
-"About us": [
-"회사 소개",
-"私たちについて",
-"Tentang kami",
-"Quiénes somos",
-"Tungkol sa amin"
 ],
 "Account": [
 "계좌",
@@ -258,13 +237,6 @@
 "Todas las posiciones cerradas",
 "Naisara ang lahat ng posisyon"
 ],
-"All rights reserved.": [
-"모든 권리 보유.",
-"無断転載を禁じます。",
-"Hak cipta terpelihara.",
-"Todos los derechos reservados.",
-"Nakalaan ang lahat ng karapatan."
-],
 "All sales": [
 "전체 세일",
 "すべてのセール",
@@ -327,13 +299,6 @@
 "Enjin untuk permainan sepenuhnya on-chain",
 "Un motor para juegos totalmente on-chain",
 "Isang engine para sa ganap na on-chain na laro"
-],
-"Announcements": [
-"공지사항",
-"お知らせ",
-"Pengumuman",
-"Anuncios",
-"Mga anunsyo"
 ],
 "Any time": [
 "언제든지",
@@ -580,13 +545,6 @@
 "Prestado",
 "Hiniram"
 ],
-"Brand kit": [
-"브랜드 키트",
-"ブランドキット",
-"Kit jenama",
-"Kit de marca",
-"Brand kit"
-],
 "Broadcast": [
 "브로드캐스트",
 "ブロードキャスト",
@@ -614,13 +572,6 @@
 "Dompet pelayar (on-chain)",
 "Billetera del navegador (on-chain)",
 "Browser wallet (on-chain)"
-],
-"Bug bounty": [
-"버그 바운티",
-"バグバウンティ",
-"Ganjaran pepijat",
-"Recompensa por errores",
-"Bug bounty"
 ],
 "Buy": [
 "매수",
@@ -755,13 +706,6 @@
 "Número de tarjeta",
 "Numero ng card"
 ],
-"Careers": [
-"채용",
-"採用情報",
-"Kerjaya",
-"Empleo",
-"Mga trabaho"
-],
 "Chain": [
 "체인",
 "チェーン",
@@ -866,13 +810,6 @@
 "Dikomit",
 "Comprometido",
 "Nakalaan"
-],
-"Community": [
-"커뮤니티",
-"コミュニティ",
-"Komuniti",
-"Comunidad",
-"Komunidad"
 ],
 "Community holders": [
 "커뮤니티 보유자",
@@ -1034,13 +971,6 @@
 "Disambung dan log masuk",
 "Conectado e iniciada la sesión",
 "Nakakonekta at naka-sign in"
-],
-"Contact": [
-"문의하기",
-"お問い合わせ",
-"Hubungi",
-"Contacto",
-"Makipag-ugnayan"
 ],
 "Contract": [
 "계약",
@@ -1539,13 +1469,6 @@
 "Tasa de comisión",
 "Fee rate"
 ],
-"Fees": [
-"수수료",
-"手数料",
-"Yuran",
-"Comisiones",
-"Mga fee"
-],
 "Filled": [
 "체결",
 "約定",
@@ -1741,13 +1664,6 @@
 "Faktor kesihatan akan terlalu rendah",
 "El factor de salud quedaría demasiado bajo",
 "Masyadong bababa ang health factor"
-],
-"Help center": [
-"고객센터",
-"ヘルプセンター",
-"Pusat bantuan",
-"Centro de ayuda",
-"Help center"
 ],
 "Hi! Please pay the exact amount with the reference code, then tap \"I have paid\".": [
 "안녕하세요! 참조 번호를 메모에 적고 정확한 금액을 결제한 뒤 \"결제 완료\"를 눌러주세요.",
@@ -2057,20 +1973,6 @@
 "Nivel de launchpad",
 "Launchpad tier"
 ],
-"Law enforcement": [
-"수사기관 요청",
-"法執行機関からの要請",
-"Penguatkuasaan undang-undang",
-"Fuerzas del orden",
-"Law enforcement"
-],
-"Legal & security": [
-"법률 및 보안",
-"法務とセキュリティ",
-"Undang-undang & keselamatan",
-"Legal y seguridad",
-"Legal at seguridad"
-],
 "Lending": [
 "대출",
 "レンディング",
@@ -2161,13 +2063,6 @@
 "Disenaraikan",
 "Listado",
 "Naka-list"
-],
-"Listing application": [
-"상장 신청",
-"上場申請",
-"Permohonan penyenaraian",
-"Solicitud de listado",
-"Listing application"
 ],
 "Live": [
 "진행 중",
@@ -2757,13 +2652,6 @@
 "Un pool de liquidez en 12 cadenas",
 "Isang liquidity pool sa 12 chain"
 ],
-"One secure, transparent home for launches, trading, staking and lending.": [
-"청약, 거래, 스테이킹, 대출을 한 곳에서 안전하고 투명하게.",
-"申込、取引、ステーキング、レンディングを安全かつ透明に一か所で。",
-"Satu tempat selamat dan telus untuk pelancaran, dagangan, staking dan pinjaman.",
-"Un lugar seguro y transparente para lanzamientos, trading, staking y préstamos.",
-"Isang ligtas at transparent na tahanan para sa launch, trading, staking at lending."
-],
 "Only send {0} on {1}. Other assets sent here are lost.": [
 "{1}에서 {0}만 보내세요. 다른 자산을 보내면 복구할 수 없습니다.",
 "{1} の {0} のみ送金してください。他の資産は失われます。",
@@ -3051,13 +2939,6 @@
 "Posiciones",
 "Mga posisyon"
 ],
-"Press": [
-"보도자료",
-"プレス",
-"Akhbar",
-"Prensa",
-"Press"
-],
 "Preview": [
 "사전 공개",
 "プレビュー",
@@ -3107,13 +2988,6 @@
 "L2 de privacidad",
 "Privacy L2"
 ],
-"Privacy policy": [
-"개인정보처리방침",
-"プライバシーポリシー",
-"Dasar privasi",
-"Política de privacidad",
-"Privacy policy"
-],
 "Private credit": [
 "사모 대출",
 "プライベートクレジット",
@@ -3142,13 +3016,6 @@
 "Producto",
 "Produkto"
 ],
-"Product prototype: all projects, prices and balances are simulated.": [
-"제품 프로토타입: 모든 프로젝트, 가격, 잔액은 시뮬레이션입니다.",
-"製品プロトタイプ：すべてのプロジェクト、価格、残高はシミュレーションです。",
-"Prototaip produk: semua projek, harga dan baki adalah simulasi.",
-"Prototipo de producto: todos los proyectos, precios y saldos son simulados.",
-"Product prototype: simulated lahat ng project, presyo at balanse."
-],
 "Products": [
 "상품",
 "商品",
@@ -3169,13 +3036,6 @@
 "Projek dilancarkan",
 "Proyectos lanzados",
 "Mga na-launch na project"
-],
-"Proof of reserves": [
-"준비금 증명",
-"準備金証明",
-"Bukti rizab",
-"Prueba de reservas",
-"Proof of reserves"
 ],
 "Provider fee": [
 "제공업체 수수료",
@@ -3429,20 +3289,6 @@
 "Riesgo",
 "Panganib"
 ],
-"Risk disclosure": [
-"위험 고지",
-"リスク開示",
-"Pendedahan risiko",
-"Divulgación de riesgos",
-"Risk disclosure"
-],
-"Risk warning: digital asset prices are highly volatile. Trading, derivatives and lending can result in the loss of your entire principal. Participate only after you understand the risks. Services are not available in restricted jurisdictions.": [
-"위험 경고: 디지털 자산 가격은 변동성이 매우 큽니다. 거래, 파생상품, 대출로 원금 전액을 잃을 수 있습니다. 위험을 충분히 이해한 후 참여하세요. 제한된 관할 지역에서는 서비스를 이용할 수 없습니다.",
-"リスク警告：デジタル資産の価格は大きく変動します。取引、デリバティブ、レンディングにより元本をすべて失う可能性があります。リスクを理解したうえでご参加ください。制限対象地域ではサービスをご利用いただけません。",
-"Amaran risiko: harga aset digital sangat tidak menentu. Dagangan, derivatif dan pinjaman boleh menyebabkan kehilangan keseluruhan prinsipal anda. Sertai hanya selepas anda memahami risikonya. Perkhidmatan tidak tersedia di bidang kuasa terhad.",
-"Advertencia de riesgo: los precios de los activos digitales son muy volátiles. El trading, los derivados y los préstamos pueden hacerte perder todo el capital. Participa solo si entiendes los riesgos. Los servicios no están disponibles en jurisdicciones restringidas.",
-"Babala sa panganib: napakapabagu-bago ng presyo ng digital asset. Puwedeng maubos ang buong principal mo sa trading, derivatives at lending. Sumali lang kapag naiintindihan mo ang panganib. Hindi available ang serbisyo sa mga restricted na hurisdiksyon."
-],
 "Roadmap": [
 "로드맵",
 "ロードマップ",
@@ -3589,13 +3435,6 @@
 "Hantar ke alamat",
 "Enviar a la dirección",
 "Ipadala sa address"
-],
-"Services": [
-"서비스",
-"サービス",
-"Perkhidmatan",
-"Servicios",
-"Mga serbisyo"
 ],
 "Session keys for Web2-like UX": [
 "세션 키로 Web2 수준의 사용성",
@@ -3947,13 +3786,6 @@
 "Equipo e inversores",
 "Team at mga backer"
 ],
-"Terms of use": [
-"이용약관",
-"利用規約",
-"Terma penggunaan",
-"Términos de uso",
-"Terms of use"
-],
 "Test tokens received": [
 "테스트 토큰 수령",
 "テストトークンを受け取りました",
@@ -4303,13 +4135,6 @@
 "VELA digunakan untuk tadbir urus, staking rizab kerugian pertama dan diskaun yuran. Pen-stake menanggung risiko kerugian pertama dan memperoleh bahagian hasil protokol.",
 "VELA se usa para gobernanza, staking en la reserva de primera pérdida y descuentos en comisiones. Quienes hacen staking asumen el riesgo de primera pérdida y reciben parte de los ingresos del protocolo.",
 "Ginagamit ang VELA sa governance, first-loss reserve staking at fee discount. Sinasalo ng mga staker ang first-loss risk at may bahagi sila sa kita ng protocol."
-],
-"VIP program": [
-"VIP 프로그램",
-"VIP プログラム",
-"Program VIP",
-"Programa VIP",
-"VIP program"
 ],
 "Value": [
 "평가액",

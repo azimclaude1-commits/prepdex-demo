@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { setLang, LANGS } from './core/lang.js';
 import { useApp, useUI } from './core/store.js';
-import { Header, Footer, SiteFooter, Toasts, DemoPanel, Backdrop } from './layout/Shell.jsx';
+import { Header, Footer, Toasts, DemoPanel, Backdrop } from './layout/Shell.jsx';
 import { ModalHost } from './layout/Modals.jsx';
 import { Launchpad, ProjectPage } from './pages/Launchpad.jsx';
 import { Spot } from './pages/Spot.jsx';
@@ -52,7 +52,6 @@ export default function App() {
       <Backdrop />
       <Header />
       <main className="main" key={route.page + (route.arg || '')}>{page}</main>
-      <SiteFooter />
       <Footer />
       <DemoPanel />
       <ModalHost />

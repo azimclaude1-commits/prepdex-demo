@@ -959,27 +959,6 @@ p { margin: 0; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 
-/* ---------- Site footer ---------- */
-.site-foot { border-top: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 88%, transparent); }
-.sf-in { max-width: 1240px; margin: 0 auto; padding: 44px var(--gutter-r) 28px var(--gutter-l); display: flex; flex-direction: column; gap: 26px; }
-.sf-top { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(4, minmax(0, 1fr)); gap: 28px; }
-.sf-brand { display: flex; flex-direction: column; gap: 14px; }
-.sf-brand p { color: var(--muted); font-size: 13px; max-width: 300px; line-height: 1.6; }
-.sf-social { display: flex; gap: 8px; flex-wrap: wrap; }
-.sf-social button { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; color: var(--fg-2); background: var(--panel-2); border: 1px solid var(--line); transition: color 0.15s, border-color 0.15s, transform 0.15s; }
-.sf-social button:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
-.sf-apps { display: flex; gap: 8px; flex-wrap: wrap; }
-.sf-apps button { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 14px 0 10px; border-radius: 11px; border: 1px solid var(--line-2); background: var(--panel-2); text-align: left; font-weight: 700; font-size: 13px; line-height: 1.1; }
-.sf-apps button:hover { border-color: var(--accent); }
-.sf-apps small { display: block; font-size: 9px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; }
-.sf-col { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
-.sf-col b { font-size: 13px; margin-bottom: 4px; }
-.sf-col button { color: var(--muted); font-size: 13px; text-align: left; }
-.sf-col button:hover { color: var(--fg); }
-.sf-risk { font-size: 12px; color: var(--muted); line-height: 1.7; padding: 14px 16px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--line); }
-.sf-bottom { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--line); }
-.statusbar { position: sticky; bottom: 0; z-index: 40; }
-@media (max-width: 960px) { .sf-top { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sf-brand { grid-column: 1 / -1; } }
 
 /* ---------- Card on-ramp ---------- */
 .prov-quotes { display: flex; flex-direction: column; gap: 8px; }
