@@ -21,7 +21,7 @@
 ```bash
 npm install
 npm run dev            # 本地开发
-npm run build          # 生成 dist/index.html（单文件，React / K 线库 / 二维码库走 CDN）
+npm run build          # 生成 build/index.html（单文件，React / K 线库 / 二维码库走 CDN），构建产物随仓库提交
 npm run build:artifact # 额外生成 artifact/prepdex.html 用于发布
 node scripts/build-i18n.mjs  # 生成多语言字典与简体中文对照表，并列出尚未翻译的文案（npm run build 会自动执行）
 ```

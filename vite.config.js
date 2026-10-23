@@ -31,6 +31,8 @@ export default defineConfig(({ command }) => ({
   },
   plugins: [cdnScripts(), viteSingleFile()],
   build: {
+    outDir: 'build',
+    emptyOutDir: true,
     target: 'es2020',
     cssCodeSplit: false,
     assetsInlineLimit: 100000000,

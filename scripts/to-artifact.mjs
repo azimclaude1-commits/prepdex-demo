@@ -1,6 +1,6 @@
-// Turns dist/index.html into a page fragment for publishing (the host adds doctype/html/head/body).
+// Turns build/index.html into a page fragment for publishing (the host adds doctype/html/head/body).
 import fs from 'node:fs';
-const html = fs.readFileSync('dist/index.html', 'utf8');
+const html = fs.readFileSync('build/index.html', 'utf8');
 const head = html.match(/<head>([\s\S]*?)<\/head>/i)[1]
   .replace(/<meta charset[^>]*>\s*/i, '')
   .replace(/<meta name="viewport"[^>]*>\s*/i, '');
