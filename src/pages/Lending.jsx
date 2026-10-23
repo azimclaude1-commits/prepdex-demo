@@ -51,38 +51,38 @@ export function Lending() {
   const tone = hfTone(sum.hf);
   return (
     <div className="page">
-      <PageHead eyebrow={<><Landmark size={14} />{L('借贷', 'Lending')}</>} title={L('存币生息，抵押借币', 'Supply to earn, borrow against it')}
-        sub={L('存入资产赚取浮动利息，并可作为抵押品借出其他资产。利率随资金利用率实时变化。', 'Supply assets to earn variable interest and use them as collateral to borrow. Rates move with pool utilisation.')} />
+      <PageHead eyebrow={<><Landmark size={14} />{L('借貸', 'Lending')}</>} title={L('存幣生息，抵押借幣', 'Supply to earn, borrow against it')}
+        sub={L('存入資產賺取浮動利息，並可作為抵押品借出其他資產。利率隨資金利用率即時變化。', 'Supply assets to earn variable interest and use them as collateral to borrow. Rates move with pool utilisation.')} />
 
       <div className="lend-dash">
         <div className="card lend-net">
           <div className="lend-kpis">
-            <div><span>{L('净资产', 'Net worth')}</span><b className="mono">{usd(sum.supplied - sum.borrowed)}</b></div>
-            <div><span>{L('净年化', 'Net APY')}</span><b className={cx('mono', sum.netApy >= 0 ? 'up' : 'down')}>{(sum.netApy * 100).toFixed(2)}%</b></div>
-            <div><span>{L('存款总额', 'Supplied')}</span><b className="mono">{usd(sum.supplied)}</b></div>
-            <div><span>{L('借款总额', 'Borrowed')}</span><b className="mono">{usd(sum.borrowed)}</b></div>
+            <div><span>{L('淨資產', 'Net worth')}</span><b className="mono">{usd(sum.supplied - sum.borrowed)}</b></div>
+            <div><span>{L('淨年化', 'Net APY')}</span><b className={cx('mono', sum.netApy >= 0 ? 'up' : 'down')}>{(sum.netApy * 100).toFixed(2)}%</b></div>
+            <div><span>{L('存款總額', 'Supplied')}</span><b className="mono">{usd(sum.supplied)}</b></div>
+            <div><span>{L('借款總額', 'Borrowed')}</span><b className="mono">{usd(sum.borrowed)}</b></div>
           </div>
           <div className="lend-limit">
-            <div className="row-between small"><span className="muted">{L('借款额度已用', 'Borrow limit used')}</span><b className="mono">{(sum.used * 100).toFixed(1)}%</b></div>
+            <div className="row-between small"><span className="muted">{L('借款額度已用', 'Borrow limit used')}</span><b className="mono">{(sum.used * 100).toFixed(1)}%</b></div>
             <Progress value={sum.used} tone={sum.used > 0.85 ? 'down' : sum.used > 0.6 ? 'warn' : 'up'} />
-            <div className="row-between small muted"><span>{L('可借', 'Available to borrow')} <b className="mono">{usd(sum.avail)}</b></span><span>{L('额度', 'Limit')} <b className="mono">{usd(sum.power)}</b></span></div>
+            <div className="row-between small muted"><span>{L('可借', 'Available to borrow')} <b className="mono">{usd(sum.avail)}</b></span><span>{L('額度', 'Limit')} <b className="mono">{usd(sum.power)}</b></span></div>
           </div>
         </div>
         <div className={cx('card lend-hf', 'tone-' + tone)}>
-          <div className="row-between"><b><HeartPulse size={16} />{L('健康度', 'Health factor')}</b><Pill tone={tone === 'warn' ? 'warn' : tone}>{tone === 'up' ? L('安全', 'Safe') : tone === 'warn' ? L('注意', 'Watch') : L('危险', 'At risk')}</Pill></div>
+          <div className="row-between"><b><HeartPulse size={16} />{L('健康度', 'Health factor')}</b><Pill tone={tone === 'warn' ? 'warn' : tone}>{tone === 'up' ? L('安全', 'Safe') : tone === 'warn' ? L('注意', 'Watch') : L('危險', 'At risk')}</Pill></div>
           <HealthGauge hf={sum.hf} />
           <div className="hf-val mono">{hfText(sum.hf)}</div>
-          <p className="fine">{L('健康度 = 抵押品 × 清算阈值 ÷ 借款。低于 1 时将触发清算，清算罚金 5%。', 'Health factor = collateral × liquidation threshold ÷ debt. Below 1 the position is liquidated with a 5% penalty.')}</p>
+          <p className="fine">{L('健康度 = 抵押品 × 清算閾值 ÷ 借款。低於 1 時將觸發清算，清算罰金 5%。', 'Health factor = collateral × liquidation threshold ÷ debt. Below 1 the position is liquidated with a 5% penalty.')}</p>
         </div>
       </div>
 
       <div className="grid2 lend-pos">
         <div className="card">
           <div className="row-between"><h3 className="sub-h"><ArrowDownToLine size={16} />{L('我的存款', 'My supplies')}</h3></div>
-          {supplies.length === 0 ? <Empty text={L('暂无存款', 'Nothing supplied')} /> : (
+          {supplies.length === 0 ? <Empty text={L('暫無存款', 'Nothing supplied')} /> : (
             <div className="table-wrap">
               <table className="tbl">
-                <thead><tr><th>{L('资产', 'Asset')}</th><th>{L('数量', 'Balance')}</th><th>APY</th><th>{L('抵押', 'Collateral')}</th><th /></tr></thead>
+                <thead><tr><th>{L('資產', 'Asset')}</th><th>{L('數量', 'Balance')}</th><th>APY</th><th>{L('抵押', 'Collateral')}</th><th /></tr></thead>
                 <tbody>
                   {supplies.map((m) => {
                     const v = lendAmount('supply', m.sym);
@@ -91,7 +91,7 @@ export function Lending() {
                         <td><span className="row-gap"><CoinIcon sym={m.sym} size={20} />{m.sym}</span></td>
                         <td className="mono">{fmt(v, adp(price(m.sym)) + 2)}<div className="small muted">{usd(v * price(m.sym))}</div></td>
                         <td className="mono up">{(poolStats(m.sym).sApr * 100).toFixed(2)}%</td>
-                        <td><button className={cx('switch', s.lend.coll[m.sym] && 'on')} onClick={() => { const r = toggleCollateral(m.sym); if (r.err) toast(r.err, 'err'); }} aria-label={L('作为抵押品', 'Use as collateral')}><i /></button></td>
+                        <td><button className={cx('switch', s.lend.coll[m.sym] && 'on')} onClick={() => { const r = toggleCollateral(m.sym); if (r.err) toast(r.err, 'err'); }} aria-label={L('作為抵押品', 'Use as collateral')}><i /></button></td>
                         <td><div className="row-gap"><button className="mini-btn" onClick={() => setAct({ sym: m.sym, tab: 'withdraw' })}>{L('取出', 'Withdraw')}</button><button className="mini-btn strong" onClick={() => setAct({ sym: m.sym, tab: 'supply' })}>{L('存入', 'Supply')}</button></div></td>
                       </tr>
                     );
@@ -103,10 +103,10 @@ export function Lending() {
         </div>
         <div className="card">
           <div className="row-between"><h3 className="sub-h"><HandCoins size={16} />{L('我的借款', 'My borrows')}</h3></div>
-          {borrows.length === 0 ? <Empty text={L('暂无借款', 'No borrows')} /> : (
+          {borrows.length === 0 ? <Empty text={L('暫無借款', 'No borrows')} /> : (
             <div className="table-wrap">
               <table className="tbl">
-                <thead><tr><th>{L('资产', 'Asset')}</th><th>{L('债务', 'Debt')}</th><th>APR</th><th /></tr></thead>
+                <thead><tr><th>{L('資產', 'Asset')}</th><th>{L('債務', 'Debt')}</th><th>APR</th><th /></tr></thead>
                 <tbody>
                   {borrows.map((m) => {
                     const v = lendAmount('borrow', m.sym);
@@ -115,7 +115,7 @@ export function Lending() {
                         <td><span className="row-gap"><CoinIcon sym={m.sym} size={20} />{m.sym}</span></td>
                         <td className="mono">{fmt(v, adp(price(m.sym)) + 2)}<div className="small muted">{usd(v * price(m.sym))}</div></td>
                         <td className="mono down">{(poolStats(m.sym).bApr * 100).toFixed(2)}%</td>
-                        <td><div className="row-gap"><button className="mini-btn" onClick={() => setAct({ sym: m.sym, tab: 'borrow' })}>{L('借出', 'Borrow')}</button><button className="mini-btn strong" onClick={() => setAct({ sym: m.sym, tab: 'repay' })}>{L('还款', 'Repay')}</button></div></td>
+                        <td><div className="row-gap"><button className="mini-btn" onClick={() => setAct({ sym: m.sym, tab: 'borrow' })}>{L('借出', 'Borrow')}</button><button className="mini-btn strong" onClick={() => setAct({ sym: m.sym, tab: 'repay' })}>{L('還款', 'Repay')}</button></div></td>
                       </tr>
                     );
                   })}
@@ -126,11 +126,11 @@ export function Lending() {
         </div>
       </div>
 
-      <div className="sec-head"><h2 className="display sec-title">{L('借贷市场', 'Markets')}</h2></div>
+      <div className="sec-head"><h2 className="display sec-title">{L('借貸市場', 'Markets')}</h2></div>
       <div className="card">
         <div className="table-wrap">
           <table className="tbl tbl-markets">
-            <thead><tr><th>{L('资产', 'Asset')}</th><th>{L('总存款', 'Total supplied')}</th><th>{L('存款年化', 'Supply APY')}</th><th>{L('总借款', 'Total borrowed')}</th><th>{L('借款年化', 'Borrow APR')}</th><th>{L('利用率', 'Utilisation')}</th><th>{L('抵押率 / 清算线', 'LTV / Liq.')}</th><th>{L('可用余额', 'In spot')}</th><th /></tr></thead>
+            <thead><tr><th>{L('資產', 'Asset')}</th><th>{L('總存款', 'Total supplied')}</th><th>{L('存款年化', 'Supply APY')}</th><th>{L('總借款', 'Total borrowed')}</th><th>{L('借款年化', 'Borrow APR')}</th><th>{L('利用率', 'Utilisation')}</th><th>{L('抵押率 / 清算線', 'LTV / Liq.')}</th><th>{L('可用餘額', 'In spot')}</th><th /></tr></thead>
             <tbody>
               {LEND_MARKETS.map((m) => {
                 const st = poolStats(m.sym);
@@ -170,7 +170,7 @@ function RateCurve({ sym }) {
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="rate-curve" role="img" aria-label={L('利率模型', 'Rate model')}>
       <line x1={x(KINK)} x2={x(KINK)} y1={pad / 2} y2={H - pad} stroke="var(--grid)" strokeDasharray="3 3" />
-      <text x={x(KINK)} y={pad / 2 + 2} fontSize="9" fill="var(--muted)" textAnchor="middle">{L('拐点', 'Kink')} 80%</text>
+      <text x={x(KINK)} y={pad / 2 + 2} fontSize="9" fill="var(--muted)" textAnchor="middle">{L('拐點', 'Kink')} 80%</text>
       <line x1={pad} x2={W - pad} y1={H - pad} y2={H - pad} stroke="var(--line)" />
       <path d={d} fill="none" stroke="var(--down)" strokeWidth="2" />
       <circle cx={x(st.u)} cy={y(st.bApr)} r="4.5" fill="var(--accent)" />
@@ -210,7 +210,7 @@ function LendModal({ sym, tab0, onClose }) {
   if (tab === 'repay') debt = Math.max(0, debt - usdv);
   const hfAfter = debt > 0 ? liq / debt : Infinity;
 
-  const labels = { supply: L('存入', 'Supply'), withdraw: L('取出', 'Withdraw'), borrow: L('借出', 'Borrow'), repay: L('还款', 'Repay') };
+  const labels = { supply: L('存入', 'Supply'), withdraw: L('取出', 'Withdraw'), borrow: L('借出', 'Borrow'), repay: L('還款', 'Repay') };
   const submit = () => {
     const r = lendAction(tab, sym, a);
     if (r.err) { toast(r.err, 'err'); return; }
@@ -221,20 +221,20 @@ function LendModal({ sym, tab0, onClose }) {
     <Modal title={<span className="row-gap"><CoinIcon sym={sym} size={22} />{sym}</span>} onClose={onClose} width={480}>
       <div className="stack">
         <Tabs value={tab} onChange={(t) => { setTab(t); setAmt(''); }} items={[['supply', labels.supply], ['withdraw', labels.withdraw], ['borrow', labels.borrow], ['repay', labels.repay]]} />
-        <NumInput id="ld-amt" label={L('数量', 'Amount')} value={amt} onChange={setAmt} suffix={sym}
+        <NumInput id="ld-amt" label={L('數量', 'Amount')} value={amt} onChange={setAmt} suffix={sym}
           right={<button className="max-btn" onClick={() => setAmt(String(floorTo(max, adp(px) + 2)))}>MAX</button>} />
         <div className="row-between small muted">
-          <span>{tab === 'supply' ? L('现货可用', 'In spot') : tab === 'withdraw' ? L('已存入', 'Supplied') : tab === 'borrow' ? L('最多可借', 'Max borrow') : L('当前债务', 'Debt')}</span>
+          <span>{tab === 'supply' ? L('現貨可用', 'In spot') : tab === 'withdraw' ? L('已存入', 'Supplied') : tab === 'borrow' ? L('最多可借', 'Max borrow') : L('當前債務', 'Debt')}</span>
           <span className="mono">{fmt(tab === 'repay' ? owed : max, adp(px) + 2)} {sym}</span>
         </div>
         <div className="summary">
           <KV k={tab === 'supply' || tab === 'withdraw' ? L('存款年化', 'Supply APY') : L('借款年化', 'Borrow APR')} v={<span className={tab === 'supply' || tab === 'withdraw' ? 'up' : 'down'}>{((tab === 'supply' || tab === 'withdraw' ? st.sApr : st.bApr) * 100).toFixed(2)}%</span>} />
           <KV k={L('健康度', 'Health factor')} v={<span><span className={'tone-text-' + hfTone(sum.hf)}>{hfText(sum.hf)}</span> → <b className={'tone-text-' + hfTone(hfAfter)}>{hfText(hfAfter)}</b></span>} />
-          <KV k={L('借款额度已用', 'Limit used')} v={`${(sum.used * 100).toFixed(1)}% → ${power > 0 ? ((debt / power) * 100).toFixed(1) : '0.0'}%`} />
-          <KV k={L('抵押率 / 清算线', 'LTV / Liq. threshold')} v={`${m.ltv * 100}% / ${m.lt * 100}%`} />
+          <KV k={L('借款額度已用', 'Limit used')} v={`${(sum.used * 100).toFixed(1)}% → ${power > 0 ? ((debt / power) * 100).toFixed(1) : '0.0'}%`} />
+          <KV k={L('抵押率 / 清算線', 'LTV / Liq. threshold')} v={`${m.ltv * 100}% / ${m.lt * 100}%`} />
           {(tab === 'supply' || tab === 'withdraw') && <KV k={L('用作抵押品', 'Used as collateral')} v={coll ? L('是', 'Yes') : L('否', 'No')} />}
         </div>
-        {hfAfter < 1.2 && a > 0 && <div className="warn-box"><AlertTriangle size={15} />{L('操作后健康度偏低，价格波动可能导致清算。', 'Health factor will be low; price moves could trigger liquidation.')}</div>}
+        {hfAfter < 1.2 && a > 0 && <div className="warn-box"><AlertTriangle size={15} />{L('操作後健康度偏低，價格波動可能導致清算。', 'Health factor will be low; price moves could trigger liquidation.')}</div>}
         <div className="curve-box"><div className="field-label">{L('利率模型（借款利率 vs 利用率）', 'Rate model (borrow APR vs utilisation)')}</div><RateCurve sym={sym} /></div>
         {!s.wallet.connected ? <ConnectGate /> : <Btn block size="lg" disabled={!a} onClick={submit}>{labels[tab]} {sym}</Btn>}
       </div>

@@ -468,6 +468,13 @@
 "Saldo",
 "Balanse"
 ],
+"Bank card": [
+"은행 카드",
+"銀行カード",
+"Kad bank",
+"Tarjeta bancaria",
+"Bank card"
+],
 "Bank transfer": [
 "계좌 이체",
 "銀行振込",
@@ -2099,6 +2106,20 @@
 "Largo",
 "Long"
 ],
+"MUFG Bank": [
+"MUFG 은행",
+"三菱UFJ銀行",
+"MUFG Bank",
+"MUFG Bank",
+"MUFG Bank"
+],
+"MUFG Bank Shinjuku Branch · Ordinary 4•••905": [
+"MUFG 은행 신주쿠 지점 · 보통 4•••905",
+"三菱UFJ銀行 新宿支店 普通 4•••905",
+"MUFG Bank Cawangan Shinjuku · Biasa 4•••905",
+"MUFG Bank sucursal Shinjuku · Ordinaria 4•••905",
+"MUFG Bank Shinjuku Branch · Ordinary 4•••905"
+],
 "Mainnet beta": [
 "메인넷 베타",
 "メインネットベータ",
@@ -2287,6 +2308,20 @@
 "Mirage Labs menyediakan enjin permainan on-chain dan rangka kerja ECS. Pembangun menulis permainan dengan alatan biasa manakala keadaan dan peraturan berada di Base, jadi aset pemain boleh digubah secara lalai.",
 "Mirage Labs ofrece un motor de juegos on-chain y un framework ECS. Los desarrolladores programan con herramientas conocidas mientras el estado y las reglas viven en Base, así que los activos de los jugadores son componibles por defecto.",
 "Nagbibigay ang Mirage Labs ng on-chain game engine at ECS framework. Gumagamit ang mga developer ng pamilyar na tool habang nasa Base ang state at rules, kaya composable ang assets ng player."
+],
+"Mizuho Bank": [
+"미즈호 은행",
+"みずほ銀行",
+"Mizuho Bank",
+"Mizuho Bank",
+"Mizuho Bank"
+],
+"Mizuho Bank Ginza Branch · Ordinary 1•••447": [
+"미즈호 은행 긴자 지점 · 보통 1•••447",
+"みずほ銀行 銀座支店 普通 1•••447",
+"Mizuho Bank Cawangan Ginza · Biasa 1•••447",
+"Mizuho Bank sucursal Ginza · Ordinaria 1•••447",
+"Mizuho Bank Ginza Branch · Ordinary 1•••447"
 ],
 "Mobile app": [
 "모바일 앱",
@@ -3107,6 +3142,20 @@
 "Recaudado",
 "Nalikom"
 ],
+"Rakuten Bank": [
+"라쿠텐 은행",
+"楽天銀行",
+"Rakuten Bank",
+"Rakuten Bank",
+"Rakuten Bank"
+],
+"Rakuten Bank 1st Sales Dept. · Ordinary 7•••028": [
+"라쿠텐 은행 제1영업부 · 보통 7•••028",
+"楽天銀行 第一営業支店 普通 7•••028",
+"Rakuten Bank Jabatan Jualan 1 · Biasa 7•••028",
+"Rakuten Bank 1.er dpto. comercial · Ordinaria 7•••028",
+"Rakuten Bank 1st Sales Dept. · Ordinary 7•••028"
+],
 "Rate": [
 "환율",
 "レート",
@@ -3323,6 +3372,20 @@
 "Pencetus SL",
 "Activación SL",
 "SL trigger"
+],
+"SMBC": [
+"SMBC (미쓰이스미토모)",
+"三井住友銀行 SMBC",
+"SMBC",
+"SMBC",
+"SMBC"
+],
+"SMBC Shibuya Branch · Ordinary 7•••312": [
+"SMBC 시부야 지점 · 보통 7•••312",
+"三井住友銀行 渋谷支店 普通 7•••312",
+"SMBC Cawangan Shibuya · Biasa 7•••312",
+"SMBC sucursal Shibuya · Ordinaria 7•••312",
+"SMBC Shibuya Branch · Ordinary 7•••312"
 ],
 "Safe": [
 "안전",

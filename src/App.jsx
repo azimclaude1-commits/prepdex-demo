@@ -34,7 +34,7 @@ export default function App() {
   const resolved = s.theme || (hostTheme === 'light' || hostTheme === 'dark' ? hostTheme : sysDark ? 'dark' : 'light');
   if (s.theme) root.setAttribute('data-theme', s.theme);
   root.dataset.resolved = resolved;
-  root.lang = LANGS.find((x) => x.code === s.lang)?.html || 'zh-CN';
+  root.lang = LANGS.find((x) => x.code === s.lang)?.html || 'ja';
 
   let page;
   switch (route.page) {

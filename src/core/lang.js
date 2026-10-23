@@ -1,21 +1,22 @@
-// Language helper. Call sites pass Chinese and English: L('中文', 'English').
+// Language helper. Call sites pass Traditional Chinese and English: L('繁體中文', 'English').
 // Other languages are looked up by the English string in the generated dictionary;
 // strings with interpolated values are matched against "{0}" templates.
 import DICT from './i18n-dict.js';
 
 export const LANGS = [
-  { code: 'zh', label: '简体中文', short: '中文', html: 'zh-CN' },
+  { code: 'ja', label: '日本語', short: 'JA', html: 'ja' },
+  { code: 'zht', label: '繁體中文', short: '繁中', html: 'zh-Hant' },
   { code: 'en', label: 'English', short: 'EN', html: 'en' },
   { code: 'ko', label: '한국어', short: 'KO', html: 'ko' },
-  { code: 'ja', label: '日本語', short: 'JA', html: 'ja' },
   { code: 'ms', label: 'Bahasa Melayu', short: 'MS', html: 'ms' },
   { code: 'es', label: 'Español', short: 'ES', html: 'es' },
   { code: 'fil', label: 'Filipino', short: 'FIL', html: 'fil' },
 ];
 const COL = { ko: 0, ja: 1, ms: 2, es: 3, fil: 4 };
 
-let current = 'zh';
-export const setLang = (l) => { current = LANGS.some((x) => x.code === l) ? l : 'zh'; };
+export const DEFAULT_LANG = 'ja';
+let current = DEFAULT_LANG;
+export const setLang = (l) => { current = LANGS.some((x) => x.code === l) ? l : DEFAULT_LANG; };
 export const getLang = () => current;
 
 const esc = (s) => s.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
@@ -39,7 +40,7 @@ function translate(en, col) {
 }
 
 export function L(zh, en) {
-  if (current === 'zh' || en == null) return zh;
+  if (current === 'zht' || en == null) return zh;
   if (current === 'en') return en;
   const col = COL[current];
   const key = current + '\u0000' + en;

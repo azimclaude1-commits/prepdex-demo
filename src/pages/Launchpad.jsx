@@ -36,8 +36,8 @@ function StatusChip({ p }) {
   const ph = phase(p);
   const { start, end } = projTimes(p);
   const t = now();
-  if (ph === 'live') return <span className="status-chip live"><i />{L('进行中', 'Live')} · {L('距结束', 'ends in')} <b className="mono">{countdown(end - t)}</b></span>;
-  if (ph === 'upcoming') return <span className="status-chip soon"><Clock size={12} />{L('距开始', 'starts in')} <b className="mono">{countdown(start - t)}</b></span>;
+  if (ph === 'live') return <span className="status-chip live"><i />{L('進行中', 'Live')} · {L('距結束', 'ends in')} <b className="mono">{countdown(end - t)}</b></span>;
+  if (ph === 'upcoming') return <span className="status-chip soon"><Clock size={12} />{L('距開始', 'starts in')} <b className="mono">{countdown(start - t)}</b></span>;
   return <span className="status-chip done">{L('已完成', 'Completed')}</span>;
 }
 
@@ -71,7 +71,7 @@ function ProjectCard({ p }) {
           </div>
           {ph === 'ended' && listed && (
             <div className="pcard-roi">
-              <span className="muted small">{L('较认购价', 'vs. sale')}</span>
+              <span className="muted small">{L('較認購價', 'vs. sale')}</span>
               <b className={cx('mono', athRoi(p) >= 1 ? 'up' : 'down')}>{fmt(athRoi(p), 2)}x</b>
             </div>
           )}
@@ -80,18 +80,18 @@ function ProjectCard({ p }) {
         <div className="pcard-tags">{p.tags.map((t, i) => <span key={i} className="tag">{L(...t)}</span>)}</div>
         {ph === 'upcoming' ? (
           <div className="pcard-stats">
-            <KV k={L('硬顶', 'Hard cap')} v={`${compact(p.hardCap)} USDC`} />
-            <KV k={L('开始时间', 'Starts')} v={dateTime(projTimes(p).start)} />
+            <KV k={L('硬頂', 'Hard cap')} v={`${compact(p.hardCap)} USDC`} />
+            <KV k={L('開始時間', 'Starts')} v={dateTime(projTimes(p).start)} />
           </div>
         ) : (
           <>
             <div className="pcard-prog">
-              <div className="row-between small"><span className="muted">{L('募集进度', 'Raised')}</span><b className={cx('mono', ratio > 1 && 'accent-text')}>{(ratio * 100).toFixed(1)}%</b></div>
+              <div className="row-between small"><span className="muted">{L('募集進度', 'Raised')}</span><b className={cx('mono', ratio > 1 && 'accent-text')}>{(ratio * 100).toFixed(1)}%</b></div>
               <Progress value={Math.min(ratio, 1)} tone={ratio >= 1 ? 'up' : 'accent'} glow={ph === 'live'} />
             </div>
             <div className="pcard-stats">
               <KV k={L('已募集', 'Raised')} v={`${compact(r)} / ${compact(p.hardCap)}`} />
-              <KV k={L('参与人数', 'Participants')} v={fmt(participants(p), 0)} />
+              <KV k={L('參與人數', 'Participants')} v={fmt(participants(p), 0)} />
             </div>
           </>
         )}
@@ -129,10 +129,10 @@ function TierCard() {
       <div className="tier-top">
         <div className="tier-badge"><Trophy size={18} /></div>
         <div>
-          <div className="muted small">{L('我的认购等级', 'My launchpad tier')}</div>
+          <div className="muted small">{L('我的認購等級', 'My launchpad tier')}</div>
           <div className="tier-name">{L(...t.name)} <span className="mono">×{t.mult}</span></div>
         </div>
-        <Btn variant="soft" size="sm" onClick={() => go('staking')}>{L('质押 NVX 升级', 'Stake NVX')}<ChevronRight size={14} /></Btn>
+        <Btn variant="soft" size="sm" onClick={() => go('staking')}>{L('質押 NVX 升級', 'Stake NVX')}<ChevronRight size={14} /></Btn>
       </div>
       <div className="tier-ladder">
         {TIERS.slice(1).map((x) => (
@@ -143,10 +143,10 @@ function TierCard() {
       </div>
       <Progress value={prog} thin />
       <div className="row-between small muted">
-        <span>{L('已质押', 'Staked')} <b className="mono">{fmt(t.staked, 0)} NVX</b></span>
-        <span>{next ? L(`距 ${next.name[0]} 还差 ${fmt(next.min - t.staked, 0)} NVX`, `${fmt(next.min - t.staked, 0)} NVX to ${next.name[1]}`) : L('已达最高等级', 'Top tier')}</span>
+        <span>{L('已質押', 'Staked')} <b className="mono">{fmt(t.staked, 0)} NVX</b></span>
+        <span>{next ? L(`距 ${next.name[0]} 還差 ${fmt(next.min - t.staked, 0)} NVX`, `${fmt(next.min - t.staked, 0)} NVX to ${next.name[1]}`) : L('已達最高等級', 'Top tier')}</span>
       </div>
-      {!s.wallet.connected && <p className="fine">{L('连接钱包后显示你的等级与认购上限。', 'Connect to see your tier and caps.')}</p>}
+      {!s.wallet.connected && <p className="fine">{L('連接錢包後顯示你的等級與認購上限。', 'Connect to see your tier and caps.')}</p>}
     </div>
   );
 }
@@ -166,17 +166,17 @@ export function Launchpad() {
       <section className="lp-hero">
         <div className="lp-hero-copy">
           <div className="eyebrow"><Sparkles size={14} />Novarix Launchpad</div>
-          <h1 className="display hero-title"><span className="grad-text">{L('热门申购', 'Hot launches')}</span></h1>
-          <p className="hero-sub">{L('经过尽调的早期项目，统一以 USDC 认购。超募按比例分配并自动退款，TGE 后直接在现货交易。', 'Vetted early-stage projects, subscribed in USDC. Oversubscribed sales allocate pro rata with automatic refunds, and tokens trade on spot right after TGE.')}</p>
+          <h1 className="display hero-title"><span className="grad-text">{L('熱門申購', 'Hot launches')}</span></h1>
+          <p className="hero-sub">{L('經過盡調的早期項目，統一以 USDC 認購。超募按比例分配並自動退款，TGE 後直接在現貨交易。', 'Vetted early-stage projects, subscribed in USDC. Oversubscribed sales allocate pro rata with automatic refunds, and tokens trade on spot right after TGE.')}</p>
           <div className="hero-cta">
-            <Btn size="lg" onClick={() => document.getElementById('lp-live')?.scrollIntoView({ behavior: 'smooth' })}><Flame size={17} />{L('查看进行中项目', 'See live sales')}</Btn>
-            <Btn size="lg" variant="ghost" onClick={() => setMine(true)}><Receipt size={17} />{L('我的认购', 'My subscriptions')}{s.subs.length > 0 && <span className="tab-badge">{s.subs.length}</span>}</Btn>
+            <Btn size="lg" onClick={() => document.getElementById('lp-live')?.scrollIntoView({ behavior: 'smooth' })}><Flame size={17} />{L('查看進行中項目', 'See live sales')}</Btn>
+            <Btn size="lg" variant="ghost" onClick={() => setMine(true)}><Receipt size={17} />{L('我的認購', 'My subscriptions')}{s.subs.length > 0 && <span className="tab-badge">{s.subs.length}</span>}</Btn>
           </div>
           <div className="hero-stats">
-            <div><b className="mono">${compact(totalRaised, 1)}</b><span>{L('累计募资', 'Total raised')}</span></div>
-            <div><b className="mono">{PROJECTS.length + 41}</b><span>{L('已上线项目', 'Projects launched')}</span></div>
-            <div><b className="mono">{compact(people, 1)}</b><span>{L('参与用户', 'Participants')}</span></div>
-            <div><b className="mono up">{fmt(avgRoi, 2)}x</b><span>{L('平均回报（现价/认购价）', 'Avg. return (now / sale)')}</span></div>
+            <div><b className="mono">${compact(totalRaised, 1)}</b><span>{L('累計募資', 'Total raised')}</span></div>
+            <div><b className="mono">{PROJECTS.length + 41}</b><span>{L('已上線項目', 'Projects launched')}</span></div>
+            <div><b className="mono">{compact(people, 1)}</b><span>{L('參與用戶', 'Participants')}</span></div>
+            <div><b className="mono up">{fmt(avgRoi, 2)}x</b><span>{L('平均回報（現價/認購價）', 'Avg. return (now / sale)')}</span></div>
           </div>
         </div>
         <HeroOrbit />
@@ -185,8 +185,8 @@ export function Launchpad() {
       <TierCard />
 
       {[
-        ['live', L('进行中', 'Live now'), groups.live],
-        ['upcoming', L('即将开始', 'Upcoming'), groups.upcoming],
+        ['live', L('進行中', 'Live now'), groups.live],
+        ['upcoming', L('即將開始', 'Upcoming'), groups.upcoming],
         ['ended', L('已完成', 'Completed'), groups.ended],
       ].map(([k, title, list]) => list.length > 0 && (
         <section key={k} id={'lp-' + k} className="lp-sec">
@@ -207,13 +207,13 @@ function MySubsModal({ onClose }) {
   useMarket();
   const s = useApp();
   return (
-    <Modal title={L('我的认购', 'My subscriptions')} onClose={onClose} width={640} icon={<Receipt size={18} />}>
+    <Modal title={L('我的認購', 'My subscriptions')} onClose={onClose} width={640} icon={<Receipt size={18} />}>
       {s.subs.length === 0 ? (
-        <Empty text={L('还没有认购记录', 'No subscriptions yet')}><Btn size="sm" onClick={() => { onClose(); go('project', 'vela'); }}>{L('去认购 VELA', 'Subscribe to VELA')}</Btn></Empty>
+        <Empty text={L('還沒有認購記錄', 'No subscriptions yet')}><Btn size="sm" onClick={() => { onClose(); go('project', 'vela'); }}>{L('去認購 VELA', 'Subscribe to VELA')}</Btn></Empty>
       ) : (
         <div className="table-wrap">
           <table className="tbl">
-            <thead><tr><th>{L('项目', 'Project')}</th><th>{L('认购金额', 'Committed')}</th><th>{L('状态', 'Status')}</th><th>{L('获配', 'Allocated')}</th><th>{L('时间', 'Time')}</th></tr></thead>
+            <thead><tr><th>{L('項目', 'Project')}</th><th>{L('認購金額', 'Committed')}</th><th>{L('狀態', 'Status')}</th><th>{L('獲配', 'Allocated')}</th><th>{L('時間', 'Time')}</th></tr></thead>
             <tbody>
               {[...s.subs].reverse().map((x) => {
                 const p = PROJECT[x.pid];
@@ -221,7 +221,7 @@ function MySubsModal({ onClose }) {
                   <tr key={x.id} className="clickable" onClick={() => { onClose(); go('project', p.id); }}>
                     <td><span className="row-gap"><ProjLogo p={p} size={22} />{p.sym}</span></td>
                     <td className="mono">{fmt(x.amount, 2)} USDC</td>
-                    <td>{x.status === 'pending' ? <Pill tone="accent" dot>{L('待结算', 'Pending')}</Pill> : <Pill tone="up">{L('已结算', 'Settled')}</Pill>}</td>
+                    <td>{x.status === 'pending' ? <Pill tone="accent" dot>{L('待結算', 'Pending')}</Pill> : <Pill tone="up">{L('已結算', 'Settled')}</Pill>}</td>
                     <td className="mono">{x.status === 'settled' ? `${fmt(x.tokens, 2)} ${p.sym}` : '--'}</td>
                     <td className="mono muted">{dateTime(x.ts)}</td>
                   </tr>
@@ -248,23 +248,23 @@ export function ProjectPage({ id }) {
   const { start, end } = projTimes(p);
   const saleTokens = p.hardCap / p.price;
   const fdv = p.price * p.totalSupply;
-  const pubPct = (p.tokenomics.find((t) => /公开|Public/.test(t[0]))?.[2] || 10) / 100;
+  const pubPct = (p.tokenomics.find((t) => /公開|Public/.test(t[0]))?.[2] || 10) / 100;
   const initMcap = fdv * pubPct * p.vesting.tge * 1.6;
-  const ext = () => toast(L('演示环境不打开外部链接', 'External links are disabled in this demo'), 'warn');
+  const ext = () => toast(L('演示環境不開啟外部連結', 'External links are disabled in this demo'), 'warn');
 
   const stages = [
-    [L('预热', 'Preview'), start - 3 * DAY],
-    [L('认购', 'Subscription'), start],
-    [L('分配计算', 'Allocation'), end],
-    [L('TGE 发放', 'TGE'), end + 2 * 3600e3],
-    [L('线性解锁', 'Vesting'), end + p.vesting.cliff * 30 * DAY],
+    [L('預熱', 'Preview'), start - 3 * DAY],
+    [L('認購', 'Subscription'), start],
+    [L('分配計算', 'Allocation'), end],
+    [L('TGE 發放', 'TGE'), end + 2 * 3600e3],
+    [L('線性解鎖', 'Vesting'), end + p.vesting.cliff * 30 * DAY],
   ];
   const t = now();
   const curStage = stages.reduce((acc, [, ts], i) => (t >= ts ? i : acc), -1);
 
   return (
     <div className="page">
-      <button className="back" onClick={() => go('launchpad')}><ArrowLeft size={16} />{L('返回认购列表', 'All sales')}</button>
+      <button className="back" onClick={() => go('launchpad')}><ArrowLeft size={16} />{L('返回認購列表', 'All sales')}</button>
       <Banner p={p} big>
         <div className="pd-hero">
           <ProjLogo p={p} size={92} ring />
@@ -273,22 +273,22 @@ export function ProjectPage({ id }) {
             <h1 className="display pd-title">{p.name} <span>{p.sym}</span></h1>
             <p className="pd-tagline">{L(...p.tagline)}</p>
             <div className="pd-links">
-              <button onClick={ext}><Globe2 size={15} />{L('官网', 'Website')}</button>
+              <button onClick={ext}><Globe2 size={15} />{L('官網', 'Website')}</button>
               <button onClick={ext}><AtSign size={15} />X</button>
               <button onClick={ext}><Send size={15} />Telegram</button>
-              <button onClick={ext}><FileText size={15} />{L('白皮书', 'Whitepaper')}</button>
+              <button onClick={ext}><FileText size={15} />{L('白皮書', 'Whitepaper')}</button>
             </div>
           </div>
         </div>
       </Banner>
 
       <div className="pd-metrics">
-        <Metric icon={<Coins size={16} />} k={L('认购价', 'Sale price')} v={`${p.price} USDC`} />
-        <Metric icon={<Target size={16} />} k={L('硬顶', 'Hard cap')} v={`${fmt(p.hardCap, 0)} USDC`} />
-        <Metric icon={<Layers size={16} />} k={L('公售数量', 'Tokens for sale')} v={`${compact(saleTokens, 2)} ${p.sym}`} />
-        <Metric icon={<TrendingUp size={16} />} k={L('完全稀释估值', 'FDV')} v={`$${compact(fdv, 2)}`} />
+        <Metric icon={<Coins size={16} />} k={L('認購價', 'Sale price')} v={`${p.price} USDC`} />
+        <Metric icon={<Target size={16} />} k={L('硬頂', 'Hard cap')} v={`${fmt(p.hardCap, 0)} USDC`} />
+        <Metric icon={<Layers size={16} />} k={L('公售數量', 'Tokens for sale')} v={`${compact(saleTokens, 2)} ${p.sym}`} />
+        <Metric icon={<TrendingUp size={16} />} k={L('完全稀釋估值', 'FDV')} v={`$${compact(fdv, 2)}`} />
         <Metric icon={<Sparkles size={16} />} k={L('初始流通市值', 'Initial mcap')} v={`$${compact(initMcap, 2)}`} />
-        <Metric icon={<Lock size={16} />} k={L('TGE 解锁', 'TGE unlock')} v={`${p.vesting.tge * 100}%`} />
+        <Metric icon={<Lock size={16} />} k={L('TGE 解鎖', 'TGE unlock')} v={`${p.vesting.tge * 100}%`} />
       </div>
 
       <div className="pd-layout">
@@ -304,30 +304,30 @@ export function ProjectPage({ id }) {
           </div>
 
           <Tabs value={tab} onChange={setTab} variant="line" className="pd-tabs" items={[
-            ['overview', L('项目概览', 'Overview')],
-            ['tokenomics', L('代币经济', 'Tokenomics')],
-            ['vesting', L('释放计划', 'Vesting')],
-            ['roadmap', L('路线图', 'Roadmap')],
-            ['team', L('团队与投资方', 'Team & backers')],
-            ['rules', L('认购规则', 'Rules')],
+            ['overview', L('項目概覽', 'Overview')],
+            ['tokenomics', L('代幣經濟', 'Tokenomics')],
+            ['vesting', L('釋放計劃', 'Vesting')],
+            ['roadmap', L('路線圖', 'Roadmap')],
+            ['team', L('團隊與投資方', 'Team & backers')],
+            ['rules', L('認購規則', 'Rules')],
           ]} />
 
           {tab === 'overview' && (
             <div className="card prose">
-              <h3>{L('项目愿景', 'Vision')}</h3>
+              <h3>{L('項目願景', 'Vision')}</h3>
               {p.vision.map((x, i) => <p key={i}>{L(...x)}</p>)}
-              <h3>{L('核心亮点', 'Highlights')}</h3>
+              <h3>{L('核心亮點', 'Highlights')}</h3>
               <div className="hl-grid">
                 {p.highlights.map((h, i) => (
                   <div key={i} className="hl"><Sparkles size={16} /><span>{L(...h)}</span></div>
                 ))}
               </div>
-              <h3>{L('关键数据', 'Key data')}</h3>
+              <h3>{L('關鍵數據', 'Key data')}</h3>
               <div className="kd-grid">
-                <div><span>{L('协议锁仓/资产规模', 'TVL / AUM')}</span><b className="mono">${compact(p.metrics.tvl, 1)}</b></div>
-                <div><span>{L('社区持有人', 'Community holders')}</span><b className="mono">{fmt(p.metrics.holders, 0)}</b></div>
-                <div><span>{L('主网', 'Chain')}</span><b>{p.chain}</b></div>
-                <div><span>{L('总供应量', 'Total supply')}</span><b className="mono">{compact(p.totalSupply, 1)}</b></div>
+                <div><span>{L('協議鎖倉/資產規模', 'TVL / AUM')}</span><b className="mono">${compact(p.metrics.tvl, 1)}</b></div>
+                <div><span>{L('社區持有人', 'Community holders')}</span><b className="mono">{fmt(p.metrics.holders, 0)}</b></div>
+                <div><span>{L('主網', 'Chain')}</span><b>{p.chain}</b></div>
+                <div><span>{L('總供應量', 'Total supply')}</span><b className="mono">{compact(p.totalSupply, 1)}</b></div>
               </div>
             </div>
           )}
@@ -335,10 +335,10 @@ export function ProjectPage({ id }) {
           {tab === 'tokenomics' && (
             <div className="card tok">
               <Donut size={220} thick={26} data={p.tokenomics.map((x, i) => ({ label: L(x[0], x[1]), value: x[2], color: TOK_COLORS[i % TOK_COLORS.length] }))}
-                center={<><b className="mono">{compact(p.totalSupply, 1)}</b><span>{L('总供应量', 'Total supply')}</span></>} />
+                center={<><b className="mono">{compact(p.totalSupply, 1)}</b><span>{L('總供應量', 'Total supply')}</span></>} />
               <div className="table-wrap">
                 <table className="tbl">
-                  <thead><tr><th>{L('分配', 'Allocation')}</th><th>{L('占比', 'Share')}</th><th>{L('数量', 'Tokens')}</th></tr></thead>
+                  <thead><tr><th>{L('分配', 'Allocation')}</th><th>{L('佔比', 'Share')}</th><th>{L('數量', 'Tokens')}</th></tr></thead>
                   <tbody>
                     {p.tokenomics.map((x, i) => (
                       <tr key={i}>
@@ -362,7 +362,7 @@ export function ProjectPage({ id }) {
                   <div className="rm-dot" />
                   <div className="rm-q mono">{r.q}</div>
                   <div className="rm-body"><b>{L(...r.title)}</b><p>{L(...r.items)}</p></div>
-                  {r.now && <Pill tone="accent" dot>{L('当前阶段', 'Now')}</Pill>}
+                  {r.now && <Pill tone="accent" dot>{L('當前階段', 'Now')}</Pill>}
                 </div>
               ))}
             </div>
@@ -378,7 +378,7 @@ export function ProjectPage({ id }) {
                   </div>
                 ))}
               </div>
-              <h3 className="sub-h">{L('投资方', 'Backers')}</h3>
+              <h3 className="sub-h">{L('投資方', 'Backers')}</h3>
               <div className="backers">{p.investors.map((x) => <span key={x} className="backer">{x}</span>)}</div>
             </div>
           )}
@@ -386,11 +386,11 @@ export function ProjectPage({ id }) {
           {tab === 'rules' && (
             <div className="card prose">
               <ul className="rules">
-                <li><b>{L('认购资产', 'Currency')}</b>{L('仅支持现货账户中的 USDC。可通过闪兑把 USDT 换成 USDC。', 'USDC from your spot account only. Convert USDT to USDC with Convert.')}</li>
-                <li><b>{L('认购上限', 'Caps')}</b>{L(`基础上限 ${p.baseMax} USDC，按 NVX 质押等级放大（最高 ×5）。最低 ${p.minBuy} USDC。`, `Base cap ${p.baseMax} USDC, multiplied by your NVX tier (up to ×5). Minimum ${p.minBuy} USDC.`)}</li>
-                <li><b>{L('超募处理', 'Oversubscription')}</b>{L('若认购总额超过硬顶，按“个人认购额 ÷ 超募倍数”分配，剩余 USDC 在结算时自动退回现货账户。', 'If total commitments exceed the hard cap, each user gets commitment ÷ oversubscription ratio; the rest is refunded to spot at settlement.')}</li>
-                <li><b>{L('代币发放', 'Distribution')}</b>{L(`TGE 时发放 ${p.vesting.tge * 100}%，锁定 ${p.vesting.cliff} 个月后在 ${p.vesting.months} 个月内线性解锁，可随时领取已解锁部分。`, `${p.vesting.tge * 100}% at TGE; after a ${p.vesting.cliff}-month cliff the rest unlocks linearly over ${p.vesting.months} months. Claim unlocked tokens any time.`)}</li>
-                <li><b>{L('风险提示', 'Risk')}</b>{L('早期项目波动大，可能损失全部本金。认购前请阅读项目资料并独立判断。', 'Early-stage tokens are volatile and you can lose everything. Do your own research.')}</li>
+                <li><b>{L('認購資產', 'Currency')}</b>{L('僅支援現貨帳戶中的 USDC。可透過閃兌把 USDT 換成 USDC。', 'USDC from your spot account only. Convert USDT to USDC with Convert.')}</li>
+                <li><b>{L('認購上限', 'Caps')}</b>{L(`基礎上限 ${p.baseMax} USDC，按 NVX 質押等級放大（最高 ×5）。最低 ${p.minBuy} USDC。`, `Base cap ${p.baseMax} USDC, multiplied by your NVX tier (up to ×5). Minimum ${p.minBuy} USDC.`)}</li>
+                <li><b>{L('超募處理', 'Oversubscription')}</b>{L('若認購總額超過硬頂，按“個人認購額 ÷ 超募倍數”分配，剩餘 USDC 在結算時自動退回現貨帳戶。', 'If total commitments exceed the hard cap, each user gets commitment ÷ oversubscription ratio; the rest is refunded to spot at settlement.')}</li>
+                <li><b>{L('代幣發放', 'Distribution')}</b>{L(`TGE 時發放 ${p.vesting.tge * 100}%，鎖定 ${p.vesting.cliff} 個月後在 ${p.vesting.months} 個月內線性解鎖，可隨時領取已解鎖部分。`, `${p.vesting.tge * 100}% at TGE; after a ${p.vesting.cliff}-month cliff the rest unlocks linearly over ${p.vesting.months} months. Claim unlocked tokens any time.`)}</li>
+                <li><b>{L('風險提示', 'Risk')}</b>{L('早期項目波動大，可能損失全部本金。認購前請閱讀項目資料並獨立判斷。', 'Early-stage tokens are volatile and you can lose everything. Do your own research.')}</li>
               </ul>
             </div>
           )}
@@ -428,9 +428,9 @@ function VestingChart({ p }) {
   const d = pts.map(([m, f], i) => `${i ? 'L' : 'M'}${x(m).toFixed(1)} ${y(f).toFixed(1)}`).join(' ');
   return (
     <div className="card">
-      <div className="row-between"><h3 className="sub-h">{L('公售部分累计解锁', 'Public-sale tokens unlocked')}</h3><span className="muted small">{L('单位：月（自 TGE 起）', 'Months after TGE')}</span></div>
+      <div className="row-between"><h3 className="sub-h">{L('公售部分累計解鎖', 'Public-sale tokens unlocked')}</h3><span className="muted small">{L('單位：月（自 TGE 起）', 'Months after TGE')}</span></div>
       <div className="chart-scroll">
-        <svg viewBox={`0 0 ${W} ${H}`} className="vest-svg" role="img" aria-label={L('释放曲线', 'Vesting curve')}>
+        <svg viewBox={`0 0 ${W} ${H}`} className="vest-svg" role="img" aria-label={L('釋放曲線', 'Vesting curve')}>
           <defs>
             <linearGradient id="vest-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="var(--accent)" stopOpacity="0.35" /><stop offset="1" stopColor="var(--accent)" stopOpacity="0" /></linearGradient>
           </defs>
@@ -447,13 +447,13 @@ function VestingChart({ p }) {
           <path d={d} fill="none" stroke="var(--accent)" strokeWidth="2.4" />
           <circle cx={x(0)} cy={y(v.tge)} r="4.5" fill="var(--accent)" />
           <text x={x(0) + 10} y={y(v.tge) - 8} fontSize="12" fill="var(--fg)" fontWeight="700">TGE {v.tge * 100}%</text>
-          {v.cliff > 0 && <text x={x(v.cliff)} y={y(v.tge) + 18} fontSize="11" fill="var(--muted)" textAnchor="middle">{L('锁定期结束', 'Cliff ends')}</text>}
+          {v.cliff > 0 && <text x={x(v.cliff)} y={y(v.tge) + 18} fontSize="11" fill="var(--muted)" textAnchor="middle">{L('鎖定期結束', 'Cliff ends')}</text>}
         </svg>
       </div>
       <div className="vest-legend">
         <KV k="TGE" v={`${v.tge * 100}%`} />
-        <KV k={L('锁定期', 'Cliff')} v={`${v.cliff} ${L('个月', 'mo')}`} />
-        <KV k={L('线性解锁', 'Linear vesting')} v={`${v.months} ${L('个月', 'mo')}`} />
+        <KV k={L('鎖定期', 'Cliff')} v={`${v.cliff} ${L('個月', 'mo')}`} />
+        <KV k={L('線性解鎖', 'Linear vesting')} v={`${v.months} ${L('個月', 'mo')}`} />
       </div>
     </div>
   );
@@ -469,7 +469,7 @@ function Ring({ ratio }) {
       <circle cx="68" cy="68" r={R} fill="none" stroke="var(--accent)" strokeWidth="10" strokeLinecap="round" strokeDasharray={`${p1 * C} ${C}`} transform="rotate(-90 68 68)" />
       {over > 0 && <circle cx="68" cy="68" r={R - 13} fill="none" stroke="var(--up)" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${over * 2 * Math.PI * (R - 13)} ${C}`} transform="rotate(-90 68 68)" />}
       <text x="68" y="66" textAnchor="middle" fontSize={ratio >= 1 ? 17 : 21} fontWeight="800" fill="var(--fg)" fontFamily="JetBrains Mono, monospace">{(ratio * 100).toFixed(1)}%</text>
-      <text x="68" y="86" textAnchor="middle" fontSize="11" fill="var(--muted)">{ratio > 1 ? L('已超募', 'oversubscribed') : L('认购进度', 'subscribed')}</text>
+      <text x="68" y="86" textAnchor="middle" fontSize="11" fill="var(--muted)">{ratio > 1 ? L('已超募', 'oversubscribed') : L('認購進度', 'subscribed')}</text>
     </svg>
   );
 }
@@ -504,7 +504,7 @@ function SubscribePanel({ p }) {
       setConfirm(false);
       setAmt('');
       setBurst((x) => x + 1);
-      toast(L('认购成功', 'Subscribed'), 'ok', `${fmt(a, 2)} USDC → ${p.sym}`);
+      toast(L('認購成功', 'Subscribed'), 'ok', `${fmt(a, 2)} USDC → ${p.sym}`);
     }, 900);
   };
 
@@ -512,7 +512,7 @@ function SubscribePanel({ p }) {
     <div className="card sub-panel">
       {burst > 0 && <Confetti key={burst} />}
       <div className="row-between">
-        <b>{L('认购', 'Subscribe')} {p.sym}</b>
+        <b>{L('認購', 'Subscribe')} {p.sym}</b>
         {ph === 'live' && <span className="mono small accent-text"><Clock size={13} /> {countdown(end - now())}</span>}
         {ph === 'upcoming' && <span className="mono small"><Clock size={13} /> {countdown(start - now())}</span>}
         {ph === 'ended' && <Pill tone="up">{L('已完成', 'Completed')}</Pill>}
@@ -523,9 +523,9 @@ function SubscribePanel({ p }) {
           <Ring ratio={ratio} />
           <div className="sub-ring-kv">
             <KV k={L('已募集', 'Raised')} v={`${fmt(r, 0)} USDC`} />
-            <KV k={L('硬顶', 'Hard cap')} v={`${fmt(p.hardCap, 0)} USDC`} />
-            <KV k={L('参与人数', 'Participants')} v={fmt(participants(p), 0)} />
-            {ratio > 1 && <KV k={L('预计获配比例', 'Est. fill rate')} v={`${(100 / ratio).toFixed(2)}%`} />}
+            <KV k={L('硬頂', 'Hard cap')} v={`${fmt(p.hardCap, 0)} USDC`} />
+            <KV k={L('參與人數', 'Participants')} v={fmt(participants(p), 0)} />
+            {ratio > 1 && <KV k={L('預計獲配比例', 'Est. fill rate')} v={`${(100 / ratio).toFixed(2)}%`} />}
           </div>
         </div>
       )}
@@ -533,15 +533,15 @@ function SubscribePanel({ p }) {
       {ph === 'upcoming' && (
         <div className="stack">
           <div className="soon-box">
-            <div className="muted small">{L('认购开始倒计时', 'Sale opens in')}</div>
+            <div className="muted small">{L('認購開始倒計時', 'Sale opens in')}</div>
             <div className="soon-cd mono">{countdown(start - now())}</div>
             <div className="muted small">{dateTime(start)} – {dateTime(end)}</div>
           </div>
-          <KV k={L('你的认购上限', 'Your cap')} v={`${fmt(cap, 0)} USDC`} />
-          <Btn block variant={s.reminders[p.id] ? 'soft' : 'primary'} onClick={() => { toggleReminder(p.id); toast(s.reminders[p.id] ? L('已取消提醒', 'Reminder removed') : L('开始前 10 分钟提醒你', 'We will remind you 10 min before')); }}>
-            {s.reminders[p.id] ? <><BellRing size={16} />{L('已设置提醒', 'Reminder set')}</> : <><Bell size={16} />{L('设置开始提醒', 'Remind me')}</>}
+          <KV k={L('你的認購上限', 'Your cap')} v={`${fmt(cap, 0)} USDC`} />
+          <Btn block variant={s.reminders[p.id] ? 'soft' : 'primary'} onClick={() => { toggleReminder(p.id); toast(s.reminders[p.id] ? L('已取消提醒', 'Reminder removed') : L('開始前 10 分鐘提醒你', 'We will remind you 10 min before')); }}>
+            {s.reminders[p.id] ? <><BellRing size={16} />{L('已設定提醒', 'Reminder set')}</> : <><Bell size={16} />{L('設定開始提醒', 'Remind me')}</>}
           </Btn>
-          <p className="fine">{L('提示：可在左下角“演示”面板快进时间，直接进入认购期。', 'Tip: use the Demo console (bottom left) to fast-forward into the sale.')}</p>
+          <p className="fine">{L('提示：可在左下角“演示”面板快進時間，直接進入認購期。', 'Tip: use the Demo console (bottom left) to fast-forward into the sale.')}</p>
         </div>
       )}
 
@@ -550,26 +550,26 @@ function SubscribePanel({ p }) {
           <div className="stack">
             <div className="tier-line" style={{ '--tier': t.color }}>
               <Trophy size={14} />{L(...t.name)} ×{t.mult}
-              <span className="muted">{L('上限', 'Cap')} <b className="mono">{fmt(cap, 0)}</b> · {L('已认购', 'Used')} <b className="mono">{fmt(used, 0)}</b></span>
+              <span className="muted">{L('上限', 'Cap')} <b className="mono">{fmt(cap, 0)}</b> · {L('已認購', 'Used')} <b className="mono">{fmt(used, 0)}</b></span>
             </div>
-            <NumInput id="sub-amt" label={L('认购金额', 'Amount')} value={amt} onChange={setAmt} suffix="USDC"
+            <NumInput id="sub-amt" label={L('認購金額', 'Amount')} value={amt} onChange={setAmt} suffix="USDC"
               right={<button className="max-btn" onClick={() => setAmt(String(floorTo(Math.min(room, usdc), 2)))}>MAX</button>} />
             <div className="row-between small">
               <span className="muted">{L('可用', 'Available')} <b className="mono">{fmt(usdc, 2)} USDC</b></span>
               <span className="row-gap">
-                <button className="link-btn" onClick={() => openModal('convert', { from: 'USDT', to: 'USDC' })}><Repeat size={13} />{L('闪兑', 'Convert')}</button>
+                <button className="link-btn" onClick={() => openModal('convert', { from: 'USDT', to: 'USDC' })}><Repeat size={13} />{L('閃兌', 'Convert')}</button>
                 <button className="link-btn" onClick={() => openModal('deposit', { sym: 'USDC' })}><ArrowDownToLine size={13} />{L('充值', 'Deposit')}</button>
               </span>
             </div>
             <div className="summary">
-              <KV k={L('按认购价可得', 'At sale price')} v={`${fmt(a / p.price, 2)} ${p.sym}`} />
-              <KV k={L('当前超募倍数', 'Oversubscription')} v={`${estRatio.toFixed(2)}x`} />
-              <KV k={L('预计实际获配', 'Est. allocation')} v={<b className="accent-text">{fmt(a / estRatio / p.price, 2)} {p.sym}</b>} />
-              <KV k={L('预计退还', 'Est. refund')} v={`${fmt(a - a / estRatio, 2)} USDC`} />
+              <KV k={L('按認購價可得', 'At sale price')} v={`${fmt(a / p.price, 2)} ${p.sym}`} />
+              <KV k={L('當前超募倍數', 'Oversubscription')} v={`${estRatio.toFixed(2)}x`} />
+              <KV k={L('預計實際獲配', 'Est. allocation')} v={<b className="accent-text">{fmt(a / estRatio / p.price, 2)} {p.sym}</b>} />
+              <KV k={L('預計退還', 'Est. refund')} v={`${fmt(a - a / estRatio, 2)} USDC`} />
             </div>
-            <label className="check"><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />{L('我已阅读认购规则与风险提示', 'I have read the rules and risk notice')}</label>
+            <label className="check"><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />{L('我已閱讀認購規則與風險提示', 'I have read the rules and risk notice')}</label>
             <Btn block size="lg" disabled={!agree || !(a >= p.minBuy) || a > room + 1e-9} onClick={() => setConfirm(true)}>
-              {a > room + 1e-9 ? L('超过认购上限', 'Over your cap') : a && a < p.minBuy ? L(`最低 ${p.minBuy} USDC`, `Min ${p.minBuy} USDC`) : L('立即认购', 'Subscribe')}
+              {a > room + 1e-9 ? L('超過認購上限', 'Over your cap') : a && a < p.minBuy ? L(`最低 ${p.minBuy} USDC`, `Min ${p.minBuy} USDC`) : L('立即認購', 'Subscribe')}
             </Btn>
           </div>
         )
@@ -578,32 +578,32 @@ function SubscribePanel({ p }) {
       {ph === 'ended' && mySubs.length === 0 && (
         <div className="stack">
           <div className="summary">
-            <KV k={L('最终认购倍数', 'Final ratio')} v={`${(ratio * 100).toFixed(1)}%`} />
-            {listed && <KV k={L('当前价格', 'Price now')} v={`${fmt(price(p.sym), 5)} USDT`} />}
-            {listed && <KV k={L('较认购价', 'vs. sale price')} v={<b className={athRoi(p) >= 1 ? 'up' : 'down'}>{fmt(athRoi(p), 2)}x</b>} />}
+            <KV k={L('最終認購倍數', 'Final ratio')} v={`${(ratio * 100).toFixed(1)}%`} />
+            {listed && <KV k={L('當前價格', 'Price now')} v={`${fmt(price(p.sym), 5)} USDT`} />}
+            {listed && <KV k={L('較認購價', 'vs. sale price')} v={<b className={athRoi(p) >= 1 ? 'up' : 'down'}>{fmt(athRoi(p), 2)}x</b>} />}
           </div>
-          {listed ? <Btn block onClick={() => go('spot', `${p.sym}_USDT`)}>{L(`交易 ${p.sym}`, `Trade ${p.sym}`)}</Btn> : <p className="muted small">{L('认购已结束，代币即将上线现货。', 'Sale ended. Spot listing soon.')}</p>}
+          {listed ? <Btn block onClick={() => go('spot', `${p.sym}_USDT`)}>{L(`交易 ${p.sym}`, `Trade ${p.sym}`)}</Btn> : <p className="muted small">{L('認購已結束，代幣即將上線現貨。', 'Sale ended. Spot listing soon.')}</p>}
         </div>
       )}
 
       {mySubs.length > 0 && <MyAllocation p={p} subs={mySubs} />}
 
-      <div className="policy"><ShieldCheck size={16} />{L('政策：若认购超额，将执行比例分配及资金返还政策。', 'Policy: oversubscribed sales are allocated pro rata and the remainder refunded.')}</div>
+      <div className="policy"><ShieldCheck size={16} />{L('政策：若認購超額，將執行比例分配及資金返還政策。', 'Policy: oversubscribed sales are allocated pro rata and the remainder refunded.')}</div>
 
       {confirm && (
-        <Modal title={L('确认认购', 'Confirm subscription')} onClose={() => setConfirm(false)} width={420}>
+        <Modal title={L('確認認購', 'Confirm subscription')} onClose={() => setConfirm(false)} width={420}>
           <div className="stack">
             <div className="confirm-hero"><ProjLogo p={p} size={48} /><div><b>{p.name}</b><div className="muted small">{p.sym} · {p.price} USDC</div></div></div>
             <div className="summary">
-              <KV k={L('认购金额', 'Commit')} v={`${fmt(a, 2)} USDC`} />
-              <KV k={L('预计获配', 'Est. allocation')} v={`${fmt(a / estRatio / p.price, 2)} ${p.sym}`} />
-              <KV k={L('结算时间', 'Settles')} v={dateTime(end)} />
-              <KV k={L('TGE 解锁', 'TGE unlock')} v={`${p.vesting.tge * 100}%`} />
+              <KV k={L('認購金額', 'Commit')} v={`${fmt(a, 2)} USDC`} />
+              <KV k={L('預計獲配', 'Est. allocation')} v={`${fmt(a / estRatio / p.price, 2)} ${p.sym}`} />
+              <KV k={L('結算時間', 'Settles')} v={dateTime(end)} />
+              <KV k={L('TGE 解鎖', 'TGE unlock')} v={`${p.vesting.tge * 100}%`} />
             </div>
-            <p className="fine">{L('认购资金将冻结至结算，超募部分自动退回。', 'Funds are locked until settlement; any excess is refunded automatically.')}</p>
+            <p className="fine">{L('認購資金將凍結至結算，超募部分自動退回。', 'Funds are locked until settlement; any excess is refunded automatically.')}</p>
             <div className="btn-row">
               <Btn variant="ghost" onClick={() => setConfirm(false)}>{L('取消', 'Cancel')}</Btn>
-              <Btn onClick={doSub} loading={busy}>{L('确认认购', 'Confirm')}</Btn>
+              <Btn onClick={doSub} loading={busy}>{L('確認認購', 'Confirm')}</Btn>
             </div>
           </div>
         </Modal>
@@ -618,12 +618,12 @@ function MyAllocation({ p, subs }) {
   const committed = pending.reduce((a, x) => a + x.amount, 0);
   return (
     <div className="my-alloc">
-      <div className="field-label">{L('我的认购', 'My position')}</div>
+      <div className="field-label">{L('我的認購', 'My position')}</div>
       {committed > 0 && (
         <div className="alloc-row">
-          <span><Lock size={14} />{L('已冻结', 'Committed')}</span>
+          <span><Lock size={14} />{L('已凍結', 'Committed')}</span>
           <b className="mono">{fmt(committed, 2)} USDC</b>
-          <Pill tone="accent" dot>{L('等待结算', 'Awaiting settlement')}</Pill>
+          <Pill tone="accent" dot>{L('等待結算', 'Awaiting settlement')}</Pill>
         </div>
       )}
       {settled.map((x) => {
@@ -631,12 +631,12 @@ function MyAllocation({ p, subs }) {
         const claimable = Math.max(0, unlocked - x.claimed);
         return (
           <div key={x.id} className="alloc-card">
-            <div className="row-between"><span className="muted small">{L('获配', 'Allocated')}</span><b className="mono">{fmt(x.tokens, 2)} {p.sym}</b></div>
-            <div className="row-between"><span className="muted small">{L('退还', 'Refunded')}</span><span className="mono">{fmt(x.refund, 2)} USDC</span></div>
+            <div className="row-between"><span className="muted small">{L('獲配', 'Allocated')}</span><b className="mono">{fmt(x.tokens, 2)} {p.sym}</b></div>
+            <div className="row-between"><span className="muted small">{L('退還', 'Refunded')}</span><span className="mono">{fmt(x.refund, 2)} USDC</span></div>
             <Progress value={unlocked} max={x.tokens} tone="up" />
-            <div className="row-between small"><span className="muted">{L('已解锁', 'Unlocked')} {((unlocked / x.tokens) * 100).toFixed(1)}%</span><span className="muted">{L('已领取', 'Claimed')} {fmt(x.claimed, 2)}</span></div>
-            <Btn block variant={claimable > 0.0001 ? 'primary' : 'soft'} disabled={claimable <= 0.0001} onClick={() => { const g = claimVested(x.id); toast(L('领取成功', 'Claimed'), 'ok', `+${fmt(g, 2)} ${p.sym}`); }}>
-              <Gift size={16} />{claimable > 0.0001 ? L(`领取 ${fmt(claimable, 2)} ${p.sym}`, `Claim ${fmt(claimable, 2)} ${p.sym}`) : L('暂无可领取', 'Nothing to claim')}
+            <div className="row-between small"><span className="muted">{L('已解鎖', 'Unlocked')} {((unlocked / x.tokens) * 100).toFixed(1)}%</span><span className="muted">{L('已領取', 'Claimed')} {fmt(x.claimed, 2)}</span></div>
+            <Btn block variant={claimable > 0.0001 ? 'primary' : 'soft'} disabled={claimable <= 0.0001} onClick={() => { const g = claimVested(x.id); toast(L('領取成功', 'Claimed'), 'ok', `+${fmt(g, 2)} ${p.sym}`); }}>
+              <Gift size={16} />{claimable > 0.0001 ? L(`領取 ${fmt(claimable, 2)} ${p.sym}`, `Claim ${fmt(claimable, 2)} ${p.sym}`) : L('暫無可領取', 'Nothing to claim')}
             </Btn>
           </div>
         );

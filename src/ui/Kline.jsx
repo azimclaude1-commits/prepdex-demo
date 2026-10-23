@@ -124,7 +124,7 @@ export default function Kline({ sym, quote = 'USDT', label, themeKey, lines = []
           <span className="kline-ma"><i style={{ background: 'var(--accent)' }} />MA7 <i style={{ background: 'var(--violet)' }} />MA25</span>
         </div>
       </div>
-      <div className="kline-chart" ref={box} aria-label={L('K线图', 'Candlestick chart')} />
+      <div className="kline-chart" ref={box} aria-label={L('K線圖', 'Candlestick chart')} />
     </div>
   );
 }

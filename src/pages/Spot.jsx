@@ -37,11 +37,11 @@ export function PairPicker({ base, quote, bases, quotes, onPick, suffix = '' }) 
       </button>
       {open && (
         <div className="pair-pop">
-          <div className="search"><Search size={15} /><input autoFocus placeholder={L('搜索币种', 'Search')} value={q} onChange={(e) => setQ(e.target.value)} /></div>
+          <div className="search"><Search size={15} /><input autoFocus placeholder={L('搜尋幣種', 'Search')} value={q} onChange={(e) => setQ(e.target.value)} /></div>
           <Tabs size="sm" value={qt} onChange={setQt} items={[['fav', <Star size={13} key="s" />], ...quotes.map((x) => [x, x])]} />
-          <div className="pair-cols"><span>{L('交易对', 'Pair')}</span><span>{L('最新价', 'Price')}</span><span>{L('24h 涨跌', '24h')}</span></div>
+          <div className="pair-cols"><span>{L('交易對', 'Pair')}</span><span>{L('最新價', 'Price')}</span><span>{L('24h 漲跌', '24h')}</span></div>
           <div className="pair-list">
-            {list.length === 0 && <div className="muted small pad">{L('暂无自选，点星标添加', 'No favourites yet. Tap a star to add.')}</div>}
+            {list.length === 0 && <div className="muted small pad">{L('暫無自選，點星標添加', 'No favourites yet. Tap a star to add.')}</div>}
             {list.map((b) => (
               <div key={b} className={cx('pair-item', b === base && listQuote === quote && 'on')} onClick={() => { onPick(b, listQuote); setOpen(false); }}>
                 <button className={cx('star', s.favs.includes(b) && 'on')} onClick={(e) => { e.stopPropagation(); toggleFav(b); }} aria-label="fav"><Star size={13} /></button>
@@ -71,11 +71,11 @@ export function TickerBar({ base, quote, children, extra }) {
         <span className="muted small mono">≈ {usd(price(base), dp)}</span>
       </div>
       <div className="tk-stats">
-        <div><span>{L('24h 涨跌', '24h change')}</span><Delta v={change24(base)} /></div>
+        <div><span>{L('24h 漲跌', '24h change')}</span><Delta v={change24(base)} /></div>
         <div><span>{L('24h 最高', '24h high')}</span><b className="mono">{fmt(high24(base) / qp, dp)}</b></div>
         <div><span>{L('24h 最低', '24h low')}</span><b className="mono">{fmt(low24(base) / qp, dp)}</b></div>
         <div><span>{L(`24h 成交量(${base})`, `24h vol (${base})`)}</span><b className="mono">{compact(volume24(base) / price(base), 2)}</b></div>
-        <div><span>{L(`24h 成交额(${quote})`, `24h turnover (${quote})`)}</span><b className="mono">{compact(volume24(base), 2)}</b></div>
+        <div><span>{L(`24h 成交額(${quote})`, `24h turnover (${quote})`)}</span><b className="mono">{compact(volume24(base), 2)}</b></div>
         {extra}
       </div>
     </div>
@@ -97,7 +97,7 @@ export function Spot({ arg }) {
   const open = s.orders.filter((o) => o.status === 'open');
   const hist = s.orders.filter((o) => o.status !== 'open');
   const pairKey = base + '_' + quote;
-  const lines = open.filter((o) => o.base === base && o.quote === quote).map((o) => ({ price: o.price, color: o.side === 'buy' ? '#22D39B' : '#FF4D6A', title: o.side === 'buy' ? L('买单', 'Buy') : L('卖单', 'Sell') }));
+  const lines = open.filter((o) => o.base === base && o.quote === quote).map((o) => ({ price: o.price, color: o.side === 'buy' ? '#22D39B' : '#FF4D6A', title: o.side === 'buy' ? L('買單', 'Buy') : L('賣單', 'Sell') }));
 
   return (
     <div className="page page-wide">
@@ -111,12 +111,12 @@ export function Spot({ arg }) {
         <div className="tg-orders card">
           <div className="orders-head">
             <Tabs variant="line" value={tab} onChange={setTab} items={[
-              ['open', L('当前委托', 'Open orders'), open.length],
-              ['hist', L('历史委托', 'Order history')],
-              ['fills', L('成交记录', 'Trade history')],
-              ['assets', L('资产', 'Assets')],
+              ['open', L('當前委託', 'Open orders'), open.length],
+              ['hist', L('歷史委託', 'Order history')],
+              ['fills', L('成交記錄', 'Trade history')],
+              ['assets', L('資產', 'Assets')],
             ]} />
-            {tab === 'open' && open.length > 0 && <button className="link-btn" onClick={() => { cancelAllSpot(); toast(L('已全部撤单', 'All orders cancelled')); }}>{L('全部撤单', 'Cancel all')}</button>}
+            {tab === 'open' && open.length > 0 && <button className="link-btn" onClick={() => { cancelAllSpot(); toast(L('已全部撤單', 'All orders cancelled')); }}>{L('全部撤單', 'Cancel all')}</button>}
           </div>
           {tab === 'open' && <OrderTable rows={open} canCancel />}
           {tab === 'hist' && <OrderTable rows={hist.slice(0, 30)} />}
@@ -162,7 +162,7 @@ function SpotForm({ base, quote, pickPrice }) {
       setBusy(false);
       const r = placeSpot({ base, quote, side, type: mode, price: parseFloat(px), amount: a });
       if (r.err) { toast(r.err, 'err'); return; }
-      toast(r.filled ? L('市价单已成交', 'Market order filled') : L('限价单已提交', 'Limit order placed'), 'ok', `${side === 'buy' ? L('买入', 'Buy') : L('卖出', 'Sell')} ${a} ${base}${r.filled ? ' @ ' + fmt(r.price, dp) : ''}`);
+      toast(r.filled ? L('市價單已成交', 'Market order filled') : L('限價單已提交', 'Limit order placed'), 'ok', `${side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')} ${a} ${base}${r.filled ? ' @ ' + fmt(r.price, dp) : ''}`);
       setAmt('');
       setPctv(0);
     }, 350);
@@ -170,33 +170,33 @@ function SpotForm({ base, quote, pickPrice }) {
 
   return (
     <div className="oform">
-      <Tabs value={mode} onChange={setMode} variant="line" items={[['limit', L('限价', 'Limit')], ['market', L('市价', 'Market')], ['convert', L('闪兑', 'Convert')]]} />
+      <Tabs value={mode} onChange={setMode} variant="line" items={[['limit', L('限價', 'Limit')], ['market', L('市價', 'Market')], ['convert', L('閃兌', 'Convert')]]} />
       {mode === 'convert' ? (
         <ConvertBox initFrom={quote} initTo={base} compactMode />
       ) : (
         <>
           <div className={cx('side-toggle', side)}>
-            <button className={cx(side === 'buy' && 'on')} onClick={() => { setSide('buy'); setPctv(0); setAmt(''); }}>{L('买入', 'Buy')}</button>
-            <button className={cx(side === 'sell' && 'on')} onClick={() => { setSide('sell'); setPctv(0); setAmt(''); }}>{L('卖出', 'Sell')}</button>
+            <button className={cx(side === 'buy' && 'on')} onClick={() => { setSide('buy'); setPctv(0); setAmt(''); }}>{L('買入', 'Buy')}</button>
+            <button className={cx(side === 'sell' && 'on')} onClick={() => { setSide('sell'); setPctv(0); setAmt(''); }}>{L('賣出', 'Sell')}</button>
           </div>
           <div className="row-between small"><span className="muted">{L('可用', 'Available')}</span><span className="row-gap"><b className="mono">{fmt(side === 'buy' ? availQ : availB, side === 'buy' ? 2 : ad)} {side === 'buy' ? quote : base}</b>{s.wallet.connected && <button className="icon-btn xs" onClick={() => openModal('deposit', { sym: side === 'buy' ? quote : base })} aria-label={L('充值', 'Deposit')}><ArrowDownToLine size={13} /></button>}</span></div>
           {mode === 'limit'
-            ? <NumInput id="sp-px" label={L('价格', 'Price')} value={px} onChange={setPx} suffix={quote} right={<button className="max-btn" onClick={() => setPx(mkt.toFixed(dp))}>{L('最新', 'Last')}</button>} />
-            : <div className="num num-dis"><span className="num-label">{L('价格', 'Price')}</span><input disabled value={L('以市场最优价成交', 'Best market price')} /><span className="num-suffix">{quote}</span></div>}
-          <NumInput id="sp-amt" label={L('数量', 'Amount')} value={amt} onChange={(v) => { setAmt(v); setPctv(0); }} suffix={base} />
+            ? <NumInput id="sp-px" label={L('價格', 'Price')} value={px} onChange={setPx} suffix={quote} right={<button className="max-btn" onClick={() => setPx(mkt.toFixed(dp))}>{L('最新', 'Last')}</button>} />
+            : <div className="num num-dis"><span className="num-label">{L('價格', 'Price')}</span><input disabled value={L('以市場最優價成交', 'Best market price')} /><span className="num-suffix">{quote}</span></div>}
+          <NumInput id="sp-amt" label={L('數量', 'Amount')} value={amt} onChange={(v) => { setAmt(v); setPctv(0); }} suffix={base} />
           <Slider id="sp-pct" value={pctv} onChange={setByPct} />
-          <NumInput id="sp-total" label={L('成交额', 'Total')} value={total ? total.toFixed(2) : ''} onChange={(v) => { const x = parseFloat(v) || 0; setAmt(usePx ? String(floorTo(x / usePx, ad)) : ''); }} suffix={quote} />
+          <NumInput id="sp-total" label={L('成交額', 'Total')} value={total ? total.toFixed(2) : ''} onChange={(v) => { const x = parseFloat(v) || 0; setAmt(usePx ? String(floorTo(x / usePx, ad)) : ''); }} suffix={quote} />
           <div className="row-between small muted">
-            <span>{L('手续费率', 'Fee rate')} <span className="mono">{(fee * 100).toFixed(3)}%</span>{t.fee > 0 && <Pill tone="accent" className="ml">{L(`${L(...t.name)} -${t.fee * 100}%`, `${t.name[1]} -${t.fee * 100}%`)}</Pill>}</span>
+            <span>{L('手續費率', 'Fee rate')} <span className="mono">{(fee * 100).toFixed(3)}%</span>{t.fee > 0 && <Pill tone="accent" className="ml">{L(`${L(...t.name)} -${t.fee * 100}%`, `${t.name[1]} -${t.fee * 100}%`)}</Pill>}</span>
             <span className="mono">≈ {fmt(side === 'buy' ? a * fee : total * fee, side === 'buy' ? ad : 2)} {side === 'buy' ? base : quote}</span>
           </div>
           {!s.wallet.connected ? <ConnectGate /> : (
             <Btn block size="lg" variant={side === 'buy' ? 'up' : 'down'} onClick={submit} loading={busy} disabled={!a || !usePx}>
-              {side === 'buy' ? L(`买入 ${base}`, `Buy ${base}`) : L(`卖出 ${base}`, `Sell ${base}`)}
+              {side === 'buy' ? L(`買入 ${base}`, `Buy ${base}`) : L(`賣出 ${base}`, `Sell ${base}`)}
             </Btn>
           )}
           {s.wallet.connected && availQ < 1 && availB <= 0 && (
-            <div className="hint-box"><Info size={14} />{L('现货账户还没有资金。', 'Your spot account is empty.')}<button className="link-btn" onClick={() => openModal('deposit', { sym: quote })}>{L('去充值', 'Deposit')}</button></div>
+            <div className="hint-box"><Info size={14} />{L('現貨帳戶還沒有資金。', 'Your spot account is empty.')}<button className="link-btn" onClick={() => openModal('deposit', { sym: quote })}>{L('去充值', 'Deposit')}</button></div>
           )}
         </>
       )}
@@ -205,23 +205,23 @@ function SpotForm({ base, quote, pickPrice }) {
 }
 
 function OrderTable({ rows, canCancel }) {
-  if (!rows.length) return <Empty text={L('暂无委托', 'No orders')} />;
+  if (!rows.length) return <Empty text={L('暫無委託', 'No orders')} />;
   return (
     <div className="table-wrap">
       <table className="tbl">
-        <thead><tr><th>{L('时间', 'Time')}</th><th>{L('交易对', 'Pair')}</th><th>{L('类型', 'Type')}</th><th>{L('方向', 'Side')}</th><th>{L('价格', 'Price')}</th><th>{L('数量', 'Amount')}</th><th>{L('已成交', 'Filled')}</th><th>{L('状态', 'Status')}</th>{canCancel && <th />}</tr></thead>
+        <thead><tr><th>{L('時間', 'Time')}</th><th>{L('交易對', 'Pair')}</th><th>{L('類型', 'Type')}</th><th>{L('方向', 'Side')}</th><th>{L('價格', 'Price')}</th><th>{L('數量', 'Amount')}</th><th>{L('已成交', 'Filled')}</th><th>{L('狀態', 'Status')}</th>{canCancel && <th />}</tr></thead>
         <tbody>
           {rows.map((o) => (
             <tr key={o.id}>
               <td className="mono muted">{dateTime(o.ts, true)}</td>
               <td><span className="row-gap"><CoinIcon sym={o.base} size={18} />{o.base}/{o.quote}</span></td>
-              <td>{o.type === 'limit' ? L('限价', 'Limit') : L('市价', 'Market')}</td>
-              <td className={o.side === 'buy' ? 'up' : 'down'}>{o.side === 'buy' ? L('买入', 'Buy') : L('卖出', 'Sell')}</td>
+              <td>{o.type === 'limit' ? L('限價', 'Limit') : L('市價', 'Market')}</td>
+              <td className={o.side === 'buy' ? 'up' : 'down'}>{o.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')}</td>
               <td className="mono">{fmt(o.avg || o.price, pdp(o.price))}</td>
               <td className="mono">{o.amount}</td>
               <td className="mono">{fmt((o.filled / o.amount) * 100, 0)}%</td>
-              <td>{o.status === 'open' ? <Pill tone="accent" dot>{L('挂单中', 'Open')}</Pill> : o.status === 'filled' ? <Pill tone="up">{L('已成交', 'Filled')}</Pill> : <Pill>{L('已撤销', 'Cancelled')}</Pill>}</td>
-              {canCancel && <td><button className="link-btn danger" onClick={() => { cancelSpot(o.id); toast(L('已撤单', 'Order cancelled')); }}>{L('撤单', 'Cancel')}</button></td>}
+              <td>{o.status === 'open' ? <Pill tone="accent" dot>{L('掛單中', 'Open')}</Pill> : o.status === 'filled' ? <Pill tone="up">{L('已成交', 'Filled')}</Pill> : <Pill>{L('已撤銷', 'Cancelled')}</Pill>}</td>
+              {canCancel && <td><button className="link-btn danger" onClick={() => { cancelSpot(o.id); toast(L('已撤單', 'Order cancelled')); }}>{L('撤單', 'Cancel')}</button></td>}
             </tr>
           ))}
         </tbody>
@@ -231,17 +231,17 @@ function OrderTable({ rows, canCancel }) {
 }
 
 function FillTable({ rows }) {
-  if (!rows.length) return <Empty text={L('暂无成交', 'No trades yet')} />;
+  if (!rows.length) return <Empty text={L('暫無成交', 'No trades yet')} />;
   return (
     <div className="table-wrap">
       <table className="tbl">
-        <thead><tr><th>{L('时间', 'Time')}</th><th>{L('交易对', 'Pair')}</th><th>{L('方向', 'Side')}</th><th>{L('成交价', 'Price')}</th><th>{L('数量', 'Amount')}</th><th>{L('手续费', 'Fee')}</th><th>{L('角色', 'Role')}</th></tr></thead>
+        <thead><tr><th>{L('時間', 'Time')}</th><th>{L('交易對', 'Pair')}</th><th>{L('方向', 'Side')}</th><th>{L('成交價', 'Price')}</th><th>{L('數量', 'Amount')}</th><th>{L('手續費', 'Fee')}</th><th>{L('角色', 'Role')}</th></tr></thead>
         <tbody>
           {rows.map((f) => (
             <tr key={f.id}>
               <td className="mono muted">{dateTime(f.ts, true)}</td>
               <td>{f.base}/{f.quote}</td>
-              <td className={f.side === 'buy' ? 'up' : 'down'}>{f.side === 'buy' ? L('买入', 'Buy') : L('卖出', 'Sell')}</td>
+              <td className={f.side === 'buy' ? 'up' : 'down'}>{f.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')}</td>
               <td className="mono">{fmt(f.price, pdp(f.price))}</td>
               <td className="mono">{f.amount}</td>
               <td className="mono">{fmt(f.fee, 6)} {f.feeSym}</td>
@@ -258,11 +258,11 @@ function SpotAssets() {
   useMarket();
   const s = useApp();
   const syms = Object.keys({ ...s.spot, ...s.frozen }).filter((k) => (s.spot[k] || 0) + (s.frozen[k] || 0) > 1e-9);
-  if (!syms.length) return <Empty text={L('现货账户暂无资产', 'No spot assets')}><Btn size="sm" onClick={() => openModal('deposit', {})}>{L('充值', 'Deposit')}</Btn></Empty>;
+  if (!syms.length) return <Empty text={L('現貨帳戶暫無資產', 'No spot assets')}><Btn size="sm" onClick={() => openModal('deposit', {})}>{L('充值', 'Deposit')}</Btn></Empty>;
   return (
     <div className="table-wrap">
       <table className="tbl">
-        <thead><tr><th>{L('币种', 'Coin')}</th><th>{L('可用', 'Available')}</th><th>{L('冻结', 'In orders')}</th><th>{L('估值', 'Value')}</th></tr></thead>
+        <thead><tr><th>{L('幣種', 'Coin')}</th><th>{L('可用', 'Available')}</th><th>{L('凍結', 'In orders')}</th><th>{L('估值', 'Value')}</th></tr></thead>
         <tbody>
           {syms.map((k) => (
             <tr key={k}>

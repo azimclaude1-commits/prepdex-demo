@@ -37,19 +37,19 @@ export function OrderBook({ sym, quote = 'USDT', base, onPick, levels = 12 }) {
   return (
     <div className="ob">
       <div className="ob-head">
-        <b>{L('订单簿', 'Order book')}</b>
+        <b>{L('訂單簿', 'Order book')}</b>
         <div className="ob-modes">
           {['both', 'bids', 'asks'].map((m) => (
             <button key={m} className={cx(mode === m && 'on')} onClick={() => setMode(m)} aria-label={m}><BookIcon mode={m} /></button>
           ))}
         </div>
       </div>
-      <div className="ob-cols"><span>{L('价格', 'Price')}({quote})</span><span>{L('数量', 'Size')}({base || sym})</span><span>{L('累计', 'Total')}</span></div>
+      <div className="ob-cols"><span>{L('價格', 'Price')}({quote})</span><span>{L('數量', 'Size')}({base || sym})</span><span>{L('累計', 'Total')}</span></div>
       {mode !== 'bids' && <div className="ob-side">{asks.map((r, i) => <Row key={'a' + i} r={r} side="ask" />)}</div>}
       <div className="ob-mid">
         <span className={cx('mono ob-last', up ? 'up' : 'down')}>{fmt(price(sym) / qp, dp)}{up ? <ArrowUp size={15} /> : <ArrowDown size={15} />}</span>
         <span className="muted mono small">≈ {usd(price(sym), dp)}</span>
-        <span className="muted small ob-spread">{L('价差', 'Spread')} <span className="mono">{fmt(spread, dp)}</span></span>
+        <span className="muted small ob-spread">{L('價差', 'Spread')} <span className="mono">{fmt(spread, dp)}</span></span>
       </div>
       {mode !== 'asks' && <div className="ob-side">{bids.map((r, i) => <Row key={'b' + i} r={r} side="bid" />)}</div>}
     </div>
@@ -64,8 +64,8 @@ export function Trades({ sym, quote = 'USDT', base, max = 18 }) {
   const adpv = adp(price(sym));
   return (
     <div className="trades">
-      <div className="ob-head"><b>{L('最新成交', 'Trades')}</b><span className="live-tag"><i className="live-dot" />{L('实时', 'Live')}</span></div>
-      <div className="ob-cols"><span>{L('价格', 'Price')}({quote})</span><span>{L('数量', 'Size')}({base || sym})</span><span>{L('时间', 'Time')}</span></div>
+      <div className="ob-head"><b>{L('最新成交', 'Trades')}</b><span className="live-tag"><i className="live-dot" />{L('即時', 'Live')}</span></div>
+      <div className="ob-cols"><span>{L('價格', 'Price')}({quote})</span><span>{L('數量', 'Size')}({base || sym})</span><span>{L('時間', 'Time')}</span></div>
       <div className="trades-list">
         {list.map((t) => (
           <div key={t.id} className="tr-row">

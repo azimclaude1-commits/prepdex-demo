@@ -28,7 +28,7 @@ export function Modal({ title, onClose, width = 460, children, className, icon }
         {title != null && (
           <div className="modal-head">
             <div className="modal-title">{icon}{title}</div>
-            <button className="icon-btn" onClick={onClose} aria-label={L('关闭', 'Close')}><X size={18} /></button>
+            <button className="icon-btn" onClick={onClose} aria-label={L('關閉', 'Close')}><X size={18} /></button>
           </div>
         )}
         <div className="modal-body">{children}</div>
@@ -115,7 +115,7 @@ export function Empty({ text, icon, children }) {
   return (
     <div className="empty">
       <div className="empty-ico">{icon || <Inbox size={26} />}</div>
-      <div>{text || L('暂无数据', 'Nothing here yet')}</div>
+      <div>{text || L('暫無數據', 'Nothing here yet')}</div>
       {children}
     </div>
   );
@@ -128,12 +128,12 @@ export function CopyBtn({ text, label }) {
       className="copy-btn"
       onClick={(e) => {
         e.stopPropagation();
-        const done = () => { setOk(true); toast(L('已复制', 'Copied')); setTimeout(() => setOk(false), 1500); };
+        const done = () => { setOk(true); toast(L('已複製', 'Copied')); setTimeout(() => setOk(false), 1500); };
         try {
           navigator.clipboard.writeText(text).then(done, () => { selectText(e.currentTarget.parentElement); done(); });
         } catch (err) { done(); }
       }}
-      aria-label={L('复制', 'Copy')}
+      aria-label={L('複製', 'Copy')}
     >
       {ok ? <Check size={14} /> : <Copy size={14} />}{label}
     </button>
@@ -249,7 +249,7 @@ export function CoinSelect({ value, options, onChange, balances, label, compact:
       </button>
       {open && (
         <div className="csel-pop">
-          <div className="search"><Search size={15} /><input autoFocus placeholder={L('搜索币种', 'Search')} value={q} onChange={(e) => setQ(e.target.value)} /></div>
+          <div className="search"><Search size={15} /><input autoFocus placeholder={L('搜尋幣種', 'Search')} value={q} onChange={(e) => setQ(e.target.value)} /></div>
           <div className="csel-list">
             {list.map((s) => (
               <button key={s} className={cx('csel-item', s === value && 'on')} onClick={() => { onChange(s); setOpen(false); setQ(''); }}>

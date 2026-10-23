@@ -22,7 +22,7 @@ function fresh() {
     v: 1,
     epoch: Date.now(),
     clockOffset: 0,
-    lang: 'zh',
+    lang: 'ja',
     theme: null,
     wallet: { connected: false, address: '', provider: '', chain: 'ethereum', onchain: { ...ONCHAIN_START } },
     spot: {},
@@ -212,9 +212,9 @@ export function quickFund() {
 // Deposits & withdrawals
 // ----------------------------------------------------------------------------
 export function depositFromWallet(sym, net, amount) {
-  if (!state.wallet.connected) return { err: L('请先连接钱包', 'Connect your wallet first') };
-  if (!(amount > 0)) return { err: L('请输入金额', 'Enter an amount') };
-  if ((state.wallet.onchain[sym] || 0) < amount) return { err: L('钱包余额不足', 'Insufficient wallet balance') };
+  if (!state.wallet.connected) return { err: L('請先連接錢包', 'Connect your wallet first') };
+  if (!(amount > 0)) return { err: L('請輸入金額', 'Enter an amount') };
+  if ((state.wallet.onchain[sym] || 0) < amount) return { err: L('錢包餘額不足', 'Insufficient wallet balance') };
   const id = uid('r');
   set((s) => {
     add(s.wallet.onchain, sym, -amount);
@@ -234,9 +234,9 @@ export function simulateIncoming(sym, net, amount) {
 
 export function withdraw(sym, net, address, amount) {
   const fee = netFee(net, sym);
-  if (!address || address.length < 20) return { err: L('请输入有效的提币地址', 'Enter a valid address') };
-  if (!(amount > fee)) return { err: L('提币数量需大于手续费', 'Amount must exceed the network fee') };
-  if (bal(sym) < amount) return { err: L('可用余额不足', 'Insufficient available balance') };
+  if (!address || address.length < 20) return { err: L('請輸入有效的提幣地址', 'Enter a valid address') };
+  if (!(amount > fee)) return { err: L('提幣數量需大於手續費', 'Amount must exceed the network fee') };
+  if (bal(sym) < amount) return { err: L('可用餘額不足', 'Insufficient available balance') };
   const id = uid('r');
   set((s) => {
     add(s.spot, sym, -amount);
@@ -247,8 +247,8 @@ export function withdraw(sym, net, address, amount) {
 
 export function transfer(sym, from, to, amount) {
   const src = from === 'spot' ? state.spot : state.futures;
-  if (!(amount > 0)) return { err: L('请输入金额', 'Enter an amount') };
-  if ((src[sym] || 0) < amount) return { err: L('余额不足', 'Insufficient balance') };
+  if (!(amount > 0)) return { err: L('請輸入金額', 'Enter an amount') };
+  if ((src[sym] || 0) < amount) return { err: L('餘額不足', 'Insufficient balance') };
   set((s) => {
     add(from === 'spot' ? s.spot : s.futures, sym, -amount);
     add(to === 'spot' ? s.spot : s.futures, sym, amount);
@@ -258,8 +258,8 @@ export function transfer(sym, from, to, amount) {
 }
 
 export function convert(from, to, amount, rate) {
-  if (!(amount > 0)) return { err: L('请输入金额', 'Enter an amount') };
-  if (bal(from) < amount) return { err: L('余额不足', 'Insufficient balance') };
+  if (!(amount > 0)) return { err: L('請輸入金額', 'Enter an amount') };
+  if (bal(from) < amount) return { err: L('餘額不足', 'Insufficient balance') };
   const out = amount * rate;
   set((s) => {
     add(s.spot, from, -amount);
@@ -282,15 +282,15 @@ export function tier() {
 export const spotFee = () => SPOT_FEE * (1 - tier().fee);
 
 export function placeSpot({ base, quote, side, type, price: px, amount }) {
-  if (!state.wallet.connected) return { err: L('请先连接钱包', 'Connect your wallet first') };
-  if (!(amount > 0)) return { err: L('请输入数量', 'Enter an amount') };
+  if (!state.wallet.connected) return { err: L('請先連接錢包', 'Connect your wallet first') };
+  if (!(amount > 0)) return { err: L('請輸入數量', 'Enter an amount') };
   const mkt = pairPrice(base, quote);
   const fee = spotFee();
   if (type === 'market') {
     const fillPx = mkt * (side === 'buy' ? 1.0004 : 0.9996);
     const cost = fillPx * amount;
-    if (side === 'buy' && bal(quote) < cost) return { err: L(`${quote} 余额不足`, `Insufficient ${quote}`) };
-    if (side === 'sell' && bal(base) < amount) return { err: L(`${base} 余额不足`, `Insufficient ${base}`) };
+    if (side === 'buy' && bal(quote) < cost) return { err: L(`${quote} 餘額不足`, `Insufficient ${quote}`) };
+    if (side === 'sell' && bal(base) < amount) return { err: L(`${base} 餘額不足`, `Insufficient ${base}`) };
     const id = uid('o');
     set((s) => {
       if (side === 'buy') { add(s.spot, quote, -cost); add(s.spot, base, amount * (1 - fee)); }
@@ -301,10 +301,10 @@ export function placeSpot({ base, quote, side, type, price: px, amount }) {
     });
     return { ok: true, filled: true, price: fillPx };
   }
-  if (!(px > 0)) return { err: L('请输入价格', 'Enter a price') };
+  if (!(px > 0)) return { err: L('請輸入價格', 'Enter a price') };
   const lock = side === 'buy' ? px * amount : amount;
   const lockSym = side === 'buy' ? quote : base;
-  if (bal(lockSym) < lock) return { err: L(`${lockSym} 余额不足`, `Insufficient ${lockSym}`) };
+  if (bal(lockSym) < lock) return { err: L(`${lockSym} 餘額不足`, `Insufficient ${lockSym}`) };
   const id = uid('o');
   set((s) => {
     add(s.spot, lockSym, -lock);
@@ -347,7 +347,7 @@ function matchSpot(s, events) {
     o.filled = o.amount;
     o.avg = o.price;
     s.fills.unshift({ id: uid('f'), oid: o.id, base: o.base, quote: o.quote, side: o.side, price: o.price, amount: o.amount, fee: o.side === 'buy' ? o.amount * fee : o.price * o.amount * fee, feeSym: o.side === 'buy' ? o.base : o.quote, ts: now(), role: 'maker' });
-    events.push([L('限价单已成交', 'Limit order filled'), `${o.side === 'buy' ? L('买入', 'Buy') : L('卖出', 'Sell')} ${o.amount} ${o.base} @ ${o.price}`]);
+    events.push([L('限價單已成交', 'Limit order filled'), `${o.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')} ${o.amount} ${o.base} @ ${o.price}`]);
   }
 }
 
@@ -401,15 +401,15 @@ function openPosition(s, { sym, side, size, px, lev, mode, tp, sl, fee }) {
 }
 
 export function placeFutures({ sym, side, type, price: px, size, lev, mode, tp, sl }) {
-  if (!state.wallet.connected) return { err: L('请先连接钱包', 'Connect your wallet first') };
-  if (!(size > 0)) return { err: L('请输入数量', 'Enter a size') };
+  if (!state.wallet.connected) return { err: L('請先連接錢包', 'Connect your wallet first') };
+  if (!(size > 0)) return { err: L('請輸入數量', 'Enter a size') };
   const mark = price(sym);
   const fillPx = type === 'market' ? mark * (side === 'long' ? 1.0003 : 0.9997) : px;
-  if (!(fillPx > 0)) return { err: L('请输入价格', 'Enter a price') };
+  if (!(fillPx > 0)) return { err: L('請輸入價格', 'Enter a price') };
   const opp = state.positions.find((p) => p.sym === sym && p.side !== side);
   const netOpen = Math.max(0, size - (opp ? opp.size : 0));
   const need = (netOpen * fillPx) / lev + size * fillPx * FUT_TAKER;
-  if (futBal() < need) return { err: L('合约账户保证金不足，请先划转', 'Not enough margin. Transfer funds to futures first.') };
+  if (futBal() < need) return { err: L('合約帳戶保證金不足，請先劃轉', 'Not enough margin. Transfer funds to futures first.') };
   if (type === 'market') {
     set((s) => openPosition(s, { sym, side, size, px: fillPx, lev, mode, tp, sl, fee: FUT_TAKER }));
     return { ok: true, filled: true, price: fillPx };
@@ -457,7 +457,7 @@ export function setTpSl(id, tp, sl) {
   });
 }
 export function addMargin(id, amt) {
-  if (!(amt > 0) || futBal() < amt) return { err: L('可用保证金不足', 'Not enough available margin') };
+  if (!(amt > 0) || futBal() < amt) return { err: L('可用保證金不足', 'Not enough available margin') };
   set((s) => {
     const p = s.positions.find((x) => x.id === id);
     if (!p) return;
@@ -476,7 +476,7 @@ function matchFutures(s, events) {
     add(s.futures, 'USDT', o.lock);
     s.futOrders = s.futOrders.filter((x) => x.id !== o.id);
     openPosition(s, { sym: o.sym, side: o.side, size: o.size, px: o.price, lev: o.lev, mode: o.mode, tp: o.tp, sl: o.sl, fee: FUT_MAKER });
-    events.push([L('合约限价单已成交', 'Futures limit order filled'), `${o.sym} ${o.side === 'long' ? L('开多', 'Long') : L('开空', 'Short')} ${o.size}`]);
+    events.push([L('合約限價單已成交', 'Futures limit order filled'), `${o.sym} ${o.side === 'long' ? L('開多', 'Long') : L('開空', 'Short')} ${o.size}`]);
   }
   // TP / SL / liquidation
   for (const p of [...s.positions]) {
@@ -489,7 +489,7 @@ function matchFutures(s, events) {
       add(s.futures, 'USDT', -Math.min(loss, s.futures.USDT || 0));
       s.futHistory.unshift({ id: uid('h'), sym: p.sym, side: p.side, size: p.size, entry: p.entry, exit: mark, pnl: -p.margin - loss, lev: p.lev, ts: now(), kind: 'liq' });
       s.positions = s.positions.filter((x) => x !== p);
-      events.push([L('仓位已被强平', 'Position liquidated'), `${p.sym} ${p.lev}x`, 'err']);
+      events.push([L('倉位已被強平', 'Position liquidated'), `${p.sym} ${p.lev}x`, 'err']);
       continue;
     }
     const tpHit = p.tp && (p.side === 'long' ? mark >= p.tp : mark <= p.tp);
@@ -499,7 +499,7 @@ function matchFutures(s, events) {
       add(s.futures, 'USDT', p.margin + realized - p.size * mark * FUT_TAKER);
       s.futHistory.unshift({ id: uid('h'), sym: p.sym, side: p.side, size: p.size, entry: p.entry, exit: mark, pnl: realized, lev: p.lev, ts: now(), kind: tpHit ? 'tp' : 'sl' });
       s.positions = s.positions.filter((x) => x !== p);
-      events.push([tpHit ? L('止盈触发', 'Take-profit hit') : L('止损触发', 'Stop-loss hit'), `${p.sym} PnL ${realized.toFixed(2)} USDT`, tpHit ? 'ok' : 'warn']);
+      events.push([tpHit ? L('止盈觸發', 'Take-profit hit') : L('止損觸發', 'Stop-loss hit'), `${p.sym} PnL ${realized.toFixed(2)} USDT`, tpHit ? 'ok' : 'warn']);
     }
   }
 }
@@ -534,11 +534,11 @@ export const maxAlloc = (p) => p.baseMax * tier().mult;
 
 export function subscribeSale(pid, amount) {
   const p = PROJECT[pid];
-  if (!state.wallet.connected) return { err: L('请先连接钱包', 'Connect your wallet first') };
-  if (phase(p) !== 'live') return { err: L('当前不在认购期', 'The sale is not open') };
-  if (!(amount >= p.minBuy)) return { err: L(`最低认购 ${p.minBuy} USDC`, `Minimum is ${p.minBuy} USDC`) };
-  if (userSubTotal(pid) + amount > maxAlloc(p) + 1e-9) return { err: L('超过你的等级可认购上限', 'Exceeds your tier cap') };
-  if (bal('USDC') < amount) return { err: L('USDC 余额不足，请先充值或闪兑', 'Not enough USDC. Deposit or convert first.') };
+  if (!state.wallet.connected) return { err: L('請先連接錢包', 'Connect your wallet first') };
+  if (phase(p) !== 'live') return { err: L('當前不在認購期', 'The sale is not open') };
+  if (!(amount >= p.minBuy)) return { err: L(`最低認購 ${p.minBuy} USDC`, `Minimum is ${p.minBuy} USDC`) };
+  if (userSubTotal(pid) + amount > maxAlloc(p) + 1e-9) return { err: L('超過你的等級可認購上限', 'Exceeds your tier cap') };
+  if (bal('USDC') < amount) return { err: L('USDC 餘額不足，請先充值或閃兌', 'Not enough USDC. Deposit or convert first.') };
   set((s) => {
     add(s.spot, 'USDC', -amount);
     s.subs.push({ id: uid('s'), pid, amount, ts: now(), status: 'pending' });
@@ -591,7 +591,7 @@ function settleSales(s, events) {
     sub.claimed = tokens * p.vesting.tge;
     add(s.spot, 'USDC', refund);
     add(s.spot, p.sym, sub.claimed);
-    events.push([L(`${p.sym} 认购已结算`, `${p.sym} sale settled`), L(`获配 ${tokens.toFixed(2)} ${p.sym}，退还 ${refund.toFixed(2)} USDC`, `Allocated ${tokens.toFixed(2)} ${p.sym}, refunded ${refund.toFixed(2)} USDC`)]);
+    events.push([L(`${p.sym} 認購已結算`, `${p.sym} sale settled`), L(`獲配 ${tokens.toFixed(2)} ${p.sym}，退還 ${refund.toFixed(2)} USDC`, `Allocated ${tokens.toFixed(2)} ${p.sym}, refunded ${refund.toFixed(2)} USDC`)]);
   }
 }
 
@@ -607,9 +607,9 @@ export const matured = (x, t = now()) => x.days > 0 && t >= x.start + x.days * D
 
 export function stake(pid, amount) {
   const prod = STAKE_PRODUCTS.find((x) => x.id === pid);
-  if (!state.wallet.connected) return { err: L('请先连接钱包', 'Connect your wallet first') };
+  if (!state.wallet.connected) return { err: L('請先連接錢包', 'Connect your wallet first') };
   if (!(amount >= prod.min)) return { err: L(`最低 ${prod.min} ${prod.sym}`, `Minimum ${prod.min} ${prod.sym}`) };
-  if (bal(prod.sym) < amount) return { err: L(`${prod.sym} 余额不足`, `Insufficient ${prod.sym}`) };
+  if (bal(prod.sym) < amount) return { err: L(`${prod.sym} 餘額不足`, `Insufficient ${prod.sym}`) };
   set((s) => {
     add(s.spot, prod.sym, -amount);
     const t = now();
@@ -702,28 +702,28 @@ function lendAmountFrom(s, kind, sym) {
 }
 
 export function lendAction(action, sym, amount) {
-  if (!state.wallet.connected) return { err: L('请先连接钱包', 'Connect your wallet first') };
-  if (!(amount > 0)) return { err: L('请输入金额', 'Enter an amount') };
+  if (!state.wallet.connected) return { err: L('請先連接錢包', 'Connect your wallet first') };
+  if (!(amount > 0)) return { err: L('請輸入金額', 'Enter an amount') };
   const mk = LMKT[sym];
   const pxv = price(sym);
   const sum = lendSummary();
-  if (action === 'supply' && bal(sym) < amount) return { err: L('钱包可用余额不足', 'Insufficient balance') };
+  if (action === 'supply' && bal(sym) < amount) return { err: L('錢包可用餘額不足', 'Insufficient balance') };
   if (action === 'withdraw') {
     const have = lendAmount('supply', sym);
-    if (amount > have + 1e-9) return { err: L('超过已存入数量', 'More than supplied') };
+    if (amount > have + 1e-9) return { err: L('超過已存入數量', 'More than supplied') };
     if (state.lend.coll[sym] && sum.borrowed > 0) {
       const newLiq = sum.liqLimit - amount * pxv * mk.lt;
-      if (newLiq / sum.borrowed < 1.05) return { err: L('取出后健康度过低', 'Health factor would be too low') };
+      if (newLiq / sum.borrowed < 1.05) return { err: L('取出後健康度過低', 'Health factor would be too low') };
     }
   }
   if (action === 'borrow') {
-    if (amount * pxv > sum.avail + 1e-6) return { err: L('超过可借额度', 'Exceeds borrow limit') };
-    if (amount > poolStats(sym).avail) return { err: L('资金池流动性不足', 'Not enough pool liquidity') };
+    if (amount * pxv > sum.avail + 1e-6) return { err: L('超過可借額度', 'Exceeds borrow limit') };
+    if (amount > poolStats(sym).avail) return { err: L('資金池流動性不足', 'Not enough pool liquidity') };
   }
   if (action === 'repay') {
     const owe = lendAmount('borrow', sym);
     if (amount > owe + 1e-9) amount = owe;
-    if (bal(sym) < amount) return { err: L('余额不足以还款', 'Insufficient balance to repay') };
+    if (bal(sym) < amount) return { err: L('餘額不足以還款', 'Insufficient balance to repay') };
   }
   set((s) => {
     const kind = action === 'supply' || action === 'withdraw' ? 'supply' : 'borrow';
@@ -742,7 +742,7 @@ export function toggleCollateral(sym) {
   const on = state.lend.coll[sym];
   if (on && sum.borrowed > 0) {
     const sp = lendAmount('supply', sym) * price(sym);
-    if ((sum.liqLimit - sp * LMKT[sym].lt) / sum.borrowed < 1.05) return { err: L('关闭后健康度过低', 'Health factor would be too low') };
+    if ((sum.liqLimit - sp * LMKT[sym].lt) / sum.borrowed < 1.05) return { err: L('關閉後健康度過低', 'Health factor would be too low') };
   }
   set((s) => { s.lend.coll[sym] = !on; });
   return { ok: true };
@@ -775,15 +775,15 @@ function liquidateLend(s, events) {
     }
     if (toRepayUsd <= 0) break;
   }
-  events.push([L('借贷仓位被部分清算', 'Loan partially liquidated'), L('健康度低于 1，已清算 50% 债务', 'Health factor fell below 1; 50% of debt was liquidated'), 'err']);
+  events.push([L('借貸倉位被部分清算', 'Loan partially liquidated'), L('健康度低於 1，已清算 50% 債務', 'Health factor fell below 1; 50% of debt was liquidated'), 'err']);
 }
 
 // ----------------------------------------------------------------------------
 // OTC
 // ----------------------------------------------------------------------------
 export function createOtc({ side, crypto, fiat, merchant, fiatAmt, cryptoAmt, method }) {
-  if (!state.wallet.connected) return { err: L('请先连接钱包', 'Connect your wallet first') };
-  if (side === 'sell' && bal(crypto) < cryptoAmt) return { err: L(`${crypto} 余额不足`, `Insufficient ${crypto}`) };
+  if (!state.wallet.connected) return { err: L('請先連接錢包', 'Connect your wallet first') };
+  if (side === 'sell' && bal(crypto) < cryptoAmt) return { err: L(`${crypto} 餘額不足`, `Insufficient ${crypto}`) };
   const id = uid('otc');
   const ref = String(Math.floor(100000 + Math.random() * 899999));
   set((s) => {
@@ -791,7 +791,7 @@ export function createOtc({ side, crypto, fiat, merchant, fiatAmt, cryptoAmt, me
     s.otc.unshift({
       id, ref, side, crypto, fiat, mid: merchant.id, mname: merchant.name, price: merchant.price, fiatAmt, cryptoAmt, method,
       status: side === 'buy' ? 'unpaid' : 'waiting', ts: now(), created: Date.now(), payBy: Date.now() + 15 * 60e3,
-      chat: [{ from: 'm', text: side === 'buy' ? L('你好，请按订单金额付款，备注填写参考号，付款后点击“我已付款”。', 'Hi! Please pay the exact amount with the reference code, then tap "I have paid".') : L('你好，我马上付款，请稍等。', 'Hi, paying now. One moment.'), ts: Date.now() }],
+      chat: [{ from: 'm', text: side === 'buy' ? L('你好，請按訂單金額付款，備註填寫參考號，付款後點擊“我已付款”。', 'Hi! Please pay the exact amount with the reference code, then tap "I have paid".') : L('你好，我馬上付款，請稍等。', 'Hi, paying now. One moment.'), ts: Date.now() }],
     });
   });
   return { ok: true, id };
@@ -799,7 +799,7 @@ export function createOtc({ side, crypto, fiat, merchant, fiatAmt, cryptoAmt, me
 export function otcMarkPaid(id) {
   set((s) => {
     const o = s.otc.find((x) => x.id === id);
-    if (o && o.status === 'unpaid') { o.status = 'paid'; o.paidAt = Date.now(); o.chat.push({ from: 'sys', text: L('买家已标记付款，等待商家放币', 'Marked as paid. Waiting for the merchant to release.'), ts: Date.now() }); }
+    if (o && o.status === 'unpaid') { o.status = 'paid'; o.paidAt = Date.now(); o.chat.push({ from: 'sys', text: L('買家已標記付款，等待商家放幣', 'Marked as paid. Waiting for the merchant to release.'), ts: Date.now() }); }
   });
 }
 export function otcCancel(id) {
@@ -828,7 +828,7 @@ export function otcChat(id, text) {
   setTimeout(() => {
     set((s) => {
       const o = s.otc.find((x) => x.id === id);
-      if (o) o.chat.push({ from: 'm', text: L('收到，正在处理。', 'Got it, on it.'), ts: Date.now() });
+      if (o) o.chat.push({ from: 'm', text: L('收到，正在處理。', 'Got it, on it.'), ts: Date.now() });
     });
   }, 1400);
 }
@@ -847,14 +847,14 @@ function processOtc(s, events) {
       o.status = 'completed';
       o.doneAt = t;
       add(s.spot, o.crypto, o.cryptoAmt);
-      o.chat.push({ from: 'sys', text: L('商家已放币，资产已到账现货账户', 'Released. Funds are in your spot account.'), ts: t });
+      o.chat.push({ from: 'sys', text: L('商家已放幣，資產已到帳現貨帳戶', 'Released. Funds are in your spot account.'), ts: t });
       s.records.unshift({ id: uid('r'), kind: 'otc', side: 'buy', sym: o.crypto, amount: o.cryptoAmt, fiat: o.fiat, fiatAmt: o.fiatAmt, status: 'done', ts: now() });
-      events.push([L('OTC 订单完成', 'OTC order completed'), `+${o.cryptoAmt.toFixed(4)} ${o.crypto}`]);
+      events.push([L('OTC 訂單完成', 'OTC order completed'), `+${o.cryptoAmt.toFixed(4)} ${o.crypto}`]);
     }
     if (o.status === 'waiting' && t - o.created > 5000) {
       o.status = 'buyerPaid';
-      o.chat.push({ from: 'm', text: L('已付款，请查收并放币。', 'Paid. Please check and release.'), ts: t });
-      events.push([L('买家已付款', 'Buyer has paid'), L('请确认收款后放币', 'Confirm receipt, then release'), 'warn']);
+      o.chat.push({ from: 'm', text: L('已付款，請查收並放幣。', 'Paid. Please check and release.'), ts: t });
+      events.push([L('買家已付款', 'Buyer has paid'), L('請確認收款後放幣', 'Confirm receipt, then release'), 'warn']);
     }
     if (o.status === 'unpaid' && t > o.payBy) {
       o.status = 'cancelled';
@@ -874,7 +874,7 @@ function processRecords(s, events) {
       if (conf >= r.need) {
         r.status = 'done';
         add(s.spot, r.sym, r.amount);
-        events.push([L('充值到账', 'Deposit credited'), `+${r.amount} ${r.sym} · ${NETWORKS[r.net].short}`]);
+        events.push([L('充值到帳', 'Deposit credited'), `+${r.amount} ${r.sym} · ${NETWORKS[r.net].short}`]);
       }
     }
     if (r.kind === 'withdraw' && r.status === 'processing' && t - r.started > 2500) {
@@ -886,7 +886,7 @@ function processRecords(s, events) {
       if (r.conf >= r.need) {
         r.status = 'done';
         if (r.toSelf) add(s.wallet.onchain, r.sym, r.amount - r.fee);
-        events.push([L('提币完成', 'Withdrawal complete'), `${(r.amount - r.fee).toFixed(4)} ${r.sym} → ${r.address.slice(0, 8)}…`]);
+        events.push([L('提幣完成', 'Withdrawal complete'), `${(r.amount - r.fee).toFixed(4)} ${r.sym} → ${r.address.slice(0, 8)}…`]);
       }
     }
   }
