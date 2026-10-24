@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
-  Rocket, CandlestickChart, Activity, Layers, Landmark, BadgeDollarSign, Wallet, Globe, Moon, Sun, Menu, X,
+  Rocket, CandlestickChart, Activity, ArrowLeftRight, Layers, Landmark, BadgeDollarSign, Wallet, Globe, Moon, Sun, Menu, X,
   FlaskConical, FastForward, RotateCcw, Zap, CircleCheck, AlertTriangle, CircleAlert, Droplets, TrendingDown, TrendingUp, ChevronDown,
 } from 'lucide-react';
 import { BRAND } from '../core/data.js';
@@ -8,12 +8,13 @@ import { L, getLang, LANGS } from '../core/lang.js';
 import { useApp, useUI, go, openModal, setLangPref, setTheme, fastForward, resetAll, quickFund, faucet, now, toast } from '../core/store.js';
 import { useMarket, netStats, shockPrice } from '../core/market.js';
 import { shortAddr, dateTime, compact } from '../core/fmt.js';
-import { BrandMark, cx, Btn, Portal } from '../ui/kit.jsx';
+import { BrandMark, cx, Btn } from '../ui/kit.jsx';
 
 export const NAV = [
   ['launchpad', Rocket, ['認購', 'Launchpad']],
   ['spot', CandlestickChart, ['現貨', 'Spot']],
   ['futures', Activity, ['合約', 'Futures']],
+  ['swap', ArrowLeftRight, ['兌換', 'Swap']],
   ['staking', Layers, ['質押', 'Staking']],
   ['lending', Landmark, ['借貸', 'Lending']],
   ['otc', BadgeDollarSign, ['OTC 買幣', 'Buy crypto']],
@@ -22,12 +23,24 @@ export const NAV = [
 export function Header() {
   const s = useApp();
   const { route } = useUI();
-  const [drawer, setDrawer] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
+  // one header menu open at a time: 'lang' | 'nav' | null
+  const [menu, setMenu] = useState(null);
+  const hdrRef = useRef(null);
+  const langOpen = menu === 'lang';
+  const toggle = (m) => setMenu((cur) => (cur === m ? null : m));
+  useEffect(() => {
+    if (!menu) return;
+    const out = (e) => hdrRef.current && !hdrRef.current.contains(e.target) && setMenu(null);
+    const esc = (e) => e.key === 'Escape' && setMenu(null);
+    document.addEventListener('pointerdown', out);
+    window.addEventListener('keydown', esc);
+    return () => { document.removeEventListener('pointerdown', out); window.removeEventListener('keydown', esc); };
+  }, [menu]);
+  useEffect(() => setMenu(null), [route.page, route.arg]);
   const page = route.page === 'project' ? 'launchpad' : route.page;
   const dark = document.documentElement.dataset.resolved === 'dark';
   return (
-    <header className="hdr">
+    <header className="hdr" ref={hdrRef}>
       <div className="hdr-in">
         <button className="brand" onClick={() => go('launchpad')} aria-label={BRAND}>
           <BrandMark size={30} />
@@ -42,11 +55,11 @@ export function Header() {
         </nav>
         <div className="hdr-right">
           <div className="lang">
-            <button className="chip-btn" onClick={() => setLangOpen(!langOpen)} aria-haspopup="listbox" aria-expanded={langOpen}><Globe size={15} />{LANGS.find((x) => x.code === getLang())?.short}<ChevronDown size={14} /></button>
+            <button className={cx('chip-btn', langOpen && 'on')} onClick={() => toggle('lang')} aria-haspopup="listbox" aria-expanded={langOpen}><Globe size={15} />{LANGS.find((x) => x.code === getLang())?.short}<ChevronDown size={14} /></button>
             {langOpen && (
-              <div className="lang-pop" role="listbox" onMouseLeave={() => setLangOpen(false)}>
+              <div className="lang-pop" role="listbox">
                 {LANGS.map((x) => (
-                  <button key={x.code} role="option" aria-selected={getLang() === x.code} className={cx(getLang() === x.code && 'on')} onClick={() => { setLangPref(x.code); setLangOpen(false); }}>
+                  <button key={x.code} role="option" aria-selected={getLang() === x.code} className={cx(getLang() === x.code && 'on')} onClick={() => { setLangPref(x.code); setMenu(null); }}>
                     {x.label}<span className="lang-code">{x.short}</span>
                   </button>
                 ))}
@@ -65,24 +78,18 @@ export function Header() {
           ) : (
             <Btn size="sm" onClick={() => openModal('connect')}><Wallet size={15} />{L('連接錢包', 'Connect')}</Btn>
           )}
-          <button className="icon-btn burger" onClick={() => setDrawer(true)} aria-label="Menu"><Menu size={18} /></button>
+          <button className={cx('icon-btn burger', menu === 'nav' && 'on')} onClick={() => toggle('nav')} aria-label={L('選單', 'Menu')} aria-expanded={menu === 'nav'}>{menu === 'nav' ? <X size={18} /> : <Menu size={18} />}</button>
         </div>
       </div>
-      {drawer && <Portal>
-        <div className="drawer-wrap" onClick={() => setDrawer(false)}>
-          <div className="drawer" onClick={(e) => e.stopPropagation()}>
-            <div className="drawer-head">
-              <span className="brand-name">Nova<b>rix</b></span>
-              <button className="icon-btn" onClick={() => setDrawer(false)}><X size={18} /></button>
-            </div>
-            {[...NAV, ['wallet', Wallet, ['錢包', 'Wallet']]].map(([k, Icon, [zh, en]]) => (
-              <button key={k} className={cx('drawer-item', page === k && 'on')} onClick={() => { go(k); setDrawer(false); }}>
-                <Icon size={18} />{L(zh, en)}
-              </button>
-            ))}
-          </div>
+      {menu === 'nav' && (
+        <div className="nav-pop" role="menu">
+          {[...NAV, ['wallet', Wallet, ['錢包', 'Wallet']]].map(([k, Icon, [zh, en]]) => (
+            <button key={k} role="menuitem" className={cx('nav-pop-item', page === k && 'on')} onClick={() => { go(k); setMenu(null); }}>
+              <Icon size={17} />{L(zh, en)}
+            </button>
+          ))}
         </div>
-      </Portal>}
+      )}
     </header>
   );
 }

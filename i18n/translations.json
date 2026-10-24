@@ -195,6 +195,13 @@
 "Añadir margen",
 "Magdagdag ng margin"
 ],
+"Added to your spot account": [
+"현물 계정에 입금되었습니다",
+"現物口座に反映されました",
+"Ditambah ke akaun spot anda",
+"Añadido a tu cuenta spot",
+"Naidagdag sa spot account mo"
+],
 "Address": [
 "주소",
 "アドレス",
@@ -215,6 +222,13 @@
 "Semua",
 "Todo",
 "Lahat"
+],
+"All activity": [
+"전체 내역",
+"すべての履歴",
+"Semua aktiviti",
+"Toda la actividad",
+"Lahat ng aktibidad"
 ],
 "All orders cancelled": [
 "모든 주문이 취소되었습니다",
@@ -404,6 +418,13 @@
 "Boleh dipinjam",
 "Disponible para pedir",
 "Puwedeng hiramin"
+],
+"Available to swap": [
+"스왑 가능 자산",
+"スワップ可能な資産",
+"Boleh ditukar",
+"Disponible para intercambiar",
+"Puwedeng i-swap"
 ],
 "Avg. return (now / sale)": [
 "평균 수익률 (현재가/세일가)",
@@ -881,6 +902,13 @@
 "Confirmar suscripción",
 "Kumpirmahin ang subscription"
 ],
+"Confirm swap": [
+"스왑 확인",
+"スワップを確認",
+"Sahkan tukaran",
+"Confirmar intercambio",
+"Kumpirmahin ang swap"
+],
 "Confirm the money is in your account. Releasing cannot be undone.": [
 "계좌에 입금되었는지 확인하세요. 코인 해제는 되돌릴 수 없습니다.",
 "入金済みであることを確認してください。リリースは取り消せません。",
@@ -1069,6 +1097,13 @@
 "Mata wang",
 "Moneda",
 "Pera"
+],
+"Custom": [
+"직접 입력",
+"カスタム",
+"Tersuai",
+"Personalizado",
+"Custom"
 ],
 "DBS Bank · ending 8812": [
 "DBS Bank · 끝자리 8812",
@@ -1714,6 +1749,13 @@
 "Un apalancamiento alto eleva mucho el riesgo de liquidación.",
 "Malaki ang itinataas ng mataas na leverage sa liquidation risk."
 ],
+"High slippage: the fill can differ noticeably from the quote": [
+"슬리피지가 높습니다. 체결가가 견적과 크게 다를 수 있습니다",
+"スリッページが高めです。約定価格が見積から大きくずれる可能性があります",
+"Gelinciran tinggi: harga isian mungkin jauh berbeza daripada sebut harga",
+"Deslizamiento alto: la ejecución puede diferir bastante de la cotización",
+"Mataas ang slippage: puwedeng malayo ang fill sa quote"
+],
 "Highlights": [
 "핵심 포인트",
 "ハイライト",
@@ -1797,6 +1839,13 @@
 "Identiti dan pembayaran untuk ejen AI on-chain",
 "Identidad y pagos para agentes de IA on-chain",
 "Identity at bayad para sa mga on-chain AI agent"
+],
+"If the price moves more than this before execution, the swap is cancelled and nothing is deducted.": [
+"체결 전 가격이 이보다 더 움직이면 스왑은 취소되며 자산은 차감되지 않습니다.",
+"約定前に価格がこれ以上動いた場合、スワップは取り消され、資産は差し引かれません。",
+"Jika harga bergerak lebih daripada ini sebelum pelaksanaan, tukaran dibatalkan dan tiada apa-apa ditolak.",
+"Si el precio se mueve más de esto antes de ejecutarse, el intercambio se cancela y no se descuenta nada.",
+"Kapag gumalaw ang presyo nang higit dito bago ma-execute, makakansela ang swap at walang mababawas."
 ],
 "If total commitments exceed the hard cap, each user gets commitment ÷ oversubscription ratio; the rest is refunded to spot at settlement.": [
 "총 청약액이 하드캡을 넘으면 각 사용자는 청약액 ÷ 초과 청약 배수만큼 배정받고, 나머지는 정산 시 현물 계정으로 환불됩니다.",
@@ -2246,6 +2295,20 @@
 "Tamaño máx.",
 "Max size"
 ],
+"Max slippage": [
+"최대 슬리피지",
+"最大スリッページ",
+"Gelinciran maks",
+"Deslizamiento máximo",
+"Max slippage"
+],
+"Menu": [
+"메뉴",
+"メニュー",
+"Menu",
+"Menú",
+"Menu"
+],
 "Merchant": [
 "판매자",
 "業者",
@@ -2308,6 +2371,13 @@
 "Minimum ialah {0} USDC",
 "El mínimo es {0} USDC",
 "Ang minimum ay {0} USDC"
+],
+"Minimum received": [
+"최소 수령량",
+"最低受取額",
+"Minimum diterima",
+"Mínimo recibido",
+"Minimum na matatanggap"
 ],
 "Minimum {0} {1}": [
 "최소 {0} {1}",
@@ -2406,6 +2476,13 @@
 "Bekalan saya",
 "Mis depósitos",
 "Mga supply ko"
+],
+"My swaps": [
+"내 스왑",
+"スワップ履歴",
+"Tukaran saya",
+"Mis intercambios",
+"Mga swap ko"
 ],
 "NVX tier benefits": [
 "NVX 등급 혜택",
@@ -2568,12 +2645,26 @@
 "Aún no hay suscripciones",
 "Wala pang subscription"
 ],
+"No swaps yet": [
+"아직 스왑 내역이 없습니다",
+"スワップ履歴はまだありません",
+"Belum ada tukaran",
+"Aún no hay intercambios",
+"Wala pang swap"
+],
 "No trades yet": [
 "아직 체결 내역이 없습니다",
 "約定はまだありません",
 "Tiada dagangan lagi",
 "Aún no hay operaciones",
 "Wala pang trade"
+],
+"No {0} in your spot account.": [
+"현물 계정에 {0}이(가) 없습니다.",
+"現物口座に {0} がありません。",
+"Tiada {0} dalam akaun spot anda.",
+"No tienes {0} en tu cuenta spot.",
+"Walang {0} sa spot account mo."
 ],
 "Node rewards": [
 "노드 보상",
@@ -2967,6 +3058,13 @@
 "Uso del pool",
 "Pool usage"
 ],
+"Popular pairs": [
+"인기 페어",
+"人気のペア",
+"Pasangan popular",
+"Pares populares",
+"Mga sikat na pair"
+],
 "Position closed": [
 "포지션 청산됨",
 "ポジションを決済しました",
@@ -3001,6 +3099,20 @@
 "Harga",
 "Precio",
 "Presyo"
+],
+"Price impact": [
+"가격 영향",
+"価格インパクト",
+"Kesan harga",
+"Impacto en el precio",
+"Price impact"
+],
+"Price impact too high": [
+"가격 영향이 너무 큽니다",
+"価格インパクトが大きすぎます",
+"Kesan harga terlalu tinggi",
+"Impacto en el precio demasiado alto",
+"Masyadong mataas ang price impact"
 ],
 "Price now": [
 "현재 가격",
@@ -3134,6 +3246,20 @@
 "Dana pantas",
 "Fondos rápidos",
 "Quick fund"
+],
+"Quote refreshes in {0}s": [
+"{0}초 후 견적 갱신",
+"{0} 秒後に見積を更新",
+"Sebut harga dikemas kini dalam {0}s",
+"La cotización se actualiza en {0} s",
+"Mare-refresh ang quote sa {0}s"
+],
+"Quote updated to the latest price": [
+"최신 가격으로 견적이 갱신되었습니다",
+"最新の価格で見積を更新しました",
+"Sebut harga dikemas kini ke harga terkini",
+"Cotización actualizada al último precio",
+"Na-update ang quote sa pinakabagong presyo"
 ],
 "Quotes are demo figures; the provider checkout shows the final price.": [
 "견적은 데모 수치이며, 최종 가격은 제공업체 결제 페이지에 표시됩니다.",
@@ -3373,6 +3499,13 @@
 "Rol",
 "Papel"
 ],
+"Route": [
+"경로",
+"ルート",
+"Laluan",
+"Ruta",
+"Ruta"
+],
 "Rules": [
 "규칙",
 "ルール",
@@ -3527,6 +3660,13 @@
 "Claves de sesión para una experiencia tipo Web2",
 "Session key para sa UX na parang Web2"
 ],
+"Settings": [
+"설정",
+"設定",
+"Tetapan",
+"Ajustes",
+"Settings"
+],
 "Settled": [
 "정산됨",
 "精算済み",
@@ -3617,6 +3757,13 @@
 "Saiz",
 "Tamaño",
 "Size"
+],
+"Slippage": [
+"슬리피지",
+"スリッページ",
+"Gelinciran",
+"Deslizamiento",
+"Slippage"
 ],
 "Spot": [
 "현물",
@@ -3786,6 +3933,34 @@
 "Intercambiar",
 "Swap"
 ],
+"Swap complete": [
+"스왑 완료",
+"スワップ完了",
+"Tukaran selesai",
+"Intercambio completado",
+"Kumpleto ang swap"
+],
+"Swap straight from your spot balance. We pick the best route and settle instantly.": [
+"현물 잔액으로 바로 스왑하세요. 최적 경로를 자동으로 선택하고 즉시 정산합니다.",
+"現物残高からそのままスワップ。最適なルートを自動で選び、即時に決済します。",
+"Tukar terus daripada baki spot anda. Kami pilih laluan terbaik dan selesaikan serta-merta.",
+"Intercambia directamente desde tu saldo spot. Elegimos la mejor ruta y liquidamos al instante.",
+"Mag-swap direkta mula sa spot balance mo. Pinipili namin ang pinakamagandang ruta at agad itong sine-settle."
+],
+"Swap tokens": [
+"토큰 스왑",
+"トークンをスワップ",
+"Tukar token",
+"Intercambiar tokens",
+"Mag-swap ng token"
+],
+"Swapped": [
+"스왑 완료",
+"スワップしました",
+"Ditukar",
+"Intercambiado",
+"Na-swap"
+],
 "TGE": [
 "TGE",
 "TGE",
@@ -3904,6 +4079,13 @@
 "Peniaga sedang menyemak bayaran, biasanya dalam 1–5 minit…",
 "El comerciante está comprobando el pago, normalmente en 1–5 minutos…",
 "Tinitingnan ng merchant ang bayad, karaniwan sa loob ng 1–5 minuto…"
+],
+"The price moved beyond your slippage. Get a new quote.": [
+"가격이 슬리피지 범위를 넘어 움직였습니다. 견적을 다시 받으세요.",
+"価格がスリッページを超えて動きました。見積を取り直してください。",
+"Harga bergerak melebihi gelinciran anda. Dapatkan sebut harga baharu.",
+"El precio se movió más allá de tu deslizamiento. Pide una nueva cotización.",
+"Lumampas sa slippage mo ang galaw ng presyo. Kumuha ng bagong quote."
 ],
 "The provider is buying your crypto": [
 "제공업체가 암호화폐를 구매하고 있습니다",
@@ -4269,6 +4451,13 @@
 "Ver actividad",
 "Tingnan ang aktibidad"
 ],
+"View assets": [
+"자산 보기",
+"資産を見る",
+"Lihat aset",
+"Ver activos",
+"Tingnan ang assets"
+],
 "View wallet": [
 "지갑 보기",
 "ウォレットを見る",
@@ -4422,6 +4611,13 @@
 "Akaun spot anda kosong.",
 "Tu cuenta spot está vacía.",
 "Walang laman ang spot account mo."
+],
+"Your spot account is empty. Deposit to start swapping.": [
+"현물 계정이 비어 있습니다. 입금 후 스왑할 수 있습니다.",
+"現物口座が空です。入金するとスワップできます。",
+"Akaun spot anda kosong. Deposit untuk mula menukar.",
+"Tu cuenta spot está vacía. Deposita para empezar a intercambiar.",
+"Walang laman ang spot account mo. Mag-deposito para makapag-swap."
 ],
 "Your {0} deposit address": [
 "내 {0} 입금 주소",

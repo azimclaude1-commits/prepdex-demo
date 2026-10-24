@@ -4,7 +4,7 @@ import {
   COIN, ONCHAIN_START, PROJECTS, PROJECT, TIERS, STAKE_PRODUCTS, EARLY_REDEEM_PENALTY,
   LEND_MARKETS, borrowRate, supplyRate, NETWORKS, netFee, PLATFORM_TOKEN,
 } from './data.js';
-import { price, pairPrice, subscribe as subscribeMarket } from './market.js';
+import { price, pairPrice, volume24, subscribe as subscribeMarket } from './market.js';
 import { uid, randHex } from './fmt.js';
 import { L } from './lang.js';
 
@@ -22,7 +22,8 @@ function fresh() {
     v: 1,
     epoch: Date.now(),
     clockOffset: 0,
-    lang: 'ja',
+    lang: 'zht',
+    langChosen: false,
     theme: null,
     wallet: { connected: false, address: '', provider: '', chain: 'ethereum', onchain: { ...ONCHAIN_START } },
     spot: {},
@@ -48,7 +49,8 @@ function load() {
     const raw = localStorage.getItem(KEY);
     if (raw) {
       const s = JSON.parse(raw);
-      if (s && s.v === 1) return { ...fresh(), ...s };
+      // a language the visitor never picked follows the current default
+      if (s && s.v === 1) return { ...fresh(), ...s, ...(s.langChosen ? {} : { lang: fresh().lang }) };
     }
   } catch (e) { /* storage unavailable */ }
   return fresh();
@@ -58,12 +60,20 @@ let state = load();
 const listeners = new Set();
 let saveTimer = null;
 
+function save() {
+  clearTimeout(saveTimer);
+  saveTimer = null;
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* ignore */ }
+}
 function emit() {
   for (const fn of listeners) fn();
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => {
-    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* ignore */ }
-  }, 300);
+  saveTimer = setTimeout(save, 300);
+}
+// write pending changes before the page is closed or reloaded
+if (typeof window !== 'undefined') {
+  window.addEventListener('pagehide', () => saveTimer && save());
+  document.addEventListener('visibilitychange', () => document.visibilityState === 'hidden' && saveTimer && save());
 }
 
 export function getState() { return state; }
@@ -143,7 +153,12 @@ export function toast(msg, kind = 'ok', sub) {
 // ----------------------------------------------------------------------------
 // Preferences
 // ----------------------------------------------------------------------------
-export const setLangPref = (l) => set((s) => { s.lang = l; });
+export function setLangPref(l) {
+  // notifications already on screen are in the old language, so clear them
+  ui = { ...ui, toasts: [] };
+  uiEmit();
+  set((s) => { s.lang = l; s.langChosen = true; });
+}
 export const setTheme = (t) => set((s) => { s.theme = t; });
 export const toggleFav = (sym) => set((s) => {
   s.favs = s.favs.includes(sym) ? s.favs.filter((x) => x !== sym) : [...s.favs, sym];
@@ -267,6 +282,45 @@ export function convert(from, to, amount, rate) {
     s.records.unshift({ id: uid('r'), kind: 'convert', sym: from, to, amount, out, rate, status: 'done', ts: now() });
   });
   return { ok: true, out };
+}
+
+// ----------------------------------------------------------------------------
+// Swap (spot balances, routed through USDT when neither side is a stablecoin)
+// ----------------------------------------------------------------------------
+export const SWAP_FEE = 0.001;
+export const SWAP_TOKENS = ['USDT', 'USDC', 'BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'TON', 'ADA', 'AVAX', 'LINK', 'TRX', 'DOT', 'ARB', 'NVX', 'ORBX', 'HALO', 'TESS', 'LUMN', 'ZEPH'];
+export const swapFee = () => SWAP_FEE * (1 - tier().fee);
+export function swapRoute(from, to) {
+  if (COIN[from].stable || COIN[to].stable) return [from, to];
+  return [from, 'USDT', to];
+}
+// Quote at the current market price; price impact grows with trade size versus each hop's pool depth
+export function swapQuote(from, to, amount) {
+  const route = swapRoute(from, to);
+  const usdIn = (amount || 0) * price(from);
+  let impact = 0;
+  for (let i = 0; i < route.length - 1; i++) {
+    const sym = COIN[route[i]].stable ? route[i + 1] : route[i];
+    const depth = Math.max(150000, volume24(sym) * 0.004);
+    impact += usdIn / (usdIn + depth);
+  }
+  const fee = swapFee();
+  const mid = price(from) / price(to);
+  const out = (amount || 0) * mid * (1 - fee) * (1 - impact);
+  return { route, mid, out, fee, feeAmt: (amount || 0) * fee, impact, usdIn, rate: amount ? out / amount : mid };
+}
+export function swapTokens(from, to, amount, minOut) {
+  if (!state.wallet.connected) return { err: L('請先連接錢包', 'Connect your wallet first') };
+  if (!(amount > 0)) return { err: L('請輸入金額', 'Enter an amount') };
+  if (bal(from) < amount) return { err: L(`${from} 餘額不足`, `Insufficient ${from}`) };
+  const q = swapQuote(from, to, amount);
+  if (q.out < minOut) return { err: L('價格變動超過滑點設定，請重新報價', 'The price moved beyond your slippage. Get a new quote.'), slipped: true };
+  set((s) => {
+    add(s.spot, from, -amount);
+    add(s.spot, to, q.out);
+    s.records.unshift({ id: uid('r'), kind: 'swap', sym: from, to, amount, out: q.out, rate: q.rate, route: q.route, fee: q.feeAmt, impact: q.impact, status: 'done', ts: now() });
+  });
+  return { ok: true, out: q.out };
 }
 
 // ----------------------------------------------------------------------------

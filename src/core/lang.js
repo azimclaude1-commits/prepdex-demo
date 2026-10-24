@@ -6,9 +6,9 @@ import DICT from './i18n-dict.js';
 import HANS from './i18n-hans.js';
 
 export const LANGS = [
-  { code: 'ja', label: '日本語', short: 'JA', html: 'ja' },
-  { code: 'zhs', label: '简体中文', short: '简中', html: 'zh-CN' },
   { code: 'zht', label: '繁體中文', short: '繁中', html: 'zh-Hant' },
+  { code: 'zhs', label: '简体中文', short: '简中', html: 'zh-CN' },
+  { code: 'ja', label: '日本語', short: 'JA', html: 'ja' },
   { code: 'en', label: 'English', short: 'EN', html: 'en' },
   { code: 'ko', label: '한국어', short: 'KO', html: 'ko' },
   { code: 'ms', label: 'Bahasa Melayu', short: 'MS', html: 'ms' },
@@ -17,7 +17,7 @@ export const LANGS = [
 ];
 const COL = { ko: 0, ja: 1, ms: 2, es: 3, fil: 4 };
 
-export const DEFAULT_LANG = 'ja';
+export const DEFAULT_LANG = 'zht';
 let current = DEFAULT_LANG;
 export const setLang = (l) => { current = LANGS.some((x) => x.code === l) ? l : DEFAULT_LANG; };
 export const getLang = () => current;

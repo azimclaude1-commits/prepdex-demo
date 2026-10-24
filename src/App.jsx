@@ -9,6 +9,7 @@ import { Futures } from './pages/Futures.jsx';
 import { Staking } from './pages/Staking.jsx';
 import { Lending } from './pages/Lending.jsx';
 import { OTC } from './pages/OTC.jsx';
+import { Swap } from './pages/Swap.jsx';
 import { Wallet } from './pages/Wallet.jsx';
 
 function useSystemDark() {
@@ -34,7 +35,7 @@ export default function App() {
   const resolved = s.theme || (hostTheme === 'light' || hostTheme === 'dark' ? hostTheme : sysDark ? 'dark' : 'light');
   if (s.theme) root.setAttribute('data-theme', s.theme);
   root.dataset.resolved = resolved;
-  root.lang = LANGS.find((x) => x.code === s.lang)?.html || 'ja';
+  root.lang = LANGS.find((x) => x.code === s.lang)?.html || 'zh-Hant';
 
   let page;
   switch (route.page) {
@@ -44,6 +45,7 @@ export default function App() {
     case 'staking': page = <Staking />; break;
     case 'lending': page = <Lending />; break;
     case 'otc': page = <OTC />; break;
+    case 'swap': page = <Swap />; break;
     case 'wallet': page = <Wallet arg={route.arg} key={route.arg || 'w'} />; break;
     default: page = <Launchpad />;
   }

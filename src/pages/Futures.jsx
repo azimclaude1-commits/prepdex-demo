@@ -50,7 +50,7 @@ export function Futures({ arg }) {
       </TickerBar>
       <div className="trade-grid">
         <div className="tg-chart card"><Kline sym={sym} label={`${sym}USDT ${L('永續', 'PERP')}`} themeKey={theme} lines={lines} /></div>
-        <div className="tg-book card"><OrderBook sym={sym} base={sym} onPick={setPick} levels={phone ? 8 : 11} compact={phone} /></div>
+        <div className="tg-book card"><OrderBook sym={sym} base={sym} onPick={setPick} levels={phone ? 8 : 11} /></div>
         <div className="tg-form card">
           <FuturesForm key={sym} sym={sym} pickPrice={pick} />
           <AccountBox />

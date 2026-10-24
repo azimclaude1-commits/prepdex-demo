@@ -160,7 +160,7 @@ function Records() {
   const s = useApp();
   const [k, setK] = useState('all');
   const rows = s.records.filter((r) => k === 'all' || r.kind === k);
-  const kind = { deposit: L('充值', 'Deposit'), withdraw: L('提幣', 'Withdraw'), transfer: L('劃轉', 'Transfer'), convert: L('閃兌', 'Convert'), otc: 'OTC', lend: L('借貸', 'Lending') };
+  const kind = { deposit: L('充值', 'Deposit'), withdraw: L('提幣', 'Withdraw'), transfer: L('劃轉', 'Transfer'), convert: L('閃兌', 'Convert'), swap: L('兌換', 'Swap'), otc: 'OTC', lend: L('借貸', 'Lending') };
   const lendAct = { supply: L('存入', 'Supply'), withdraw: L('取出', 'Withdraw'), borrow: L('借出', 'Borrow'), repay: L('還款', 'Repay') };
   const accN = (x) => (x === 'spot' ? L('現貨', 'Spot') : L('合約', 'Futures'));
   return (
@@ -183,7 +183,7 @@ function Records() {
                     {r.kind === 'deposit' && <>{NETWORKS[r.net]?.short}{r.txid && <> · <span className="mono">{shortAddr(r.txid)}</span></>}{r.demo && ' · ' + L('演示入金', 'demo')}</>}
                     {r.kind === 'withdraw' && <>{NETWORKS[r.net]?.short} → <span className="mono">{shortAddr(r.address)}</span> · {L('手續費', 'fee')} {r.fee}</>}
                     {r.kind === 'transfer' && <>{accN(r.from)} → {accN(r.to)}</>}
-                    {r.kind === 'convert' && <>→ <span className="mono">{fmt(r.out, 6)} {r.to}</span></>}
+                    {(r.kind === 'convert' || r.kind === 'swap') && <>→ <span className="mono">{fmt(r.out, 6)} {r.to}</span></>}
                     {r.kind === 'otc' && <>{fmt(r.fiatAmt, 2)} {r.fiat}{r.via ? ' · ' + r.via : ''}</>}
                   </td>
                   <td><StatusPill r={r} /></td>

@@ -107,7 +107,7 @@ export function Spot({ arg }) {
       </TickerBar>
       <div className="trade-grid">
         <div className="tg-chart card"><Kline sym={base} quote={quote} label={`${base}${quote}`} themeKey={themeKey()} lines={lines} /></div>
-        <div className="tg-book card"><OrderBook sym={base} quote={quote} base={base} onPick={setPickPrice} levels={phone ? 8 : 11} compact={phone} /></div>
+        <div className="tg-book card"><OrderBook sym={base} quote={quote} base={base} onPick={setPickPrice} levels={phone ? 8 : 11} /></div>
         <div className="tg-form card"><SpotForm key={pairKey} base={base} quote={quote} pickPrice={pickPrice} /></div>
         <div className="tg-orders card">
           <div className="orders-head">
