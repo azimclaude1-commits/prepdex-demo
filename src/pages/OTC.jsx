@@ -277,7 +277,7 @@ function P2P({ onOrder }) {
         </select>
       </div>
       <div className="table-wrap">
-        <table className="tbl p2p-tbl">
+        <table className="tbl stack p2p-tbl">
           <thead><tr><th>{L('商家', 'Merchant')}</th><th>{L('單價', 'Price')}</th><th>{L('數量 / 限額', 'Available / limits')}</th><th>{L('支付方式', 'Payment')}</th><th /></tr></thead>
           <tbody>
             {rows.map((m) => (
@@ -355,7 +355,7 @@ function MyOrders({ onOpen }) {
   return (
     <div className="card">
       <div className="table-wrap">
-        <table className="tbl">
+        <table className="tbl stack">
           <thead><tr><th>{L('時間', 'Time')}</th><th>{L('類型', 'Type')}</th><th>{L('商家', 'Merchant')}</th><th>{L('金額', 'Amount')}</th><th>{L('數量', 'Crypto')}</th><th>{L('狀態', 'Status')}</th><th /></tr></thead>
           <tbody>
             {s.otc.map((o) => (

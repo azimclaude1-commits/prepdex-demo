@@ -7,7 +7,7 @@ import {
 } from '../core/store.js';
 import { useMarket, price, fundingRate } from '../core/market.js';
 import { fmt, pdp, adp, dateTime, floorTo, usd, pad2 } from '../core/fmt.js';
-import { Btn, Tabs, NumInput, Slider, CoinIcon, Empty, Pill, Modal, KV, cx } from '../ui/kit.jsx';
+import { Btn, Tabs, NumInput, Slider, CoinIcon, Empty, Pill, Modal, KV, cx, useMedia, PHONE } from '../ui/kit.jsx';
 import Kline from '../ui/Kline.jsx';
 import { OrderBook, Trades } from '../ui/Book.jsx';
 import { ConnectGate } from '../layout/Shell.jsx';
@@ -27,6 +27,7 @@ export function Futures({ arg }) {
   const sym = FUTURES.includes(arg) ? arg : 'BTC';
   const [tab, setTab] = useState('pos');
   const [pick, setPick] = useState(null);
+  const phone = useMedia(PHONE);
   const theme = document.documentElement.dataset.resolved || 'dark';
   const avail = futBal();
   const lines = [];
@@ -49,7 +50,7 @@ export function Futures({ arg }) {
       </TickerBar>
       <div className="trade-grid">
         <div className="tg-chart card"><Kline sym={sym} label={`${sym}USDT ${L('永續', 'PERP')}`} themeKey={theme} lines={lines} /></div>
-        <div className="tg-book card"><OrderBook sym={sym} base={sym} onPick={setPick} levels={11} /></div>
+        <div className="tg-book card"><OrderBook sym={sym} base={sym} onPick={setPick} levels={phone ? 8 : 11} compact={phone} /></div>
         <div className="tg-form card">
           <FuturesForm key={sym} sym={sym} pickPrice={pick} />
           <AccountBox />
@@ -108,7 +109,7 @@ function FuturesForm({ sym, pickPrice }) {
       setBusy(null);
       const r = placeFutures({ sym, side, type, price: parseFloat(px), size: sz, lev, mode, tp: tpsl ? parseFloat(tp) || null : null, sl: tpsl ? parseFloat(sl) || null : null });
       if (r.err) { toast(r.err, 'err'); return; }
-      toast(r.filled ? L(side === 'long' ? '開多成功' : '開空成功', side === 'long' ? 'Long opened' : 'Short opened') : L('委託已提交', 'Order placed'), 'ok', `${sym} ${sz} · ${lev}x${r.filled ? ' @ ' + fmt(r.price, dp) : ''}`);
+      toast(r.filled ? (side === 'long' ? L('開多成功', 'Long opened') : L('開空成功', 'Short opened')) : L('委託已提交', 'Order placed'), 'ok', `${sym} ${sz} · ${lev}x${r.filled ? ' @ ' + fmt(r.price, dp) : ''}`);
       setSize('');
       setPctv(0);
     }, 350);
@@ -118,7 +119,7 @@ function FuturesForm({ sym, pickPrice }) {
     <div className="oform">
       <div className="fut-top">
         <button className="seg-btn" onClick={() => setMode(mode === 'cross' ? 'isolated' : 'cross')}>{mode === 'cross' ? L('全倉', 'Cross') : L('逐倉', 'Isolated')}</button>
-        <button className="seg-btn lev" onClick={() => setLevOpen(true)}>{L('槓桿', 'Leverage')} <b className="mono">{lev}x</b><Pencil size={12} /></button>
+        <button className="seg-btn lev" onClick={() => setLevOpen(true)} aria-label={L('槓桿', 'Leverage')}><span className="lev-label">{L('槓桿', 'Leverage')}</span> <b className="mono">{lev}x</b><Pencil size={12} /></button>
       </div>
       <Tabs value={type} onChange={setType} variant="line" items={[['limit', L('限價', 'Limit')], ['market', L('市價', 'Market')]]} />
       <div className="row-between small"><span className="muted">{L('可用', 'Available')}</span><span className="row-gap"><b className="mono">{fmt(avail, 2)} USDT</b>{s.wallet.connected && <button className="icon-btn xs" onClick={() => openModal('transfer', { from: 'spot' })} aria-label={L('劃轉', 'Transfer')}><ArrowLeftRight size={13} /></button>}</span></div>
@@ -146,8 +147,9 @@ function FuturesForm({ sym, pickPrice }) {
             <Btn variant="down" size="lg" onClick={() => submit('short')} loading={busy === 'short'} disabled={!sz || !usePx}>{L('開空', 'Short')}</Btn>
           </div>
           <div className="ls-liq small">
-            <span>{L('預估強平', 'Est. liq.')} <b className="mono">{est('long') ? fmt(est('long'), dp) : '--'}</b></span>
-            <span><b className="mono">{est('short') ? fmt(est('short'), dp) : '--'}</b></span>
+            <span className="ls-liq-label">{L('預估強平價', 'Est. liquidation price')}</span>
+            <b className="mono">{est('long') ? fmt(est('long'), dp) : '--'}</b>
+            <b className="mono">{est('short') ? fmt(est('short'), dp) : '--'}</b>
           </div>
           {avail < 1 && (
             <div className="hint-box"><Info size={14} />{L('合約帳戶沒有保證金。', 'No margin in futures.')}<button className="link-btn" onClick={() => openModal('transfer', { from: 'spot' })}>{L('從現貨劃轉', 'Transfer from spot')}</button></div>
@@ -207,7 +209,7 @@ function Positions() {
   const avail = futBal();
   return (
     <div className="table-wrap">
-      <table className="tbl">
+      <table className="tbl stack">
         <thead><tr><th>{L('合約', 'Contract')}</th><th>{L('數量', 'Size')}</th><th>{L('開倉價', 'Entry')}</th><th>{L('標記價', 'Mark')}</th><th>{L('強平價', 'Liq.')}</th><th>{L('保證金', 'Margin')}</th><th>{L('未實現盈虧(ROE)', 'uPnL (ROE)')}</th><th>{L('止盈/止損', 'TP/SL')}</th><th>{L('操作', 'Actions')}</th></tr></thead>
         <tbody>
           {s.positions.map((p) => {
@@ -281,7 +283,7 @@ function FutOrders() {
   if (!s.futOrders.length) return <Empty text={L('暫無委託', 'No open orders')} />;
   return (
     <div className="table-wrap">
-      <table className="tbl">
+      <table className="tbl stack">
         <thead><tr><th>{L('時間', 'Time')}</th><th>{L('合約', 'Contract')}</th><th>{L('方向', 'Side')}</th><th>{L('價格', 'Price')}</th><th>{L('數量', 'Size')}</th><th>{L('槓桿', 'Lev.')}</th><th>{L('凍結保證金', 'Margin')}</th><th /></tr></thead>
         <tbody>
           {s.futOrders.map((o) => (
@@ -308,7 +310,7 @@ function FutHistory() {
   const kindName = { open: L('開倉', 'Open'), close: L('平倉', 'Close'), liq: L('強平', 'Liquidated'), tp: L('止盈', 'TP'), sl: L('止損', 'SL') };
   return (
     <div className="table-wrap">
-      <table className="tbl">
+      <table className="tbl stack">
         <thead><tr><th>{L('時間', 'Time')}</th><th>{L('合約', 'Contract')}</th><th>{L('類型', 'Type')}</th><th>{L('方向', 'Side')}</th><th>{L('數量', 'Size')}</th><th>{L('開倉價', 'Entry')}</th><th>{L('平倉價', 'Exit')}</th><th>{L('已實現盈虧', 'Realised PnL')}</th></tr></thead>
         <tbody>
           {s.futHistory.slice(0, 40).map((h) => (

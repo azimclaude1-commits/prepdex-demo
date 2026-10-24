@@ -212,7 +212,7 @@ function MySubsModal({ onClose }) {
         <Empty text={L('還沒有認購記錄', 'No subscriptions yet')}><Btn size="sm" onClick={() => { onClose(); go('project', 'vela'); }}>{L('去認購 VELA', 'Subscribe to VELA')}</Btn></Empty>
       ) : (
         <div className="table-wrap">
-          <table className="tbl">
+          <table className="tbl stack">
             <thead><tr><th>{L('項目', 'Project')}</th><th>{L('認購金額', 'Committed')}</th><th>{L('狀態', 'Status')}</th><th>{L('獲配', 'Allocated')}</th><th>{L('時間', 'Time')}</th></tr></thead>
             <tbody>
               {[...s.subs].reverse().map((x) => {

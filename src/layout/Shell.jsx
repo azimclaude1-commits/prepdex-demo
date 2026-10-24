@@ -8,7 +8,7 @@ import { L, getLang, LANGS } from '../core/lang.js';
 import { useApp, useUI, go, openModal, setLangPref, setTheme, fastForward, resetAll, quickFund, faucet, now, toast } from '../core/store.js';
 import { useMarket, netStats, shockPrice } from '../core/market.js';
 import { shortAddr, dateTime, compact } from '../core/fmt.js';
-import { BrandMark, cx, Btn } from '../ui/kit.jsx';
+import { BrandMark, cx, Btn, Portal } from '../ui/kit.jsx';
 
 export const NAV = [
   ['launchpad', Rocket, ['認購', 'Launchpad']],
@@ -68,7 +68,7 @@ export function Header() {
           <button className="icon-btn burger" onClick={() => setDrawer(true)} aria-label="Menu"><Menu size={18} /></button>
         </div>
       </div>
-      {drawer && (
+      {drawer && <Portal>
         <div className="drawer-wrap" onClick={() => setDrawer(false)}>
           <div className="drawer" onClick={(e) => e.stopPropagation()}>
             <div className="drawer-head">
@@ -82,7 +82,7 @@ export function Header() {
             ))}
           </div>
         </div>
-      )}
+      </Portal>}
     </header>
   );
 }

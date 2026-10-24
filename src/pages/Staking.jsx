@@ -85,7 +85,7 @@ export function Staking() {
       <div className="card">
         {s.stakes.length === 0 ? <Empty text={L('還沒有質押，選擇上方產品開始賺取收益', 'No stakes yet. Pick a product above to start earning.')} /> : (
           <div className="table-wrap">
-            <table className="tbl">
+            <table className="tbl stack">
               <thead><tr><th>{L('產品', 'Product')}</th><th>{L('數量', 'Amount')}</th><th>{L('年化', 'APR')}</th><th>{L('起息 / 到期', 'Start / maturity')}</th><th>{L('待領取收益', 'Pending')}</th><th>{L('狀態', 'Status')}</th><th>{L('操作', 'Actions')}</th></tr></thead>
               <tbody>
                 {s.stakes.map((x) => {

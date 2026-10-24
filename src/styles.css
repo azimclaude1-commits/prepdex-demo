@@ -710,8 +710,10 @@ p { margin: 0; }
 .seg-btn:hover { border-color: var(--line-2); }
 .seg-btn.lev b { color: var(--accent); }
 .ls-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.ls-liq { display: grid; grid-template-columns: 1fr 1fr; color: var(--muted); }
-.ls-liq span:last-child { text-align: right; }
+.ls-liq { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; color: var(--muted); }
+.ls-liq-label { grid-column: 1 / -1; }
+.ls-liq b:first-of-type { color: var(--up); }
+.ls-liq b:last-of-type { color: var(--down); text-align: right; }
 .lev-big { text-align: center; font-size: 46px; font-weight: 700; color: var(--accent); }
 .lev-step { display: flex; align-items: flex-start; gap: 10px; }
 .lev-step .slider { flex: 1; }
@@ -977,7 +979,7 @@ p { margin: 0; }
 .wallet-pay { display: flex; flex-direction: column; gap: 4px; align-items: center; padding: 18px; border-radius: 14px; background: var(--panel-2); border: 1px solid var(--line); }
 @media (max-width: 640px) { .prov-quote { flex-wrap: wrap; } .pq-out { width: 100%; flex-direction: row; justify-content: space-between; } }
 
-.lang-pop button { justify-content: space-between; }
+.lang > .lang-pop button { justify-content: space-between; }
 .lang-code { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
 :root[lang="ko"] .display, :root[lang="ja"] .display { letter-spacing: -0.01em; }
 
@@ -998,3 +1000,121 @@ p { margin: 0; }
 .cf-num { font-size: 19px; letter-spacing: 0.08em; }
 .cf-bottom { display: flex; justify-content: space-between; font-size: 11px; opacity: 0.85; letter-spacing: 0.08em; }
 @media (max-width: 640px) { .bank-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ---------- Popover stacking ---------- */
+/* Cards use backdrop-filter, which gives each card its own stacking context.
+   Lift the card that holds an open popover so the list is not covered by the next card. */
+.card:has(.pair-pop, .csel-pop, .lang-pop), .ticker:has(.pair-pop), .swap-box:has(.csel-pop) { position: relative; z-index: 35; }
+.pd-layout > *, .trade-grid > * { min-width: 0; }
+
+/* ---------- Text wrapping ---------- */
+.hero-stats span, .stat span, .metric-k, .lend-kpis span { text-wrap: balance; }
+.page-sub, .fine, .pcard-tag, .prose p, .hero-sub { text-wrap: pretty; }
+.tier-name, .tier-stat b, .btn, .tab, .nav-item, .chip-btn, .net-chip, .pill, .status-chip, .tag, .seg-btn, .mini-btn, .link-btn,
+.acc-switch button, .w-actions button, .cc, .term span, .bank-tile small, .stat b .mono { white-space: nowrap; }
+.oform .kv > b { white-space: nowrap; }
+.stat b { flex-wrap: wrap; row-gap: 2px; }
+.tier-top > div:nth-child(2) { flex: 1 1 150px; min-width: 0; }
+
+/* ---------- Phones and small tablets ---------- */
+@media (max-width: 860px) {
+  /* chart on top; order form next to a compact order book; then orders and trades */
+  .trade-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-areas: "chart chart" "form book" "orders orders" "trades trades"; gap: 10px; }
+  .tg-form, .tg-book, .tg-trades { padding: 12px 10px; }
+  .tg-orders { padding: 12px 14px; }
+  .tg-form { gap: 12px; }
+  .tg-book .ob-cols, .tg-book .ob-row { grid-template-columns: 1.1fr 1fr; padding-inline: 2px; }
+  .tg-book .ob-cols > span:last-child, .tg-book .ob-row > span:last-child, .tg-book .ob-mid .mono.small, .tg-book .ob-spread { display: none; }
+  .tg-book .ob-row { font-size: 11.5px; padding-block: 2px; }
+  .tg-book .ob-last { font-size: 15px; }
+  .tg-book .ob-head { padding-inline: 2px; }
+  .tg-book .ob-modes button { width: 22px; height: 22px; }
+  .oform .tabs-line { gap: 14px; }
+  .oform .num { min-height: 44px; padding: 0 10px; gap: 6px; border-radius: 11px; }
+  .oform .num input { height: 42px; font-size: 14px; }
+  .oform .num-label { font-size: 11px; }
+  .oform .num-suffix { font-size: 12px; }
+  .oform .max-btn { padding: 3px 6px; font-size: 10px; }
+  .oform .slider-marks button { font-size: 9px; }
+  .oform .summary { padding: 10px; gap: 6px; }
+  .oform .kv { font-size: 12px; }
+  .oform .side-toggle button { height: 34px; }
+  .oform .btn-lg { height: 44px; font-size: 14px; }
+  .fut-top .seg-btn { font-size: 12px; padding: 0 6px; }
+  .ls-btns { gap: 8px; }
+  .acct-box .kv { font-size: 12px; }
+  .kline { height: 340px; }
+  .kline-ma { display: none; }
+  .kline-bar { padding: 10px 10px 6px; gap: 8px; }
+  .kline-tfs button { padding: 0 8px; }
+  .ticker { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; padding: 12px 14px; }
+  .tk-price { align-items: flex-end; text-align: right; }
+  .tk-price b { font-size: 20px; }
+  .pair-name { font-size: 17px; }
+  .tk-stats { grid-column: 1 / -1; flex-wrap: nowrap; overflow-x: auto; gap: 18px; scrollbar-width: none; padding-bottom: 2px; }
+  .tk-stats::-webkit-scrollbar { display: none; }
+  .tk-stats > div { flex-shrink: 0; }
+  .orders-head { flex-wrap: wrap; row-gap: 0; }
+  .orders-head .tabs-line { flex: 1 1 100%; }
+  .orders-head .link-btn { margin-left: auto; padding: 8px 0 0; }
+}
+
+@media (max-width: 640px) {
+  /* tables marked "stack" become one card per row, each cell labelled with its column */
+  .table-wrap:has(> .tbl.stack) { margin: 0; overflow: visible; }
+  .tbl.stack thead { display: none; }
+  .tbl.stack, .tbl.stack tbody, .tbl.stack tr { display: block; width: 100%; }
+  .tbl.stack tr { padding: 10px 14px; margin-bottom: 10px; border-radius: 14px; background: var(--panel-2); border: 1px solid var(--line); }
+  .tbl.stack tbody tr:hover { background: var(--panel-2); }
+  .tbl.stack td { display: block; text-align: right; padding: 5px 0; border: 0; white-space: normal; overflow: hidden; }
+  .tbl.stack td::before { content: attr(data-label); float: left; margin-right: 12px; color: var(--muted); font-size: 12px; font-weight: 500; font-family: var(--f-body); }
+  .tbl.stack td:first-child { text-align: left; padding: 2px 0 9px; margin-bottom: 4px; border-bottom: 1px dashed var(--line); font-weight: 700; }
+  .tbl.stack td:first-child::before, .tbl.stack td[colspan]::before, .tbl.stack td[data-label=""]::before { display: none; }
+  .tbl.stack td[data-label=""]:not(:first-child) { padding-top: 8px; }
+  .tbl.stack td[data-label=""]:not(:first-child) .row-gap { justify-content: flex-end; }
+  .tbl.stack td[colspan] { text-align: left; }
+  .tbl.stack tr.row-expand { padding: 4px 0 0; background: none; border: 0; margin-top: -6px; }
+  .tbl.stack tr.row-open { margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+  .tbl.stack .pay-tags { justify-content: flex-end; }
+  .tbl.stack .util { display: inline-flex; min-width: 140px; }
+
+  .empty { padding: 22px 12px; gap: 8px; }
+  .empty-ico { width: 44px; height: 44px; border-radius: 14px; }
+  .demo-fab { width: 44px; padding: 0; justify-content: center; }
+  .demo-fab span { display: none; }
+  .orbit { max-width: min(260px, calc(100vw - 110px)); }
+  .tier-name { font-size: 18px; }
+  .tier-stat b { font-size: 16px; }
+  .pd-hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 64px 18px 20px; }
+  .pd-hero .proj-logo { width: 64px; height: 64px; }
+  .pd-title { font-size: 28px; }
+  .banner-big { min-height: 0; border-radius: 22px; }
+  .banner-big .banner-mark { opacity: 0.22; margin-top: -110px; }
+  .pd-tags { gap: 6px; }
+  .quick-card .swap-mid { flex-wrap: wrap; }
+  .quick-card .crypto-chips { width: 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .quick-card .cc { flex-shrink: 0; }
+  .w-actions button { font-size: 11px; padding: 12px 2px; letter-spacing: -0.02em; }
+  .acc-switch { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
+  .acc-switch button { flex-shrink: 0; }
+  .earn-terms { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+  .term { min-width: 0; }
+  .toasts { top: calc(66px + env(safe-area-inset-top, 0px)); }
+  .toast { padding: 10px 12px; }
+}
+
+@media (max-width: 860px) {
+  .lev-label { display: none; }
+  .tg-book .ob-head { gap: 6px; }
+  .tg-book .ob-head b { font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .tg-book .ob-modes { flex-shrink: 0; }
+  .tg-book .ob-cols { font-size: 10px; }
+  .tg-book .ob-cols span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .page-head-right { max-width: 100%; }
+  .page-head-right .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+  .page-head-right .tab { flex-shrink: 0; }
+}
+@media (max-width: 640px) {
+  .quick-card .cc { height: 30px; font-size: 12px; padding: 0 8px 0 4px; gap: 4px; }
+  .quick-card .cc .coin-ico { width: 16px; height: 16px; }
+}

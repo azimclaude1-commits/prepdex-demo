@@ -1,10 +1,25 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Check, Copy, Search, ChevronDown, Inbox, Loader2 } from 'lucide-react';
 import { COIN, PROJECTS } from '../core/data.js';
 import { L } from '../core/lang.js';
 import { toast } from '../core/store.js';
 
 export function cx(...a) { return a.filter(Boolean).join(' '); }
+
+// True while the media query matches (e.g. phone widths)
+export function useMedia(query) {
+  const get = () => (typeof matchMedia !== 'undefined' ? matchMedia(query).matches : false);
+  const [m, setM] = useState(get);
+  useEffect(() => {
+    const mq = matchMedia(query);
+    const h = (e) => setM(e.matches);
+    mq.addEventListener('change', h);
+    return () => mq.removeEventListener('change', h);
+  }, [query]);
+  return m;
+}
+export const PHONE = '(max-width: 860px)';
 
 export function Btn({ variant = 'primary', size = 'md', block, loading, className, children, ...rest }) {
   return (
@@ -15,6 +30,12 @@ export function Btn({ variant = 'primary', size = 'md', block, loading, classNam
   );
 }
 
+// Overlays render into <body> so ancestors with backdrop-filter or transforms
+// cannot trap their fixed positioning.
+export function Portal({ children }) {
+  return createPortal(children, document.body);
+}
+
 export function Modal({ title, onClose, width = 460, children, className, icon }) {
   useEffect(() => {
     const k = (e) => e.key === 'Escape' && onClose?.();
@@ -22,7 +43,7 @@ export function Modal({ title, onClose, width = 460, children, className, icon }
     document.body.classList.add('no-scroll');
     return () => { window.removeEventListener('keydown', k); document.body.classList.remove('no-scroll'); };
   }, [onClose]);
-  return (
+  return createPortal(
     <div className="modal-wrap" onMouseDown={(e) => e.target === e.currentTarget && onClose?.()}>
       <div className={cx('modal', className)} style={{ maxWidth: width }} role="dialog" aria-modal="true">
         {title != null && (
@@ -33,7 +54,8 @@ export function Modal({ title, onClose, width = 460, children, className, icon }
         )}
         <div className="modal-body">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

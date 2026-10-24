@@ -7,7 +7,7 @@ import { L } from '../core/lang.js';
 import { useApp, openModal, go, portfolio, valueOf, lendAmount } from '../core/store.js';
 import { useMarket, price, change24 } from '../core/market.js';
 import { fmt, usd, dateTime, shortAddr, adp } from '../core/fmt.js';
-import { Btn, Tabs, CoinIcon, Donut, Delta, Pill, Empty, CopyBtn, cx } from '../ui/kit.jsx';
+import { Btn, Tabs, CoinIcon, Donut, Delta, Pill, Empty, CopyBtn, cx, PHONE } from '../ui/kit.jsx';
 import { ConnectGate } from '../layout/Shell.jsx';
 import { StatusPill } from '../layout/Modals.jsx';
 
@@ -107,7 +107,7 @@ function AssetList({ hide }) {
   useMarket();
   const s = useApp();
   const [q, setQ] = useState('');
-  const [hideZero, setHideZero] = useState(false);
+  const [hideZero, setHideZero] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(PHONE).matches);
   const extra = PROJECTS.filter((p) => !COIN[p.sym]).map((p) => p.sym);
   const syms = [...COINS.map((c) => c.sym), ...extra];
   const rows = syms.map((k) => {
@@ -125,11 +125,11 @@ function AssetList({ hide }) {
     <div className="card">
       <div className="asset-tools">
         <div className="search"><Search size={15} /><input placeholder={L('搜尋幣種', 'Search coins')} value={q} onChange={(e) => setQ(e.target.value)} /></div>
-        <span className="live-tag"><i className="live-dot" />{L('即時', 'Live')}</span>
+        <span className="live-tag"><i className="live-dot" />{L('即時', 'Real-time')}</span>
         <label className="toggle-line"><button className={cx('switch', hideZero && 'on')} onClick={() => setHideZero(!hideZero)} aria-label={L('隱藏零餘額', 'Hide zero balances')}><i /></button>{L('隱藏零餘額', 'Hide zero balances')}</label>
       </div>
       <div className="table-wrap">
-        <table className="tbl assets-tbl">
+        <table className="tbl stack assets-tbl">
           <thead><tr><th>{L('幣種', 'Coin')}</th><th>{L('總額', 'Total')}</th><th>{L('可用', 'Available')}</th><th>{L('佔用', 'Locked / in use')}</th><th>{L('估值', 'Value')}</th><th>{L('24h', '24h')}</th><th>{L('操作', 'Actions')}</th></tr></thead>
           <tbody>
             {rows.map((r) => (
@@ -168,7 +168,7 @@ function Records() {
       <Tabs size="sm" value={k} onChange={setK} items={[['all', L('全部', 'All')], ...Object.entries(kind)]} />
       {rows.length === 0 ? <Empty text={L('暫無記錄', 'No activity yet')} /> : (
         <div className="table-wrap">
-          <table className="tbl">
+          <table className="tbl stack">
             <thead><tr><th>{L('時間', 'Time')}</th><th>{L('類型', 'Type')}</th><th>{L('幣種', 'Coin')}</th><th>{L('數量', 'Amount')}</th><th>{L('詳情', 'Details')}</th><th>{L('狀態', 'Status')}</th></tr></thead>
             <tbody>
               {rows.slice(0, 80).map((r) => (

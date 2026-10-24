@@ -1357,6 +1357,13 @@
 "Liq. estimada",
 "Est. liq."
 ],
+"Est. liquidation price": [
+"예상 청산가",
+"強制決済価格の見込み",
+"Anggaran harga likuidasi",
+"Precio de liquidación estimado",
+"Tinatayang liquidation price"
+],
 "Est. refund": [
 "예상 환불",
 "返金見込み",
@@ -2105,6 +2112,13 @@
 "Long",
 "Largo",
 "Long"
+],
+"Long opened": [
+"롱 포지션 개설",
+"ロングを建てました",
+"Posisi long dibuka",
+"Largo abierto",
+"Nabuksan ang long"
 ],
 "MUFG Bank": [
 "MUFG 은행",
@@ -3177,6 +3191,13 @@
 "Modelo de tasas (TAE de préstamo vs. utilización)",
 "Rate model (borrow APR vs utilization)"
 ],
+"Real-time": [
+"실시간",
+"リアルタイム",
+"Masa nyata",
+"En tiempo real",
+"Real-time"
+],
 "Realised PnL": [
 "실현 손익",
 "実現損益",
@@ -3533,6 +3554,13 @@
 "Short",
 "Corto",
 "Short"
+],
+"Short opened": [
+"숏 포지션 개설",
+"ショートを建てました",
+"Posisi short dibuka",
+"Corto abierto",
+"Nabuksan ang short"
 ],
 "Side": [
 "방향",

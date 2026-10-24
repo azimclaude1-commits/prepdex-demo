@@ -14,13 +14,13 @@ function BookIcon({ mode }) {
   );
 }
 
-export function OrderBook({ sym, quote = 'USDT', base, onPick, levels = 12 }) {
+export function OrderBook({ sym, quote = 'USDT', base, onPick, levels = 12, compact = false }) {
   useMarket();
   const [mode, setMode] = useState('both');
   const qp = quote === 'USDT' ? 1 : price(quote) / price('USDT');
   const book = getBook(sym, qp, levels * 2);
   const dp = pdp(book.mid);
-  const adpv = adp(book.mid);
+  const adpv = compact ? Math.min(4, adp(book.mid)) : adp(book.mid);
   const n = mode === 'both' ? levels : levels * 2;
   const asks = book.asks.slice(0, n).reverse();
   const bids = book.bids.slice(0, n);
@@ -64,7 +64,7 @@ export function Trades({ sym, quote = 'USDT', base, max = 18 }) {
   const adpv = adp(price(sym));
   return (
     <div className="trades">
-      <div className="ob-head"><b>{L('最新成交', 'Trades')}</b><span className="live-tag"><i className="live-dot" />{L('即時', 'Live')}</span></div>
+      <div className="ob-head"><b>{L('最新成交', 'Trades')}</b><span className="live-tag"><i className="live-dot" />{L('即時', 'Real-time')}</span></div>
       <div className="ob-cols"><span>{L('價格', 'Price')}({quote})</span><span>{L('數量', 'Size')}({base || sym})</span><span>{L('時間', 'Time')}</span></div>
       <div className="trades-list">
         {list.map((t) => (

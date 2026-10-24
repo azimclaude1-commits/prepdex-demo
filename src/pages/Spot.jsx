@@ -5,7 +5,7 @@ import { L } from '../core/lang.js';
 import { useApp, placeSpot, cancelSpot, cancelAllSpot, toast, toggleFav, openModal, go, spotFee, tier, bal } from '../core/store.js';
 import { useMarket, price, pairPrice, change24, high24, low24, volume24 } from '../core/market.js';
 import { fmt, pdp, adp, compact, dateTime, floorTo, usd } from '../core/fmt.js';
-import { Btn, Tabs, NumInput, Slider, CoinIcon, Empty, Pill, Delta, Flash, cx } from '../ui/kit.jsx';
+import { Btn, Tabs, NumInput, Slider, CoinIcon, Empty, Pill, Delta, Flash, cx, useMedia, PHONE } from '../ui/kit.jsx';
 import Kline from '../ui/Kline.jsx';
 import { OrderBook, Trades } from '../ui/Book.jsx';
 import { ConnectGate } from '../layout/Shell.jsx';
@@ -93,6 +93,7 @@ export function Spot({ arg }) {
   const base = COIN[b0] && !COIN[b0].stable ? b0 : 'BTC';
   const quote = QUOTES.includes(q0) ? q0 : 'USDT';
   const [pickPrice, setPickPrice] = useState(null);
+  const phone = useMedia(PHONE);
   const [tab, setTab] = useState('open');
   const open = s.orders.filter((o) => o.status === 'open');
   const hist = s.orders.filter((o) => o.status !== 'open');
@@ -106,7 +107,7 @@ export function Spot({ arg }) {
       </TickerBar>
       <div className="trade-grid">
         <div className="tg-chart card"><Kline sym={base} quote={quote} label={`${base}${quote}`} themeKey={themeKey()} lines={lines} /></div>
-        <div className="tg-book card"><OrderBook sym={base} quote={quote} base={base} onPick={setPickPrice} levels={11} /></div>
+        <div className="tg-book card"><OrderBook sym={base} quote={quote} base={base} onPick={setPickPrice} levels={phone ? 8 : 11} compact={phone} /></div>
         <div className="tg-form card"><SpotForm key={pairKey} base={base} quote={quote} pickPrice={pickPrice} /></div>
         <div className="tg-orders card">
           <div className="orders-head">
@@ -208,7 +209,7 @@ function OrderTable({ rows, canCancel }) {
   if (!rows.length) return <Empty text={L('暫無委託', 'No orders')} />;
   return (
     <div className="table-wrap">
-      <table className="tbl">
+      <table className="tbl stack">
         <thead><tr><th>{L('時間', 'Time')}</th><th>{L('交易對', 'Pair')}</th><th>{L('類型', 'Type')}</th><th>{L('方向', 'Side')}</th><th>{L('價格', 'Price')}</th><th>{L('數量', 'Amount')}</th><th>{L('已成交', 'Filled')}</th><th>{L('狀態', 'Status')}</th>{canCancel && <th />}</tr></thead>
         <tbody>
           {rows.map((o) => (
@@ -234,7 +235,7 @@ function FillTable({ rows }) {
   if (!rows.length) return <Empty text={L('暫無成交', 'No trades yet')} />;
   return (
     <div className="table-wrap">
-      <table className="tbl">
+      <table className="tbl stack">
         <thead><tr><th>{L('時間', 'Time')}</th><th>{L('交易對', 'Pair')}</th><th>{L('方向', 'Side')}</th><th>{L('成交價', 'Price')}</th><th>{L('數量', 'Amount')}</th><th>{L('手續費', 'Fee')}</th><th>{L('角色', 'Role')}</th></tr></thead>
         <tbody>
           {rows.map((f) => (
@@ -261,7 +262,7 @@ function SpotAssets() {
   if (!syms.length) return <Empty text={L('現貨帳戶暫無資產', 'No spot assets')}><Btn size="sm" onClick={() => openModal('deposit', {})}>{L('充值', 'Deposit')}</Btn></Empty>;
   return (
     <div className="table-wrap">
-      <table className="tbl">
+      <table className="tbl stack">
         <thead><tr><th>{L('幣種', 'Coin')}</th><th>{L('可用', 'Available')}</th><th>{L('凍結', 'In orders')}</th><th>{L('估值', 'Value')}</th></tr></thead>
         <tbody>
           {syms.map((k) => (

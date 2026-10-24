@@ -81,7 +81,7 @@ export function Lending() {
           <div className="row-between"><h3 className="sub-h"><ArrowDownToLine size={16} />{L('我的存款', 'My supplies')}</h3></div>
           {supplies.length === 0 ? <Empty text={L('暫無存款', 'Nothing supplied')} /> : (
             <div className="table-wrap">
-              <table className="tbl">
+              <table className="tbl stack">
                 <thead><tr><th>{L('資產', 'Asset')}</th><th>{L('數量', 'Balance')}</th><th>APY</th><th>{L('抵押', 'Collateral')}</th><th /></tr></thead>
                 <tbody>
                   {supplies.map((m) => {
@@ -105,7 +105,7 @@ export function Lending() {
           <div className="row-between"><h3 className="sub-h"><HandCoins size={16} />{L('我的借款', 'My borrows')}</h3></div>
           {borrows.length === 0 ? <Empty text={L('暫無借款', 'No borrows')} /> : (
             <div className="table-wrap">
-              <table className="tbl">
+              <table className="tbl stack">
                 <thead><tr><th>{L('資產', 'Asset')}</th><th>{L('債務', 'Debt')}</th><th>APR</th><th /></tr></thead>
                 <tbody>
                   {borrows.map((m) => {
@@ -129,7 +129,7 @@ export function Lending() {
       <div className="sec-head"><h2 className="display sec-title">{L('借貸市場', 'Markets')}</h2></div>
       <div className="card">
         <div className="table-wrap">
-          <table className="tbl tbl-markets">
+          <table className="tbl stack tbl-markets">
             <thead><tr><th>{L('資產', 'Asset')}</th><th>{L('總存款', 'Total supplied')}</th><th>{L('存款年化', 'Supply APY')}</th><th>{L('總借款', 'Total borrowed')}</th><th>{L('借款年化', 'Borrow APR')}</th><th>{L('利用率', 'Utilisation')}</th><th>{L('抵押率 / 清算線', 'LTV / Liq.')}</th><th>{L('可用餘額', 'In spot')}</th><th /></tr></thead>
             <tbody>
               {LEND_MARKETS.map((m) => {
