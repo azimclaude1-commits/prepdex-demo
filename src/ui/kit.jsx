@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Check, Copy, Search, ChevronDown, Inbox, Loader2 } from 'lucide-react';
 import { COIN, PROJECTS } from '../core/data.js';
@@ -20,6 +20,63 @@ export function useMedia(query) {
   return m;
 }
 export const PHONE = '(max-width: 860px)';
+
+// Keeps an open popover inside the screen by shifting it sideways when it would overflow.
+export function useFitPopover(open) {
+  const ref = useRef(null);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!open || !el) return;
+    el.style.transform = '';
+    const r = el.getBoundingClientRect();
+    const pad = 12;
+    const W = document.documentElement.clientWidth;
+    let dx = 0;
+    if (r.right > W - pad) dx = W - pad - r.right;
+    if (r.left + dx < pad) dx = pad - r.left;
+    if (dx) el.style.transform = `translateX(${Math.round(dx)}px)`;
+  });
+  return ref;
+}
+
+// Closes a popover when the pointer goes down outside its wrapper
+export function useOutside(open, close) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!open) return;
+    const h = (e) => ref.current && !ref.current.contains(e.target) && close();
+    document.addEventListener('pointerdown', h);
+    return () => document.removeEventListener('pointerdown', h);
+  }, [open]);
+  return ref;
+}
+
+// Styled replacement for <select>, matching the app's other dropdowns.
+// options: [[value, label, dotColor?]]
+export function Select({ value, options, onChange, label }) {
+  const [open, setOpen] = useState(false);
+  const wrap = useOutside(open, () => setOpen(false));
+  const pop = useFitPopover(open);
+  const cur = options.find((o) => o[0] === value) || options[0];
+  return (
+    <div className="csel csel-compact dd" ref={wrap}>
+      <button type="button" className="csel-btn" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open} aria-label={label}>
+        {cur[2] && <i className="dd-dot" style={{ background: cur[2] }} />}<span className="dd-cur">{cur[1]}</span><ChevronDown size={15} className="csel-caret" />
+      </button>
+      {open && (
+        <div className="csel-pop" ref={pop} role="listbox">
+          <div className="csel-list">
+            {options.map(([v, l, c]) => (
+              <button key={v} role="option" aria-selected={v === value} className={cx('csel-item', v === value && 'on')} onClick={() => { onChange(v); setOpen(false); }}>
+                {c ? <i className="dd-dot" style={{ background: c }} /> : <i className="dd-dot none" />}<span className="dd-label">{l}</span>{v === value && <Check size={14} className="accent-text" />}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Btn({ variant = 'primary', size = 'md', block, loading, className, children, ...rest }) {
   return (
@@ -259,6 +316,7 @@ export function CoinSelect({ value, options, onChange, balances, label, compact:
     document.addEventListener('mousedown', h);
     return () => document.removeEventListener('mousedown', h);
   }, [open]);
+  const pop = useFitPopover(open);
   const list = options.filter((s) => s.toLowerCase().includes(q.toLowerCase()) || (COIN[s]?.name || '').toLowerCase().includes(q.toLowerCase()));
   return (
     <div className={cx('csel', cmp && 'csel-compact')} ref={ref}>
@@ -270,7 +328,7 @@ export function CoinSelect({ value, options, onChange, balances, label, compact:
         <ChevronDown size={16} className="csel-caret" />
       </button>
       {open && (
-        <div className="csel-pop">
+        <div className="csel-pop" ref={pop}>
           <div className="search"><Search size={15} /><input autoFocus placeholder={L('搜尋幣種', 'Search')} value={q} onChange={(e) => setQ(e.target.value)} /></div>
           <div className="csel-list">
             {list.map((s) => (

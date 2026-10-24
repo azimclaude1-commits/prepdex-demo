@@ -7,7 +7,7 @@ import { L, getLang } from '../core/lang.js';
 import { useApp, createOtc, otcMarkPaid, otcCancel, otcRelease, otcChat, cardBuy, toast, bal, openModal, go } from '../core/store.js';
 import { useMarket } from '../core/market.js';
 import { fmt, dateTime, pad2, floorTo, adp } from '../core/fmt.js';
-import { Btn, Tabs, NumInput, CoinIcon, Modal, KV, Pill, Empty, CopyBtn, cx } from '../ui/kit.jsx';
+import { Btn, Tabs, NumInput, CoinIcon, Modal, KV, Pill, Empty, CopyBtn, cx, Select, useFitPopover, useOutside } from '../ui/kit.jsx';
 import { PageHead, ConnectGate } from '../layout/Shell.jsx';
 
 function BankMark({ m, size = 28 }) {
@@ -22,18 +22,13 @@ function PayTag({ m }) {
 
 function FiatSelect({ value, onChange }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-  useEffect(() => {
-    if (!open) return;
-    const h = (e) => ref.current && !ref.current.contains(e.target) && setOpen(false);
-    document.addEventListener('mousedown', h);
-    return () => document.removeEventListener('mousedown', h);
-  }, [open]);
+  const ref = useOutside(open, () => setOpen(false));
+  const pop = useFitPopover(open);
   return (
     <div className="csel csel-compact" ref={ref}>
-      <button className="csel-btn" onClick={() => setOpen(!open)}><span className="flag">{FIAT[value].flag}</span><b>{value}</b><ChevronDown size={15} className="csel-caret" /></button>
+      <button className="csel-btn" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open}><span className="flag">{FIAT[value].flag}</span><b>{value}</b><ChevronDown size={15} className="csel-caret" /></button>
       {open && (
-        <div className="csel-pop">
+        <div className="csel-pop" ref={pop}>
           <div className="csel-list">
             {FIATS.map((f) => (
               <button key={f.code} className={cx('csel-item', f.code === value && 'on')} onClick={() => { onChange(f.code); setOpen(false); }}>
@@ -271,10 +266,8 @@ function P2P({ onOrder }) {
         <span className="sp" />
         <div className="num mini"><input placeholder={L('輸入金額篩選', 'Filter by amount')} value={amtFilter} onChange={(e) => /^\d*\.?\d*$/.test(e.target.value) && setAmtFilter(e.target.value)} /><span className="num-suffix">{fiat}</span></div>
         <FiatSelect value={fiat} onChange={setFiat} />
-        <select className="sel" value={pay} onChange={(e) => setPay(e.target.value)} aria-label={L('支付方式', 'Payment')}>
-          <option value="all">{L('全部支付方式', 'All payments')}</option>
-          {methods.map((m) => <option key={m} value={m}>{L(...PAY_METHODS[m].name)}</option>)}
-        </select>
+        <Select value={pay} onChange={setPay} label={L('支付方式', 'Payment')}
+          options={[['all', L('全部支付方式', 'All payments')], ...methods.map((m) => [m, L(...PAY_METHODS[m].name), PAY_METHODS[m].color])]} />
       </div>
       <div className="table-wrap">
         <table className="tbl stack p2p-tbl">
