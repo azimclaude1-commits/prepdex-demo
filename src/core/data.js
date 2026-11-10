@@ -353,3 +353,47 @@ export const CHAINS = [
   { id: 'base', name: 'Base', color: '#0052FF', gas: 'ETH' },
   { id: 'bsc', name: 'BNB Chain', color: '#F3BA2F', gas: 'BNB' },
 ];
+
+// ----------------------------------------------------------------------------
+// Rewards hub: five free campaigns. Rewards are airdropped to the user's exchange account.
+// ----------------------------------------------------------------------------
+// Free launch: subscribe by signing a message, no payment. Times are hours from the demo epoch.
+export const FREE_DROP = {
+  id: 'oria', sym: 'ORIA', name: 'Oria Protocol', glyph: 'bloom', chain: 'Base', net: 'BASE',
+  colors: ['#160B2A', '#7B3FE4', '#FFB36B'],
+  start: -6, end: 66, perUser: 500, slots: 50000, slotCurve: [0.31, 0.94], refPrice: 0.08,
+  totalSupply: 1_000_000_000, dropPct: 2.5,
+  tagline: ['為鏈上創作者打造的社交身份與打賞協議', 'Social identity and tipping for on-chain creators'],
+  about: [
+    ['Oria Protocol 讓創作者用一個鏈上身份聚合作品、粉絲和收入。粉絲可以直接用穩定幣打賞，或收藏限量作品，收入即時到帳，平台抽成低於 2%。',
+      'Oria Protocol gives creators one on-chain identity for their work, fans and income. Fans tip in stablecoins or collect limited editions, payouts arrive instantly, and the platform fee stays under 2%.'],
+    ['為了冷啟動社區，Oria 拿出總供應量的 2.5% 通過 Novarix 免費發放給早期用戶，用戶只需連接錢包並簽名即可申購。',
+      'To bootstrap its community, Oria is giving away 2.5% of the total supply to early users through Novarix. Connect a wallet and sign to subscribe.'],
+  ],
+  facts: [
+    [['測試網創作者', 'Testnet creators'], '18,400+'],
+    [['累計打賞筆數', 'Tips sent'], '2.1M'],
+    [['投資方', 'Backers'], 'Arcadia, Kite Labs'],
+  ],
+};
+
+export const INVITE_REWARD = 50; // NVX per friend who connects a wallet
+export const INVITEE_REWARD = 20; // NVX the friend receives
+export const INVITE_MILESTONES = [[3, 100], [10, 500], [30, 2000]];
+export const CHECKIN_REWARDS = [5, 5, 10, 10, 15, 20, 50];
+export const SOCIAL_TASKS = [
+  { id: 'x', name: ['關注 Novarix 的 X 帳號', 'Follow Novarix on X'], handle: '@NovarixHQ', reward: 30, color: '#E7E9EE', icon: 'x' },
+  { id: 'tg', name: ['加入 Telegram 社群', 'Join our Telegram group'], handle: 't.me/novarix', reward: 30, color: '#29A9EB', icon: 'tg' },
+  { id: 'dc', name: ['加入 Discord 伺服器', 'Join our Discord server'], handle: 'discord.gg/novarix', reward: 30, color: '#5865F2', icon: 'dc' },
+  { id: 'rt', name: ['轉發置頂貼文', 'Repost the pinned post'], handle: '@NovarixHQ', reward: 40, color: '#FF9A3D', icon: 'rt' },
+  { id: 'yt', name: ['訂閱 YouTube 頻道', 'Subscribe on YouTube'], handle: 'youtube.com/@novarix', reward: 20, color: '#FF3B3B', icon: 'yt' },
+];
+export const SOCIAL_BONUS = 100;
+export const QUIZ_REWARD = 10; // USDT
+export const QUIZ = [
+  { q: ['在 Novarix 質押 NVX 有什麼作用？', 'What does staking NVX on Novarix do?'], opts: [['只能領取利息', 'It only earns interest'], ['提升認購等級並降低手續費', 'It raises your launchpad tier and cuts fees'], ['可以免費提幣', 'It makes withdrawals free']], a: 1 },
+  { q: ['Launchpad 超募時，多出的 USDC 會怎樣？', 'In an oversubscribed sale, what happens to the extra USDC?'], opts: [['按比例分配並自動退回', 'Allocated pro rata and refunded automatically'], ['由平台保留', 'The platform keeps it'], ['轉為合約保證金', 'It becomes futures margin']], a: 0 },
+  { q: ['錢包簽名登入會消耗 Gas 嗎？', 'Does signing in with your wallet cost gas?'], opts: [['會，每次約 1 美元', 'Yes, about $1 each time'], ['只有第一次會', 'Only the first time'], ['不會，簽名不是交易', 'No, a signature is not a transaction']], a: 2 },
+  { q: ['借貸的健康度低於多少時會被清算？', 'Below which health factor is a loan liquidated?'], opts: [['2.0', '2.0'], ['1.5', '1.5'], ['1.0', '1.0']], a: 2 },
+  { q: ['活動獎勵會發放到哪裡？', 'Where are campaign rewards sent?'], opts: [['你的 Novarix 現貨帳戶', 'Your Novarix spot account'], ['你的銀行卡', 'Your bank card'], ['需要人工申請', 'You have to apply by hand']], a: 0 },
+];

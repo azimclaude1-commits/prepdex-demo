@@ -160,7 +160,8 @@ function Records() {
   const s = useApp();
   const [k, setK] = useState('all');
   const rows = s.records.filter((r) => k === 'all' || r.kind === k);
-  const kind = { deposit: L('充值', 'Deposit'), withdraw: L('提幣', 'Withdraw'), transfer: L('劃轉', 'Transfer'), convert: L('閃兌', 'Convert'), swap: L('兌換', 'Swap'), otc: 'OTC', lend: L('借貸', 'Lending') };
+  const kind = { deposit: L('充值', 'Deposit'), withdraw: L('提幣', 'Withdraw'), transfer: L('劃轉', 'Transfer'), convert: L('閃兌', 'Convert'), swap: L('兌換', 'Swap'), otc: 'OTC', lend: L('借貸', 'Lending'), airdrop: L('空投', 'Airdrop') };
+  const src = { drop: L('免費申購', 'Free launch'), invite: L('邀請好友', 'Invite friends'), checkin: L('每日簽到', 'Daily check-in'), social: L('社媒任務', 'Social tasks'), quiz: L('答題學院', 'Learn & earn') };
   const lendAct = { supply: L('存入', 'Supply'), withdraw: L('取出', 'Withdraw'), borrow: L('借出', 'Borrow'), repay: L('還款', 'Repay') };
   const accN = (x) => (x === 'spot' ? L('現貨', 'Spot') : L('合約', 'Futures'));
   return (
@@ -176,14 +177,15 @@ function Records() {
                   <td className="mono muted">{dateTime(r.ts, true)}</td>
                   <td>{kind[r.kind]}{r.kind === 'lend' ? ' · ' + lendAct[r.action] : ''}{r.kind === 'otc' ? ' · ' + (r.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')) : ''}</td>
                   <td><span className="row-gap"><CoinIcon sym={r.sym} size={18} />{r.sym}</span></td>
-                  <td className={cx('mono', ['deposit', 'otc'].includes(r.kind) && r.side !== 'sell' ? 'up' : r.kind === 'withdraw' ? 'down' : '')}>
-                    {r.kind === 'deposit' || (r.kind === 'otc' && r.side === 'buy') ? '+' : r.kind === 'withdraw' ? '-' : ''}{fmt(r.amount, 6)}
+                  <td className={cx('mono', ['deposit', 'otc', 'airdrop'].includes(r.kind) && r.side !== 'sell' ? 'up' : r.kind === 'withdraw' ? 'down' : '')}>
+                    {r.kind === 'deposit' || r.kind === 'airdrop' || (r.kind === 'otc' && r.side === 'buy') ? '+' : r.kind === 'withdraw' ? '-' : ''}{fmt(r.amount, 6)}
                   </td>
                   <td className="small muted">
                     {r.kind === 'deposit' && <>{NETWORKS[r.net]?.short}{r.txid && <> · <span className="mono">{shortAddr(r.txid)}</span></>}{r.demo && ' · ' + L('演示入金', 'demo')}</>}
                     {r.kind === 'withdraw' && <>{NETWORKS[r.net]?.short} → <span className="mono">{shortAddr(r.address)}</span> · {L('手續費', 'fee')} {r.fee}</>}
                     {r.kind === 'transfer' && <>{accN(r.from)} → {accN(r.to)}</>}
                     {(r.kind === 'convert' || r.kind === 'swap') && <>→ <span className="mono">{fmt(r.out, 6)} {r.to}</span></>}
+                    {r.kind === 'airdrop' && <>{src[r.source]} · {NETWORKS[r.net]?.short} → <span className="mono">{shortAddr(r.address)}</span></>}
                     {r.kind === 'otc' && <>{fmt(r.fiatAmt, 2)} {r.fiat}{r.via ? ' · ' + r.via : ''}</>}
                   </td>
                   <td><StatusPill r={r} /></td>

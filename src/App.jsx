@@ -11,6 +11,8 @@ import { Lending } from './pages/Lending.jsx';
 import { OTC } from './pages/OTC.jsx';
 import { Swap } from './pages/Swap.jsx';
 import { Wallet } from './pages/Wallet.jsx';
+import { Home } from './pages/Home.jsx';
+import { Rewards } from './pages/Rewards.jsx';
 
 function useSystemDark() {
   const q = typeof matchMedia !== 'undefined' ? matchMedia('(prefers-color-scheme: dark)') : null;
@@ -39,7 +41,9 @@ export default function App() {
 
   let page;
   switch (route.page) {
+    case 'launchpad': page = <Launchpad />; break;
     case 'project': page = <ProjectPage id={route.arg} />; break;
+    case 'rewards': page = <Rewards arg={route.arg} />; break;
     case 'spot': page = <Spot arg={route.arg} />; break;
     case 'futures': page = <Futures arg={route.arg} />; break;
     case 'staking': page = <Staking />; break;
@@ -47,7 +51,7 @@ export default function App() {
     case 'otc': page = <OTC />; break;
     case 'swap': page = <Swap />; break;
     case 'wallet': page = <Wallet arg={route.arg} key={route.arg || 'w'} />; break;
-    default: page = <Launchpad />;
+    default: page = <Home />;
   }
   return (
     <>

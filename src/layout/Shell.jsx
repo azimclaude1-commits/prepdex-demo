@@ -1,16 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
-  Rocket, CandlestickChart, Activity, ArrowLeftRight, Layers, Landmark, BadgeDollarSign, Wallet, Globe, Moon, Sun, Menu, X,
+  House, Gift, Rocket, CandlestickChart, Activity, ArrowLeftRight, Layers, Landmark, BadgeDollarSign, Wallet, Globe, Moon, Sun, Menu, X,
   FlaskConical, FastForward, RotateCcw, Zap, CircleCheck, AlertTriangle, CircleAlert, Droplets, TrendingDown, TrendingUp, ChevronDown,
 } from 'lucide-react';
 import { BRAND } from '../core/data.js';
 import { L, getLang, LANGS } from '../core/lang.js';
-import { useApp, useUI, go, openModal, setLangPref, setTheme, fastForward, resetAll, quickFund, faucet, now, toast } from '../core/store.js';
+import { useApp, useUI, go, openModal, claimables, setLangPref, setTheme, fastForward, resetAll, quickFund, faucet, now, toast } from '../core/store.js';
 import { useMarket, netStats, shockPrice } from '../core/market.js';
 import { shortAddr, dateTime, compact } from '../core/fmt.js';
 import { BrandMark, cx, Btn } from '../ui/kit.jsx';
 
 export const NAV = [
+  ['home', House, ['首頁', 'Home']],
   ['launchpad', Rocket, ['認購', 'Launchpad']],
   ['spot', CandlestickChart, ['現貨', 'Spot']],
   ['futures', Activity, ['合約', 'Futures']],
@@ -18,6 +19,7 @@ export const NAV = [
   ['staking', Layers, ['質押', 'Staking']],
   ['lending', Landmark, ['借貸', 'Lending']],
   ['otc', BadgeDollarSign, ['OTC 買幣', 'Buy crypto']],
+  ['rewards', Gift, ['活動', 'Rewards']],
 ];
 
 export function Header() {
@@ -37,19 +39,42 @@ export function Header() {
     return () => { document.removeEventListener('pointerdown', out); window.removeEventListener('keydown', esc); };
   }, [menu]);
   useEffect(() => setMenu(null), [route.page, route.arg]);
-  const page = route.page === 'project' ? 'launchpad' : route.page;
+  // When the nav items do not fit (long labels in some languages): first drop icons and
+  // tighten spacing, then collapse into the menu button. need[] remembers the width each level required.
+  const navRef = useRef(null);
+  const inRef = useRef(null);
+  const need = useRef([0, 0]);
+  const [level, setLevel] = useState(0);
+  useEffect(() => setLevel(0), [s.lang]);
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    const row = inRef.current;
+    if (!nav || !row) return;
+    const check = () => {
+      if (level < 2 && nav.clientWidth > 0 && nav.scrollWidth > nav.clientWidth + 1) {
+        need.current[level] = row.clientWidth + nav.scrollWidth - nav.clientWidth;
+        setLevel(level + 1);
+      } else if (level > 0 && row.clientWidth >= need.current[level - 1]) setLevel(level - 1);
+    };
+    check();
+    const ro = new ResizeObserver(check);
+    ro.observe(row);
+    return () => ro.disconnect();
+  }, [level, s.lang]);
+  const page = route.page === 'project' ? 'launchpad' : route.page || 'home';
+  const hasClaim = Object.keys(claimables()).length > 0;
   const dark = document.documentElement.dataset.resolved === 'dark';
   return (
-    <header className="hdr" ref={hdrRef}>
-      <div className="hdr-in">
-        <button className="brand" onClick={() => go('launchpad')} aria-label={BRAND}>
+    <header className={cx('hdr', level === 1 && 'hdr-tight', level === 2 && 'hdr-compact')} ref={hdrRef}>
+      <div className="hdr-in" ref={inRef}>
+        <button className="brand" onClick={() => go('home')} aria-label={BRAND}>
           <BrandMark size={30} />
           <span className="brand-name">Nova<b>rix</b></span>
         </button>
-        <nav className="nav">
+        <nav className="nav" ref={navRef}>
           {NAV.map(([k, Icon, [zh, en]]) => (
             <button key={k} className={cx('nav-item', page === k && 'on')} onClick={() => go(k)}>
-              <Icon size={16} />{L(zh, en)}
+              <Icon size={16} />{L(zh, en)}{k === 'rewards' && hasClaim && <i className="nav-dot" />}
             </button>
           ))}
         </nav>
@@ -78,14 +103,14 @@ export function Header() {
           ) : (
             <Btn size="sm" onClick={() => openModal('connect')}><Wallet size={15} />{L('連接錢包', 'Connect')}</Btn>
           )}
-          <button className={cx('icon-btn burger', menu === 'nav' && 'on')} onClick={() => toggle('nav')} aria-label={L('選單', 'Menu')} aria-expanded={menu === 'nav'}>{menu === 'nav' ? <X size={18} /> : <Menu size={18} />}</button>
+          <button className={cx('icon-btn burger', menu === 'nav' && 'on', hasClaim && 'has-dot')} onClick={() => toggle('nav')} aria-label={L('選單', 'Menu')} aria-expanded={menu === 'nav'}>{menu === 'nav' ? <X size={18} /> : <Menu size={18} />}</button>
         </div>
       </div>
       {menu === 'nav' && (
         <div className="nav-pop" role="menu">
           {[...NAV, ['wallet', Wallet, ['錢包', 'Wallet']]].map(([k, Icon, [zh, en]]) => (
             <button key={k} role="menuitem" className={cx('nav-pop-item', page === k && 'on')} onClick={() => { go(k); setMenu(null); }}>
-              <Icon size={17} />{L(zh, en)}
+              <Icon size={17} />{L(zh, en)}{k === 'rewards' && hasClaim && <i className="nav-dot" />}
             </button>
           ))}
         </div>

@@ -31,7 +31,7 @@ export function ModalHost() {
   }
 }
 
-function WalletGlyph({ w, size = 36 }) {
+export function WalletGlyph({ w, size = 36 }) {
   const letter = w.name[0];
   return (
     <span className="wglyph" style={{ width: size, height: size, background: `linear-gradient(140deg, ${w.color}, ${w.color}99)` }}>

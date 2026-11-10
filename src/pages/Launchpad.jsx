@@ -3,11 +3,11 @@ import {
   ArrowLeft, Clock, Users, Flame, Bell, BellRing, Globe2, Send, FileText, AtSign, ShieldCheck, ChevronRight, Trophy,
   Layers, Sparkles, TrendingUp, Gift, CheckCircle2, Info, Repeat, ArrowDownToLine, ChevronDown, Lock, Coins, Target, Calendar, Receipt,
 } from 'lucide-react';
-import { PROJECTS, PROJECT, TIERS, COIN } from '../core/data.js';
+import { PROJECTS, PROJECT, TIERS, COIN, FREE_DROP } from '../core/data.js';
 import { L } from '../core/lang.js';
 import {
   useApp, go, openModal, toast, phase, raised, participants, projTimes, maxAlloc, userSubTotal, subscribeSale, tier,
-  toggleReminder, vestUnlocked, claimVested, now, bal,
+  toggleReminder, vestUnlocked, claimVested, now, bal, dropPhase, dropTimes,
 } from '../core/store.js';
 import { useMarket, price, change24, getCandles } from '../core/market.js';
 import { fmt, usd, compact, countdown, dateTime, dateOnly, pct, floorTo } from '../core/fmt.js';
@@ -182,6 +182,8 @@ export function Launchpad() {
         <HeroOrbit />
       </section>
 
+      <FreeDropPromo />
+
       <TierCard />
 
       {[
@@ -200,6 +202,27 @@ export function Launchpad() {
 
       {mine && <MySubsModal onClose={() => setMine(false)} />}
     </div>
+  );
+}
+
+// Points to the free (signature-only) launch in the rewards hub
+function FreeDropPromo() {
+  const s = useApp();
+  const ph = dropPhase();
+  const [a, b, c] = FREE_DROP.colors;
+  return (
+    <button className="drop-promo" style={{ '--b1': a, '--b2': b, '--b3': c }} onClick={() => go('rewards', 'drop')}>
+      <div className="banner-grid" />
+      <ProjLogo p={FREE_DROP} size={54} ring />
+      <div className="drop-promo-txt">
+        <div className="row-gap"><span className="free-badge">{L('免費', 'FREE')}</span><b className="display">{L(`${FREE_DROP.sym} 零成本申購`, `${FREE_DROP.sym} free launch`)}</b></div>
+        <span>{L(`無需 USDC，連接錢包並簽名即可申購 ${FREE_DROP.perUser} ${FREE_DROP.sym}，結束後空投到你的帳戶。`, `No USDC needed. Connect, sign and get ${FREE_DROP.perUser} ${FREE_DROP.sym}, airdropped to your account when it closes.`)}</span>
+      </div>
+      <span className="drop-promo-cta">
+        {ph === 'live' && <small className="mono">{countdown(dropTimes().end - now())}</small>}
+        {s.camp.drop ? L('查看', 'View') : L('去申購', 'Subscribe')}<ChevronRight size={16} />
+      </span>
+    </button>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Check, Copy, Search, ChevronDown, Inbox, Loader2 } from 'lucide-react';
-import { COIN, PROJECTS } from '../core/data.js';
+import { COIN, PROJECTS, FREE_DROP } from '../core/data.js';
 import { L } from '../core/lang.js';
 import { toast } from '../core/store.js';
 
@@ -236,6 +236,7 @@ const GLYPH = {
 };
 export function CoinIcon({ sym, size = 24 }) {
   const c = COIN[sym];
+  if (sym === FREE_DROP.sym) return <ProjLogo p={FREE_DROP} size={size} />;
   const proj = !c && PROJECTS.find((p) => p.sym === sym);
   if (proj) return <ProjLogo p={proj} size={size} />;
   const launch = c?.launch && PROJECTS.find((p) => p.sym === sym);
@@ -287,6 +288,7 @@ export function ProjLogo({ p, size = 40, ring }) {
     ring: <g fill="none" stroke={c} strokeWidth="2.4"><circle cx="20" cy="20" r="10" /><circle cx="20" cy="20" r="5" strokeDasharray="3 2.4" /></g>,
     cube: <g fill="none" stroke={c} strokeWidth="2.3" strokeLinejoin="round"><path d="M20 8 L30 13.5 V26 L20 32 L10 26 V13.5 Z" /><path d="M10 13.5 L20 19 L30 13.5 M20 19 V32" /></g>,
     spark: <path d="M20 7 L23 17 L33 20 L23 23 L20 33 L17 23 L7 20 L17 17 Z" fill={c} />,
+    bloom: <g fill="none" stroke={c} strokeWidth="2.3"><circle cx="20" cy="14" r="5.2" /><circle cx="26" cy="20" r="5.2" /><circle cx="20" cy="26" r="5.2" /><circle cx="14" cy="20" r="5.2" /><circle cx="20" cy="20" r="2" fill={c} /></g>,
     wind: <g fill="none" stroke={c} strokeWidth="2.6" strokeLinecap="round"><path d="M8 15 H24 a4 4 0 1 0 -4 -4" /><path d="M8 21 H29 a4 4 0 1 1 -4 4" /><path d="M8 27 H17" /></g>,
   }[p.glyph];
   return (

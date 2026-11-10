@@ -3,6 +3,7 @@ import { useSyncExternalStore } from 'react';
 import {
   COIN, ONCHAIN_START, PROJECTS, PROJECT, TIERS, STAKE_PRODUCTS, EARLY_REDEEM_PENALTY,
   LEND_MARKETS, borrowRate, supplyRate, NETWORKS, netFee, PLATFORM_TOKEN,
+  FREE_DROP, INVITE_REWARD, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
 } from './data.js';
 import { price, pairPrice, volume24, subscribe as subscribeMarket } from './market.js';
 import { uid, randHex } from './fmt.js';
@@ -41,6 +42,20 @@ function fresh() {
     otc: [],
     records: [],
     favs: ['BTC', 'ETH', 'SOL'],
+    camp: freshCamp(),
+  };
+}
+
+function freshCamp() {
+  return {
+    drop: null,
+    invites: [],
+    inviteClaimed: 0,
+    msClaimed: [],
+    checkin: { last: null, streak: 0, total: 0, count: 0 },
+    social: {},
+    socialBonus: false,
+    quiz: { passed: false, claimed: false, tries: 0, best: 0 },
   };
 }
 
@@ -113,7 +128,7 @@ export function useUI() {
 
 function parseHash() {
   const h = (typeof location !== 'undefined' ? location.hash : '').replace(/^#/, '');
-  if (!h) return { page: 'launchpad' };
+  if (!h) return { page: 'home' };
   const [page, arg] = h.split('-');
   return { page, arg: arg || undefined };
 }
@@ -917,18 +932,199 @@ function processOtc(s, events) {
 }
 
 // ----------------------------------------------------------------------------
+// Rewards hub. Every claim is airdropped to the user's exchange deposit address
+// and credited to the spot account after a few confirmations.
+// ----------------------------------------------------------------------------
+const AIRDROP_NET = 'BEP20';
+export const airdropNet = (sym) => (sym === FREE_DROP.sym ? FREE_DROP.net : AIRDROP_NET);
+export const airdropAddress = (sym = PLATFORM_TOKEN) => depositAddress(airdropNet(sym));
+let lastDrop = null;
+function airdrop(s, sym, amount, source) {
+  const net = airdropNet(sym);
+  lastDrop = uid('r');
+  s.records.unshift({ id: lastDrop, kind: 'airdrop', sym, amount, net, source, address: depositAddress(net), status: 'confirming', conf: 0, need: 6, ts: now(), started: Date.now(), txid: '0x' + randHex(64) });
+}
+const needWallet = () => (!state.wallet.connected ? { err: L('請先連接錢包', 'Connect your wallet first') } : null);
+
+// Free launch: subscribe with a signature, claim after the window closes
+export function dropTimes() {
+  return { start: state.epoch + FREE_DROP.start * HOUR, end: state.epoch + FREE_DROP.end * HOUR };
+}
+export function dropPhase(t = now()) {
+  const { start, end } = dropTimes();
+  return t < start ? 'upcoming' : t < end ? 'live' : 'ended';
+}
+export function dropTaken(t = now()) {
+  const { start, end } = dropTimes();
+  const f = Math.max(0, Math.min(1, (t - start) / (end - start)));
+  const [a, b] = FREE_DROP.slotCurve;
+  const base = Math.round(FREE_DROP.slots * (a + (b - a) * (1 - Math.pow(1 - f, 1.4))));
+  return Math.min(FREE_DROP.slots, base + (state.camp.drop ? 1 : 0));
+}
+export function signDrop(sig) {
+  const e = needWallet();
+  if (e) return e;
+  if (dropPhase() !== 'live') return { err: L('當前不在申購期', 'The subscription window is closed') };
+  if (state.camp.drop) return { err: L('你已完成申購', 'You have already subscribed') };
+  set((s) => { s.camp.drop = { sig, ts: now(), claimed: false }; });
+  return { ok: true };
+}
+export function claimDrop() {
+  const e = needWallet();
+  if (e) return e;
+  const d = state.camp.drop;
+  if (!d) return { err: L('你沒有參與本次申購', 'You did not subscribe') };
+  if (dropPhase() !== 'ended') return { err: L('申購結束後才能領取', 'Claim opens when the window closes') };
+  if (d.claimed) return { err: L('已領取', 'Already claimed') };
+  set((s) => { s.camp.drop.claimed = true; s.camp.drop.claimedAt = now(); airdrop(s, FREE_DROP.sym, FREE_DROP.perUser, 'drop'); });
+  return { ok: true, amt: FREE_DROP.perUser, rid: lastDrop };
+}
+
+// Invites
+export function inviteCode() {
+  return 'NVX' + (state.wallet.address || '0x000000').slice(2, 8).toUpperCase();
+}
+export function simulateInvite() {
+  set((s) => { s.camp.invites.unshift({ id: uid('i'), addr: '0x' + randHex(40), ts: now(), deposited: Math.random() < 0.55 }); });
+}
+export function inviteClaimable() {
+  const c = state.camp;
+  const n = c.invites.length;
+  const ms = INVITE_MILESTONES.filter(([k]) => n >= k && !c.msClaimed.includes(k));
+  const friends = (n - c.inviteClaimed) * INVITE_REWARD;
+  return { amt: friends + ms.reduce((a, [, r]) => a + r, 0), friends, ms };
+}
+export function claimInvite() {
+  const e = needWallet();
+  if (e) return e;
+  const { amt, ms } = inviteClaimable();
+  if (!(amt > 0)) return { err: L('暫無可領取的獎勵', 'Nothing to claim yet') };
+  set((s) => { s.camp.inviteClaimed = s.camp.invites.length; s.camp.msClaimed.push(...ms.map((m) => m[0])); airdrop(s, PLATFORM_TOKEN, amt, 'invite'); });
+  return { ok: true, amt, rid: lastDrop };
+}
+
+// Daily check-in: a 7-day cycle, a missed day restarts it
+const tzOff = (t) => new Date(t).getTimezoneOffset() * 60e3;
+export const dayKey = (t = now()) => Math.floor((t - tzOff(t)) / DAY);
+export function checkinState(t = now()) {
+  const c = state.camp.checkin;
+  const today = dayKey(t);
+  const doneToday = c.last === today;
+  const alive = doneToday || c.last === today - 1;
+  const streak = alive ? c.streak : 0;
+  const pos = streak === 0 ? 0 : ((streak - 1) % 7) + 1;
+  const filled = doneToday ? pos : pos === 7 ? 0 : pos;
+  const nextIdx = doneToday ? pos % 7 : filled;
+  const msToNext = DAY - (((t - tzOff(t)) % DAY) + DAY) % DAY;
+  return { doneToday, streak, filled, nextIdx, nextReward: CHECKIN_REWARDS[nextIdx], total: c.total, count: c.count || 0, msToNext };
+}
+export function checkIn() {
+  const e = needWallet();
+  if (e) return e;
+  const st = checkinState();
+  if (st.doneToday) return { err: L('今天已簽到', 'Already checked in today') };
+  const reward = CHECKIN_REWARDS[st.filled];
+  set((s) => {
+    const c = s.camp.checkin;
+    c.streak = st.streak + 1;
+    c.last = dayKey();
+    c.total += reward;
+    c.count = (c.count || 0) + 1;
+    airdrop(s, PLATFORM_TOKEN, reward, 'checkin');
+  });
+  return { ok: true, reward, day: st.filled + 1, rid: lastDrop };
+}
+
+// Social tasks: open the link, a short verification, then claim
+export function socialStatus(id, t = Date.now()) {
+  const x = state.camp.social[id];
+  if (!x) return 'todo';
+  if (x.claimed) return 'claimed';
+  return t - x.at < 2600 ? 'verifying' : 'done';
+}
+export function startSocial(id) {
+  const e = needWallet();
+  if (e) return e;
+  set((s) => { if (!s.camp.social[id]) s.camp.social[id] = { at: Date.now() }; });
+  return { ok: true };
+}
+export const socialAllDone = () => SOCIAL_TASKS.every((x) => ['done', 'claimed'].includes(socialStatus(x.id)));
+// Claims every verified task (plus the bonus once all five are done) in one airdrop
+export function claimSocial() {
+  const e = needWallet();
+  if (e) return e;
+  const ready = SOCIAL_TASKS.filter((x) => socialStatus(x.id) === 'done');
+  const bonus = !state.camp.socialBonus && socialAllDone();
+  const amt = ready.reduce((a, x) => a + x.reward, 0) + (bonus ? SOCIAL_BONUS : 0);
+  if (!(amt > 0)) return { err: L('暫無可領取的獎勵', 'Nothing to claim yet') };
+  set((s) => {
+    for (const x of ready) s.camp.social[x.id].claimed = true;
+    if (bonus) s.camp.socialBonus = true;
+    airdrop(s, PLATFORM_TOKEN, amt, 'social');
+  });
+  return { ok: true, amt, rid: lastDrop };
+}
+
+// Quiz
+export function submitQuiz(answers) {
+  const correct = QUIZ.filter((x, i) => answers[i] === x.a).length;
+  set((s) => {
+    const q = s.camp.quiz;
+    q.tries += 1;
+    q.best = Math.max(q.best, correct);
+    if (correct === QUIZ.length) q.passed = true;
+  });
+  return correct;
+}
+export function claimQuiz() {
+  const e = needWallet();
+  if (e) return e;
+  const q = state.camp.quiz;
+  if (!q.passed) return { err: L('全部答對後才能領取', 'Answer every question correctly first') };
+  if (q.claimed) return { err: L('已領取', 'Already claimed') };
+  set((s) => { s.camp.quiz.claimed = true; airdrop(s, 'USDT', QUIZ_REWARD, 'quiz'); });
+  return { ok: true, amt: QUIZ_REWARD, rid: lastDrop };
+}
+
+// What each campaign has ready to claim right now
+export function claimables() {
+  const c = state.camp;
+  const out = {};
+  if (!state.wallet.connected) return out;
+  if (c.drop && !c.drop.claimed && dropPhase() === 'ended') out.drop = [[FREE_DROP.sym, FREE_DROP.perUser]];
+  const inv = inviteClaimable().amt;
+  if (inv > 0) out.invite = [[PLATFORM_TOKEN, inv]];
+  const ck = checkinState();
+  if (!ck.doneToday) out.checkin = [[PLATFORM_TOKEN, CHECKIN_REWARDS[ck.filled]]];
+  let soc = SOCIAL_TASKS.filter((x) => socialStatus(x.id) === 'done').reduce((a, x) => a + x.reward, 0);
+  if (socialAllDone() && !c.socialBonus) soc += SOCIAL_BONUS;
+  if (soc > 0) out.social = [[PLATFORM_TOKEN, soc]];
+  if (c.quiz.passed && !c.quiz.claimed) out.quiz = [['USDT', QUIZ_REWARD]];
+  return out;
+}
+export function claimableUsd() {
+  return Object.values(claimables()).flat().reduce((a, [sym, amt]) => a + valueOf(sym, amt), 0);
+}
+export function airdropTotals() {
+  const by = {};
+  for (const r of state.records) if (r.kind === 'airdrop') by[r.sym] = (by[r.sym] || 0) + r.amount;
+  return by;
+}
+
+// ----------------------------------------------------------------------------
 // Background engine: runs once per market tick
 // ----------------------------------------------------------------------------
 function processRecords(s, events) {
   const t = Date.now();
   for (const r of s.records) {
-    if (r.kind === 'deposit' && r.status === 'confirming') {
+    if ((r.kind === 'deposit' || r.kind === 'airdrop') && r.status === 'confirming') {
       const conf = Math.min(r.need, Math.floor((t - r.started) / 420));
       if (conf !== r.conf) r.conf = conf;
       if (conf >= r.need) {
         r.status = 'done';
         add(s.spot, r.sym, r.amount);
-        events.push([L('充值到帳', 'Deposit credited'), `+${r.amount} ${r.sym} · ${NETWORKS[r.net].short}`]);
+        if (r.kind === 'airdrop') events.push([L('空投已到帳', 'Airdrop received'), `+${r.amount} ${r.sym} · ${L('現貨帳戶', 'Spot account')}`]);
+        else events.push([L('充值到帳', 'Deposit credited'), `+${r.amount} ${r.sym} · ${NETWORKS[r.net].short}`]);
       }
     }
     if (r.kind === 'withdraw' && r.status === 'processing' && t - r.started > 2500) {
@@ -981,6 +1177,7 @@ export function startEngine() {
 export function valueOf(sym, amt) {
   if (!amt) return 0;
   if (COIN[sym]) return amt * price(sym);
+  if (sym === FREE_DROP.sym) return amt * FREE_DROP.refPrice;
   const p = PROJECTS.find((x) => x.sym === sym);
   return p ? amt * p.price : 0;
 }
