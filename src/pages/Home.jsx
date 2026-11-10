@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
   Sparkles, Wallet, ArrowDownToLine, Gift, ChevronRight, Rocket, CandlestickChart, Activity, ArrowLeftRight, Layers, Landmark,
-  BadgeDollarSign, ShieldCheck, Zap, Globe, ArrowUpRight, Flame,
+  BadgeDollarSign, ShieldCheck, Globe, ArrowUpRight, Flame, CalendarCheck,
 } from 'lucide-react';
 import { COINS, COIN, PROJECTS, FREE_DROP, LEND_MARKETS, FIATS, MAX_LEV, STAKE_PRODUCTS } from '../core/data.js';
 import { L } from '../core/lang.js';
-import { useApp, go, openModal, phase, claimableUsd } from '../core/store.js';
+import { useApp, go, openModal, phase, claimableUsd, checkinState } from '../core/store.js';
 import { useMarket, price, change24, volume24, getCandles } from '../core/market.js';
 import { fmt, fp, usd, compact } from '../core/fmt.js';
 import { Btn, Tabs, CoinIcon, ProjLogo, Spark, Delta, Flash, cx, useMedia, PHONE } from '../ui/kit.jsx';
@@ -55,8 +55,6 @@ function HeroBoard() {
   const syms = ['BTC', 'ETH', 'SOL', 'BNB', 'NVX'];
   return (
     <div className="hero-board">
-      <div className="hb-float hb-f1"><Gift size={15} />+{FREE_DROP.perUser} {FREE_DROP.sym}</div>
-      <div className="hb-float hb-f2"><Zap size={15} />{L('簽到', 'Check-in')} +5 NVX</div>
       <div className="hb-card">
         <div className="hb-head">
           <span className="row-gap"><i className="live-dot" />{L('即時行情', 'Live prices')}</span>
@@ -73,6 +71,18 @@ function HeroBoard() {
             </span>
           </button>
         ))}
+        <div className="hb-foot">
+          <button className="hb-act drop" onClick={() => go('rewards', 'drop')}>
+            <ProjLogo p={FREE_DROP} size={22} />
+            <span>{L('免費申購', 'Free launch')}</span>
+            <b className="mono">+{FREE_DROP.perUser} {FREE_DROP.sym}</b>
+          </button>
+          <button className="hb-act ck" onClick={() => go('rewards', 'checkin')}>
+            <CalendarCheck size={18} />
+            <span>{L('每日簽到', 'Daily check-in')}</span>
+            <b className="mono">+{checkinState().nextReward} NVX</b>
+          </button>
+        </div>
       </div>
     </div>
   );
