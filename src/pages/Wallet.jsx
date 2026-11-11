@@ -10,6 +10,7 @@ import { fmt, usd, dateTime, shortAddr, adp } from '../core/fmt.js';
 import { Btn, Tabs, CoinIcon, Donut, Delta, Pill, Empty, CopyBtn, cx, PHONE } from '../ui/kit.jsx';
 import { ConnectGate } from '../layout/Shell.jsx';
 import { StatusPill } from '../layout/Modals.jsx';
+import { AirdropModal } from './DropFlows.jsx';
 
 const ACC_COLORS = { spot: 'var(--accent)', futures: 'var(--violet)', earn: '#4FD1C5', lend: '#5B8CFF' };
 
@@ -159,6 +160,7 @@ function AssetList({ hide }) {
 function Records() {
   const s = useApp();
   const [k, setK] = useState('all');
+  const [view, setView] = useState(null);
   const rows = s.records.filter((r) => k === 'all' || r.kind === k);
   const kind = { deposit: L('充值', 'Deposit'), withdraw: L('提幣', 'Withdraw'), transfer: L('劃轉', 'Transfer'), convert: L('閃兌', 'Convert'), swap: L('兌換', 'Swap'), otc: 'OTC', lend: L('借貸', 'Lending'), airdrop: L('空投', 'Airdrop') };
   const src = { drop: L('免費申購', 'Free launch'), invite: L('邀請好友', 'Invite friends'), checkin: L('每日簽到', 'Daily check-in'), social: L('社媒任務', 'Social tasks'), quiz: L('答題學院', 'Learn & earn') };
@@ -173,7 +175,7 @@ function Records() {
             <thead><tr><th>{L('時間', 'Time')}</th><th>{L('類型', 'Type')}</th><th>{L('幣種', 'Coin')}</th><th>{L('數量', 'Amount')}</th><th>{L('詳情', 'Details')}</th><th>{L('狀態', 'Status')}</th></tr></thead>
             <tbody>
               {rows.slice(0, 80).map((r) => (
-                <tr key={r.id}>
+                <tr key={r.id} className={cx(r.kind === 'airdrop' && 'clickable')} onClick={r.kind === 'airdrop' ? () => setView(r.id) : undefined}>
                   <td className="mono muted">{dateTime(r.ts, true)}</td>
                   <td>{kind[r.kind]}{r.kind === 'lend' ? ' · ' + lendAct[r.action] : ''}{r.kind === 'otc' ? ' · ' + (r.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')) : ''}</td>
                   <td><span className="row-gap"><CoinIcon sym={r.sym} size={18} />{r.sym}</span></td>
@@ -195,6 +197,7 @@ function Records() {
           </table>
         </div>
       )}
+      {view && <AirdropModal rid={view} onClose={() => setView(null)} />}
     </div>
   );
 }

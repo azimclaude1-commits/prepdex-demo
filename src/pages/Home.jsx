@@ -7,7 +7,7 @@ import { COINS, COIN, PROJECTS, FREE_DROP, LEND_MARKETS, FIATS, MAX_LEV, STAKE_P
 import { L } from '../core/lang.js';
 import { useApp, go, openModal, phase, claimableUsd, checkinState } from '../core/store.js';
 import { useMarket, price, change24, volume24, getCandles } from '../core/market.js';
-import { fmt, fp, usd, compact } from '../core/fmt.js';
+import { fmt, fp, usd, compact, amt } from '../core/fmt.js';
 import { Btn, Tabs, CoinIcon, ProjLogo, Spark, Delta, Flash, cx, useMedia, PHONE } from '../ui/kit.jsx';
 import { CAMP_IDS, campMeta } from './Rewards.jsx';
 import { TickerTape, LaunchShowcase, TradeShowcase, EarnSection, SecuritySection, NewsCommunity, Faq, FinalCta } from './HomeSections.jsx';
@@ -28,7 +28,7 @@ export function Home() {
             {L('交易、認購、賺收益', 'Trade, launch, earn.')}
             <span className="grad-text">{L('一個帳戶全搞定', 'One account for all of it')}</span>
           </h1>
-          <p className="hero-sub">{L('現貨、合約、兌換、Launchpad、質押與借貸都在這裡。連接錢包並充值即可開始，另有 5 個免費活動等你領獎勵。', 'Spot, futures, swap, launchpad, staking and lending in one place. Connect a wallet and deposit to start, and claim rewards from 5 free campaigns.')}</p>
+          <p className="hero-sub">{L('現貨、合約、兌換、Launchpad、質押與借貸都在這裡。連接錢包並充值即可開始交易。', 'Spot, futures, swap, launchpad, staking and lending in one place. Connect a wallet and deposit to start trading.')}</p>
           <div className="hero-cta">
             {s.wallet.connected
               ? <Btn size="lg" onClick={() => openModal('deposit')}><ArrowDownToLine size={17} />{L('立即充值', 'Deposit now')}</Btn>
@@ -94,7 +94,7 @@ function HeroBoard() {
           <button className="hb-act ck" onClick={() => go('rewards', 'checkin')}>
             <CalendarCheck size={18} />
             <span>{L('每日簽到', 'Daily check-in')}</span>
-            <b className="mono">+{checkinState().nextReward} NVX</b>
+            <b className="mono">{checkinState().finished ? L('已完成', 'Done') : `+${amt(checkinState().nextReward)} USDT`}</b>
           </button>
         </div>
       </div>
@@ -120,7 +120,6 @@ function CampaignStrip() {
     <section className="lp-sec">
       <div className="sec-head">
         <h2 className="display sec-title"><Flame size={20} className="accent-text" />{L('熱門活動', 'Campaigns')}</h2>
-        <span className="count">{CAMP_IDS.length}</span>
         <button className="link-btn" onClick={() => go('rewards')}>{L('全部活動', 'All campaigns')}<ChevronRight size={14} /></button>
       </div>
       <div className="camp-strip">
@@ -217,7 +216,7 @@ function GetStarted() {
   const steps = [
     [Wallet, L('連接錢包', 'Connect a wallet'), L('用 MetaMask 等插件錢包簽名登入，不消耗 Gas。', 'Sign in with MetaMask or another extension wallet. No gas.'), s.wallet.connected, () => openModal('connect'), L('連接', 'Connect')],
     [ArrowDownToLine, L('充值到專屬地址', 'Deposit to your address'), L('平台為你分配專屬充值地址，區塊確認後自動到帳。', 'You get your own deposit address. Funds arrive after confirmations.'), s.records.some((r) => r.kind === 'deposit'), () => openModal(s.wallet.connected ? 'deposit' : 'connect'), L('充值', 'Deposit')],
-    [Rocket, L('交易或參與活動', 'Trade or join a campaign'), L('開始交易、認購新項目，或先去活動中心免費領獎勵。', 'Trade, join a token sale, or claim free rewards first.'), false, () => go('rewards'), L('去看看', 'Explore')],
+    [Rocket, L('交易或參與活動', 'Trade or join a campaign'), L('開始交易、認購新項目，或在活動中心完成任務領取 USDT。', 'Trade, join a token sale, or finish tasks in the rewards hub for USDT.'), false, () => go('rewards'), L('去看看', 'Explore')],
   ];
   return (
     <section className="card get-started">

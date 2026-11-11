@@ -170,7 +170,7 @@ export function Launchpad() {
           <p className="hero-sub">{L('經過盡調的早期項目，統一以 USDC 認購。超募按比例分配並自動退款，TGE 後直接在現貨交易。', 'Vetted early-stage projects, subscribed in USDC. Oversubscribed sales allocate pro rata with automatic refunds, and tokens trade on spot right after TGE.')}</p>
           <div className="hero-cta">
             <Btn size="lg" onClick={() => document.getElementById('lp-live')?.scrollIntoView({ behavior: 'smooth' })}><Flame size={17} />{L('查看進行中項目', 'See live sales')}</Btn>
-            <Btn size="lg" variant="ghost" onClick={() => setMine(true)}><Receipt size={17} />{L('我的認購', 'My subscriptions')}{s.subs.length > 0 && <span className="tab-badge">{s.subs.length}</span>}</Btn>
+            <Btn size="lg" variant="ghost" onClick={() => setMine(true)}><Receipt size={17} />{L('我的認購', 'My subscriptions')}{s.subs.length + (s.camp.drop ? 1 : 0) > 0 && <span className="tab-badge">{s.subs.length + (s.camp.drop ? 1 : 0)}</span>}</Btn>
           </div>
           <div className="hero-stats">
             <div><b className="mono">${compact(totalRaised, 1)}</b><span>{L('累計募資', 'Total raised')}</span></div>
@@ -229,15 +229,32 @@ function FreeDropPromo() {
 function MySubsModal({ onClose }) {
   useMarket();
   const s = useApp();
+  const d = s.camp.drop;
+  const rec = d?.rid ? s.records.find((r) => r.id === d.rid) : null;
+  const dph = dropPhase();
+  const dropPill = rec?.status === 'done' ? <Pill tone="up">{L('已到帳', 'Received')}</Pill>
+    : rec ? <Pill tone="accent" dot>{L('空投中', 'Airdropping')}</Pill>
+    : dph === 'ended' ? <Pill tone="accent" dot>{L('待領取', 'Ready to claim')}</Pill>
+    : dph === 'allocating' ? <Pill tone="violet" dot>{L('分配計算中', 'Allocating')}</Pill>
+    : <Pill tone="violet">{L('已申購', 'Subscribed')}</Pill>;
   return (
     <Modal title={L('我的認購', 'My subscriptions')} onClose={onClose} width={640} icon={<Receipt size={18} />}>
-      {s.subs.length === 0 ? (
+      {s.subs.length === 0 && !d ? (
         <Empty text={L('還沒有認購記錄', 'No subscriptions yet')}><Btn size="sm" onClick={() => { onClose(); go('project', 'vela'); }}>{L('去認購 VELA', 'Subscribe to VELA')}</Btn></Empty>
       ) : (
         <div className="table-wrap">
           <table className="tbl stack">
             <thead><tr><th>{L('項目', 'Project')}</th><th>{L('認購金額', 'Committed')}</th><th>{L('狀態', 'Status')}</th><th>{L('獲配', 'Allocated')}</th><th>{L('時間', 'Time')}</th></tr></thead>
             <tbody>
+              {d && (
+                <tr className="clickable" onClick={() => { onClose(); go('rewards', 'record'); }}>
+                  <td><span className="row-gap"><ProjLogo p={FREE_DROP} size={22} />{FREE_DROP.sym}<span className="free-badge sm">{L('免費', 'FREE')}</span></span></td>
+                  <td className="mono">0 USDC</td>
+                  <td>{dropPill}</td>
+                  <td className="mono">{dph === 'ended' ? `${fmt(d.amount || FREE_DROP.perUser, 2)} ${FREE_DROP.sym}` : '--'}</td>
+                  <td className="mono muted">{dateTime(d.ts)}</td>
+                </tr>
+              )}
               {[...s.subs].reverse().map((x) => {
                 const p = PROJECT[x.pid];
                 return (

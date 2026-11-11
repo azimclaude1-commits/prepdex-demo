@@ -34,6 +34,13 @@
 "0 (incluida en la cotización)",
 "0 (kasama na sa quote)"
 ],
+"0 (paid by the platform)": [
+"0 (플랫폼 부담)",
+"0(プラットフォーム負担)",
+"0 (dibayar oleh platform)",
+"0 (lo paga la plataforma)",
+"0 (sagot ng platform)"
+],
 "0.1% fee": [
 "수수료 0.1%",
 "手数料 0.1%",
@@ -286,6 +293,13 @@
 "Añadir margen",
 "Magdagdag ng margin"
 ],
+"Added automatically after confirmations": [
+"블록 확인 후 자동 반영",
+"承認後に自動で反映",
+"Ditambah secara automatik selepas pengesahan",
+"Se añade automáticamente tras las confirmaciones",
+"Awtomatikong idaragdag pagkatapos ng confirmations"
+],
 "Added to your spot account": [
 "현물 계정에 입금되었습니다",
 "現物口座に反映されました",
@@ -363,12 +377,26 @@
 "Se envía a tu dirección del exchange",
 "Ia-airdrop sa iyong exchange address"
 ],
+"Airdropped to your exchange address and added to your spot account.": [
+"거래소 주소로 에어드랍되어 현물 계정에 입금되었습니다.",
+"取引所アドレスへエアドロップされ、現物口座に入金されました。",
+"Di-airdrop ke alamat bursa anda dan ditambah ke akaun spot.",
+"Enviado a tu dirección del exchange y añadido a tu cuenta spot.",
+"Na-airdrop sa exchange address mo at naidagdag sa spot account."
+],
 "Airdropping": [
 "에어드랍 진행 중",
 "エアドロップ中",
 "Sedang di-airdrop",
 "Enviando airdrop",
 "Ina-airdrop"
+],
+"Airdropping · {0}/{1} confirmations": [
+"에어드랍 중 · 블록 확인 {0}/{1}",
+"エアドロップ中 · 承認 {0}/{1}",
+"Sedang di-airdrop · {0}/{1} pengesahan",
+"Enviando · {0}/{1} confirmaciones",
+"Ina-airdrop · {0}/{1} confirmations"
 ],
 "Airdrops": [
 "에어드랍 내역",
@@ -390,6 +418,34 @@
 "Kesemua 5 kempen adalah percuma. Selesaikan tugasan dan tuntut: ganjaran di-airdrop ke alamat bursa Novarix anda dan masuk ke akaun spot.",
 "Las 5 campañas son gratis. Completa una tarea y reclama: las recompensas se envían a tu dirección de Novarix y llegan a tu cuenta spot.",
 "Libre ang lahat ng 5 campaign. Tapusin ang task at i-claim: ia-airdrop ang rewards sa Novarix exchange address mo at papasok sa spot account."
+],
+"All 7 check-ins are done": [
+"7일 출석을 모두 완료했습니다",
+"7日間のチェックインをすべて完了しました",
+"Kesemua 7 daftar masuk telah selesai",
+"Ya completaste las 7 asistencias",
+"Tapos na ang lahat ng 7 check-in"
+],
+"All 7 check-ins done": [
+"7일 출석 완료",
+"7日間チェックイン完了",
+"7 daftar masuk selesai",
+"7 asistencias completadas",
+"Tapos ang 7 check-in"
+],
+"All 7 check-ins done: {0} USDT earned": [
+"7일 출석 완료, 총 {0} USDT 획득",
+"7日間チェックイン完了、合計{0} USDT獲得",
+"7 daftar masuk selesai: {0} USDT diperoleh",
+"7 asistencias completadas: {0} USDT ganados",
+"Tapos ang 7 check-in: {0} USDT ang nakuha"
+],
+"All 7 check-ins done; everything has been claimed.": [
+"7일 출석을 완료하여 보상을 모두 받았습니다.",
+"7日間のチェックインが完了し、報酬はすべて受け取り済みです。",
+"7 daftar masuk selesai; semua ganjaran telah dituntut.",
+"Completaste las 7 asistencias; ya reclamaste todo.",
+"Tapos ang 7 check-in; na-claim na ang lahat."
 ],
 "All activity": [
 "전체 내역",
@@ -468,6 +524,13 @@
 "Todas las ventas",
 "Lahat ng sale"
 ],
+"All spots are taken": [
+"신청 인원이 마감되었습니다",
+"申込枠が埋まりました",
+"Semua slot telah penuh",
+"No quedan plazas",
+"Puno na ang lahat ng slot"
+],
 "Allocated": [
 "배정",
 "割当",
@@ -489,12 +552,68 @@
 "Asignados {0} {1}, reembolsados {2} USDC",
 "Na-allocate ang {0} {1}, na-refund ang {2} USDC"
 ],
+"Allocating": [
+"배분 계산 중",
+"配分計算中",
+"Sedang diagihkan",
+"Asignando",
+"Kinukuwenta ang allocation"
+],
+"Allocating; claim opens in {0}": [
+"배분 계산 중, {0} 후 수령 가능",
+"配分計算中、{0}後に受取開始",
+"Sedang diagihkan; tuntutan dibuka dalam {0}",
+"Asignando; podrás reclamar en {0}",
+"Kinukuwenta; bubukas ang claim sa loob ng {0}"
+],
 "Allocation": [
 "배분",
 "配分",
 "Peruntukan",
 "Distribución",
 "Allocation"
+],
+"Allocations are out. Claim now.": [
+"배분 결과가 발표되었습니다. 지금 수령하세요.",
+"配分結果が発表されました。今すぐ受け取れます。",
+"Agihan telah diumumkan. Tuntut sekarang.",
+"Ya hay asignaciones. Reclama ahora.",
+"Labas na ang allocation. I-claim na ngayon."
+],
+"Allocations are out. You can claim now.": [
+"배분 결과가 발표되어 이제 수령할 수 있습니다.",
+"配分結果が発表され、受け取れるようになりました。",
+"Agihan telah diumumkan. Anda boleh menuntut sekarang.",
+"Ya hay asignaciones. Ya puedes reclamar.",
+"Labas na ang allocation. Puwede ka nang mag-claim."
+],
+"Allocations are published 1 hour after the window closes; if spots remain, every wallet gets the full amount.": [
+"신청 종료 1시간 후 배분 결과를 발표하며, 인원이 미달되면 모든 지갑이 전액 배정받습니다.",
+"申込終了の1時間後に配分結果を発表します。枠が余れば全ウォレットに満額配分されます。",
+"Agihan diumumkan 1 jam selepas tempoh ditutup; jika slot masih ada, setiap dompet mendapat jumlah penuh.",
+"Las asignaciones se publican 1 hora después del cierre; si sobran plazas, cada wallet recibe la cantidad completa.",
+"Ipapalabas ang allocation 1 oras pagsara ng window; kung may natitirang slot, buo ang makukuha ng bawat wallet."
+],
+"Allocations in": [
+"배분 발표까지",
+"配分発表まで",
+"Agihan dalam",
+"Asignaciones en",
+"Allocation sa loob ng"
+],
+"Allocations published": [
+"배분 결과 발표",
+"配分結果発表",
+"Agihan diumumkan",
+"Asignaciones publicadas",
+"Naipalabas ang allocation"
+],
+"Allocations published after the window · {0}": [
+"신청 종료 후 배분 결과 발표 · {0}",
+"申込終了後に配分結果を発表 · {0}",
+"Agihan diumumkan selepas tempoh · {0}",
+"Asignaciones tras el cierre · {0}",
+"Ipapalabas ang allocation pagsara · {0}"
 ],
 "Already checked in today": [
 "오늘은 이미 출석했습니다",
@@ -579,6 +698,13 @@
 "Jawab semua dengan betul untuk menuntut.",
 "Responde todo correctamente para reclamar.",
 "Sagutin nang tama ang lahat para ma-claim."
+],
+"Answer the platform questions; get them all right to claim.": [
+"플랫폼 퀴즈에 답하고 모두 맞히면 받을 수 있습니다.",
+"プラットフォームのクイズに回答し、全問正解で受け取れます。",
+"Jawab soalan platform; betul semua untuk menuntut.",
+"Responde las preguntas de la plataforma; acierta todas para reclamar.",
+"Sagutin ang mga tanong; tamain lahat para mag-claim."
 ],
 "Answer {0} questions about the platform correctly.": [
 "플랫폼 관련 {0}문제를 모두 맞히면 됩니다.",
@@ -740,6 +866,13 @@
 "Kembali",
 "Atrás",
 "Bumalik"
+],
+"Back to the free {0} launch": [
+"{0} 무료 신청으로 돌아가기",
+"{0} 無料申込に戻る",
+"Kembali ke pelancaran {0} percuma",
+"Volver al lanzamiento gratis de {0}",
+"Bumalik sa libreng {0} launch"
 ],
 "Backers": [
 "투자사",
@@ -986,6 +1119,13 @@
 "Al conectar aceptas los Términos y la Política de privacidad. Este prototipo nunca accede a una billetera real.",
 "Sa pagkonekta, tinatanggap mo ang Terms at Privacy Policy. Hindi gumagalaw ng totoong wallet ang prototype na ito."
 ],
+"Calculating; published in {0}": [
+"배분 계산 중, {0} 후 발표",
+"配分計算中、{0}後に発表",
+"Sedang dikira; diumumkan dalam {0}",
+"Calculando; se publica en {0}",
+"Kinukuwenta; ipapalabas sa loob ng {0}"
+],
 "Campaign": [
 "이벤트",
 "キャンペーン",
@@ -1091,12 +1231,33 @@
 "Registrar asistencia +{0} NVX",
 "Mag-check in +{0} NVX"
 ],
+"Check in +{0} USDT": [
+"출석하기 +{0} USDT",
+"チェックイン +{0} USDT",
+"Daftar masuk +{0} USDT",
+"Registrar asistencia +{0} USDT",
+"Mag-check in +{0} USDT"
+],
 "Check in 7 days in a row. Rewards grow each day.": [
 "7일 연속 출석하면 보상이 매일 늘어납니다.",
 "7日連続でチェックイン。報酬は毎日増えます。",
 "Daftar masuk 7 hari berturut-turut. Ganjaran meningkat setiap hari.",
 "Registra asistencia 7 días seguidos. Las recompensas crecen cada día.",
 "Mag-check in nang 7 araw na sunod-sunod. Lumalaki ang reward araw-araw."
+],
+"Check in once a day for 7 days and get USDT each time.": [
+"하루 한 번, 총 7일 출석하고 매번 USDT를 받으세요.",
+"1日1回、合計7日チェックインして毎回USDTを受け取れます。",
+"Daftar masuk sekali sehari selama 7 hari dan dapat USDT setiap kali.",
+"Registra asistencia una vez al día durante 7 días y recibe USDT cada vez.",
+"Mag-check in isang beses kada araw sa loob ng 7 araw at makakuha ng USDT bawat beses."
+],
+"Check in once a day. Check-ins 1–7 pay {0} USDT.": [
+"하루 한 번 출석할 수 있으며, 1–7회차에 각각 {0} USDT를 받습니다.",
+"1日1回チェックインできます。1〜7回目はそれぞれ{0} USDT。",
+"Daftar masuk sekali sehari. Daftar masuk 1–7 membayar {0} USDT.",
+"Una asistencia al día. Las asistencias 1–7 pagan {0} USDT.",
+"Isang check-in kada araw. Ang check-in 1–7 ay nagbibigay ng {0} USDT."
 ],
 "Check in once a day. Days 1–7 pay {0} NVX.": [
 "하루 한 번 출석할 수 있으며, 1–7일째에 각각 {0} NVX를 받습니다.",
@@ -1105,12 +1266,26 @@
 "Registra asistencia una vez al día. Los días 1–7 pagan {0} NVX.",
 "Isang check-in kada araw. Ang araw 1–7 ay nagbibigay ng {0} NVX."
 ],
+"Check in, follow us, take the quiz or invite friends to earn USDT. Subscribing to ORIA takes a signature, no payment.": [
+"출석, SNS 팔로우, 퀴즈, 친구 초대로 USDT를 받으세요. ORIA 신청은 서명만 하면 되며 결제가 필요 없습니다.",
+"チェックイン、SNSフォロー、クイズ、友達招待でUSDTを獲得。ORIAの申込は署名のみで支払い不要です。",
+"Daftar masuk, ikuti kami, jawab kuiz atau jemput rakan untuk dapat USDT. Langganan ORIA hanya perlu tandatangan, tanpa bayaran.",
+"Registra asistencia, síguenos, responde el cuestionario o invita amigos para ganar USDT. Suscribirte a ORIA solo requiere una firma, sin pago.",
+"Mag-check in, mag-follow, sumagot sa quiz o mag-imbita para kumita ng USDT. Signature lang ang kailangan sa ORIA, walang bayad."
+],
 "Check-in": [
 "출석",
 "チェックイン",
 "Daftar masuk",
 "Asistencia",
 "Check-in"
+],
+"Check-in progress": [
+"출석 진행 상황",
+"チェックインの進捗",
+"Kemajuan daftar masuk",
+"Progreso de asistencia",
+"Progreso ng check-in"
 ],
 "Check-ins": [
 "누적 출석",
@@ -1125,6 +1300,13 @@
 "Sudah daftar masuk · esok {0} NVX",
 "Asistencia de hoy registrada · mañana {0} NVX",
 "Naka-check in na · bukas {0} NVX"
+],
+"Checked in today · {0} USDT tomorrow": [
+"오늘 출석 완료 · 내일 {0} USDT",
+"本日チェックイン済み · 明日は{0} USDT",
+"Sudah daftar masuk · esok {0} USDT",
+"Asistencia registrada · mañana {0} USDT",
+"Naka-check in na · bukas {0} USDT"
 ],
 "Checked in today. Next check-in in {0}": [
 "오늘 출석 완료. {0} 후 다시 출석 가능",
@@ -1161,12 +1343,40 @@
 "Reclamar ahora",
 "I-claim ngayon"
 ],
+"Claim once allocations are published; ORIA will be airdropped to your exchange address.": [
+"배분 결과 발표 후 수령할 수 있으며, ORIA는 거래소 주소로 에어드랍됩니다.",
+"配分結果の発表後に受け取ると、ORIAが取引所アドレスにエアドロップされます。",
+"Tuntut selepas agihan diumumkan; ORIA akan di-airdrop ke alamat bursa anda.",
+"Reclama cuando se publiquen las asignaciones; ORIA se enviará a tu dirección del exchange.",
+"Mag-claim pagkalabas ng allocation; ia-airdrop ang ORIA sa exchange address mo."
+],
+"Claim open": [
+"수령 가능",
+"受取可能",
+"Tuntutan dibuka",
+"Reclamo abierto",
+"Bukas ang claim"
+],
+"Claim opens": [
+"수령 시작",
+"受取開始",
+"Tuntutan dibuka",
+"Reclamo desde",
+"Bubukas ang claim"
+],
 "Claim opens in {0}": [
 "{0} 후 수령 가능",
 "受け取り開始まで{0}",
 "Tuntutan dibuka dalam {0}",
 "Se podrá reclamar en {0}",
 "Mabubuksan ang claim sa loob ng {0}"
+],
+"Claim opens once allocations are published": [
+"배분 결과 발표 후 수령할 수 있습니다",
+"配分結果の発表後に受け取れます",
+"Tuntutan dibuka selepas agihan diumumkan",
+"Podrás reclamar cuando se publiquen las asignaciones",
+"Bubukas ang claim pagkalabas ng allocation"
 ],
 "Claim opens when the window closes": [
 "신청 종료 후 수령할 수 있습니다",
@@ -1182,12 +1392,26 @@
 "Reclamar recompensas",
 "I-claim ang rewards"
 ],
+"Claim submitted": [
+"수령 요청 제출",
+"受取リクエスト送信済み",
+"Tuntutan dihantar",
+"Reclamo enviado",
+"Naipasa ang claim"
+],
 "Claim the airdrop": [
 "수령 후 에어드랍 입금",
 "受け取ってエアドロップ",
 "Tuntut airdrop",
 "Reclamar el airdrop",
 "I-claim ang airdrop"
+],
+"Claim your {0}": [
+"{0} 에어드랍 받기",
+"{0}のエアドロップを受け取る",
+"Tuntut {0} anda",
+"Reclama tus {0}",
+"I-claim ang {0} mo"
 ],
 "Claim {0}": [
 "{0} 받기",
@@ -1357,6 +1581,13 @@
 "Confirmar y liberar",
 "Kumpirmahin at i-release"
 ],
+"Confirm claim": [
+"수령 확인",
+"受け取りを確定",
+"Sahkan tuntutan",
+"Confirmar reclamo",
+"Kumpirmahin ang claim"
+],
 "Confirm in your wallet. No gas.": [
 "지갑에서 서명을 확인하세요. 가스비 없음.",
 "ウォレットで署名を確認。ガス代不要。",
@@ -1406,6 +1637,13 @@
 "Confirma que el dinero está en tu cuenta. La liberación no se puede deshacer.",
 "Siguraduhing pumasok na ang pera sa account mo. Hindi na mababawi ang release."
 ],
+"Confirm the signature in {0}": [
+"{0}에서 서명을 확인하세요",
+"{0}で署名を確認してください",
+"Sahkan tandatangan dalam {0}",
+"Confirma la firma en {0}",
+"Kumpirmahin ang signature sa {0}"
+],
 "Confirmations": [
 "컨펌",
 "承認数",
@@ -1433,6 +1671,13 @@
 "Sambung dompet",
 "Conectar billetera",
 "Ikonekta ang wallet"
+],
+"Connect a wallet and join in": [
+"지갑을 연결하고 참여하세요",
+"ウォレットを接続して参加",
+"Sambung dompet dan sertai",
+"Conecta una wallet y participa",
+"Ikonekta ang wallet at sumali"
 ],
 "Connect a wallet to claim new-user rewards, and earn NVX from the free launch, check-ins and invites.": [
 "지갑을 연결하면 신규 사용자 보상을 받을 수 있고, 무료 신청·출석·친구 초대로 NVX를 모을 수 있습니다.",
@@ -1609,6 +1854,20 @@
 "Cubre a los usuarios en mercados extremos o incidentes de seguridad.",
 "Proteksyon ng user sa matinding market o security incident."
 ],
+"Credit to spot account": [
+"현물 계정 입금",
+"現物口座に入金",
+"Kredit ke akaun spot",
+"Abono en la cuenta spot",
+"Ipasok sa spot account"
+],
+"Credited to": [
+"입금 계정",
+"入金先",
+"Dikreditkan ke",
+"Se abona en",
+"Papasok sa"
+],
 "Credited to spot": [
 "현물 계정에 입금",
 "現物口座に反映",
@@ -1700,6 +1959,20 @@
 "Día {0}",
 "Araw {0}"
 ],
+"Days add up; a missed day does not reset your progress.": [
+"출석 일수는 누적되며, 중간에 빠져도 초기화되지 않습니다.",
+"日数は累計で、途中で空いてもリセットされません。",
+"Hari dikira secara kumulatif; hari yang terlepas tidak menetapkan semula kemajuan.",
+"Los días se acumulan; faltar un día no reinicia tu progreso.",
+"Nadadagdag ang mga araw; hindi nare-reset kapag may nalaktawan."
+],
+"Days left": [
+"남은 일수",
+"残り日数",
+"Baki hari",
+"Días restantes",
+"Natitirang araw"
+],
 "Debt": [
 "부채",
 "負債",
@@ -1741,6 +2014,13 @@
 "Demo: simulasi pendaftaran",
 "Demo: simular un registro",
 "Demo: i-simulate ang sign-up"
+],
+"Demo: skip to allocations": [
+"데모: 배분 발표 시점으로 이동",
+"デモ:配分発表まで早送り",
+"Demo: langkau ke agihan",
+"Demo: saltar a las asignaciones",
+"Demo: lumaktaw sa allocation"
 ],
 "Demo: skip to the end of the window": [
 "데모: 신청 종료 시점으로 이동",
@@ -1958,6 +2238,13 @@
 "Ekosistem",
 "Ecosistema",
 "Ecosystem"
+],
+"Eligibility check (one per wallet)": [
+"신청 자격 확인 (지갑당 1회)",
+"申込資格の確認(1ウォレット1回)",
+"Semakan kelayakan (satu bagi setiap dompet)",
+"Comprobación de elegibilidad (una por wallet)",
+"Eligibility check (isa bawat wallet)"
 ],
 "Ends in": [
 "종료까지",
@@ -2267,12 +2554,26 @@
 "Completa una tarea",
 "Tapusin ang task"
 ],
+"Finish a task below and tap claim. The reward is sent to your Novarix exchange address and added to your spot account.": [
+"아래 이벤트의 과제를 완료하고 수령을 누르면, 보상이 Novarix 거래소 주소로 발송되어 현물 계정에 입금됩니다.",
+"下のキャンペーンのタスクを完了して受け取るを押すと、報酬がNovarixの取引所アドレスに送られ、現物口座に入金されます。",
+"Selesaikan tugasan di bawah dan ketik tuntut. Ganjaran dihantar ke alamat bursa Novarix anda dan ditambah ke akaun spot.",
+"Completa una tarea y toca reclamar. La recompensa se envía a tu dirección de Novarix y se añade a tu cuenta spot.",
+"Tapusin ang task sa ibaba at i-tap ang claim. Ipapadala ang reward sa Novarix exchange address mo at idadagdag sa spot account."
+],
 "Finish all {0} tasks for a {1} NVX bonus.": [
 "{0}개 과제를 모두 완료하면 {1} NVX 보너스를 드립니다.",
 "{0}個のタスクをすべて完了すると{1} NVXのボーナス。",
 "Selesaikan kesemua {0} tugasan untuk bonus {1} NVX.",
 "Completa las {0} tareas para un bono de {1} NVX.",
 "Tapusin ang lahat ng {0} task para sa {1} NVX na bonus."
+],
+"Finish every task for a {0} USDT bonus.": [
+"모든 과제를 완료하면 {0} USDT 보너스.",
+"すべてのタスク完了で{0} USDTのボーナス。",
+"Selesaikan semua tugasan untuk bonus {0} USDT.",
+"Completa todas las tareas para un bono de {0} USDT.",
+"Tapusin lahat ng task para sa {0} USDT na bonus."
 ],
 "Finish the tasks on the left to claim.": [
 "왼쪽 과제를 완료하면 수령할 수 있습니다.",
@@ -2337,6 +2638,13 @@
 "Sigue a Novarix en X",
 "I-follow ang Novarix sa X"
 ],
+"Follow Novarix on X, Telegram, Discord and YouTube, then claim USDT.": [
+"Novarix의 X, Telegram, Discord, YouTube 계정을 팔로우한 뒤 USDT를 받으세요.",
+"NovarixのX・Telegram・Discord・YouTubeをフォローしてUSDTを受け取りましょう。",
+"Ikuti Novarix di X, Telegram, Discord dan YouTube, kemudian tuntut USDT.",
+"Sigue a Novarix en X, Telegram, Discord y YouTube, y reclama USDT.",
+"I-follow ang Novarix sa X, Telegram, Discord at YouTube, saka mag-claim ng USDT."
+],
 "Follow us": [
 "SNS 팔로우",
 "SNSフォロー",
@@ -2392,6 +2700,13 @@
 "Daripada dompet yang disambung",
 "Desde la billetera conectada",
 "Mula sa nakakonektang wallet"
+],
+"Full allocation: {0} {1}": [
+"전액 배정 {0} {1}",
+"満額配分 {0} {1}",
+"Agihan penuh: {0} {1}",
+"Asignación completa: {0} {1}",
+"Buong allocation: {0} {1}"
 ],
 "Funded": [
 "입금 완료",
@@ -2469,6 +2784,13 @@
 "Dapatkan berita penyenaraian, kempen dan airdrop terlebih dahulu. Mengikuti kami juga memberi NVX di hab ganjaran.",
 "Entérate primero de listados, campañas y airdrops. Seguirnos también te da NVX en el centro de recompensas.",
 "Unang makakuha ng balita sa listing, campaign at airdrop. Kumikita rin ng NVX sa rewards hub kapag nag-follow."
+],
+"Get news on listings, campaigns and airdrops. After following, claim USDT in the rewards hub.": [
+"신규 상장, 이벤트, 에어드랍 소식을 받아 보세요. 팔로우 후 이벤트 센터에서 USDT를 받을 수 있습니다.",
+"新規上場・キャンペーン・エアドロップの情報をお届け。フォロー後、キャンペーンセンターでUSDTを受け取れます。",
+"Dapatkan berita penyenaraian, kempen dan airdrop. Selepas mengikuti, tuntut USDT di hab ganjaran.",
+"Recibe novedades de listados, campañas y airdrops. Tras seguirnos, reclama USDT en el centro de recompensas.",
+"Makakuha ng balita sa listing, campaign at airdrop. Pagka-follow, mag-claim ng USDT sa rewards hub."
 ],
 "Get quote": [
 "견적 받기",
@@ -2673,6 +2995,13 @@
 "Cómo funciona",
 "Paano ito gumagana"
 ],
+"How much can one wallet earn?": [
+"지갑 하나로 최대 얼마를 받을 수 있나요?",
+"1つのウォレットで最大いくらもらえますか?",
+"Berapa banyak boleh diperoleh satu dompet?",
+"¿Cuánto puede ganar una wallet?",
+"Magkano ang puwedeng makuha ng isang wallet?"
+],
 "How rewards arrive": [
 "보상 입금 과정",
 "報酬が届くまで",
@@ -2700,6 +3029,13 @@
 "Saya telah membaca peraturan dan notis risiko",
 "He leído las reglas y el aviso de riesgos",
 "Nabasa ko ang mga patakaran at risk notice"
+],
+"I have read the rules and understand the signature sends no transaction.": [
+"신청 규칙을 읽었으며 서명이 거래를 발생시키지 않는다는 것을 이해했습니다.",
+"申込ルールを読み、署名が取引を発生させないことを理解しました。",
+"Saya telah membaca peraturan dan faham tandatangan tidak menghantar transaksi.",
+"He leído las reglas y entiendo que la firma no envía ninguna transacción.",
+"Nabasa ko ang rules at naiintindihan kong walang transaksyon ang signature."
 ],
 "I have received payment": [
 "입금을 확인했습니다",
@@ -2777,6 +3113,13 @@
 "Dalam akaun spot",
 "En la cuenta spot",
 "Nasa spot account"
+],
+"In your spot account · {0}": [
+"현물 계정 입금 완료 · {0}",
+"現物口座に入金済み · {0}",
+"Dalam akaun spot anda · {0}",
+"En tu cuenta spot · {0}",
+"Nasa spot account mo · {0}"
 ],
 "Inference": [
 "추론",
@@ -2883,6 +3226,13 @@
 "Invita amigos: 50 NVX por cada uno",
 "Mag-imbita: 50 NVX bawat isa"
 ],
+"Invite friends: you and each friend get 1 USDT when they connect": [
+"친구 초대 오픈: 친구가 지갑을 연결하면 서로 1 USDT씩",
+"友達招待:友達がウォレットを接続すると双方に1 USDT",
+"Jemput rakan: anda dan rakan masing-masing dapat 1 USDT apabila mereka menyambung",
+"Invita amigos: tú y cada amigo reciben 1 USDT cuando se conecta",
+"Mag-imbita: tig-1 USDT kayo ng kaibigan pag nag-connect siya"
+],
 "Invite leaderboard": [
 "초대 랭킹",
 "招待ランキング",
@@ -2911,6 +3261,13 @@
 "Invitados",
 "Naimbita"
 ],
+"Invites up to {0} USDT, check-in {1} USDT, social {2} USDT and the quiz {3} USDT, plus {4} {5} from the launch.": [
+"친구 초대 최대 {0} USDT, 출석 {1} USDT, SNS {2} USDT, 퀴즈 {3} USDT이며, 별도로 {4} {5} 신청 한도가 있습니다.",
+"友達招待は最大{0} USDT、チェックイン{1} USDT、SNS {2} USDT、クイズ{3} USDT。ほかに{4} {5}の申込枠があります。",
+"Jemputan sehingga {0} USDT, daftar masuk {1} USDT, sosial {2} USDT dan kuiz {3} USDT, serta {4} {5} daripada pelancaran.",
+"Invitaciones hasta {0} USDT, asistencia {1} USDT, redes {2} USDT y cuestionario {3} USDT, más {4} {5} del lanzamiento.",
+"Imbitasyon hanggang {0} USDT, check-in {1} USDT, social {2} USDT at quiz {3} USDT, dagdag ang {4} {5} mula sa launch."
+],
 "Is signing risky?": [
 "서명은 위험하지 않나요?",
 "署名にリスクはありますか?",
@@ -2924,6 +3281,13 @@
 "Terasing",
 "Aislado",
 "Isolated"
+],
+"Issuing your receipt": [
+"신청 증빙 발급",
+"申込証明を発行",
+"Mengeluarkan resit anda",
+"Emitiendo tu comprobante",
+"Ginagawa ang resibo mo"
 ],
 "It becomes futures margin": [
 "선물 증거금으로 전환된다",
@@ -3660,6 +4024,13 @@
 "Mis intercambios",
 "Mga swap ko"
 ],
+"My {0} subscription": [
+"나의 {0} 신청",
+"私の{0}申込",
+"Langganan {0} saya",
+"Mi suscripción a {0}",
+"Ang {0} subscription ko"
+],
 "NVX 180-day fixed term launched at 36% APR": [
 "NVX 180일 고정형 출시, 연 36%",
 "NVX 180日定期を開始、年利36%",
@@ -3905,6 +4276,13 @@
 "No. Las 5 son gratis. El lanzamiento gratis solo requiere una firma de la wallet, sin transacción ni gas.",
 "Hindi. Libre ang lahat ng 5. Signature lang ng wallet ang kailangan sa libreng launch, walang transaksyon at walang gas."
 ],
+"No. The {0} launch only needs one wallet signature, which sends no transaction and costs no gas.": [
+"필요 없습니다. {0} 신청은 지갑 서명 한 번이면 되며, 거래가 발생하지 않고 가스비도 없습니다.",
+"不要です。{0}の申込はウォレットの署名1回だけで、取引は発生せずガス代もかかりません。",
+"Tidak. Pelancaran {0} hanya memerlukan satu tandatangan dompet, tanpa transaksi dan tanpa gas.",
+"No. El lanzamiento de {0} solo requiere una firma de la wallet, sin transacción ni gas.",
+"Hindi. Isang wallet signature lang ang kailangan sa {0} launch, walang transaksyon at walang gas."
+],
 "Node rewards": [
 "노드 보상",
 "ノード報酬",
@@ -4073,6 +4451,13 @@
 "Saldo de billetera on-chain (demo)",
 "On-chain wallet balance (demo)"
 ],
+"Once allocations are out, claim and the tokens are airdropped to your Novarix exchange address.": [
+"배분 결과가 발표되면 수령하세요. 토큰이 Novarix 거래소 주소로 에어드랍됩니다.",
+"配分結果が出たら受け取ると、トークンがNovarixの取引所アドレスにエアドロップされます。",
+"Selepas agihan diumumkan, tuntut dan token di-airdrop ke alamat bursa Novarix anda.",
+"Cuando haya asignaciones, reclama y los tokens se enviarán a tu dirección de Novarix.",
+"Pagkalabas ng allocation, mag-claim at ia-airdrop ang tokens sa Novarix exchange address mo."
+],
 "One account for all of it": [
 "하나의 계정으로 모두",
 "ひとつの口座で完結",
@@ -4157,6 +4542,13 @@
 "Abriendo {0}…",
 "Binubuksan ang {0}…"
 ],
+"Opens when allocations are published": [
+"배분 결과 발표 후 오픈",
+"配分結果の発表後に開始",
+"Dibuka apabila agihan diumumkan",
+"Se abre al publicar las asignaciones",
+"Bubukas pagkalabas ng allocation"
+],
 "Opens when the window closes · {0}": [
 "신청 종료 후 수령 가능 · {0}",
 "申込終了後に受取開始 · {0}",
@@ -4220,6 +4612,13 @@
 "Oria Protocol da a los creadores una identidad on-chain para su obra, fans e ingresos. Los fans dan propinas en stablecoins o coleccionan ediciones limitadas, los pagos llegan al instante y la comisión es inferior al 2 %.",
 "Binibigyan ng Oria Protocol ang mga creator ng iisang on-chain identity para sa kanilang gawa, fans at kita. Puwedeng mag-tip ang fans gamit stablecoin o mag-collect ng limited editions, agad dumarating ang bayad, at mas mababa sa 2% ang platform fee."
 ],
+"Over the limit": [
+"한도 초과",
+"上限超過",
+"Melebihi had",
+"Fuera del límite",
+"Lampas sa limit"
+],
 "Over your cap": [
 "한도 초과",
 "上限超過",
@@ -4254,6 +4653,13 @@
 "KEKAL",
 "PERP",
 "PERP"
+],
+"Paid": [
+"결제 금액",
+"支払額",
+"Dibayar",
+"Pagado",
+"Ibinayad"
 ],
 "Paid out": [
 "지급 완료",
@@ -4591,6 +4997,13 @@
 "Productos",
 "Mga produkto"
 ],
+"Progress": [
+"신청 진행 상황",
+"申込の進捗",
+"Kemajuan",
+"Progreso",
+"Progreso"
+],
 "Project": [
 "프로젝트",
 "プロジェクト",
@@ -4646,6 +5059,13 @@
 "Token jualan awam dibuka",
 "Tokens de venta pública desbloqueados",
 "Na-unlock na public-sale token"
+],
+"Published 1 hour after the window closes": [
+"신청 종료 1시간 후 발표",
+"申込終了の1時間後に発表",
+"Diumumkan 1 jam selepas tempoh ditutup",
+"Se publica 1 hora después del cierre",
+"Ipapalabas 1 oras pagsara ng window"
 ],
 "Purchase complete": [
 "구매 완료",
@@ -4772,6 +5192,20 @@
 "Diterima",
 "Recibido",
 "Natanggap"
+],
+"Received at": [
+"입금 시간",
+"着金日時",
+"Diterima pada",
+"Recibido el",
+"Natanggap noong"
+],
+"Receiving address": [
+"수령 주소",
+"受取アドレス",
+"Alamat penerima",
+"Dirección receptora",
+"Receiving address"
 ],
 "Recent deposits": [
 "최근 입금",
@@ -4927,6 +5361,13 @@
 "Reserva",
 "Reserve"
 ],
+"Reserving your spot": [
+"신청 자리 확보",
+"申込枠を確保",
+"Menempah slot anda",
+"Reservando tu plaza",
+"Inirereserba ang slot mo"
+],
 "Reset all demo data": [
 "모든 데모 데이터 초기화",
 "すべてのデモデータをリセット",
@@ -4941,12 +5382,40 @@
 "Los resultados se aseguran con inferencia verificable (ejecución optimista con recomputación por muestreo). Los nodos hacen staking de KORA para aceptar trabajos y se penalizan si actúan mal.",
 "Sinisiguro ang resulta ng verifiable inference (optimistic execution na may sampled re-computation). Nag-i-stake ng KORA ang mga node para tumanggap ng job at sina-slash kapag nandaya."
 ],
+"Review": [
+"신청 확인",
+"申込確認",
+"Semak",
+"Revisar",
+"Suriin"
+],
+"Review subscription": [
+"신청 확인",
+"申込内容の確認",
+"Semak langganan",
+"Revisar suscripción",
+"Suriin ang subscription"
+],
 "Reward": [
 "이벤트 보상",
 "キャンペーン報酬",
 "Ganjaran",
 "Recompensa",
 "Reward"
+],
+"Reward limit reached": [
+"보상 인원 한도에 도달했습니다",
+"報酬の上限人数に達しました",
+"Had ganjaran dicapai",
+"Se alcanzó el límite de recompensas",
+"Naabot na ang reward limit"
+],
+"Reward limit reached; everything has been claimed.": [
+"보상 인원 한도에 도달했으며, 보상을 모두 받았습니다.",
+"報酬の上限人数に達し、すべて受け取り済みです。",
+"Had ganjaran dicapai; semua telah dituntut.",
+"Se alcanzó el límite; ya reclamaste todo.",
+"Naabot na ang limit; na-claim na ang lahat."
 ],
 "Reward pool": [
 "보상 풀",
@@ -5116,6 +5585,13 @@
 "Escanea con una billetera móvil",
 "I-scan gamit ang mobile wallet"
 ],
+"Scan, sign up and connect a wallet to claim.": [
+"QR을 스캔해 가입하고 지갑을 연결하면 받을 수 있습니다.",
+"QRを読み取って登録し、ウォレットを接続すると受け取れます。",
+"Imbas, daftar dan sambung dompet untuk menuntut.",
+"Escanea, regístrate y conecta una wallet para reclamar.",
+"I-scan, mag-sign up at ikonekta ang wallet para mag-claim."
+],
 "Search": [
 "검색",
 "検索",
@@ -5186,6 +5662,13 @@
 "Enviado",
 "Naipadala"
 ],
+"Sent on-chain": [
+"온체인 발송",
+"オンチェーン送付",
+"Dihantar on-chain",
+"Enviado on-chain",
+"Naipadala on-chain"
+],
 "Session keys for Web2-like UX": [
 "세션 키로 Web2 수준의 사용성",
 "セッションキーで Web2 並みの UX",
@@ -5228,6 +5711,13 @@
 "Porcentaje",
 "Bahagi"
 ],
+"Share your link. When a friend signs up and connects a wallet, you each get {0} USDT.": [
+"초대 링크를 공유하세요. 친구가 가입해 지갑을 연결하면 서로 {0} USDT씩 받습니다.",
+"招待リンクをシェアしましょう。友達が登録してウォレットを接続すると、双方に{0} USDT。",
+"Kongsi pautan anda. Apabila rakan mendaftar dan menyambung dompet, masing-masing dapat {0} USDT.",
+"Comparte tu enlace. Cuando un amigo se registra y conecta una wallet, cada uno recibe {0} USDT.",
+"I-share ang link mo. Kapag nag-sign up at nag-connect ang kaibigan, tig-{0} USDT kayo."
+],
 "Short": [
 "숏",
 "ショート",
@@ -5242,6 +5732,13 @@
 "Corto abierto",
 "Nabuksan ang short"
 ],
+"Show signed message": [
+"서명 내용 보기",
+"署名内容を表示",
+"Tunjuk mesej yang ditandatangani",
+"Ver mensaje firmado",
+"Ipakita ang signed message"
+],
 "Side": [
 "방향",
 "売買",
@@ -5255,6 +5752,20 @@
 "Tandatangan",
 "Firmar",
 "Pirmahan"
+],
+"Sign again": [
+"다시 서명",
+"もう一度署名",
+"Tandatangan semula",
+"Firmar de nuevo",
+"Mag-sign ulit"
+],
+"Sign in wallet": [
+"지갑에서 서명하기",
+"ウォレットで署名",
+"Tandatangan dalam dompet",
+"Firmar en la wallet",
+"Mag-sign sa wallet"
 ],
 "Sign in with MetaMask or another extension wallet. No gas.": [
 "MetaMask 등 확장 프로그램 지갑으로 서명 로그인, 가스비 없음.",
@@ -5305,6 +5816,13 @@
 "Regístrate y recibe {0} NVX",
 "Mag-sign up, makakuha ng {0} NVX"
 ],
+"Sign up, get {0} USDT": [
+"가입하고 {0} USDT 받기",
+"登録で{0} USDT",
+"Daftar, dapat {0} USDT",
+"Regístrate y recibe {0} USDT",
+"Mag-sign up, makakuha ng {0} USDT"
+],
 "Sign-in and the free launch use message signatures. They send no transaction and grant no access to your funds. Only sign on the official site.": [
 "로그인과 무료 신청은 메시지 서명을 사용하며, 거래를 발생시키거나 자산 이동 권한을 주지 않습니다. 반드시 공식 사이트에서만 서명하세요.",
 "ログインと無料申込はメッセージ署名を使い、取引を発生させず資産へのアクセス権も与えません。公式サイトでのみ署名してください。",
@@ -5318,6 +5836,20 @@
 "Tandatangan",
 "Firma",
 "Signature"
+],
+"Signature cancelled": [
+"서명 취소됨",
+"署名をキャンセル",
+"Tandatangan dibatalkan",
+"Firma cancelada",
+"Kinansela ang signature"
+],
+"Signature matches the wallet address": [
+"서명과 지갑 주소 일치 확인",
+"署名とウォレットアドレスの一致を確認",
+"Tandatangan sepadan dengan alamat dompet",
+"La firma coincide con la dirección de la wallet",
+"Tugma ang signature sa wallet address"
 ],
 "Signature rejected": [
 "서명을 거부했습니다",
@@ -5333,6 +5865,13 @@
 "Solicitud de firma",
 "Signature request"
 ],
+"Signed to subscribe": [
+"지갑 서명 신청",
+"ウォレット署名で申込",
+"Ditandatangani untuk melanggan",
+"Firmado para suscribirse",
+"Nag-sign para mag-subscribe"
+],
 "Signing costs no gas": [
 "서명은 가스비 없음",
 "署名にガス代不要",
@@ -5346,6 +5885,13 @@
 "Tandatangan membuktikan anda memiliki alamat ini. Tiada transaksi dihantar dan tiada kos gas.",
 "Firmar demuestra que eres dueño de esta dirección. No envía ninguna transacción ni cuesta gas.",
 "Pinapatunayan ng pagpirma na sa iyo ang address na ito. Walang transaksyon at walang gas fee."
+],
+"Signing wallet": [
+"서명 지갑",
+"署名ウォレット",
+"Dompet penandatangan",
+"Wallet firmante",
+"Signing wallet"
 ],
 "Silver": [
 "실버",
@@ -5396,6 +5942,13 @@
 "Tareas sociales",
 "Social tasks"
 ],
+"Source": [
+"출처",
+"受取元",
+"Sumber",
+"Origen",
+"Pinagmulan"
+],
 "Spot": [
 "현물",
 "現物",
@@ -5409,6 +5962,20 @@
 "Akaun spot",
 "Cuenta spot",
 "Spot account"
+],
+"Spot balance": [
+"현물 잔고",
+"現物残高",
+"Baki spot",
+"Saldo spot",
+"Spot balance"
+],
+"Spot balance {0} {1}": [
+"현물 잔고 {0} {1}",
+"現物残高 {0} {1}",
+"Baki spot {0} {1}",
+"Saldo spot {0} {1}",
+"Spot balance {0} {1}"
 ],
 "Spot fee": [
 "현물 수수료",
@@ -5424,6 +5991,13 @@
 "Spot 0,1 %; futuros 0,02 % maker y 0,05 % taker. Haz staking de NVX para subir de nivel y ahorrar hasta un 25 %.",
 "Spot ay 0.1%; futures ay 0.02% maker at 0.05% taker. Mag-stake ng NVX para tumaas ang tier at makatipid nang hanggang 25%."
 ],
+"Spot number": [
+"신청 순번",
+"申込番号(枠)",
+"Nombor slot",
+"Número de plaza",
+"Numero ng slot"
+],
 "Spot to perpetuals in one account and one interface, with orders, take-profit, stop-loss and risk tools in one place.": [
 "현물부터 무기한 선물까지 하나의 계정과 화면에서 주문, 익절·손절, 리스크 관리를 한 번에.",
 "現物から無期限先物まで、1つのアカウントと画面で注文・利確・損切り・リスク管理を。",
@@ -5437,6 +6011,13 @@
 "Dagangan spot",
 "Trading spot",
 "Spot trading"
+],
+"Spot, futures, swap, launchpad, staking and lending in one place. Connect a wallet and deposit to start trading.": [
+"현물, 선물, 스왑, 런치패드, 스테이킹, 대출을 한곳에서. 지갑을 연결하고 입금하면 바로 거래할 수 있습니다.",
+"現物・先物・スワップ・ローンチパッド・ステーキング・レンディングをひとつに。ウォレットを接続して入金すればすぐに取引できます。",
+"Spot, niaga hadapan, swap, launchpad, staking dan pinjaman di satu tempat. Sambung dompet dan deposit untuk mula berdagang.",
+"Spot, futuros, swap, launchpad, staking y préstamos en un solo lugar. Conecta una wallet y deposita para empezar a operar.",
+"Spot, futures, swap, launchpad, staking at lending sa iisang lugar. Ikonekta ang wallet at mag-deposit para magsimulang mag-trade."
 ],
 "Spot, futures, swap, launchpad, staking and lending in one place. Connect a wallet and deposit to start, and claim rewards from 5 free campaigns.": [
 "현물, 선물, 스왑, 런치패드, 스테이킹, 대출을 한곳에서. 지갑을 연결하고 입금하면 바로 시작할 수 있으며, 5개의 무료 이벤트 보상도 받아 보세요.",
@@ -5585,6 +6166,27 @@
 "Suscrito",
 "Naka-subscribe"
 ],
+"Subscribed / spots": [
+"신청 / 총 인원",
+"申込数 / 総枠",
+"Dilanggan / slot",
+"Suscritos / plazas",
+"Naka-subscribe / slot"
+],
+"Subscribed at": [
+"신청 시간",
+"申込日時",
+"Dilanggan pada",
+"Suscrito el",
+"Nag-subscribe noong"
+],
+"Subscribed · window open": [
+"신청 완료 · 신청 진행 중",
+"申込済み · 受付中",
+"Sudah melanggan · tempoh dibuka",
+"Suscrito · periodo abierto",
+"Naka-subscribe · bukas pa ang window"
+],
 "Subscribed, waiting for distribution": [
 "신청 완료, 배분 대기 중",
 "申込済み、配布待ち",
@@ -5606,12 +6208,47 @@
 "Suscripción",
 "Subscription"
 ],
+"Subscription ID": [
+"신청 번호",
+"申込ID",
+"ID langganan",
+"ID de suscripción",
+"Subscription ID"
+],
 "Subscription closed": [
 "신청 종료",
 "申込終了",
 "Langganan ditutup",
 "Suscripción cerrada",
 "Sarado na ang subscription"
+],
+"Subscription details": [
+"신청 상세",
+"申込の詳細",
+"Butiran langganan",
+"Detalle de la suscripción",
+"Detalye ng subscription"
+],
+"Subscription failed": [
+"신청 실패",
+"申込に失敗しました",
+"Langganan gagal",
+"Suscripción fallida",
+"Nabigo ang subscription"
+],
+"Subscription receipt": [
+"신청 증빙",
+"申込証明",
+"Resit langganan",
+"Comprobante de suscripción",
+"Resibo ng subscription"
+],
+"Subscription window closes": [
+"신청 기간 종료",
+"申込期間終了",
+"Tempoh langganan ditutup",
+"Cierre del periodo de suscripción",
+"Pagsara ng subscription window"
 ],
 "Supplied": [
 "예치액",
@@ -5837,6 +6474,13 @@
 "Testnet en marcha",
 "Live ang testnet"
 ],
+"The campaign is complete after 7 check-ins.": [
+"누적 7일 출석하면 이벤트가 완료됩니다.",
+"累計7日チェックインで完了です。",
+"Kempen selesai selepas 7 daftar masuk.",
+"La campaña termina tras 7 asistencias.",
+"Tapos ang campaign pagkatapos ng 7 check-in."
+],
 "The dashed line is 100% of user assets; the rest is the platform’s own reserve.": [
 "점선은 사용자 자산 100%이며, 초과분은 플랫폼 자체 준비금입니다.",
 "点線はユーザー資産の100%、超過分はプラットフォーム自己準備金です。",
@@ -5879,6 +6523,20 @@
 "El proveedor está comprando tu cripto",
 "Binibili ng provider ang crypto mo"
 ],
+"The receiving address is your Novarix exchange address. When you claim, ORIA is airdropped there and added to your spot account.": [
+"수령 주소는 Novarix 거래소 주소입니다. 수령하면 ORIA가 이 주소로 에어드랍되어 현물 계정에 입금됩니다.",
+"受取アドレスはあなたのNovarix取引所アドレスです。受け取るとORIAがここにエアドロップされ、現物口座に入金されます。",
+"Alamat penerima ialah alamat bursa Novarix anda. Apabila anda menuntut, ORIA di-airdrop ke situ dan ditambah ke akaun spot.",
+"La dirección receptora es tu dirección de Novarix. Al reclamar, ORIA se envía allí y se añade a tu cuenta spot.",
+"Ang receiving address ay ang Novarix exchange address mo. Pag-claim, doon ia-airdrop ang ORIA at idadagdag sa spot account."
+],
+"The request is in your wallet. The signature only confirms the subscription and cannot move your funds.": [
+"서명 요청이 지갑으로 전송되었습니다. 서명은 신청 확인용이며 자산을 이동시킬 수 없습니다.",
+"署名リクエストがウォレットに届いています。署名は申込の確認のみで、資産を動かすことはできません。",
+"Permintaan ada dalam dompet anda. Tandatangan hanya mengesahkan langganan dan tidak boleh memindahkan dana anda.",
+"La solicitud está en tu wallet. La firma solo confirma la suscripción y no puede mover tus fondos.",
+"Nasa wallet mo ang request. Kinukumpirma lang ng signature ang subscription at hindi nito maililipat ang pondo mo."
+],
 "The reward leaves the pool right away.": [
 "보상 풀에서 즉시 발송됩니다.",
 "報酬プールから即時に送られます。",
@@ -5920,6 +6578,13 @@
 "Tempoh telah ditutup. Tuntut sekarang.",
 "El periodo cerró. Reclama ahora.",
 "Sarado na ang window. I-claim na ngayon."
+],
+"The window has closed; allocations are being calculated": [
+"신청이 종료되어 배분을 계산하고 있습니다",
+"申込が終了し、配分を計算しています",
+"Tempoh telah ditutup; agihan sedang dikira",
+"El periodo cerró; se están calculando las asignaciones",
+"Sarado na ang window; kinukuwenta ang allocation"
 ],
 "These controls only change demo data in this browser.": [
 "이 컨트롤은 이 브라우저의 데모 데이터만 변경합니다.",
@@ -6032,6 +6697,13 @@
 "Untuk dituntut",
 "Por reclamar",
 "Iki-claim"
+],
+"To {0} (Base)": [
+"{0}로 발송 (Base)",
+"{0}へ送付(Base)",
+"Ke {0} (Base)",
+"A {0} (Base)",
+"Papunta sa {0} (Base)"
 ],
 "Today's PnL": [
 "오늘 손익",
@@ -6194,6 +6866,13 @@
 "Opera, participa en una venta de tokens o reclama primero recompensas gratis.",
 "Mag-trade, sumali sa token sale, o mag-claim muna ng libreng rewards."
 ],
+"Trade, join a token sale, or finish tasks in the rewards hub for USDT.": [
+"거래하거나 신규 프로젝트에 청약하거나, 이벤트 센터에서 과제를 완료하고 USDT를 받으세요.",
+"取引や新規トークンの申込、キャンペーンセンターのタスクでUSDTを獲得。",
+"Berdagang, sertai jualan token, atau selesaikan tugasan di hab ganjaran untuk USDT.",
+"Opera, participa en una venta de tokens o completa tareas en el centro de recompensas para ganar USDT.",
+"Mag-trade, sumali sa token sale, o tapusin ang tasks sa rewards hub para sa USDT."
+],
 "Trade, launch, earn.": [
 "거래, 청약, 수익까지",
 "取引・申込・運用",
@@ -6214,6 +6893,13 @@
 "Kredit persendirian tradisional ialah pasaran $1.7T yang sukar diakses, legap dan tidak cair. Vela merekod setiap pengeluaran, pembayaran balik dan tunggakan dalam kontrak pintar, menukar laporan bulanan kepada keadaan on-chain yang boleh disahkan, dan membolehkan saham LP diniagakan di pasaran sekunder.",
 "El crédito privado tradicional es un mercado de 1,7 billones de dólares difícil de acceder, opaco e ilíquido. Vela registra cada desembolso, pago y mora en contratos inteligentes, convierte los informes mensuales en un estado on-chain verificable y permite negociar participaciones LP en un mercado secundario.",
 "Ang tradisyonal na private credit ay $1.7T na market na mahirap pasukin, malabo at hindi likido. Itinatala ng Vela ang bawat disbursement, bayad at delinquency sa smart contract, ginagawang verifiable na on-chain state ang buwanang report, at pinapayagang i-trade ang LP share sa secondary market."
+],
+"Transaction hash": [
+"거래 해시",
+"トランザクションハッシュ",
+"Hash transaksi",
+"Hash de la transacción",
+"Transaction hash"
 ],
 "Transfer": [
 "이체",
@@ -6264,6 +6950,13 @@
 "Solo USDC de tu cuenta spot. Convierte USDT a USDC con Convertir.",
 "USDC lang mula sa spot account mo. I-convert ang USDT sa USDC gamit ang Convert."
 ],
+"Undersubscribed: full {0} {1} allocated": [
+"인원 미달, 전액 {0} {1} 배정",
+"枠に余裕あり、満額{0} {1}を配分",
+"Kurang langganan: penuh {0} {1} diagihkan",
+"Sin sobresuscripción: {0} {1} asignados",
+"Hindi puno: buong {0} {1} ang na-allocate"
+],
 "Unfollowing may void rewards already paid.": [
 "언팔로우 시 지급된 보상이 회수될 수 있습니다.",
 "フォローを解除すると、付与済みの報酬が取り消される場合があります。",
@@ -6298,6 +6991,20 @@
 "Sehingga {0} NVX",
 "Hasta {0} NVX",
 "Hanggang {0} NVX"
+],
+"Up to {0} USDT": [
+"최대 {0} USDT",
+"最大{0} USDT",
+"Sehingga {0} USDT",
+"Hasta {0} USDT",
+"Hanggang {0} USDT"
+],
+"Up to {0} friends count per wallet; reaching {1} friends adds {2} USDT each time.": [
+"지갑당 최대 {0}명까지 인정되며, {1}명 달성 시마다 {2} USDT를 추가로 드립니다.",
+"1ウォレットにつき最大{0}人まで対象。{1}人達成ごとに{2} USDTを追加。",
+"Sehingga {0} rakan dikira bagi setiap dompet; mencapai {1} rakan menambah {2} USDT setiap kali.",
+"Cuentan hasta {0} amigos por wallet; al llegar a {1} amigos se suman {2} USDT cada vez.",
+"Hanggang {0} kaibigan ang bilang bawat wallet; pag-abot ng {1} kaibigan may dagdag na {2} USDT bawat isa."
 ],
 "Up to {0}% APR": [
 "연 최대 {0}%",
@@ -6383,6 +7090,13 @@
 "Vela Finance es un protocolo de crédito privado para activos del mundo real. Agrupa cuentas por cobrar de pymes, financiación comercial y pagarés de cadena de suministro en pools de crédito on-chain estandarizados. Gestoras con licencia hacen la diligencia y el seguimiento, y los inversores pueden suscribirse por pool y seguir los préstamos subyacentes en tiempo real.",
 "Ang Vela Finance ay private-credit protocol para sa real-world asset. Pinagsasama nito ang receivables ng SME, trade finance at supply-chain note sa mga standardized na on-chain credit pool. Mga lisensyadong asset manager ang humahawak ng diligence at servicing, at puwedeng mag-subscribe ang investor kada pool at subaybayan ang mga loan nang real time."
 ],
+"Verify": [
+"검증",
+"検証",
+"Sahkan",
+"Verificar",
+"I-verify"
+],
 "Verifying": [
 "확인 중",
 "確認中",
@@ -6466,6 +7180,20 @@
 "Menunggu pengesahan",
 "Esperando confirmaciones",
 "Hinihintay ang mga kumpirmasyon"
+],
+"Waiting for signature": [
+"지갑 서명 대기 중",
+"署名を待っています",
+"Menunggu tandatangan",
+"Esperando la firma",
+"Hinihintay ang signature"
+],
+"Waiting…": [
+"확인 대기 중…",
+"確認待ち…",
+"Menunggu…",
+"Esperando…",
+"Naghihintay…"
 ],
 "Wallet": [
 "지갑",
@@ -6558,6 +7286,13 @@
 "Cuando un amigo se registra con tu enlace y conecta una wallet, tú recibes {0} NVX y él {1} NVX.",
 "Kapag nag-sign up ang kaibigan gamit ang link mo at nag-connect ng wallet, makakakuha ka ng {0} NVX at sila ng {1} NVX."
 ],
+"When a friend signs up through your link and connects a wallet, you get {0} USDT and they get {1} USDT.": [
+"친구가 내 링크로 가입해 지갑을 연결하면 나는 {0} USDT, 친구는 {1} USDT를 받습니다.",
+"友達があなたのリンクから登録してウォレットを接続すると、あなたに{0} USDT、友達に{1} USDT。",
+"Apabila rakan mendaftar melalui pautan anda dan menyambung dompet, anda dapat {0} USDT dan mereka dapat {1} USDT.",
+"Cuando un amigo se registra con tu enlace y conecta una wallet, tú recibes {0} USDT y él {1} USDT.",
+"Kapag nag-sign up ang kaibigan gamit ang link mo at nag-connect ng wallet, makakakuha ka ng {0} USDT at sila ng {1} USDT."
+],
 "When you claim in the rewards hub, the reward is airdropped to your exchange address and added to your spot account after confirmations.": [
 "이벤트 센터에서 수령하면 보상이 거래소 주소로 에어드랍되고, 블록 확인 후 현물 계정에 자동 반영됩니다.",
 "キャンペーンセンターで受け取ると、報酬が取引所アドレスにエアドロップされ、承認後に現物口座へ反映されます。",
@@ -6628,6 +7363,20 @@
 "Sí. Una vez recibidas funcionan como depósitos: opéralas, haz staking o retíralas.",
 "Oo. Pagdating, parang deposit na: i-trade, i-stake o i-withdraw."
 ],
+"You are not subscribed yet and no spot is reserved. You can sign again.": [
+"아직 신청이 완료되지 않아 자리가 확보되지 않았습니다. 다시 서명할 수 있습니다.",
+"申込はまだ完了しておらず、枠も確保されていません。もう一度署名できます。",
+"Anda belum melanggan dan tiada slot ditempah. Anda boleh tandatangan semula.",
+"Aún no estás suscrito y no hay plaza reservada. Puedes firmar de nuevo.",
+"Hindi ka pa naka-subscribe at walang nakareserbang slot. Puwede kang mag-sign ulit."
+],
+"You can claim now": [
+"지금 수령할 수 있습니다",
+"今すぐ受け取れます",
+"Anda boleh menuntut sekarang",
+"Ya puedes reclamar",
+"Puwede ka nang mag-claim"
+],
 "You can now claim {0} USDT": [
 "이제 {0} USDT를 받을 수 있습니다",
 "{0} USDTを受け取れるようになりました",
@@ -6641,6 +7390,13 @@
 "Anda boleh cuba semula berapa kali sahaja.",
 "Puedes reintentarlo las veces que quieras.",
 "Puwede kang sumubok ulit kahit ilang beses."
+],
+"You cancelled the signature": [
+"서명을 취소했습니다",
+"署名をキャンセルしました",
+"Anda membatalkan tandatangan",
+"Cancelaste la firma",
+"Kinansela mo ang signature"
 ],
 "You did not subscribe": [
 "이번 신청에 참여하지 않았습니다",
@@ -6669,6 +7425,13 @@
 "Anda sudah melanggan",
 "Ya te suscribiste",
 "Naka-subscribe ka na"
+],
+"You have not joined the free {0} launch": [
+"{0} 무료 신청에 아직 참여하지 않았습니다",
+"{0} 無料申込にまだ参加していません",
+"Anda belum menyertai pelancaran {0} percuma",
+"Aún no participas en el lanzamiento gratis de {0}",
+"Hindi ka pa sumali sa libreng {0} launch"
 ],
 "You have to apply by hand": [
 "직접 신청해야 한다",
@@ -6922,6 +7685,27 @@
 "{0} NVX para {1}",
 "{0} NVX pa para sa {1}"
 ],
+"{0} USDT added to claim": [
+"{0} USDT 수령 대기 추가",
+"{0} USDTが受取待ちに追加",
+"{0} USDT ditambah untuk dituntut",
+"{0} USDT añadidos para reclamar",
+"{0} USDT naidagdag para i-claim"
+],
+"{0} USDT bonus for finishing all": [
+"모두 완료 시 보너스 {0} USDT",
+"全完了で{0} USDTのボーナス",
+"Bonus {0} USDT jika selesai semua",
+"Bono de {0} USDT al completarlas todas",
+"{0} USDT na bonus kapag natapos lahat"
+],
+"{0} USDT over 7 days": [
+"7일간 총 {0} USDT",
+"7日間で合計{0} USDT",
+"{0} USDT dalam 7 hari",
+"{0} USDT en 7 días",
+"{0} USDT sa loob ng 7 araw"
+],
 "{0} USDT perpetuals, cross or isolated.": [
 "USDT 무기한 선물 {0}종, 교차 또는 격리.",
 "{0}銘柄のUSDT無期限先物、クロスまたは分離。",
@@ -6977,6 +7761,13 @@
 "{0} ialah bursa kripto serba lengkap dengan spot, niaga hadapan kekal, swap, jualan launchpad, staking, pinjaman dan pembelian fiat.",
 "{0} es un exchange cripto todo en uno con spot, futuros perpetuos, swap, ventas de launchpad, staking, préstamos y compra con fiat.",
 "Ang {0} ay all-in-one crypto exchange na may spot, perpetual futures, swap, launchpad sales, staking, lending at fiat on-ramp."
+],
+"{0} left": [
+"{0} 남음",
+"残り{0}",
+"{0} lagi",
+"Quedan {0}",
+"{0} na lang"
 ],
 "{0} markets": [
 "{0}개 마켓",
@@ -7034,6 +7825,13 @@
 "{0} plazas, por orden de llegada.",
 "{0} slot, unahan."
 ],
+"{0} wallets joined": [
+"총 {0}개 지갑 참여",
+"{0}ウォレットが参加",
+"{0} dompet menyertai",
+"{0} wallets participaron",
+"{0} wallet ang sumali"
+],
 "{0} {1} is in escrow. Waiting for the buyer to pay…": [
 "{0} {1}이(가) 에스크로에 보관되었습니다. 구매자의 결제를 기다리는 중…",
 "{0} {1} はエスクローに保管中。買い手の支払いを待っています…",
@@ -7054,6 +7852,13 @@
 "{0} {1} setiap dompet",
 "{0} {1} por wallet",
 "{0} {1} bawat wallet"
+],
+"{0} {1} reserved for you": [
+"{0} {1}가 확보되었습니다",
+"{0} {1}を確保しました",
+"{0} {1} ditempah untuk anda",
+"{0} {1} reservados para ti",
+"Nakareserba para sa iyo ang {0} {1}"
 ],
 "{0} {1} reserved. Claim when the window closes.": [
 "{0} {1}가 확보되었습니다. 신청 종료 후 수령하세요.",
@@ -7089,6 +7894,20 @@
 "Rentetan {0} hari",
 "Racha de {0} días",
 "{0}-araw na streak"
+],
+"{0}/7 days": [
+"{0}/7일",
+"{0}/7日",
+"{0}/7 hari",
+"{0}/7 días",
+"{0}/7 araw"
+],
+"{0}/7 days checked in": [
+"{0}/7일 출석",
+"{0}/7日チェックイン済み",
+"{0}/7 hari didaftar masuk",
+"{0}/7 días con asistencia",
+"{0}/7 araw naka-check in"
 ],
 "{0}/{1} answered": [
 "{0}/{1} 답변 완료",

@@ -3,7 +3,7 @@ import { useSyncExternalStore } from 'react';
 import {
   COIN, ONCHAIN_START, PROJECTS, PROJECT, TIERS, STAKE_PRODUCTS, EARLY_REDEEM_PENALTY,
   LEND_MARKETS, borrowRate, supplyRate, NETWORKS, netFee, PLATFORM_TOKEN,
-  FREE_DROP, INVITE_REWARD, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
+  FREE_DROP, REWARD_SYM, INVITE_REWARD, INVITE_CAP, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
 } from './data.js';
 import { price, pairPrice, volume24, subscribe as subscribeMarket } from './market.js';
 import { uid, randHex } from './fmt.js';
@@ -937,7 +937,7 @@ function processOtc(s, events) {
 // ----------------------------------------------------------------------------
 const AIRDROP_NET = 'BEP20';
 export const airdropNet = (sym) => (sym === FREE_DROP.sym ? FREE_DROP.net : AIRDROP_NET);
-export const airdropAddress = (sym = PLATFORM_TOKEN) => depositAddress(airdropNet(sym));
+export const airdropAddress = (sym = 'USDT') => depositAddress(airdropNet(sym));
 let lastDrop = null;
 function airdrop(s, sym, amount, source) {
   const net = airdropNet(sym);
@@ -948,37 +948,49 @@ const needWallet = () => (!state.wallet.connected ? { err: L('請先連接錢包
 
 // Free launch: subscribe with a signature, claim after the window closes
 export function dropTimes() {
-  return { start: state.epoch + FREE_DROP.start * HOUR, end: state.epoch + FREE_DROP.end * HOUR };
+  const end = state.epoch + FREE_DROP.end * HOUR;
+  return { start: state.epoch + FREE_DROP.start * HOUR, end, claim: end + FREE_DROP.claimDelay * HOUR };
 }
+// upcoming → live (sign to subscribe) → allocating (results being computed) → ended (claim open)
 export function dropPhase(t = now()) {
-  const { start, end } = dropTimes();
-  return t < start ? 'upcoming' : t < end ? 'live' : 'ended';
+  const { start, end, claim } = dropTimes();
+  return t < start ? 'upcoming' : t < end ? 'live' : t < claim ? 'allocating' : 'ended';
 }
-export function dropTaken(t = now()) {
-  const { start, end } = dropTimes();
-  const f = Math.max(0, Math.min(1, (t - start) / (end - start)));
-  const [a, b] = FREE_DROP.slotCurve;
-  const base = Math.round(FREE_DROP.slots * (a + (b - a) * (1 - Math.pow(1 - f, 1.4))));
-  return Math.min(FREE_DROP.slots, base + (state.camp.drop ? 1 : 0));
+// Subscribed spots: the published count, plus the user's own once they sign
+export function dropTaken() {
+  return Math.min(FREE_DROP.slots, FREE_DROP.taken + (state.camp.drop ? 1 : 0));
 }
-export function signDrop(sig) {
+export function signDrop({ sig, nonce, provider }) {
   const e = needWallet();
   if (e) return e;
   if (dropPhase() !== 'live') return { err: L('當前不在申購期', 'The subscription window is closed') };
   if (state.camp.drop) return { err: L('你已完成申購', 'You have already subscribed') };
-  set((s) => { s.camp.drop = { sig, ts: now(), claimed: false }; });
-  return { ok: true };
+  if (dropTaken() >= FREE_DROP.slots) return { err: L('申購名額已滿', 'All spots are taken') };
+  const id = 'FS' + new Date(now()).toISOString().slice(2, 10).replace(/-/g, '') + randHex(6).toUpperCase();
+  set((s) => {
+    s.camp.drop = {
+      id, sig, nonce, provider, ts: now(), wallet: s.wallet.address, to: depositAddress(FREE_DROP.net),
+      amount: FREE_DROP.perUser, queue: FREE_DROP.taken + 1, claimed: false,
+    };
+  });
+  return { ok: true, id };
 }
 export function claimDrop() {
   const e = needWallet();
   if (e) return e;
   const d = state.camp.drop;
   if (!d) return { err: L('你沒有參與本次申購', 'You did not subscribe') };
-  if (dropPhase() !== 'ended') return { err: L('申購結束後才能領取', 'Claim opens when the window closes') };
+  if (dropPhase() !== 'ended') return { err: L('分配結果公佈後才能領取', 'Claim opens once allocations are published') };
   if (d.claimed) return { err: L('已領取', 'Already claimed') };
-  set((s) => { s.camp.drop.claimed = true; s.camp.drop.claimedAt = now(); airdrop(s, FREE_DROP.sym, FREE_DROP.perUser, 'drop'); });
-  return { ok: true, amt: FREE_DROP.perUser, rid: lastDrop };
+  set((s) => {
+    airdrop(s, FREE_DROP.sym, d.amount || FREE_DROP.perUser, 'drop');
+    s.camp.drop.claimed = true;
+    s.camp.drop.claimedAt = now();
+    s.camp.drop.rid = lastDrop;
+  });
+  return { ok: true, amt: d.amount || FREE_DROP.perUser, rid: lastDrop };
 }
+export const dropAirdrop = () => (state.camp.drop?.rid ? state.records.find((r) => r.id === state.camp.drop.rid) : null);
 
 // Invites
 export function inviteCode() {
@@ -990,49 +1002,46 @@ export function simulateInvite() {
 export function inviteClaimable() {
   const c = state.camp;
   const n = c.invites.length;
+  const counted = Math.min(n, INVITE_CAP);
   const ms = INVITE_MILESTONES.filter(([k]) => n >= k && !c.msClaimed.includes(k));
-  const friends = (n - c.inviteClaimed) * INVITE_REWARD;
-  return { amt: friends + ms.reduce((a, [, r]) => a + r, 0), friends, ms };
+  const friends = Math.max(0, counted - c.inviteClaimed) * INVITE_REWARD;
+  return { amt: +(friends + ms.reduce((a, [, r]) => a + r, 0)).toFixed(2), friends, ms };
 }
 export function claimInvite() {
   const e = needWallet();
   if (e) return e;
   const { amt, ms } = inviteClaimable();
   if (!(amt > 0)) return { err: L('暫無可領取的獎勵', 'Nothing to claim yet') };
-  set((s) => { s.camp.inviteClaimed = s.camp.invites.length; s.camp.msClaimed.push(...ms.map((m) => m[0])); airdrop(s, PLATFORM_TOKEN, amt, 'invite'); });
+  set((s) => { s.camp.inviteClaimed = Math.min(s.camp.invites.length, INVITE_CAP); s.camp.msClaimed.push(...ms.map((m) => m[0])); airdrop(s, REWARD_SYM, amt, 'invite'); });
   return { ok: true, amt, rid: lastDrop };
 }
 
-// Daily check-in: a 7-day cycle, a missed day restarts it
+// Daily check-in: once per day, 7 days in total (days need not be consecutive)
 const tzOff = (t) => new Date(t).getTimezoneOffset() * 60e3;
 export const dayKey = (t = now()) => Math.floor((t - tzOff(t)) / DAY);
 export function checkinState(t = now()) {
   const c = state.camp.checkin;
-  const today = dayKey(t);
-  const doneToday = c.last === today;
-  const alive = doneToday || c.last === today - 1;
-  const streak = alive ? c.streak : 0;
-  const pos = streak === 0 ? 0 : ((streak - 1) % 7) + 1;
-  const filled = doneToday ? pos : pos === 7 ? 0 : pos;
-  const nextIdx = doneToday ? pos % 7 : filled;
+  const count = Math.min(c.count || 0, CHECKIN_REWARDS.length);
+  const doneToday = c.last === dayKey(t);
+  const finished = count >= CHECKIN_REWARDS.length;
   const msToNext = DAY - (((t - tzOff(t)) % DAY) + DAY) % DAY;
-  return { doneToday, streak, filled, nextIdx, nextReward: CHECKIN_REWARDS[nextIdx], total: c.total, count: c.count || 0, msToNext };
+  return { doneToday, finished, filled: count, count, nextIdx: count, nextReward: finished ? 0 : CHECKIN_REWARDS[count], total: c.total, msToNext, left: CHECKIN_REWARDS.length - count };
 }
 export function checkIn() {
   const e = needWallet();
   if (e) return e;
   const st = checkinState();
+  if (st.finished) return { err: L('已完成全部 7 天簽到', 'All 7 check-ins are done') };
   if (st.doneToday) return { err: L('今天已簽到', 'Already checked in today') };
-  const reward = CHECKIN_REWARDS[st.filled];
+  const reward = CHECKIN_REWARDS[st.count];
   set((s) => {
     const c = s.camp.checkin;
-    c.streak = st.streak + 1;
     c.last = dayKey();
-    c.total += reward;
+    c.total = +((c.total || 0) + reward).toFixed(2);
     c.count = (c.count || 0) + 1;
-    airdrop(s, PLATFORM_TOKEN, reward, 'checkin');
+    airdrop(s, REWARD_SYM, reward, 'checkin');
   });
-  return { ok: true, reward, day: st.filled + 1, rid: lastDrop };
+  return { ok: true, reward, day: st.count + 1, rid: lastDrop };
 }
 
 // Social tasks: open the link, a short verification, then claim
@@ -1055,12 +1064,12 @@ export function claimSocial() {
   if (e) return e;
   const ready = SOCIAL_TASKS.filter((x) => socialStatus(x.id) === 'done');
   const bonus = !state.camp.socialBonus && socialAllDone();
-  const amt = ready.reduce((a, x) => a + x.reward, 0) + (bonus ? SOCIAL_BONUS : 0);
+  const amt = +(ready.reduce((a, x) => a + x.reward, 0) + (bonus ? SOCIAL_BONUS : 0)).toFixed(2);
   if (!(amt > 0)) return { err: L('暫無可領取的獎勵', 'Nothing to claim yet') };
   set((s) => {
     for (const x of ready) s.camp.social[x.id].claimed = true;
     if (bonus) s.camp.socialBonus = true;
-    airdrop(s, PLATFORM_TOKEN, amt, 'social');
+    airdrop(s, REWARD_SYM, amt, 'social');
   });
   return { ok: true, amt, rid: lastDrop };
 }
@@ -1082,7 +1091,7 @@ export function claimQuiz() {
   const q = state.camp.quiz;
   if (!q.passed) return { err: L('全部答對後才能領取', 'Answer every question correctly first') };
   if (q.claimed) return { err: L('已領取', 'Already claimed') };
-  set((s) => { s.camp.quiz.claimed = true; airdrop(s, 'USDT', QUIZ_REWARD, 'quiz'); });
+  set((s) => { s.camp.quiz.claimed = true; airdrop(s, REWARD_SYM, QUIZ_REWARD, 'quiz'); });
   return { ok: true, amt: QUIZ_REWARD, rid: lastDrop };
 }
 
@@ -1093,13 +1102,13 @@ export function claimables() {
   if (!state.wallet.connected) return out;
   if (c.drop && !c.drop.claimed && dropPhase() === 'ended') out.drop = [[FREE_DROP.sym, FREE_DROP.perUser]];
   const inv = inviteClaimable().amt;
-  if (inv > 0) out.invite = [[PLATFORM_TOKEN, inv]];
+  if (inv > 0) out.invite = [[REWARD_SYM, inv]];
   const ck = checkinState();
-  if (!ck.doneToday) out.checkin = [[PLATFORM_TOKEN, CHECKIN_REWARDS[ck.filled]]];
+  if (!ck.doneToday && !ck.finished) out.checkin = [[REWARD_SYM, ck.nextReward]];
   let soc = SOCIAL_TASKS.filter((x) => socialStatus(x.id) === 'done').reduce((a, x) => a + x.reward, 0);
   if (socialAllDone() && !c.socialBonus) soc += SOCIAL_BONUS;
-  if (soc > 0) out.social = [[PLATFORM_TOKEN, soc]];
-  if (c.quiz.passed && !c.quiz.claimed) out.quiz = [['USDT', QUIZ_REWARD]];
+  if (soc > 0) out.social = [[REWARD_SYM, +soc.toFixed(2)]];
+  if (c.quiz.passed && !c.quiz.claimed) out.quiz = [[REWARD_SYM, QUIZ_REWARD]];
   return out;
 }
 export function claimableUsd() {
@@ -1122,6 +1131,7 @@ function processRecords(s, events) {
       if (conf !== r.conf) r.conf = conf;
       if (conf >= r.need) {
         r.status = 'done';
+        r.doneAt = now();
         add(s.spot, r.sym, r.amount);
         if (r.kind === 'airdrop') events.push([L('空投已到帳', 'Airdrop received'), `+${r.amount} ${r.sym} · ${L('現貨帳戶', 'Spot account')}`]);
         else events.push([L('充值到帳', 'Deposit credited'), `+${r.amount} ${r.sym} · ${NETWORKS[r.net].short}`]);

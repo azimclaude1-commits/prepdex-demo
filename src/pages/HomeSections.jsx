@@ -224,7 +224,7 @@ export function NewsCommunity() {
   const t = now();
   const news = [
     [L('上新', 'Listing'), L('ORIA 免費申購開啟：連接錢包簽名即可領取', 'Free ORIA launch: connect and sign to claim'), t - 1 * DAY, () => go('rewards', 'drop')],
-    [L('活動', 'Campaign'), L('邀請好友上線，每位好友獎勵 50 NVX', 'Invite friends: 50 NVX for each one'), t - 3 * DAY, () => go('rewards', 'invite')],
+    [L('活動', 'Campaign'), L('邀請好友活動上線，好友連接錢包後雙方各得 1 USDT', 'Invite friends: you and each friend get 1 USDT when they connect'), t - 3 * DAY, () => go('rewards', 'invite')],
     [L('產品', 'Product'), L('合約新增 TON、LINK 永續，最高 50 倍槓桿', 'TON and LINK perpetuals added, up to 50x'), t - 6 * DAY, () => go('futures', 'TON')],
     [L('公告', 'Notice'), L('10 月儲備金證明報告已發佈，總儲備率 108%', 'October proof of reserves published: 108% total'), t - 10 * DAY, null],
     [L('理財', 'Earn'), L('NVX 180 天定期上線，年化 36%', 'NVX 180-day fixed term launched at 36% APR'), t - 14 * DAY, () => go('staking')],
@@ -251,7 +251,7 @@ export function NewsCommunity() {
       </div>
       <div className="card nc-social">
         <h2 className="display sec-title"><Users size={19} className="accent-text" />{L('加入社群', 'Join the community')}</h2>
-        <p className="muted small">{L('第一時間獲取上新、活動與空投消息。關注官方帳號還能在活動中心領 NVX。', 'Get listings, campaigns and airdrops first. Following us also earns NVX in the rewards hub.')}</p>
+        <p className="muted small">{L('獲取上新、活動與空投消息。關注官方帳號後，可在活動中心領取 USDT。', 'Get news on listings, campaigns and airdrops. After following, claim USDT in the rewards hub.')}</p>
         <div className="soc-grid">
           {socials.map(([k, name, handle, n, bg]) => (
             <button key={k} className="soc-card" onClick={() => go('rewards', 'social')}>
@@ -271,7 +271,7 @@ export function Faq() {
   const items = [
     [L(`${BRAND} 是什麼？`, `What is ${BRAND}?`), L(`${BRAND} 是一站式加密資產交易平台，提供現貨、永續合約、兌換、Launchpad 認購、質押理財、借貸與 OTC 買幣。`, `${BRAND} is an all-in-one crypto exchange with spot, perpetual futures, swap, launchpad sales, staking, lending and fiat on-ramps.`)],
     [L('如何開始交易？', 'How do I start trading?'), L('連接 MetaMask 等插件錢包並簽名登入，平台會為你分配專屬充值地址。充值到帳後即可交易，也可以用銀行卡或 P2P 直接買幣。', 'Connect an extension wallet such as MetaMask and sign in. You get your own deposit address; once funds arrive you can trade, or buy crypto with a card or P2P.')],
-    [L('免費活動的獎勵怎麼發放？', 'How are campaign rewards paid?'), L('在活動中心點擊領取後，獎勵會空投到你在交易所的專屬地址，區塊確認後自動計入現貨帳戶。', 'When you claim in the rewards hub, the reward is airdropped to your exchange address and added to your spot account after confirmations.')],
+    [L('活動獎勵怎麼發放？', 'How are campaign rewards paid?'), L('在活動中心點擊領取後，獎勵會空投到你在交易所的專屬地址，區塊確認後自動計入現貨帳戶。', 'When you claim in the rewards hub, the reward is airdropped to your exchange address and added to your spot account after confirmations.')],
     [L('交易手續費是多少？', 'What are the trading fees?'), L('現貨 0.1%，合約 Maker 0.02% / Taker 0.05%。質押 NVX 提升等級，最高可享 25% 手續費折扣。', 'Spot is 0.1%; futures are 0.02% maker and 0.05% taker. Staking NVX raises your tier for up to 25% off.')],
     [L('簽名會不會有風險？', 'Is signing risky?'), L('登入與免費申購使用的是消息簽名，不會發起交易，也不會授權轉走你的資產。請只在官方網址簽名。', 'Sign-in and the free launch use message signatures. They send no transaction and grant no access to your funds. Only sign on the official site.')],
   ];
@@ -296,8 +296,8 @@ export function FinalCta() {
     <section className="final-cta">
       <div className="banner-grid" />
       <div className="final-cta-in">
-        <h2 className="display">{L('現在加入，開始你的加密之旅', 'Join now and start your crypto journey')}</h2>
-        <p>{L('連接錢包即可領取新用戶獎勵，免費申購、簽到、邀請好友都能賺 NVX。', 'Connect a wallet to claim new-user rewards, and earn NVX from the free launch, check-ins and invites.')}</p>
+        <h2 className="display">{L('連接錢包，參與活動', 'Connect a wallet and join in')}</h2>
+        <p>{L('完成簽到、關注社媒、答題或邀請好友，領取 USDT 獎勵；簽名申購 ORIA 不需要付款。', 'Check in, follow us, take the quiz or invite friends to earn USDT. Subscribing to ORIA takes a signature, no payment.')}</p>
         <div className="hero-cta">
           {s.wallet.connected
             ? <Btn size="lg" onClick={() => go('rewards')}><Gift size={17} />{L('前往活動中心', 'Go to rewards')}</Btn>

@@ -361,7 +361,7 @@ export const CHAINS = [
 export const FREE_DROP = {
   id: 'oria', sym: 'ORIA', name: 'Oria Protocol', glyph: 'bloom', chain: 'Base', net: 'BASE',
   colors: ['#160B2A', '#7B3FE4', '#FFB36B'],
-  start: -6, end: 66, perUser: 500, slots: 50000, slotCurve: [0.31, 0.94], refPrice: 0.08,
+  start: -6, end: 66, claimDelay: 1, perUser: 500, slots: 500000, taken: 278500, refPrice: 0.08,
   totalSupply: 1_000_000_000, dropPct: 2.5,
   tagline: ['為鏈上創作者打造的社交身份與打賞協議', 'Social identity and tipping for on-chain creators'],
   about: [
@@ -377,19 +377,23 @@ export const FREE_DROP = {
   ],
 };
 
-export const INVITE_REWARD = 50; // NVX per friend who connects a wallet
-export const INVITEE_REWARD = 20; // NVX the friend receives
-export const INVITE_MILESTONES = [[3, 100], [10, 500], [30, 2000]];
-export const CHECKIN_REWARDS = [5, 5, 10, 10, 15, 20, 50];
+// Campaign rewards are paid in USDT. Finishing all four pays 18 USDT per wallet:
+// invite 7 (5 friends × 1 + milestones 1 + 1), check-in 4, social 4, quiz 3.
+export const REWARD_SYM = 'USDT';
+export const INVITE_REWARD = 1; // per friend who connects a wallet
+export const INVITE_CAP = 5; // friends that earn a reward
+export const INVITEE_REWARD = 1; // what the friend receives
+export const INVITE_MILESTONES = [[3, 1], [5, 1]];
+export const CHECKIN_REWARDS = [0.2, 0.3, 0.3, 0.5, 0.5, 0.7, 1.5];
 export const SOCIAL_TASKS = [
-  { id: 'x', name: ['關注 Novarix 的 X 帳號', 'Follow Novarix on X'], handle: '@NovarixHQ', reward: 30, color: '#E7E9EE', icon: 'x' },
-  { id: 'tg', name: ['加入 Telegram 社群', 'Join our Telegram group'], handle: 't.me/novarix', reward: 30, color: '#29A9EB', icon: 'tg' },
-  { id: 'dc', name: ['加入 Discord 伺服器', 'Join our Discord server'], handle: 'discord.gg/novarix', reward: 30, color: '#5865F2', icon: 'dc' },
-  { id: 'rt', name: ['轉發置頂貼文', 'Repost the pinned post'], handle: '@NovarixHQ', reward: 40, color: '#FF9A3D', icon: 'rt' },
-  { id: 'yt', name: ['訂閱 YouTube 頻道', 'Subscribe on YouTube'], handle: 'youtube.com/@novarix', reward: 20, color: '#FF3B3B', icon: 'yt' },
+  { id: 'x', name: ['關注 Novarix 的 X 帳號', 'Follow Novarix on X'], handle: '@NovarixHQ', reward: 0.6, color: '#E7E9EE', icon: 'x' },
+  { id: 'tg', name: ['加入 Telegram 社群', 'Join our Telegram group'], handle: 't.me/novarix', reward: 0.6, color: '#29A9EB', icon: 'tg' },
+  { id: 'dc', name: ['加入 Discord 伺服器', 'Join our Discord server'], handle: 'discord.gg/novarix', reward: 0.6, color: '#5865F2', icon: 'dc' },
+  { id: 'rt', name: ['轉發置頂貼文', 'Repost the pinned post'], handle: '@NovarixHQ', reward: 0.8, color: '#FF9A3D', icon: 'rt' },
+  { id: 'yt', name: ['訂閱 YouTube 頻道', 'Subscribe on YouTube'], handle: 'youtube.com/@novarix', reward: 0.4, color: '#FF3B3B', icon: 'yt' },
 ];
-export const SOCIAL_BONUS = 100;
-export const QUIZ_REWARD = 10; // USDT
+export const SOCIAL_BONUS = 1;
+export const QUIZ_REWARD = 3; // USDT
 export const QUIZ = [
   { q: ['在 Novarix 質押 NVX 有什麼作用？', 'What does staking NVX on Novarix do?'], opts: [['只能領取利息', 'It only earns interest'], ['提升認購等級並降低手續費', 'It raises your launchpad tier and cuts fees'], ['可以免費提幣', 'It makes withdrawals free']], a: 1 },
   { q: ['Launchpad 超募時，多出的 USDC 會怎樣？', 'In an oversubscribed sale, what happens to the extra USDC?'], opts: [['按比例分配並自動退回', 'Allocated pro rata and refunded automatically'], ['由平台保留', 'The platform keeps it'], ['轉為合約保證金', 'It becomes futures margin']], a: 0 },

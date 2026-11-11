@@ -93,3 +93,9 @@ export function floorTo(n, dp) {
   const f = Math.pow(10, dp);
   return Math.floor(n * f + 1e-9) / f;
 }
+
+// Reward amounts: no trailing zeros (18, 0.5, 0.25)
+export function amt(n) {
+  const v = +(+n || 0).toFixed(2);
+  return fmt(v, Number.isInteger(v) ? 0 : Number.isInteger(v * 10) ? 1 : 2);
+}
