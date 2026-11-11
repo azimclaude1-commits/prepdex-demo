@@ -947,13 +947,23 @@ function airdrop(s, sym, amount, source) {
 const needWallet = () => (!state.wallet.connected ? { err: L('請先連接錢包', 'Connect your wallet first') } : null);
 
 // Free launch: subscribe with a signature, claim after the window closes
-export function dropTimes() {
-  const end = state.epoch + FREE_DROP.end * HOUR;
-  return { start: state.epoch + FREE_DROP.start * HOUR, end, claim: end + FREE_DROP.claimDelay * HOUR };
+// The subscription window repeats in back-to-back rounds, so a visitor who has not subscribed
+// always finds one open (even after days away or a demo fast-forward). Signing pins the round.
+const DROP_ROUND = (FREE_DROP.end - FREE_DROP.start) * HOUR;
+function dropAnchor(t = now()) {
+  const d = state.camp.drop;
+  if (d) return d.anchor ?? state.epoch;
+  const k = Math.max(0, Math.floor((t - (state.epoch + FREE_DROP.start * HOUR)) / DROP_ROUND));
+  return state.epoch + k * DROP_ROUND;
+}
+export function dropTimes(t = now()) {
+  const a = dropAnchor(t);
+  const end = a + FREE_DROP.end * HOUR;
+  return { start: a + FREE_DROP.start * HOUR, end, claim: end + FREE_DROP.claimDelay * HOUR };
 }
 // upcoming → live (sign to subscribe) → allocating (results being computed) → ended (claim open)
 export function dropPhase(t = now()) {
-  const { start, end, claim } = dropTimes();
+  const { start, end, claim } = dropTimes(t);
   return t < start ? 'upcoming' : t < end ? 'live' : t < claim ? 'allocating' : 'ended';
 }
 // Subscribed spots: the published count, plus the user's own once they sign
@@ -969,7 +979,7 @@ export function signDrop({ sig, nonce, provider }) {
   const id = 'FS' + new Date(now()).toISOString().slice(2, 10).replace(/-/g, '') + randHex(6).toUpperCase();
   set((s) => {
     s.camp.drop = {
-      id, sig, nonce, provider, ts: now(), wallet: s.wallet.address, to: depositAddress(FREE_DROP.net),
+      id, sig, nonce, provider, ts: now(), anchor: dropAnchor(), wallet: s.wallet.address, to: depositAddress(FREE_DROP.net),
       amount: FREE_DROP.perUser, queue: FREE_DROP.taken + 1, claimed: false,
     };
   });
