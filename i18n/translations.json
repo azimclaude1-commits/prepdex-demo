@@ -4577,6 +4577,13 @@
 "Ahora",
 "Ngayon"
 ],
+"OK": [
+"확인",
+"OK",
+"OK",
+"Entendido",
+"Sige"
+],
 "OTC order completed": [
 "OTC 주문 완료",
 "OTC 注文が完了しました",
@@ -5591,6 +5598,13 @@
 "Ganjaran",
 "Recompensa",
 "Reward"
+],
+"Reward claimed": [
+"보상을 받았습니다",
+"報酬を受け取りました",
+"Ganjaran dituntut",
+"Recompensa reclamada",
+"Na-claim ang reward"
 ],
 "Reward limit reached": [
 "보상 인원 한도에 도달했습니다",

@@ -1915,3 +1915,7 @@ button.ad-row:hover { background: var(--panel-2); }
 .home-ck .hck-more { color: #7CF5C8; white-space: nowrap; }
 .cr-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; font-size: 12.5px; font-weight: 700; color: var(--up); }
 .cr-steps span { display: inline-flex; align-items: center; gap: 5px; }
+.credit-pop .modal-body { padding-top: 26px; }
+.credit-pop .fl-result { gap: 6px; }
+.credit-pop .ad-amt { margin-top: 0; }
+.credit-pop .btn-row { margin-top: 14px; }
