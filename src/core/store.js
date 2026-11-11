@@ -939,12 +939,7 @@ const AIRDROP_NET = 'BEP20';
 export const airdropNet = (sym) => (sym === FREE_DROP.sym ? FREE_DROP.net : AIRDROP_NET);
 export const airdropAddress = (sym = 'USDT') => depositAddress(airdropNet(sym));
 let lastDrop = null;
-function airdrop(s, sym, amount, source) {
-  const net = airdropNet(sym);
-  lastDrop = uid('r');
-  s.records.unshift({ id: lastDrop, kind: 'airdrop', sym, amount, net, source, address: depositAddress(net), status: 'confirming', conf: 0, need: 6, ts: now(), started: Date.now(), txid: '0x' + randHex(64) });
-}
-// Centralised credit (USDT campaigns): booked straight to the user's exchange account, nothing on-chain
+// Centralised credit (all campaign rewards): booked straight to the user's exchange account, nothing on-chain
 function credit(s, sym, amount, source) {
   lastDrop = uid('r');
   const net = airdropNet(sym);
@@ -1001,7 +996,7 @@ export function claimDrop() {
   if (dropPhase() !== 'ended') return { err: L('分配結果公佈後才能領取', 'Claim opens once allocations are published') };
   if (d.claimed) return { err: L('已領取', 'Already claimed') };
   set((s) => {
-    airdrop(s, FREE_DROP.sym, d.amount || FREE_DROP.perUser, 'drop');
+    credit(s, FREE_DROP.sym, d.amount || FREE_DROP.perUser, 'drop');
     s.camp.drop.claimed = true;
     s.camp.drop.claimedAt = now();
     s.camp.drop.rid = lastDrop;

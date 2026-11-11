@@ -219,7 +219,7 @@ export function NewsCommunity() {
       </div>
       <div className="card nc-social">
         <h2 className="display sec-title"><Users size={19} className="accent-text" />{L('加入社群', 'Join the community')}</h2>
-        <p className="muted small">{L('獲取上新、活動與空投消息。', 'News on listings, campaigns and airdrops.')}</p>
+        <p className="muted small">{L('獲取上新與活動消息。', 'News on listings and campaigns.')}</p>
         <div className="soc-grid">
           {socials.map(([k, name, handle, n, bg, desc]) => (
             <button key={k} className="soc-card" onClick={() => go('rewards', 'social')}>
@@ -246,7 +246,7 @@ export function Faq() {
   const items = [
     [L(`${BRAND} 是什麼？`, `What is ${BRAND}?`), L(`${BRAND} 是一站式加密資產交易平台，提供現貨、永續合約、兌換、Launchpad 認購、質押理財、借貸與 OTC 買幣。`, `${BRAND} is an all-in-one crypto exchange with spot, perpetual futures, swap, launchpad sales, staking, lending and fiat on-ramps.`)],
     [L('如何開始交易？', 'How do I start trading?'), L('連接 MetaMask 等插件錢包並簽名登入，平台會為你分配專屬充值地址。充值到帳後即可交易，也可以用銀行卡或 P2P 直接買幣。', 'Connect an extension wallet such as MetaMask and sign in. You get your own deposit address; once funds arrive you can trade, or buy crypto with a card or P2P.')],
-    [L('活動獎勵怎麼發放？', 'How are campaign rewards paid?'), L('簽到、邀請、社媒和答題的 USDT 獎勵由平台直接記入你的現貨帳戶，點擊領取即到帳；ORIA 申購通過鏈上空投發放到你的交易所地址。', 'USDT rewards from check-in, invites, social tasks and the quiz are booked straight to your spot account when you claim; the ORIA launch is airdropped on-chain to your exchange address.')],
+    [L('活動獎勵怎麼發放？', 'How are campaign rewards paid?'), L('所有活動獎勵（包括 ORIA 申購）都由平台直接記入你的現貨帳戶，點擊領取即到帳。', 'Every campaign reward, including the ORIA launch, is booked straight to your spot account when you claim.')],
     [L('交易手續費是多少？', 'What are the trading fees?'), L('現貨 0.1%，合約 Maker 0.02% / Taker 0.05%。質押 NVX 提升等級，最高可享 25% 手續費折扣。', 'Spot is 0.1%; futures are 0.02% maker and 0.05% taker. Staking NVX raises your tier for up to 25% off.')],
     [L('簽名會不會有風險？', 'Is signing risky?'), L('登入與免費申購使用的是消息簽名，不會發起交易，也不會授權轉走你的資產。請只在官方網址簽名。', 'Sign-in and the free launch use message signatures. They send no transaction and grant no access to your funds. Only sign on the official site.')],
   ];

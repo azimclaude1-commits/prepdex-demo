@@ -191,7 +191,7 @@ function HowItWorks() {
   const steps = [
     [CheckCircle2, L('完成任務', 'Finish a task'), L('簽名申購、簽到、關注或邀請好友。', 'Sign up for the launch, check in, follow or invite.')],
     [Gift, L('點擊領取', 'Tap claim'), L('獎勵立即從獎勵池發出。', 'The reward leaves the pool right away.')],
-    [ArrowDownToLine, L('存入交易所帳戶', 'Credited to your account'), L(`USDT 獎勵即時到帳；${FREE_DROP.sym} 通過鏈上空投到你的交易所地址。`, `USDT rewards arrive instantly; ${FREE_DROP.sym} is airdropped on-chain to your exchange address.`)],
+    [ArrowDownToLine, L('存入交易所帳戶', 'Credited to your account'), L('獎勵由平台直接記入你的現貨帳戶，即時到帳。', 'Rewards go straight to your spot account, instantly.')],
     [Wallet, L('交易或提幣', 'Trade or withdraw'), L('到帳後可直接交易、質押或提幣。', 'Trade, stake or withdraw once it arrives.')],
   ];
   return (
@@ -249,7 +249,7 @@ function RewardFaq() {
   const items = [
     [L('參加活動需要付費嗎？', 'Do campaigns cost anything?'), L(`不需要付費。${FREE_DROP.sym} 申購只需要用錢包簽名一次，簽名不發起交易，也不消耗 Gas。`, `No. The ${FREE_DROP.sym} launch only needs one wallet signature, which sends no transaction and costs no gas.`)],
     [L('各活動的獎勵是多少？', 'What does each campaign pay?'), L(`邀請好友每位 ${INVITE_REWARD} USDT，人數不限，滿 ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} 人另得 ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT；每日簽到每週 ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT；關注社媒共 ${SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS} USDT；答題 ${QUIZ_REWARD} USDT；${FREE_DROP.sym} 申購每個錢包 ${FREE_DROP.perUser} ${FREE_DROP.sym}。`, `Invites pay ${INVITE_REWARD} USDT per friend with no limit, plus ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT at ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} friends; check-in pays ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT a week; social pays ${SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS} USDT; the quiz pays ${QUIZ_REWARD} USDT; the ${FREE_DROP.sym} launch gives ${FREE_DROP.perUser} ${FREE_DROP.sym} per wallet.`)],
-    [L('獎勵多久到帳？', 'How fast do rewards arrive?'), L(`USDT 獎勵由平台直接記入現貨帳戶，點擊領取即到帳；${FREE_DROP.sym} 通過鏈上空投發放，幾秒內完成區塊確認。`, `USDT rewards are booked straight to your spot account the moment you claim; ${FREE_DROP.sym} is airdropped on-chain and confirms within seconds.`)],
+    [L('獎勵多久到帳？', 'How fast do rewards arrive?'), L('點擊領取即到帳，獎勵由平台直接記入你的現貨帳戶。', 'Instantly: rewards are booked straight to your spot account when you claim.')],
     [L('獎勵可以提幣嗎？', 'Can I withdraw rewards?'), L('可以。到帳後與充值的資產相同，可以交易、質押或提到外部錢包。', 'Yes. Once received they work like deposits: trade, stake or withdraw them.')],
     [L('交易所地址是什麼？', 'What is my exchange address?'), L('每個錢包在 Novarix 都有專屬的交易所地址，與充值地址相同。活動獎勵都記入這個地址對應的帳戶。', 'Each wallet has its own Novarix exchange address, the same as its deposit address. Campaign rewards go to that account.')],
   ];
@@ -277,7 +277,7 @@ function RewardWallet() {
       <div className="card rw-wallet">
         <div className="rw-wallet-gift"><Gift size={30} /></div>
         <h3>{L('連接錢包，開始領獎勵', 'Connect a wallet to start earning')}</h3>
-        <p className="muted">{L('每個錢包都會分配一個專屬的交易所地址，所有活動獎勵都會空投到這個地址。', 'Each wallet gets its own exchange address. Every campaign reward is airdropped there.')}</p>
+        <p className="muted">{L('每個錢包都會分配一個專屬的交易所帳戶，活動獎勵領取後直接存入現貨帳戶。', 'Each wallet gets its own exchange account. Campaign rewards go straight to its spot balance.')}</p>
         <ConnectGate />
       </div>
     );
@@ -398,10 +398,10 @@ function AirdropFeed() {
               <CoinIcon sym={r.sym} size={30} />
               <div className="ad-row-main">
                 <b>{src[r.source]}</b>
-                <span className="muted small mono">{dateTime(r.ts)} · {r.internal ? L('平台入帳', 'Platform credit') : NETWORKS[r.net]?.short} → {shortAddr(r.address)}</span>
+                <span className="muted small mono">{dateTime(r.ts)} · {L('平台入帳', 'Platform credit')} → {shortAddr(r.address)}</span>
               </div>
               <b className="mono up">+{amt(r.amount)} {r.sym}</b>
-              {r.status === 'done' ? <Pill tone="up">{L('已到帳', 'Received')}</Pill> : <Pill tone="accent" dot>{L('確認中', 'Confirming')} {r.conf}/{r.need}</Pill>}
+              {r.status === 'done' ? <Pill tone="up">{L('已到帳', 'Received')}</Pill> : <Pill tone="accent" dot>{L('處理中', 'Processing')}</Pill>}
             </button>
           ))}
         </div>
@@ -500,14 +500,14 @@ function ClaimCard({ id, onClaim, openClaim }) {
       <div className="claim-dest">
         <ArrowDownToLine size={15} />
         <div>
-          <div className="small">{id !== 'drop' ? L('記入你的交易所帳戶，即時到帳', 'Credited to your exchange account instantly') : L('空投到你的交易所地址', 'Airdropped to your exchange address')}</div>
-          <div className="mono muted small">{s.wallet.connected ? (id !== 'drop' ? shortAddr(airdropAddress(sym)) : `${NETWORKS[airdropNet(sym)].short} · ${shortAddr(airdropAddress(sym))}`) : '--'}</div>
+          <div className="small">{L('記入你的交易所帳戶，即時到帳', 'Credited to your exchange account instantly')}</div>
+          <div className="mono muted small">{s.wallet.connected ? shortAddr(airdropAddress(sym)) : '--'}</div>
         </div>
       </div>
       {last && (
         <div className="claim-last">
-          <span className="muted small">{last.internal ? L('最近一次到帳', 'Latest credit') : L('最近一次空投', 'Latest airdrop')}</span>
-          <span className="row-gap"><b className="mono up">+{amt(last.amount)} {last.sym}</b>{last.status === 'done' ? <Pill tone="up">{L('已到帳', 'Received')}</Pill> : <Pill tone="accent" dot>{last.conf}/{last.need}</Pill>}</span>
+          <span className="muted small">{L('最近一次到帳', 'Latest credit')}</span>
+          <span className="row-gap"><b className="mono up">+{amt(last.amount)} {last.sym}</b>{last.status === 'done' ? <Pill tone="up">{L('已到帳', 'Received')}</Pill> : <Pill tone="accent" dot>{L('處理中', 'Processing')}</Pill>}</span>
         </div>
       )}
       {Object.keys(got).length > 0 && <KV k={L('本活動累計領取', 'Claimed in this campaign')} v={Object.entries(got).map(([k, v]) => `${amt(v)} ${k}`).join(' · ')} />}
@@ -522,7 +522,7 @@ function RulesCard({ id }) {
       L('申購需要用已連接的錢包簽名一次，簽名不發起交易，不消耗 Gas。', 'Subscribing takes one signature from your connected wallet. It sends no transaction and costs no gas.'),
       L(`名額共 ${fmt(FREE_DROP.slots, 0)} 個，先到先得。`, `${fmt(FREE_DROP.slots, 0)} spots, first come first served.`),
       L('申購結束 1 小時後公佈分配結果；名額未滿時每個錢包全額獲配。', 'Allocations are published 1 hour after the window closes; if spots remain, every wallet gets the full amount.'),
-      L('分配公佈後點擊領取，代幣會空投到你在 Novarix 的交易所地址。', 'Once allocations are out, claim and the tokens are airdropped to your Novarix exchange address.'),
+      L('分配公佈後點擊領取，代幣直接發放到你的現貨帳戶，即時到帳。', 'Once allocations are out, claim and the tokens go straight to your spot account.'),
     ],
     invite: [
       L(`好友通過你的連結註冊並連接錢包，你獲得 ${INVITE_REWARD} USDT，好友獲得 ${INVITEE_REWARD} USDT。`, `When a friend signs up through your link and connects a wallet, you get ${INVITE_REWARD} USDT and they get ${INVITEE_REWARD} USDT.`),
@@ -575,7 +575,7 @@ function DropMain({ openClaim }) {
     : ph === 'allocating' ? [L('分配公佈', 'Allocations in'), countdown(claim - t)]
     : [L('狀態', 'Status'), L('開放領取', 'Claim open')];
   const claimSub = d?.claimed
-    ? (rec?.status === 'done' ? L(`已到帳現貨帳戶 · ${dateTime(rec.doneAt || rec.ts)}`, `In your spot account · ${dateTime(rec.doneAt || rec.ts)}`) : L(`空投中 · 區塊確認 ${rec?.conf || 0}/${rec?.need || 6}`, `Airdropping · ${rec?.conf || 0}/${rec?.need || 6} confirmations`))
+    ? L(`已發放到現貨帳戶 · ${dateTime(rec?.doneAt || d.claimedAt)}`, `In your spot account · ${dateTime(rec?.doneAt || d.claimedAt)}`)
     : ph === 'ended' ? L('分配結果已公佈，現在可以領取', 'Allocations are out. Claim now.')
     : ph === 'allocating' ? L(`分配計算中，${countdown(claim - t)} 後開放領取`, `Allocating; claim opens in ${countdown(claim - t)}`)
     : L(`申購結束後公佈分配結果 · ${dateTime(claim)}`, `Allocations published after the window · ${dateTime(claim)}`);
@@ -616,9 +616,9 @@ function DropMain({ openClaim }) {
           <Step n={2} done={step > 1} cur={step === 1} title={L('錢包簽名申購', 'Sign to subscribe')} sub={d ? <span className="mono">{d.id} · {L('名額', 'Spot')} #{fmt(d.queue, 0)} · {dateTime(d.ts)}</span> : L('喚起錢包確認簽名，不消耗 Gas', 'Confirm in your wallet. No gas.')}>
             {step === 1 && <Btn size="sm" disabled={ph !== 'live'} onClick={() => setSubscribe(true)}><PenLine size={15} />{ph === 'live' ? L('簽名申購', 'Sign') : L('未開放', 'Closed')}</Btn>}
           </Step>
-          <Step n={3} done={rec?.status === 'done'} cur={step === 2 && rec?.status !== 'done'} title={L('領取並空投到帳', 'Claim the airdrop')} sub={claimSub}>
+          <Step n={3} done={!!d?.claimed} cur={step === 2 && !d?.claimed} title={L('領取並發放到現貨帳戶', 'Claim to your spot account')} sub={claimSub}>
             {step === 2 && !d.claimed && ph === 'ended' && <Btn size="sm" onClick={openClaim}><Gift size={15} />{L('領取', 'Claim')} {FREE_DROP.perUser} {FREE_DROP.sym}</Btn>}
-            {rec?.status === 'done' && <Btn size="sm" variant="soft" onClick={() => go('wallet')}><Wallet size={15} />{L('查看資產', 'View assets')}</Btn>}
+            {d?.claimed && <Btn size="sm" variant="soft" onClick={() => go('wallet')}><Wallet size={15} />{L('查看資產', 'View assets')}</Btn>}
           </Step>
         </div>
         {d && ph === 'live' && (

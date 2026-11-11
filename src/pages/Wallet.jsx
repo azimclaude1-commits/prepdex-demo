@@ -177,7 +177,7 @@ function Records() {
               {rows.slice(0, 80).map((r) => (
                 <tr key={r.id} className={cx(r.kind === 'airdrop' && 'clickable')} onClick={r.kind === 'airdrop' ? () => setView(r.id) : undefined}>
                   <td className="mono muted">{dateTime(r.ts, true)}</td>
-                  <td>{r.kind === 'airdrop' && !r.internal ? L('空投', 'Airdrop') : kind[r.kind]}{r.kind === 'lend' ? ' · ' + lendAct[r.action] : ''}{r.kind === 'otc' ? ' · ' + (r.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')) : ''}</td>
+                  <td>{kind[r.kind]}{r.kind === 'lend' ? ' · ' + lendAct[r.action] : ''}{r.kind === 'otc' ? ' · ' + (r.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')) : ''}</td>
                   <td><span className="row-gap"><CoinIcon sym={r.sym} size={18} />{r.sym}</span></td>
                   <td className={cx('mono', ['deposit', 'otc', 'airdrop'].includes(r.kind) && r.side !== 'sell' ? 'up' : r.kind === 'withdraw' ? 'down' : '')}>
                     {r.kind === 'deposit' || r.kind === 'airdrop' || (r.kind === 'otc' && r.side === 'buy') ? '+' : r.kind === 'withdraw' ? '-' : ''}{fmt(r.amount, 6)}
@@ -187,7 +187,7 @@ function Records() {
                     {r.kind === 'withdraw' && <>{NETWORKS[r.net]?.short} → <span className="mono">{shortAddr(r.address)}</span> · {L('手續費', 'fee')} {r.fee}</>}
                     {r.kind === 'transfer' && <>{accN(r.from)} → {accN(r.to)}</>}
                     {(r.kind === 'convert' || r.kind === 'swap') && <>→ <span className="mono">{fmt(r.out, 6)} {r.to}</span></>}
-                    {r.kind === 'airdrop' && <>{src[r.source]} · {r.internal ? L('平台入帳', 'Platform credit') : NETWORKS[r.net]?.short} → <span className="mono">{shortAddr(r.address)}</span></>}
+                    {r.kind === 'airdrop' && <>{src[r.source]} · {L('平台入帳', 'Platform credit')} → <span className="mono">{shortAddr(r.address)}</span></>}
                     {r.kind === 'otc' && <>{fmt(r.fiatAmt, 2)} {r.fiat}{r.via ? ' · ' + r.via : ''}</>}
                   </td>
                   <td><StatusPill r={r} /></td>

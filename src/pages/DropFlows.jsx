@@ -1,5 +1,5 @@
-// Free ORIA launch: subscribe by wallet signature, claim, and the airdrop receipt.
-// Also the generic airdrop progress/receipt used by every campaign and the wallet records.
+// Free ORIA launch: subscribe by wallet signature, claim to the spot account, and the subscription page.
+// Also the reward pop-up used by every campaign and the wallet records.
 import { useEffect, useMemo, useState } from 'react';
 import {
   Check, CheckCircle2, Loader2, Clock, ShieldCheck, PenLine, FlaskConical, FastForward, ArrowLeft, XCircle, Gift, Wallet,
@@ -17,7 +17,6 @@ import { orbStyle } from '../layout/Shell.jsx';
 import { WalletGlyph, ChainIcon } from '../layout/Modals.jsx';
 
 // Where campaign rewards are sent from (display only)
-export const POOL_ADDRESS = '0x7a2c5b19e04f6d3a8c71b2e9f05d4c3a6b8e1f90';
 const BASE = CHAINS.find((c) => c.id === 'base');
 
 const sourceLabel = (src) => ({
@@ -40,8 +39,6 @@ function typedData(wallet, receiver, nonce, deadline) {
     ['Amount', `${FREE_DROP.perUser} ${FREE_DROP.sym}`],
     ['Payment', '0 USDC'],
     ['Wallet', wallet],
-    ['Receiver', receiver],
-    ['Chain ID', '8453 (Base)'],
     ['Nonce', nonce],
     ['Deadline', new Date(deadline).toISOString()],
   ];
@@ -168,11 +165,11 @@ export function SubscribeFlow({ onClose }) {
             <Line k={L('申購數量', 'Amount')}><span className="mono">{FREE_DROP.perUser} {FREE_DROP.sym}</span></Line>
             <Line k={L('需支付', 'You pay')}><span className="mono up">0 USDC</span></Line>
             <Line k={L('簽名錢包', 'Signing wallet')}><span className="row-gap"><WalletGlyph w={w} size={16} /><span className="mono">{shortAddr(s.wallet.address)}</span></span></Line>
-            <Line k={L('接收地址', 'Receiving address')}><span className="row-gap"><ChainIcon c={BASE} size={14} /><span className="mono">{shortAddr(to)}</span></span></Line>
+            <Line k={L('發放到', 'Paid to')}>{L('現貨帳戶', 'Spot account')}</Line>
             <Line k={L('已申購 / 總名額', 'Subscribed / spots')}><span className="mono">{fmt(dropTaken(), 0)} / {fmt(FREE_DROP.slots, 0)}</span></Line>
             <Line k={L('分配公佈', 'Allocations published')}><span className="mono">{dateTime(claim)}</span></Line>
           </div>
-          <p className="fine">{L('接收地址是你在 Novarix 的交易所地址。領取後 ORIA 會空投到這個地址，並計入現貨帳戶。', 'The receiving address is your Novarix exchange address. When you claim, ORIA is airdropped there and added to your spot account.')}</p>
+          <p className="fine">{L('分配結果公佈後點擊領取，ORIA 會直接發放到你的現貨帳戶。', 'Once allocations are published, claim and ORIA goes straight to your spot account.')}</p>
           <label className="check check-line">
             <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
             <span>{L('我已閱讀並同意申購規則，了解簽名不會發起交易。', 'I have read the rules and understand the signature sends no transaction.')}</span>
@@ -236,12 +233,12 @@ export function SubscribeFlow({ onClose }) {
         <div className="fl-result">
           <span className="fl-ico ok"><CheckCircle2 size={40} /></span>
           <h3>{L(`已為你鎖定 ${d.amount} ${FREE_DROP.sym}`, `${d.amount} ${FREE_DROP.sym} reserved for you`)}</h3>
-          <p className="muted small">{L('分配結果公佈後即可領取，ORIA 會空投到你的交易所地址。', 'Claim once allocations are published; ORIA will be airdropped to your exchange address.')}</p>
+          <p className="muted small">{L('分配結果公佈後即可領取，ORIA 會直接發放到你的現貨帳戶。', 'Claim once allocations are published; ORIA goes straight to your spot account.')}</p>
           <div className="rc">
             <Line k={L('申購編號', 'Subscription ID')} copy={d.id}><span className="mono">{d.id}</span></Line>
             <Line k={L('名額序號', 'Spot number')}><span className="mono">#{fmt(d.queue, 0)}</span></Line>
             <Line k={L('簽名哈希', 'Signature')} copy={d.sig}><span className="mono">{shortAddr(d.sig)}</span></Line>
-            <Line k={L('接收地址', 'Receiving address')} copy={d.to}><span className="mono">{shortAddr(d.to)}</span></Line>
+            <Line k={L('發放到', 'Paid to')}>{L('現貨帳戶', 'Spot account')}</Line>
             <Line k={L('申購時間', 'Subscribed at')}><span className="mono">{dateTime(d.ts, true)}</span></Line>
             <Line k={L('開放領取', 'Claim opens')}><span className="mono">{dateTime(claim)}</span></Line>
           </div>
@@ -256,7 +253,7 @@ export function SubscribeFlow({ onClose }) {
 }
 
 // ----------------------------------------------------------------------------
-// Claim the ORIA allocation: review, then the airdrop progress and receipt
+// Claim the ORIA allocation: a short review, then the reward pop-up
 // ----------------------------------------------------------------------------
 export function ClaimFlow({ onClose }) {
   useMarket();
@@ -272,21 +269,14 @@ export function ClaimFlow({ onClose }) {
   };
   if (rid) return <AirdropModal rid={rid} onClose={onClose} />;
   return (
-    <Modal title={L(`領取 ${FREE_DROP.sym} 空投`, `Claim your ${FREE_DROP.sym}`)} onClose={onClose} width={460} icon={<Gift size={18} />} className="flow-modal">
+    <Modal title={L(`領取 ${FREE_DROP.sym}`, `Claim your ${FREE_DROP.sym}`)} onClose={onClose} width={460} icon={<Gift size={18} />} className="flow-modal">
       <div className="cl-amt">
         <ProjLogo p={FREE_DROP} size={52} ring />
         <div><b className="mono">{amt} {FREE_DROP.sym}</b><span className="muted small mono">≈ {usd(valueOf(FREE_DROP.sym, amt))}</span></div>
       </div>
-      <div className="cl-route">
-        <div><BrandMark size={30} /><span>{L('獎勵池', 'Reward pool')}</span><small className="mono">{shortAddr(POOL_ADDRESS)}</small></div>
-        <ArrowRight size={18} />
-        <div><span className="orb" style={orbStyle(s.wallet.address)} /><span>{L('你的交易所地址', 'Your exchange address')}</span><small className="mono">{shortAddr(d.to)}</small></div>
-      </div>
       <div className="rc">
         <Line k={L('分配結果', 'Allocation')}><span className="up">{L(`全額獲配 ${amt} ${FREE_DROP.sym}`, `Full allocation: ${amt} ${FREE_DROP.sym}`)}</span></Line>
-        <Line k={L('接收地址', 'Receiving address')} copy={d.to}><span className="mono">{shortAddr(d.to)}</span></Line>
-        <Line k={L('網路', 'Network')}><span className="row-gap"><ChainIcon c={BASE} size={14} />Base</span></Line>
-        <Line k={L('到帳帳戶', 'Credited to')}><span>{L('現貨帳戶', 'Spot account')}</span></Line>
+        <Line k={L('發放到', 'Paid to')}>{L('現貨帳戶', 'Spot account')}</Line>
       </div>
       <div className="btn-row">
         <Btn variant="ghost" onClick={onClose}>{L('取消', 'Cancel')}</Btn>
@@ -297,65 +287,15 @@ export function ClaimFlow({ onClose }) {
 }
 
 // ----------------------------------------------------------------------------
-// Airdrop progress, then the receipt (all campaigns, and wallet records)
+// Reward pop-up (all campaigns, and wallet records)
 // ----------------------------------------------------------------------------
 export function AirdropModal({ rid, onClose }) {
   const s = useApp();
   const r = s.records.find((x) => x.id === rid);
-  if (!r) return null;
-  if (r.internal) return <CreditReceipt r={r} onClose={onClose} />;
-  const done = r.status === 'done';
-  const net = NETWORKS[r.net];
-  return (
-    <Modal title={done ? L('空投已到帳', 'Airdrop received') : L('正在空投', 'Airdropping')} onClose={onClose} width={460} icon={<Gift size={18} />} className="flow-modal">
-      {!done ? (
-        <>
-          <div className="ad-flow">
-            <div className="ad-node"><BrandMark size={44} /><span>{L('獎勵池', 'Reward pool')}</span></div>
-            <div className="ad-line"><span className="ad-coin"><CoinIcon sym={r.sym} size={26} /></span></div>
-            <div className="ad-node"><span className="orb big" style={orbStyle(s.wallet.address)} /><span>{L('你的交易所地址', 'Your exchange address')}</span></div>
-          </div>
-          <div className="ad-amt mono">+{amt(r.amount)} {r.sym}</div>
-          <div className="ad-sub muted small mono">{net.short} · {shortAddr(r.address)}</div>
-          <Progress value={r.conf} max={r.need} glow />
-          <div className="ad-vsteps">
-            <div className="done"><CheckCircle2 size={17} /><span>{L('領取請求已提交', 'Claim submitted')}</span><small className="mono">{dateTime(r.ts, true)}</small></div>
-            <div className="done"><CheckCircle2 size={17} /><span>{L('鏈上發放', 'Sent on-chain')}</span><small className="mono">Tx {shortAddr(r.txid)}</small></div>
-            <div className="cur"><Loader2 size={17} className="spin" /><span>{L('區塊確認', 'Confirmations')}</span><small className="mono">{r.conf}/{r.need}</small></div>
-            <div><Clock size={17} /><span>{L('存入現貨帳戶', 'Credit to spot account')}</span><small /></div>
-          </div>
-          <div className="btn-row" style={{ marginTop: 16 }}>
-            <Btn variant="ghost" onClick={onClose}>{L('後台處理', 'Run in background')}</Btn>
-          </div>
-        </>
-      ) : (
-        <div className="fl-result">
-          <span className="fl-ico ok"><CoinIcon sym={r.sym} size={46} /><i><Check size={14} /></i></span>
-          <div className="ad-amt mono">+{amt(r.amount)} {r.sym}</div>
-          <p className="muted small">{L('已空投到你的交易所地址，並存入現貨帳戶。', 'Airdropped to your exchange address and added to your spot account.')}</p>
-          <div className="rc">
-            <Line k={L('來源', 'Source')}>{sourceLabel(r.source)}</Line>
-            <Line k={L('交易哈希', 'Transaction hash')} copy={r.txid}><span className="mono">{shortAddr(r.txid)}</span></Line>
-            <Line k={L('發送方', 'From')}><span className="mono">{L('獎勵池', 'Reward pool')} {shortAddr(POOL_ADDRESS)}</span></Line>
-            <Line k={L('接收地址', 'Receiving address')} copy={r.address}><span className="mono">{shortAddr(r.address)}</span></Line>
-            <Line k={L('網路', 'Network')}>{net.name}</Line>
-            <Line k={L('區塊確認', 'Confirmations')}><span className="mono up">{r.conf}/{r.need}</span></Line>
-            <Line k={L('到帳時間', 'Received at')}><span className="mono">{dateTime(r.doneAt || r.ts, true)}</span></Line>
-            <Line k={L('現貨餘額', 'Spot balance')}><span className="mono">{fmt(bal(r.sym), 2)} {r.sym}</span></Line>
-          </div>
-          <div className="btn-row">
-            <Btn variant="ghost" onClick={() => { onClose(); go('wallet'); }}><Wallet size={16} />{L('查看資產', 'View assets')}</Btn>
-            {r.source === 'drop'
-              ? <Btn onClick={() => { onClose(); go('rewards', 'record'); }}><Receipt size={16} />{L('申購詳情', 'Subscription details')}</Btn>
-              : <Btn onClick={onClose}>{L('完成', 'Done')}</Btn>}
-          </div>
-        </div>
-      )}
-    </Modal>
-  );
+  return r ? <CreditReceipt r={r} onClose={onClose} /> : null;
 }
 
-// Centralised reward (check-in): a short confirmation, not an order receipt
+// Campaign reward: a short confirmation that it is in the spot account
 function CreditReceipt({ r, onClose }) {
   return (
     <Modal title={null} onClose={onClose} width={340} className="credit-pop">
@@ -393,8 +333,7 @@ export function DropRecord() {
     );
   }
   const amt = d.amount || FREE_DROP.perUser;
-  const status = rec?.status === 'done' ? ['up', L('已到帳', 'Received')]
-    : rec ? ['accent', L('空投中', 'Airdropping')]
+  const status = rec ? ['up', L('已到帳', 'Received')]
     : ph === 'ended' ? ['accent', L('待領取', 'Ready to claim')]
     : ph === 'allocating' ? ['violet', L('分配計算中', 'Allocating')]
     : ['muted', L('已申購 · 等待結束', 'Subscribed · window open')];
@@ -402,9 +341,8 @@ export function DropRecord() {
     { icon: FileSignature, title: L('錢包簽名申購', 'Signed to subscribe'), done: true, time: d.ts, sub: <>{WALLETS.find((x) => x.id === d.provider)?.name || 'Wallet'} · <span className="mono">{shortAddr(d.sig)}</span></> },
     { icon: Hourglass, title: L('申購期結束', 'Subscription window closes'), done: t >= end, cur: ph === 'live', time: end, sub: ph === 'live' ? L(`還有 ${countdown(end - t)}`, `${countdown(end - t)} left`) : L(`共 ${fmt(dropTaken(), 0)} 個錢包參與`, `${fmt(dropTaken(), 0)} wallets joined`) },
     { icon: Calculator, title: L('分配結果公佈', 'Allocations published'), done: t >= claim, cur: ph === 'allocating', time: claim, sub: t >= claim ? L(`名額未滿，全額獲配 ${amt} ${FREE_DROP.sym}`, `Undersubscribed: full ${amt} ${FREE_DROP.sym} allocated`) : ph === 'allocating' ? L(`分配計算中，${countdown(claim - t)} 後公佈`, `Calculating; published in ${countdown(claim - t)}`) : L('申購結束後 1 小時公佈', 'Published 1 hour after the window closes') },
-    { icon: Gift, title: L('領取空投', 'Claim'), done: d.claimed, cur: ph === 'ended' && !d.claimed, time: d.claimedAt, sub: d.claimed ? L('已提交領取請求', 'Claim submitted') : ph === 'ended' ? L('現在可以領取', 'You can claim now') : L('分配結果公佈後開放', 'Opens when allocations are published'), action: ph === 'ended' && !d.claimed && <Btn size="sm" onClick={() => setClaimOpen(true)}><Gift size={14} />{L('領取', 'Claim')} {amt} {FREE_DROP.sym}</Btn> },
-    { icon: Coins, title: L('鏈上發放', 'Sent on-chain'), done: !!rec && rec.conf >= rec.need, cur: !!rec && rec.conf < rec.need, time: rec?.ts, sub: rec ? <>Tx <span className="mono">{shortAddr(rec.txid)}</span> · {L('區塊確認', 'Confirmations')} {rec.conf}/{rec.need}</> : L(`發送到 ${shortAddr(d.to)}（Base）`, `To ${shortAddr(d.to)} (Base)`) },
-    { icon: Wallet, title: L('到帳現貨帳戶', 'Credited to spot'), done: rec?.status === 'done', time: rec?.doneAt, sub: rec?.status === 'done' ? L(`現貨餘額 ${fmt(bal(FREE_DROP.sym), 2)} ${FREE_DROP.sym}`, `Spot balance ${fmt(bal(FREE_DROP.sym), 2)} ${FREE_DROP.sym}`) : L('確認完成後自動計入', 'Added automatically after confirmations'), action: rec?.status === 'done' && <Btn size="sm" variant="soft" onClick={() => go('wallet')}><Wallet size={14} />{L('查看資產', 'View assets')}</Btn> },
+    { icon: Gift, title: L('領取獎勵', 'Claim'), done: d.claimed, cur: ph === 'ended' && !d.claimed, time: d.claimedAt, sub: d.claimed ? L('已領取', 'Claimed') : ph === 'ended' ? L('現在可以領取', 'You can claim now') : L('分配結果公佈後開放', 'Opens when allocations are published'), action: ph === 'ended' && !d.claimed && <Btn size="sm" onClick={() => setClaimOpen(true)}><Gift size={14} />{L('領取', 'Claim')} {amt} {FREE_DROP.sym}</Btn> },
+    { icon: Wallet, title: L('發放到現貨帳戶', 'Paid to spot'), done: !!rec, time: rec?.doneAt, sub: rec ? L(`現貨餘額 ${fmt(bal(FREE_DROP.sym), 2)} ${FREE_DROP.sym}`, `Spot balance ${fmt(bal(FREE_DROP.sym), 2)} ${FREE_DROP.sym}`) : L('領取後即時到帳', 'Arrives as soon as you claim'), action: !!rec && <Btn size="sm" variant="soft" onClick={() => go('wallet')}><Wallet size={14} />{L('查看資產', 'View assets')}</Btn> },
   ];
   return (
     <div className="page">
@@ -460,7 +398,7 @@ export function DropRecord() {
               <Line k={L('支付金額', 'Paid')}><span className="mono up">0 USDC</span></Line>
               <Line k={L('簽名錢包', 'Signing wallet')} copy={d.wallet}><span className="mono">{shortAddr(d.wallet)}</span></Line>
               <Line k={L('簽名哈希', 'Signature')} copy={d.sig}><span className="mono">{shortAddr(d.sig)}</span></Line>
-              <Line k={L('接收地址', 'Receiving address')} copy={d.to}><span className="mono">{shortAddr(d.to)}</span></Line>
+              <Line k={L('發放到', 'Paid to')}>{L('現貨帳戶', 'Spot account')}</Line>
               <Line k={L('申購時間', 'Subscribed at')}><span className="mono">{dateTime(d.ts, true)}</span></Line>
             </div>
             <button className="link-btn rc-toggle" onClick={() => setShowData(!showData)}>{L('查看簽名內容', 'Show signed message')}<ChevronDown size={14} style={{ transform: showData ? 'rotate(180deg)' : 'none' }} /></button>

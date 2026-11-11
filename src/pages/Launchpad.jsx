@@ -216,7 +216,7 @@ function FreeDropPromo() {
       <ProjLogo p={FREE_DROP} size={54} ring />
       <div className="drop-promo-txt">
         <div className="row-gap"><span className="free-badge">{L('免費', 'FREE')}</span><b className="display">{L(`${FREE_DROP.sym} 零成本申購`, `${FREE_DROP.sym} free launch`)}</b></div>
-        <span>{L(`無需 USDC，連接錢包並簽名即可申購 ${FREE_DROP.perUser} ${FREE_DROP.sym}，結束後空投到你的帳戶。`, `No USDC needed. Connect, sign and get ${FREE_DROP.perUser} ${FREE_DROP.sym}, airdropped to your account when it closes.`)}</span>
+        <span>{L(`無需 USDC，連接錢包並簽名即可申購 ${FREE_DROP.perUser} ${FREE_DROP.sym}，結束後發放到你的現貨帳戶。`, `No USDC needed. Connect, sign and get ${FREE_DROP.perUser} ${FREE_DROP.sym}, paid to your spot account when it closes.`)}</span>
       </div>
       <span className="drop-promo-cta">
         {ph === 'live' && <small className="mono">{countdown(dropTimes().end - now())}</small>}
@@ -232,8 +232,7 @@ function MySubsModal({ onClose }) {
   const d = s.camp.drop;
   const rec = d?.rid ? s.records.find((r) => r.id === d.rid) : null;
   const dph = dropPhase();
-  const dropPill = rec?.status === 'done' ? <Pill tone="up">{L('已到帳', 'Received')}</Pill>
-    : rec ? <Pill tone="accent" dot>{L('空投中', 'Airdropping')}</Pill>
+  const dropPill = rec ? <Pill tone="up">{L('已到帳', 'Received')}</Pill>
     : dph === 'ended' ? <Pill tone="accent" dot>{L('待領取', 'Ready to claim')}</Pill>
     : dph === 'allocating' ? <Pill tone="violet" dot>{L('分配計算中', 'Allocating')}</Pill>
     : <Pill tone="violet">{L('已申購', 'Subscribed')}</Pill>;

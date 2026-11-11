@@ -748,6 +748,13 @@
 "Llega",
 "Darating"
 ],
+"Arrives as soon as you claim": [
+"수령 즉시 입금",
+"受け取ると即時入金",
+"Tiba sebaik dituntut",
+"Llega en cuanto reclamas",
+"Darating agad pag-claim"
+],
 "Asset": [
 "자산",
 "資産",
@@ -1371,6 +1378,13 @@
 "Reclamar ahora",
 "I-claim ngayon"
 ],
+"Claim once allocations are published; ORIA goes straight to your spot account.": [
+"배분 결과 발표 후 수령할 수 있으며, ORIA는 현물 계정에 바로 지급됩니다.",
+"配分結果の発表後に受け取ると、ORIAが現物口座に直接付与されます。",
+"Tuntut selepas agihan diumumkan; ORIA terus masuk ke akaun spot anda.",
+"Reclama cuando se publiquen las asignaciones; ORIA va directo a tu cuenta spot.",
+"Mag-claim pagkalabas ng allocation; diretso sa spot account mo ang ORIA."
+],
 "Claim once allocations are published; ORIA will be airdropped to your exchange address.": [
 "배분 결과 발표 후 수령할 수 있으며, ORIA는 거래소 주소로 에어드랍됩니다.",
 "配分結果の発表後に受け取ると、ORIAが取引所アドレスにエアドロップされます。",
@@ -1433,6 +1447,13 @@
 "Tuntut airdrop",
 "Reclamar el airdrop",
 "I-claim ang airdrop"
+],
+"Claim to your spot account": [
+"수령 후 현물 계정에 지급",
+"受け取って現物口座へ",
+"Tuntut ke akaun spot anda",
+"Reclama a tu cuenta spot",
+"I-claim sa spot account mo"
 ],
 "Claim your {0}": [
 "{0} 에어드랍 받기",
@@ -2246,6 +2267,13 @@
 "Cada wallet puede suscribirse gratis a {0} {1}.",
 "Bawat wallet ay puwedeng mag-subscribe ng {0} {1} nang libre."
 ],
+"Each wallet gets its own exchange account. Campaign rewards go straight to its spot balance.": [
+"지갑마다 전용 거래소 계정이 배정되며, 이벤트 보상은 수령 후 현물 계정에 바로 입금됩니다.",
+"ウォレットごとに専用の取引所口座が割り当てられ、キャンペーン報酬は受け取ると現物口座に直接入ります。",
+"Setiap dompet mendapat akaun bursa sendiri. Ganjaran kempen terus masuk ke baki spot.",
+"Cada wallet recibe su propia cuenta en el exchange. Las recompensas van directo a su saldo spot.",
+"Bawat wallet ay may sariling exchange account. Diretso sa spot balance ang campaign rewards."
+],
 "Each wallet gets its own exchange address. Every campaign reward is airdropped there.": [
 "지갑마다 전용 거래소 주소가 배정되며, 모든 이벤트 보상은 이 주소로 에어드랍됩니다.",
 "ウォレットごとに専用の取引所アドレスが割り当てられ、すべての報酬はそこへエアドロップされます。",
@@ -2476,6 +2504,13 @@
 "Anggaran nilai bersih",
 "Patrimonio neto estimado",
 "Tinatayang net worth"
+],
+"Every campaign reward, including the ORIA launch, is booked straight to your spot account when you claim.": [
+"ORIA 신청을 포함한 모든 이벤트 보상은 수령 즉시 플랫폼이 현물 계정에 입금합니다.",
+"ORIAの申込を含むすべてのキャンペーン報酬は、受け取ると同時に現物口座へ入金されます。",
+"Semua ganjaran kempen, termasuk pelancaran ORIA, dikreditkan terus ke akaun spot apabila dituntut.",
+"Todas las recompensas, incluido el lanzamiento de ORIA, se abonan en tu cuenta spot al reclamarlas.",
+"Lahat ng campaign reward, kasama ang ORIA launch, ay diretsong ipinapasok sa spot account mo pag-claim."
 ],
 "Every product, one account": [
 "하나의 계정, 모든 상품",
@@ -3239,6 +3274,13 @@
 "Serta-merta",
 "Instantáneo",
 "Agad"
+],
+"Instantly: rewards are booked straight to your spot account when you claim.": [
+"수령 즉시 입금됩니다. 보상은 플랫폼이 현물 계정에 바로 입금합니다.",
+"受け取ると即時に入金されます。報酬はプラットフォームが現物口座へ直接入金します。",
+"Serta-merta: ganjaran dikreditkan terus ke akaun spot apabila dituntut.",
+"Al instante: las recompensas se abonan en tu cuenta spot al reclamarlas.",
+"Agad-agad: diretsong ipinapasok sa spot account ang reward pag-claim."
 ],
 "Institutional": [
 "기관 서비스",
@@ -4269,6 +4311,13 @@
 "Nuevas",
 "Bago"
 ],
+"News on listings and campaigns.": [
+"신규 상장과 이벤트 소식.",
+"新規上場とキャンペーンの情報。",
+"Berita penyenaraian dan kempen.",
+"Novedades de listados y campañas.",
+"Balita sa listing at campaign."
+],
 "News on listings, campaigns and airdrops.": [
 "신규 상장, 이벤트, 에어드랍 소식.",
 "新規上場・キャンペーン・エアドロップの情報。",
@@ -4303,6 +4352,13 @@
 "Tiada USDC diperlukan. Sambung, tandatangan dan dapatkan {0} {1}, di-airdrop ke akaun anda apabila ditutup.",
 "Sin USDC. Conecta, firma y recibe {0} {1}, enviados a tu cuenta al cerrar.",
 "Walang kailangang USDC. Ikonekta, mag-sign at makakuha ng {0} {1}, ia-airdrop sa account mo pagsara."
+],
+"No USDC needed. Connect, sign and get {0} {1}, paid to your spot account when it closes.": [
+"USDC가 필요 없습니다. 지갑 연결 후 서명하면 {0} {1}를 받으며, 종료 후 현물 계정에 지급됩니다.",
+"USDC不要。接続して署名するだけで{0} {1}がもらえ、終了後に現物口座へ付与されます。",
+"Tiada USDC diperlukan. Sambung, tandatangan dan dapatkan {0} {1}, dibayar ke akaun spot apabila ditutup.",
+"Sin USDC. Conecta, firma y recibe {0} {1}, abonados en tu cuenta spot al cerrar.",
+"Walang kailangang USDC. Ikonekta, mag-sign at makakuha ng {0} {1}, ipapasok sa spot account mo pagsara."
 ],
 "No activity yet": [
 "아직 활동이 없습니다",
@@ -4661,6 +4717,20 @@
 "Cuando haya asignaciones, reclama y los tokens se enviarán a tu dirección de Novarix.",
 "Pagkalabas ng allocation, mag-claim at ia-airdrop ang tokens sa Novarix exchange address mo."
 ],
+"Once allocations are out, claim and the tokens go straight to your spot account.": [
+"배분 결과 발표 후 수령하면 토큰이 현물 계정에 바로 지급되며 즉시 반영됩니다.",
+"配分結果の発表後に受け取ると、トークンが現物口座に直接付与されます。",
+"Selepas agihan diumumkan, tuntut dan token terus masuk ke akaun spot anda.",
+"Cuando haya asignaciones, reclama y los tokens irán directo a tu cuenta spot.",
+"Pagkalabas ng allocation, mag-claim at diretso sa spot account mo ang tokens."
+],
+"Once allocations are published, claim and ORIA goes straight to your spot account.": [
+"배분 결과 발표 후 수령하면 ORIA가 현물 계정에 바로 지급됩니다.",
+"配分結果の発表後に受け取ると、ORIAが現物口座に直接付与されます。",
+"Selepas agihan diumumkan, tuntut dan ORIA terus masuk ke akaun spot anda.",
+"Cuando se publiquen las asignaciones, reclama y ORIA irá directo a tu cuenta spot.",
+"Pagkalabas ng allocation, mag-claim at diretso sa spot account mo ang ORIA."
+],
 "One account for all of it": [
 "하나의 계정으로 모두",
 "ひとつの口座で完結",
@@ -4870,6 +4940,20 @@
 "Telah dibayar",
 "Pagado",
 "Naibayad"
+],
+"Paid to": [
+"지급 계정",
+"付与先",
+"Dibayar ke",
+"Se abona en",
+"Ipapasok sa"
+],
+"Paid to spot": [
+"현물 계정 지급",
+"現物口座に付与",
+"Dibayar ke spot",
+"Abonado en spot",
+"Naipasok sa spot"
 ],
 "Paid. Please check and release.": [
 "결제했습니다. 확인 후 코인을 해제해 주세요.",
@@ -5682,6 +5766,13 @@
 "Ganjaran dituntut",
 "Recompensas reclamadas",
 "Na-claim ang reward"
+],
+"Rewards go straight to your spot account, instantly.": [
+"보상은 플랫폼이 현물 계정에 바로 입금하며 즉시 반영됩니다.",
+"報酬はプラットフォームが現物口座へ直接入金し、即時に反映されます。",
+"Ganjaran terus masuk ke akaun spot anda, serta-merta.",
+"Las recompensas van directo a tu cuenta spot, al instante.",
+"Diretso sa spot account mo ang reward, agad-agad."
 ],
 "Rewards hub": [
 "이벤트 센터",
