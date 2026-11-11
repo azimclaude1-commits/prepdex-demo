@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Search, Star, X, ArrowDownToLine, Repeat, Info } from 'lucide-react';
 import { COIN, SPOT_BASES, QUOTES } from '../core/data.js';
 import { L } from '../core/lang.js';
-import { useApp, placeSpot, cancelSpot, cancelAllSpot, toast, toggleFav, openModal, go, spotFee, tier, bal } from '../core/store.js';
+import { useApp, placeSpot, cancelSpot, cancelAllSpot, toast, toggleFav, openModal, go, spotFee, tier, bal, valueOf } from '../core/store.js';
 import { useMarket, price, pairPrice, change24, high24, low24, volume24 } from '../core/market.js';
 import { fmt, pdp, adp, compact, dateTime, floorTo, usd } from '../core/fmt.js';
 import { Btn, Tabs, NumInput, Slider, CoinIcon, Empty, Pill, Delta, Flash, cx, useMedia, PHONE } from '../ui/kit.jsx';
@@ -270,7 +270,7 @@ function SpotAssets() {
               <td><span className="row-gap"><CoinIcon sym={k} size={18} />{k}</span></td>
               <td className="mono">{fmt(s.spot[k] || 0, 6)}</td>
               <td className="mono muted">{fmt(s.frozen[k] || 0, 6)}</td>
-              <td className="mono">{usd(((s.spot[k] || 0) + (s.frozen[k] || 0)) * (COIN[k] ? price(k) : 0))}</td>
+              <td className="mono">{usd(valueOf(k, (s.spot[k] || 0) + (s.frozen[k] || 0)))}</td>
             </tr>
           ))}
         </tbody>

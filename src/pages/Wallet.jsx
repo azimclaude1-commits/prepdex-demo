@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   ArrowDownToLine, ArrowUpFromLine, ArrowLeftRight, Repeat, BadgeDollarSign, Eye, EyeOff, Search, Wallet as WalletIco, History, Activity,
 } from 'lucide-react';
-import { COINS, COIN, NETWORKS, PROJECTS } from '../core/data.js';
+import { COINS, COIN, NETWORKS, PROJECTS, FREE_DROP } from '../core/data.js';
 import { L } from '../core/lang.js';
 import { useApp, openModal, go, portfolio, valueOf, lendAmount } from '../core/store.js';
 import { useMarket, price, change24 } from '../core/market.js';
@@ -109,8 +109,9 @@ function AssetList({ hide }) {
   const s = useApp();
   const [q, setQ] = useState('');
   const [hideZero, setHideZero] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(PHONE).matches);
-  const extra = PROJECTS.filter((p) => !COIN[p.sym]).map((p) => p.sym);
-  const syms = [...COINS.map((c) => c.sym), ...extra];
+  // listed coins, unlisted launchpad tokens, the free ORIA launch, and anything else the account holds
+  const extra = [...PROJECTS.filter((p) => !COIN[p.sym]).map((p) => p.sym), FREE_DROP.sym, ...Object.keys({ ...s.spot, ...s.frozen })];
+  const syms = [...new Set([...COINS.map((c) => c.sym), ...extra])];
   const rows = syms.map((k) => {
     const avail = s.spot[k] || 0;
     const frozen = s.frozen[k] || 0;
@@ -135,7 +136,7 @@ function AssetList({ hide }) {
           <tbody>
             {rows.map((r) => (
               <tr key={r.k}>
-                <td><span className="row-gap"><CoinIcon sym={r.k} size={30} /><span><b>{r.k}</b><div className="small muted">{COIN[r.k]?.name || PROJECTS.find((p) => p.sym === r.k)?.name}</div></span></span></td>
+                <td><span className="row-gap"><CoinIcon sym={r.k} size={30} /><span><b>{r.k}</b><div className="small muted">{COIN[r.k]?.name || PROJECTS.find((p) => p.sym === r.k)?.name || (r.k === FREE_DROP.sym ? FREE_DROP.name : '')}</div></span></span></td>
                 <td className="mono">{mask(fmt(r.total, 6))}</td>
                 <td className="mono">{mask(fmt(r.avail, 6))}</td>
                 <td className="mono muted">{mask(fmt(r.frozen, 6))}</td>
