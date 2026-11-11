@@ -224,7 +224,7 @@ export function NewsCommunity() {
   const t = now();
   const news = [
     [L('上新', 'Listing'), L('ORIA 免費申購開啟：連接錢包簽名即可領取', 'Free ORIA launch: connect and sign to claim'), t - 1 * DAY, () => go('rewards', 'drop')],
-    [L('活動', 'Campaign'), L('邀請好友活動上線，好友連接錢包後雙方各得 1 USDT', 'Invite friends: you and each friend get 1 USDT when they connect'), t - 3 * DAY, () => go('rewards', 'invite')],
+    [L('活動', 'Campaign'), L('邀請好友活動上線，好友連接錢包後雙方各得 2 USDT', 'Invite friends: you and each friend get 2 USDT when they connect'), t - 3 * DAY, () => go('rewards', 'invite')],
     [L('產品', 'Product'), L('合約新增 TON、LINK 永續，最高 50 倍槓桿', 'TON and LINK perpetuals added, up to 50x'), t - 6 * DAY, () => go('futures', 'TON')],
     [L('公告', 'Notice'), L('10 月儲備金證明報告已發佈，總儲備率 108%', 'October proof of reserves published: 108% total'), t - 10 * DAY, null],
     [L('理財', 'Earn'), L('NVX 180 天定期上線，年化 36%', 'NVX 180-day fixed term launched at 36% APR'), t - 14 * DAY, () => go('staking')],

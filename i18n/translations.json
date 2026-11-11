@@ -328,6 +328,13 @@
 "Tras el día 7, empieza una nueva semana desde el día 1.",
 "Pagkatapos ng ika-7 araw, magsisimula ang bagong linggo sa araw 1."
 ],
+"After day 7, a new week starts the next day.": [
+"7일째를 완료하면 다음 날부터 새로운 주가 시작됩니다.",
+"7日目の翌日から新しい週が始まります。",
+"Selepas hari ke-7, minggu baharu bermula keesokan harinya.",
+"Tras el día 7, al día siguiente empieza una nueva semana.",
+"Pagkatapos ng ika-7 araw, magsisimula ang bagong linggo kinabukasan."
+],
 "After the window closes, claim and the tokens are airdropped to your Novarix exchange address.": [
 "신청 기간이 끝난 후 수령하면 토큰이 Novarix 거래소 주소로 에어드랍됩니다.",
 "申込期間終了後に受け取ると、トークンがNovarixの取引所アドレスにエアドロップされます。",
@@ -1265,6 +1272,20 @@
 "Daftar masuk sekali sehari. Hari 1–7 membayar {0} NVX.",
 "Registra asistencia una vez al día. Los días 1–7 pagan {0} NVX.",
 "Isang check-in kada araw. Ang araw 1–7 ay nagbibigay ng {0} NVX."
+],
+"Check in once a day. Seven days in a row make a week; days 1–7 pay {0} USDT, up to {1} USDT a week.": [
+"하루 한 번 출석할 수 있으며, 연속 7일이 한 주입니다. 1–7일째에 각각 {0} USDT, 주당 최대 {1} USDT.",
+"1日1回チェックインでき、連続7日で1週間です。1〜7日目はそれぞれ{0} USDT、週最大{1} USDT。",
+"Daftar masuk sekali sehari. 7 hari berturut-turut ialah seminggu; hari 1–7 membayar {0} USDT, sehingga {1} USDT seminggu.",
+"Una asistencia al día. Siete días seguidos forman una semana; los días 1–7 pagan {0} USDT, hasta {1} USDT por semana.",
+"Isang check-in kada araw. 7 sunod-sunod na araw ang isang linggo; ang araw 1–7 ay nagbibigay ng {0} USDT, hanggang {1} USDT kada linggo."
+],
+"Check in once a day; 7 days in a row make a week, with USDT each day.": [
+"하루 한 번 출석하고, 연속 7일이 한 주이며 매일 USDT를 받습니다.",
+"1日1回チェックイン。連続7日で1週間、毎日USDTがもらえます。",
+"Daftar masuk sekali sehari; 7 hari berturut-turut ialah seminggu, dengan USDT setiap hari.",
+"Registra asistencia una vez al día; 7 días seguidos forman una semana, con USDT cada día.",
+"Mag-check in isang beses kada araw; 7 sunod-sunod na araw ang isang linggo, may USDT araw-araw."
 ],
 "Check in, follow us, take the quiz or invite friends to earn USDT. Subscribing to ORIA takes a signature, no payment.": [
 "출석, SNS 팔로우, 퀴즈, 친구 초대로 USDT를 받으세요. ORIA 신청은 서명만 하면 되며 결제가 필요 없습니다.",
@@ -3233,6 +3254,13 @@
 "Invita amigos: tú y cada amigo reciben 1 USDT cuando se conecta",
 "Mag-imbita: tig-1 USDT kayo ng kaibigan pag nag-connect siya"
 ],
+"Invite friends: you and each friend get 2 USDT when they connect": [
+"친구 초대 오픈: 친구가 지갑을 연결하면 서로 2 USDT씩",
+"友達招待:友達がウォレットを接続すると双方に2 USDT",
+"Jemput rakan: anda dan rakan masing-masing dapat 2 USDT apabila mereka menyambung",
+"Invita amigos: tú y cada amigo reciben 2 USDT cuando se conecta",
+"Mag-imbita: tig-2 USDT kayo ng kaibigan pag nag-connect siya"
+],
 "Invite leaderboard": [
 "초대 랭킹",
 "招待ランキング",
@@ -3260,6 +3288,13 @@
 "Dijemput",
 "Invitados",
 "Naimbita"
+],
+"Invites pay {0} USDT per friend with no limit, plus {1} USDT at {2} friends; check-in pays {3} USDT a week; social pays {4} USDT; the quiz pays {5} USDT; the {6} launch gives {7} {8} per wallet.": [
+"친구 초대는 1명당 {0} USDT(인원 제한 없음), {2}명 달성 시 {1} USDT 추가; 출석은 주당 {3} USDT; SNS는 총 {4} USDT; 퀴즈는 {5} USDT; {6} 신청은 지갑당 {7} {8}입니다.",
+"友達招待は1人{0} USDT(人数無制限)、{2}人達成で{1} USDT追加。チェックインは週{3} USDT、SNSは合計{4} USDT、クイズは{5} USDT、{6}申込は1ウォレット{7} {8}です。",
+"Jemputan membayar {0} USDT setiap rakan tanpa had, serta {1} USDT pada {2} rakan; daftar masuk {3} USDT seminggu; sosial {4} USDT; kuiz {5} USDT; pelancaran {6} memberi {7} {8} setiap dompet.",
+"Las invitaciones pagan {0} USDT por amigo sin límite, más {1} USDT con {2} amigos; la asistencia paga {3} USDT por semana; redes, {4} USDT; el cuestionario, {5} USDT; el lanzamiento de {6} da {7} {8} por wallet.",
+"{0} USDT bawat kaibigan sa imbitasyon nang walang limit, dagdag {1} USDT sa {2} kaibigan; {3} USDT kada linggo sa check-in; {4} USDT sa social; {5} USDT sa quiz; {7} {8} bawat wallet sa {6} launch."
 ],
 "Invites up to {0} USDT, check-in {1} USDT, social {2} USDT and the quiz {3} USDT, plus {4} {5} from the launch.": [
 "친구 초대 최대 {0} USDT, 출석 {1} USDT, SNS {2} USDT, 퀴즈 {3} USDT이며, 별도로 {4} {5} 신청 한도가 있습니다.",
@@ -3905,6 +3940,13 @@
 "Si faltas un día, la racha vuelve al día 1.",
 "Kapag lumiban ng isang araw, babalik sa araw 1 ang streak."
 ],
+"Miss a day and you start again from day 1.": [
+"하루라도 빠지면 1일째부터 다시 시작합니다.",
+"1日でも空くと、1日目からやり直しです。",
+"Terlepas sehari dan anda bermula semula dari hari 1.",
+"Si faltas un día, vuelves a empezar desde el día 1.",
+"Kapag lumiban ng isang araw, magsisimula ulit sa araw 1."
+],
 "Mizuho Bank": [
 "미즈호 은행",
 "みずほ銀行",
@@ -4170,6 +4212,13 @@
 "Tiada sejarah",
 "Sin historial",
 "Walang history"
+],
+"No limit on friends; reaching {0} friends adds {1} USDT.": [
+"초대 인원 제한은 없으며, {0}명 달성 시 {1} USDT를 추가로 드립니다.",
+"招待人数は無制限。{0}人達成で{1} USDTを追加。",
+"Tiada had rakan; mencapai {0} rakan menambah {1} USDT.",
+"Sin límite de amigos; al llegar a {0} amigos se suman {1} USDT.",
+"Walang limit sa kaibigan; pag-abot ng {0} kaibigan may dagdag na {1} USDT."
 ],
 "No margin in futures.": [
 "선물 계정에 증거금이 없습니다.",
@@ -5718,6 +5767,13 @@
 "Comparte tu enlace. Cuando un amigo se registra y conecta una wallet, cada uno recibe {0} USDT.",
 "I-share ang link mo. Kapag nag-sign up at nag-connect ang kaibigan, tig-{0} USDT kayo."
 ],
+"Share your link. When a friend signs up and connects a wallet, you each get {0} USDT. No limit on friends.": [
+"초대 링크를 공유하세요. 친구가 가입해 지갑을 연결하면 서로 {0} USDT씩 받으며, 인원 제한이 없습니다.",
+"招待リンクをシェア。友達が登録してウォレットを接続すると双方に{0} USDT、人数は無制限です。",
+"Kongsi pautan anda. Apabila rakan mendaftar dan menyambung dompet, masing-masing dapat {0} USDT. Tiada had rakan.",
+"Comparte tu enlace. Cuando un amigo se registra y conecta una wallet, cada uno recibe {0} USDT. Sin límite de amigos.",
+"I-share ang link mo. Kapag nag-sign up at nag-connect ang kaibigan, tig-{0} USDT kayo. Walang limit sa kaibigan."
+],
 "Short": [
 "숏",
 "ショート",
@@ -7244,12 +7300,26 @@
 "Sitio web",
 "Website"
 ],
+"Week complete: {0} USDT · a new week starts tomorrow": [
+"이번 주 출석 완료, {0} USDT 획득 · 내일부터 새로운 주",
+"今週は満了、{0} USDT獲得 · 明日から新しい週",
+"Minggu selesai: {0} USDT · minggu baharu bermula esok",
+"Semana completa: {0} USDT · mañana empieza una nueva",
+"Tapos ang linggo: {0} USDT · bagong linggo bukas"
+],
 "What are the trading fees?": [
 "거래 수수료는 얼마인가요?",
 "取引手数料はいくらですか?",
 "Berapakah yuran dagangan?",
 "¿Cuáles son las comisiones?",
 "Magkano ang trading fees?"
+],
+"What does each campaign pay?": [
+"각 이벤트의 보상은 얼마인가요?",
+"各キャンペーンの報酬は?",
+"Berapakah ganjaran setiap kempen?",
+"¿Cuánto paga cada campaña?",
+"Magkano ang reward ng bawat campaign?"
 ],
 "What does staking NVX on Novarix do?": [
 "Novarix에서 NVX를 스테이킹하면 어떤 효과가 있나요?",
@@ -7685,6 +7755,13 @@
 "{0} NVX para {1}",
 "{0} NVX pa para sa {1}"
 ],
+"{0} USDT a week": [
+"주당 {0} USDT",
+"週{0} USDT",
+"{0} USDT seminggu",
+"{0} USDT por semana",
+"{0} USDT kada linggo"
+],
 "{0} USDT added to claim": [
 "{0} USDT 수령 대기 추가",
 "{0} USDTが受取待ちに追加",
@@ -7705,6 +7782,13 @@
 "{0} USDT dalam 7 hari",
 "{0} USDT en 7 días",
 "{0} USDT sa loob ng 7 araw"
+],
+"{0} USDT per friend": [
+"친구 1명당 {0} USDT",
+"友達1人につき{0} USDT",
+"{0} USDT setiap rakan",
+"{0} USDT por amigo",
+"{0} USDT bawat kaibigan"
 ],
 "{0} USDT perpetuals, cross or isolated.": [
 "USDT 무기한 선물 {0}종, 교차 또는 격리.",
@@ -7908,6 +7992,13 @@
 "{0}/7 hari didaftar masuk",
 "{0}/7 días con asistencia",
 "{0}/7 araw naka-check in"
+],
+"{0}/7 days this week": [
+"이번 주 {0}/7일 출석",
+"今週 {0}/7日",
+"{0}/7 hari minggu ini",
+"{0}/7 días esta semana",
+"{0}/7 araw ngayong linggo"
 ],
 "{0}/{1} answered": [
 "{0}/{1} 답변 완료",

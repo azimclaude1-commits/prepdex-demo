@@ -3,7 +3,7 @@ import { useSyncExternalStore } from 'react';
 import {
   COIN, ONCHAIN_START, PROJECTS, PROJECT, TIERS, STAKE_PRODUCTS, EARLY_REDEEM_PENALTY,
   LEND_MARKETS, borrowRate, supplyRate, NETWORKS, netFee, PLATFORM_TOKEN,
-  FREE_DROP, REWARD_SYM, INVITE_REWARD, INVITE_CAP, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
+  FREE_DROP, REWARD_SYM, INVITE_REWARD, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
 } from './data.js';
 import { price, pairPrice, volume24, subscribe as subscribeMarket } from './market.js';
 import { uid, randHex } from './fmt.js';
@@ -1002,46 +1002,50 @@ export function simulateInvite() {
 export function inviteClaimable() {
   const c = state.camp;
   const n = c.invites.length;
-  const counted = Math.min(n, INVITE_CAP);
   const ms = INVITE_MILESTONES.filter(([k]) => n >= k && !c.msClaimed.includes(k));
-  const friends = Math.max(0, counted - c.inviteClaimed) * INVITE_REWARD;
-  return { amt: +(friends + ms.reduce((a, [, r]) => a + r, 0)).toFixed(2), friends, ms };
+  const friends = Math.max(0, n - c.inviteClaimed) * INVITE_REWARD;
+  return { amt: friends + ms.reduce((a, [, r]) => a + r, 0), friends, ms };
 }
 export function claimInvite() {
   const e = needWallet();
   if (e) return e;
   const { amt, ms } = inviteClaimable();
   if (!(amt > 0)) return { err: L('暫無可領取的獎勵', 'Nothing to claim yet') };
-  set((s) => { s.camp.inviteClaimed = Math.min(s.camp.invites.length, INVITE_CAP); s.camp.msClaimed.push(...ms.map((m) => m[0])); airdrop(s, REWARD_SYM, amt, 'invite'); });
+  set((s) => { s.camp.inviteClaimed = s.camp.invites.length; s.camp.msClaimed.push(...ms.map((m) => m[0])); airdrop(s, REWARD_SYM, amt, 'invite'); });
   return { ok: true, amt, rid: lastDrop };
 }
 
-// Daily check-in: once per day, 7 days in total (days need not be consecutive)
+// Daily check-in: a 7-day week paying 10 USDT; a missed day restarts the week
 const tzOff = (t) => new Date(t).getTimezoneOffset() * 60e3;
 export const dayKey = (t = now()) => Math.floor((t - tzOff(t)) / DAY);
 export function checkinState(t = now()) {
   const c = state.camp.checkin;
-  const count = Math.min(c.count || 0, CHECKIN_REWARDS.length);
-  const doneToday = c.last === dayKey(t);
-  const finished = count >= CHECKIN_REWARDS.length;
+  const today = dayKey(t);
+  const doneToday = c.last === today;
+  const alive = doneToday || c.last === today - 1;
+  const streak = alive ? c.streak || 0 : 0;
+  const pos = streak === 0 ? 0 : ((streak - 1) % 7) + 1; // days done in the current week
+  const filled = doneToday ? pos : pos === 7 ? 0 : pos;
+  const nextIdx = doneToday ? pos % 7 : filled;
   const msToNext = DAY - (((t - tzOff(t)) % DAY) + DAY) % DAY;
-  return { doneToday, finished, filled: count, count, nextIdx: count, nextReward: finished ? 0 : CHECKIN_REWARDS[count], total: c.total, msToNext, left: CHECKIN_REWARDS.length - count };
+  const week = CHECKIN_REWARDS.slice(0, filled).reduce((a, b) => a + b, 0);
+  return { doneToday, streak, filled, nextIdx, nextReward: CHECKIN_REWARDS[nextIdx], week, total: c.total || 0, count: c.count || 0, msToNext };
 }
 export function checkIn() {
   const e = needWallet();
   if (e) return e;
   const st = checkinState();
-  if (st.finished) return { err: L('已完成全部 7 天簽到', 'All 7 check-ins are done') };
   if (st.doneToday) return { err: L('今天已簽到', 'Already checked in today') };
-  const reward = CHECKIN_REWARDS[st.count];
+  const reward = CHECKIN_REWARDS[st.filled];
   set((s) => {
     const c = s.camp.checkin;
+    c.streak = st.streak + 1;
     c.last = dayKey();
-    c.total = +((c.total || 0) + reward).toFixed(2);
+    c.total = (c.total || 0) + reward;
     c.count = (c.count || 0) + 1;
     airdrop(s, REWARD_SYM, reward, 'checkin');
   });
-  return { ok: true, reward, day: st.count + 1, rid: lastDrop };
+  return { ok: true, reward, day: st.filled + 1, rid: lastDrop };
 }
 
 // Social tasks: open the link, a short verification, then claim
@@ -1104,7 +1108,7 @@ export function claimables() {
   const inv = inviteClaimable().amt;
   if (inv > 0) out.invite = [[REWARD_SYM, inv]];
   const ck = checkinState();
-  if (!ck.doneToday && !ck.finished) out.checkin = [[REWARD_SYM, ck.nextReward]];
+  if (!ck.doneToday) out.checkin = [[REWARD_SYM, CHECKIN_REWARDS[ck.filled]]];
   let soc = SOCIAL_TASKS.filter((x) => socialStatus(x.id) === 'done').reduce((a, x) => a + x.reward, 0);
   if (socialAllDone() && !c.socialBonus) soc += SOCIAL_BONUS;
   if (soc > 0) out.social = [[REWARD_SYM, +soc.toFixed(2)]];

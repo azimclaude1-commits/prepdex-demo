@@ -5,7 +5,7 @@ import {
   Trophy, Wallet, Info, XCircle, UserPlus, Zap, ArrowUpRight, Lock, ArrowDownToLine, PartyPopper, ChevronDown,
 } from 'lucide-react';
 import {
-  FREE_DROP, REWARD_SYM, INVITE_REWARD, INVITE_CAP, INVITEE_REWARD, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
+  FREE_DROP, REWARD_SYM, INVITE_REWARD, INVITEE_REWARD, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
   NETWORKS, WALLETS, BRAND,
 } from '../core/data.js';
 import { SOCIAL_LOGOS } from '../core/logos.js';
@@ -36,14 +36,14 @@ export function campMeta(id) {
     invite: {
       icon: UserPlus, tone: '#FF9A3D',
       title: L('邀請好友', 'Invite friends'),
-      desc: L(`分享邀請連結，好友註冊並連接錢包後，你和好友各得 ${INVITE_REWARD} USDT。`, `Share your link. When a friend signs up and connects a wallet, you each get ${INVITE_REWARD} USDT.`),
-      reward: L(`最高 ${INVITE_CAP * INVITE_REWARD + INVITE_MILESTONES.reduce((a, x) => a + x[1], 0)} USDT`, `Up to ${INVITE_CAP * INVITE_REWARD + INVITE_MILESTONES.reduce((a, x) => a + x[1], 0)} USDT`),
+      desc: L(`分享邀請連結，好友註冊並連接錢包後，你和好友各得 ${INVITE_REWARD} USDT，邀請人數不限。`, `Share your link. When a friend signs up and connects a wallet, you each get ${INVITE_REWARD} USDT. No limit on friends.`),
+      reward: L(`每位好友 ${INVITE_REWARD} USDT`, `${INVITE_REWARD} USDT per friend`),
     },
     checkin: {
       icon: CalendarCheck, tone: '#22D39B',
       title: L('每日簽到', 'Daily check-in'),
-      desc: L('每天簽到一次，累計 7 天，每次簽到領取 USDT。', 'Check in once a day for 7 days and get USDT each time.'),
-      reward: L(`7 天共 ${amt(CHECKIN_REWARDS.reduce((a, b) => a + b, 0))} USDT`, `${amt(CHECKIN_REWARDS.reduce((a, b) => a + b, 0))} USDT over 7 days`),
+      desc: L('每天簽到一次，連續 7 天為一週，每次簽到領取 USDT。', 'Check in once a day; 7 days in a row make a week, with USDT each day.'),
+      reward: L(`每週 ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT`, `${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT a week`),
     },
     social: {
       icon: Megaphone, tone: '#5B8CFF',
@@ -77,7 +77,7 @@ function campProgress(id, s) {
   }
   if (id === 'checkin') {
     const st = checkinState();
-    return [st.finished ? L('已完成 7 天簽到', 'All 7 check-ins done') : L(`已簽到 ${st.count}/7 天`, `${st.count}/7 days checked in`), st.count / 7];
+    return [L(`本週已簽到 ${st.filled}/7 天`, `${st.filled}/7 days this week`), st.filled / 7];
   }
   if (id === 'social') {
     const k = SOCIAL_TASKS.filter((x) => socialStatus(x.id) !== 'todo').length;
@@ -126,12 +126,11 @@ function Hub() {
       </section>
 
       <HowItWorks />
-      {s.wallet.connected ? (
-        <div className="rw-duo">
-          <AirdropFeed />
-          <RewardFaq />
-        </div>
-      ) : <RewardFaq />}
+      <div className="rw-duo">
+        <Leaderboard />
+        {s.wallet.connected ? <AirdropFeed /> : <RewardFaq />}
+      </div>
+      {s.wallet.connected && <RewardFaq />}
     </div>
   );
 }
@@ -174,11 +173,45 @@ function HowItWorks() {
   );
 }
 
+// Demo leaderboard plus the user's own position
+function Leaderboard() {
+  const s = useApp();
+  const rows = [['0x7a3f…91c2', 412], ['0x19be…0d4a', 365], ['0xc04e…7b13', 298], ['0x5d21…ee80', 251], ['0x88a9…3f6c', 204], ['0x2f7c…a915', 176], ['0xe631…58d7', 143], ['0x4b0d…c2a1', 121]];
+  const earn = (n) => n * INVITE_REWARD + INVITE_MILESTONES.filter(([k]) => n >= k).reduce((a, [, r]) => a + r, 0);
+  const mine = s.camp.invites.length;
+  return (
+    <section className="card lb">
+      <div className="row-between">
+        <h2 className="display sec-title"><Trophy size={19} className="accent-text" />{L('邀請排行榜', 'Invite leaderboard')}</h2>
+        <button className="link-btn" onClick={() => go('rewards', 'invite')}>{L('去邀請', 'Invite')}<ChevronRight size={14} /></button>
+      </div>
+      <div className="lb-list">
+        {rows.map(([addr, n], i) => (
+          <div key={addr} className={cx('lb-row', i < 3 && 'top')}>
+            <span className={cx('lb-rank mono', 'r' + (i + 1))}>{i + 1}</span>
+            <span className="mono">{addr}</span>
+            <span className="muted small">{L(`${n} 人`, `${n} friends`)}</span>
+            <b className="mono up">{fmt(earn(n), 0)} USDT</b>
+          </div>
+        ))}
+        {s.wallet.connected && (
+          <div className="lb-row me">
+            <span className="lb-rank mono">--</span>
+            <span className="mono">{L('我', 'Me')} · {shortAddr(s.wallet.address)}</span>
+            <span className="muted small">{L(`${mine} 人`, `${mine} friends`)}</span>
+            <b className="mono">{fmt(earn(mine), 0)} USDT</b>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function RewardFaq() {
   const [open, setOpen] = useState(0);
   const items = [
     [L('參加活動需要付費嗎？', 'Do campaigns cost anything?'), L(`不需要付費。${FREE_DROP.sym} 申購只需要用錢包簽名一次，簽名不發起交易，也不消耗 Gas。`, `No. The ${FREE_DROP.sym} launch only needs one wallet signature, which sends no transaction and costs no gas.`)],
-    [L('單個錢包最多能領多少？', 'How much can one wallet earn?'), L(`邀請好友最高 ${INVITE_CAP * INVITE_REWARD + INVITE_MILESTONES.reduce((a, x) => a + x[1], 0)} USDT、每日簽到 ${amt(CHECKIN_REWARDS.reduce((a, b) => a + b, 0))} USDT、關注社媒 ${amt(SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS)} USDT、答題 ${QUIZ_REWARD} USDT，另有 ${FREE_DROP.perUser} ${FREE_DROP.sym} 申購額度。`, `Invites up to ${INVITE_CAP * INVITE_REWARD + INVITE_MILESTONES.reduce((a, x) => a + x[1], 0)} USDT, check-in ${amt(CHECKIN_REWARDS.reduce((a, b) => a + b, 0))} USDT, social ${amt(SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS)} USDT and the quiz ${QUIZ_REWARD} USDT, plus ${FREE_DROP.perUser} ${FREE_DROP.sym} from the launch.`)],
+    [L('各活動的獎勵是多少？', 'What does each campaign pay?'), L(`邀請好友每位 ${INVITE_REWARD} USDT，人數不限，滿 ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} 人另得 ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT；每日簽到每週 ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT；關注社媒共 ${SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS} USDT；答題 ${QUIZ_REWARD} USDT；${FREE_DROP.sym} 申購每個錢包 ${FREE_DROP.perUser} ${FREE_DROP.sym}。`, `Invites pay ${INVITE_REWARD} USDT per friend with no limit, plus ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT at ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} friends; check-in pays ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT a week; social pays ${SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS} USDT; the quiz pays ${QUIZ_REWARD} USDT; the ${FREE_DROP.sym} launch gives ${FREE_DROP.perUser} ${FREE_DROP.sym} per wallet.`)],
     [L('獎勵多久到帳？', 'How fast do rewards arrive?'), L('點擊領取後立即空投，通常幾秒內完成區塊確認並計入現貨帳戶。', 'They are airdropped as soon as you claim and usually confirm into your spot account within seconds.')],
     [L('獎勵可以提幣嗎？', 'Can I withdraw rewards?'), L('可以。到帳後與充值的資產相同，可以交易、質押或提到外部錢包。', 'Yes. Once received they work like deposits: trade, stake or withdraw them.')],
     [L('空投地址是什麼？', 'What is the airdrop address?'), L('每個錢包在 Novarix 都有專屬的交易所地址，與充值地址相同，獎勵會直接發送到這裡。', 'Each wallet has its own Novarix exchange address, the same as its deposit address. Rewards are sent there.')],
@@ -403,8 +436,8 @@ function ClaimCard({ id, onClaim, openClaim }) {
   let hint = null;
   if (s.wallet.connected && !ready) {
     if (id === 'drop') hint = !s.camp.drop ? L('先在左側完成簽名申購', 'Sign to subscribe first') : s.camp.drop.claimed ? null : L(`分配結果公佈後可領取，還有 ${countdown(dropTimes().claim - now())}`, `Claim opens in ${countdown(dropTimes().claim - now())}`);
-    if (id === 'invite') hint = Math.min(s.camp.invites.length, INVITE_CAP) >= INVITE_CAP ? L('已達獎勵人數上限，獎勵已全部領取。', 'Reward limit reached; everything has been claimed.') : L('好友通過你的連結連接錢包後，這裡會出現獎勵。', 'Rewards show up here when a friend connects through your link.');
-    if (id === 'checkin') hint = checkinState().finished ? L('已完成 7 天簽到，獎勵已全部領取。', 'All 7 check-ins done; everything has been claimed.') : L(`今天已簽到，${countdown(checkinState().msToNext)} 後可再簽到`, `Checked in today. Next check-in in ${countdown(checkinState().msToNext)}`);
+    if (id === 'invite') hint = L('好友通過你的連結連接錢包後，這裡會出現獎勵。', 'Rewards show up here when a friend connects through your link.');
+    if (id === 'checkin') hint = L(`今天已簽到，${countdown(checkinState().msToNext)} 後可再簽到`, `Checked in today. Next check-in in ${countdown(checkinState().msToNext)}`);
     if (id === 'social') hint = L('完成左側任務後即可領取。', 'Finish the tasks on the left to claim.');
     if (id === 'quiz') hint = s.camp.quiz.claimed ? null : L('全部答對後即可領取。', 'Answer everything correctly to claim.');
   }
@@ -456,13 +489,13 @@ function RulesCard({ id }) {
     ],
     invite: [
       L(`好友通過你的連結註冊並連接錢包，你獲得 ${INVITE_REWARD} USDT，好友獲得 ${INVITEE_REWARD} USDT。`, `When a friend signs up through your link and connects a wallet, you get ${INVITE_REWARD} USDT and they get ${INVITEE_REWARD} USDT.`),
-      L(`每個錢包最多計入 ${INVITE_CAP} 位好友；邀請滿 ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} 人時各額外獎勵 ${INVITE_MILESTONES[0][1]} USDT。`, `Up to ${INVITE_CAP} friends count per wallet; reaching ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} friends adds ${INVITE_MILESTONES[0][1]} USDT each time.`),
+      L(`邀請人數不限；邀請滿 ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} 人可額外獲得 ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT。`, `No limit on friends; reaching ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} friends adds ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT.`),
       L('同一裝置或同一錢包重複註冊不計入邀請。', 'Repeat sign-ups from the same device or wallet do not count.'),
     ],
     checkin: [
-      L(`每天可簽到一次，第 1–7 次分別獲得 ${CHECKIN_REWARDS.join(' / ')} USDT。`, `Check in once a day. Check-ins 1–7 pay ${CHECKIN_REWARDS.join(' / ')} USDT.`),
-      L('簽到天數累計計算，中間漏簽不影響。', 'Days add up; a missed day does not reset your progress.'),
-      L('累計簽到 7 天後活動完成。', 'The campaign is complete after 7 check-ins.'),
+      L(`每天可簽到一次，連續 7 天為一週，第 1–7 天分別獲得 ${CHECKIN_REWARDS.join(' / ')} USDT，每週最多 ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT。`, `Check in once a day. Seven days in a row make a week; days 1–7 pay ${CHECKIN_REWARDS.join(' / ')} USDT, up to ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT a week.`),
+      L('中斷一天後，從第 1 天重新開始。', 'Miss a day and you start again from day 1.'),
+      L('完成第 7 天後，第二天開始新的一週。', 'After day 7, a new week starts the next day.'),
     ],
     social: [
       L('點擊「前往」打開官方帳號並完成關注，系統會在幾秒內自動驗證。', 'Tap "Go" to open the official account and follow. Verification takes a few seconds.'),
@@ -594,9 +627,9 @@ function InviteMain() {
   const n = c.invites.length;
   const code = inviteCode();
   const link = `https://${BRAND.toLowerCase()}.app/r/${code}`;
-  const earned = Math.min(c.inviteClaimed, INVITE_CAP) * INVITE_REWARD + INVITE_MILESTONES.filter(([k]) => c.msClaimed.includes(k)).reduce((a, [, r]) => a + r, 0);
+  const earned = c.inviteClaimed * INVITE_REWARD + INVITE_MILESTONES.filter(([k]) => c.msClaimed.includes(k)).reduce((a, [, r]) => a + r, 0);
   const deposited = c.invites.filter((x) => x.deposited).length;
-  const last = INVITE_CAP;
+  const last = INVITE_MILESTONES[INVITE_MILESTONES.length - 1][0];
   const share = (where) => toast(L(`已打開 ${where} 分享（演示）`, `Opened ${where} share (demo)`), 'ok', link);
   if (!s.wallet.connected) {
     return <div className="card"><Empty icon={<UserPlus size={22} />} text={L('連接錢包後生成你的專屬邀請連結', 'Connect a wallet to get your invite link')}><ConnectGate /></Empty></div>;
@@ -645,7 +678,7 @@ function InviteMain() {
       <div className="card">
         <div className="row-between">
           <h3 className="sub-h" style={{ margin: 0 }}><Users size={16} />{L('我邀請的好友', 'My friends')}</h3>
-          <button className="demo-link" onClick={() => { simulateInvite(); toast(L('一位好友通過你的連結註冊了', 'A friend signed up with your link'), 'ok', (c.invites.length < INVITE_CAP ? L(`你獲得 ${INVITE_REWARD} USDT 待領取`, `${INVITE_REWARD} USDT added to claim`) : L('已達獎勵人數上限', 'Reward limit reached'))); }}>
+          <button className="demo-link" onClick={() => { simulateInvite(); toast(L('一位好友通過你的連結註冊了', 'A friend signed up with your link'), 'ok', L(`你獲得 ${INVITE_REWARD} USDT 待領取`, `${INVITE_REWARD} USDT added to claim`)); }}>
             <FlaskConical size={14} />{L('演示：模擬好友註冊', 'Demo: simulate a sign-up')}
           </button>
         </div>
@@ -654,12 +687,12 @@ function InviteMain() {
             <table className="tbl stack">
               <thead><tr><th>{L('好友地址', 'Friend')}</th><th>{L('註冊時間', 'Joined')}</th><th>{L('狀態', 'Status')}</th><th>{L('你的獎勵', 'Your reward')}</th></tr></thead>
               <tbody>
-                {c.invites.map((x, i) => (
+                {c.invites.map((x) => (
                   <tr key={x.id}>
                     <td className="mono">{shortAddr(x.addr)}</td>
                     <td className="mono muted">{dateTime(x.ts)}</td>
                     <td>{x.deposited ? <Pill tone="up">{L('已入金', 'Funded')}</Pill> : <Pill tone="accent">{L('已連接錢包', 'Connected')}</Pill>}</td>
-                    <td className={cx('mono', i >= c.invites.length - INVITE_CAP ? 'up' : 'muted')}>{i >= c.invites.length - INVITE_CAP ? `+${INVITE_REWARD} USDT` : L('超出上限', 'Over the limit')}</td>
+                    <td className="mono up">+{INVITE_REWARD} USDT</td>
                   </tr>
                 ))}
               </tbody>
@@ -696,39 +729,39 @@ function PosterModal({ code, link, onClose }) {
 function CheckinMain({ onClaim }) {
   const s = useApp();
   const st = checkinState();
+  const weekMax = CHECKIN_REWARDS.reduce((a, b) => a + b, 0);
   return (
     <>
       <div className="card">
         <div className="row-between">
-          <h3 className="sub-h" style={{ margin: 0 }}><CalendarCheck size={16} />{L('簽到進度', 'Check-in progress')}</h3>
-          <span className="muted small">{L(`已簽到 ${st.count}/7 天`, `${st.count}/7 days`)}</span>
+          <h3 className="sub-h" style={{ margin: 0 }}><CalendarCheck size={16} />{L('本週簽到', 'This week')}</h3>
+          <span className="muted small">{L(`連續 ${st.streak} 天`, `${st.streak}-day streak`)}</span>
         </div>
         <div className="ck-grid">
           {CHECKIN_REWARDS.map((r, i) => {
-            const done = i < st.count;
-            const today = !st.doneToday && i === st.count;
+            const done = i < st.filled;
+            const today = !st.doneToday && i === st.filled;
             return (
               <div key={i} className={cx('ck-day', done && 'done', today && 'today', i === 6 && 'big')}>
                 <span className="ck-label">{L(`第 ${i + 1} 天`, `Day ${i + 1}`)}</span>
                 <span className="ck-ico">{done ? <CheckCircle2 size={22} /> : i === 6 ? <Gift size={24} /> : <CoinIcon sym={REWARD_SYM} size={24} />}</span>
-                <b className="mono">+{amt(r)}</b>
+                <b className="mono">+{r}</b>
               </div>
             );
           })}
         </div>
         {!s.wallet.connected ? <ConnectGate text={L('連接錢包後簽到', 'Connect wallet to check in')} />
-          : st.finished ? <div className="ck-done"><CheckCircle2 size={18} />{L(`已完成 7 天簽到，共獲得 ${amt(st.total)} USDT`, `All 7 check-ins done: ${amt(st.total)} USDT earned`)}</div>
-          : st.doneToday ? <div className="ck-done"><CheckCircle2 size={18} />{L(`今日已簽到 · 明天可得 ${amt(st.nextReward)} USDT`, `Checked in today · ${amt(st.nextReward)} USDT tomorrow`)}<span className="mono muted">{countdown(st.msToNext)}</span></div>
-          : <Btn block size="lg" onClick={() => onClaim(checkIn())}><CalendarCheck size={17} />{L(`立即簽到 +${amt(st.nextReward)} USDT`, `Check in +${amt(st.nextReward)} USDT`)}</Btn>}
-        {s.wallet.connected && st.doneToday && !st.finished && (
+          : st.doneToday ? <div className="ck-done"><CheckCircle2 size={18} />{st.filled === 7 ? L(`本週已簽滿，獲得 ${weekMax} USDT · 明天開始新的一週`, `Week complete: ${weekMax} USDT · a new week starts tomorrow`) : L(`今日已簽到 · 明天可得 ${st.nextReward} USDT`, `Checked in today · ${st.nextReward} USDT tomorrow`)}<span className="mono muted">{countdown(st.msToNext)}</span></div>
+          : <Btn block size="lg" onClick={() => onClaim(checkIn())}><CalendarCheck size={17} />{L(`立即簽到 +${CHECKIN_REWARDS[st.filled]} USDT`, `Check in +${CHECKIN_REWARDS[st.filled]} USDT`)}</Btn>}
+        {s.wallet.connected && st.doneToday && (
           <button className="demo-link" onClick={() => { fastForward(st.msToNext + 60e3); toast(L('時間已快進', 'Clock moved forward'), 'ok', L('已進入第二天', 'It is now the next day')); }}>
             <FlaskConical size={14} />{L('演示：快進到明天', 'Demo: skip to tomorrow')}<FastForward size={14} />
           </button>
         )}
       </div>
       <div className="mini-stats three">
-        <div><span>{L('累計簽到', 'Check-ins')}</span><b className="mono">{st.count} {L('天', 'days')}</b></div>
-        <div><span>{L('剩餘天數', 'Days left')}</span><b className="mono">{st.left} {L('天', 'days')}</b></div>
+        <div><span>{L('連續簽到', 'Streak')}</span><b className="mono">{st.streak} {L('天', 'days')}</b></div>
+        <div><span>{L('本週已得', 'This week')}</span><b className="mono">{st.week} / {weekMax} USDT</b></div>
         <div><span>{L('累計獲得', 'Earned')}</span><b className="mono">{amt(st.total)} USDT</b></div>
       </div>
     </>

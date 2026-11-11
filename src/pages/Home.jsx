@@ -94,7 +94,7 @@ function HeroBoard() {
           <button className="hb-act ck" onClick={() => go('rewards', 'checkin')}>
             <CalendarCheck size={18} />
             <span>{L('每日簽到', 'Daily check-in')}</span>
-            <b className="mono">{checkinState().finished ? L('已完成', 'Done') : `+${amt(checkinState().nextReward)} USDT`}</b>
+            <b className="mono">+{checkinState().nextReward} USDT</b>
           </button>
         </div>
       </div>

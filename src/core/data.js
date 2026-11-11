@@ -377,23 +377,21 @@ export const FREE_DROP = {
   ],
 };
 
-// Campaign rewards are paid in USDT. Finishing all four pays 18 USDT per wallet:
-// invite 7 (5 friends × 1 + milestones 1 + 1), check-in 4, social 4, quiz 3.
+// Campaign rewards are paid in whole USDT. Invites have no cap; check-in pays up to 10 USDT a week.
 export const REWARD_SYM = 'USDT';
-export const INVITE_REWARD = 1; // per friend who connects a wallet
-export const INVITE_CAP = 5; // friends that earn a reward
-export const INVITEE_REWARD = 1; // what the friend receives
-export const INVITE_MILESTONES = [[3, 1], [5, 1]];
-export const CHECKIN_REWARDS = [0.2, 0.3, 0.3, 0.5, 0.5, 0.7, 1.5];
+export const INVITE_REWARD = 2; // per friend who connects a wallet
+export const INVITEE_REWARD = 2; // what the friend receives
+export const INVITE_MILESTONES = [[3, 3], [10, 5], [30, 8]];
+export const CHECKIN_REWARDS = [1, 1, 1, 1, 1, 2, 3]; // one week, 10 USDT
 export const SOCIAL_TASKS = [
-  { id: 'x', name: ['關注 Novarix 的 X 帳號', 'Follow Novarix on X'], handle: '@NovarixHQ', reward: 0.6, color: '#E7E9EE', icon: 'x' },
-  { id: 'tg', name: ['加入 Telegram 社群', 'Join our Telegram group'], handle: 't.me/novarix', reward: 0.6, color: '#29A9EB', icon: 'tg' },
-  { id: 'dc', name: ['加入 Discord 伺服器', 'Join our Discord server'], handle: 'discord.gg/novarix', reward: 0.6, color: '#5865F2', icon: 'dc' },
-  { id: 'rt', name: ['轉發置頂貼文', 'Repost the pinned post'], handle: '@NovarixHQ', reward: 0.8, color: '#FF9A3D', icon: 'rt' },
-  { id: 'yt', name: ['訂閱 YouTube 頻道', 'Subscribe on YouTube'], handle: 'youtube.com/@novarix', reward: 0.4, color: '#FF3B3B', icon: 'yt' },
+  { id: 'x', name: ['關注 Novarix 的 X 帳號', 'Follow Novarix on X'], handle: '@NovarixHQ', reward: 2, color: '#E7E9EE', icon: 'x' },
+  { id: 'tg', name: ['加入 Telegram 社群', 'Join our Telegram group'], handle: 't.me/novarix', reward: 2, color: '#29A9EB', icon: 'tg' },
+  { id: 'dc', name: ['加入 Discord 伺服器', 'Join our Discord server'], handle: 'discord.gg/novarix', reward: 2, color: '#5865F2', icon: 'dc' },
+  { id: 'rt', name: ['轉發置頂貼文', 'Repost the pinned post'], handle: '@NovarixHQ', reward: 3, color: '#FF9A3D', icon: 'rt' },
+  { id: 'yt', name: ['訂閱 YouTube 頻道', 'Subscribe on YouTube'], handle: 'youtube.com/@novarix', reward: 1, color: '#FF3B3B', icon: 'yt' },
 ];
-export const SOCIAL_BONUS = 1;
-export const QUIZ_REWARD = 3; // USDT
+export const SOCIAL_BONUS = 5;
+export const QUIZ_REWARD = 5; // USDT
 export const QUIZ = [
   { q: ['在 Novarix 質押 NVX 有什麼作用？', 'What does staking NVX on Novarix do?'], opts: [['只能領取利息', 'It only earns interest'], ['提升認購等級並降低手續費', 'It raises your launchpad tier and cuts fees'], ['可以免費提幣', 'It makes withdrawals free']], a: 1 },
   { q: ['Launchpad 超募時，多出的 USDC 會怎樣？', 'In an oversubscribed sale, what happens to the extra USDC?'], opts: [['按比例分配並自動退回', 'Allocated pro rata and refunded automatically'], ['由平台保留', 'The platform keeps it'], ['轉為合約保證金', 'It becomes futures margin']], a: 0 },
