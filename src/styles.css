@@ -1889,3 +1889,27 @@ button.ad-row:hover { background: var(--panel-2); }
   .soc-top .soc-logo { width: 36px; height: 36px; }
   .soc-desc { display: none; }
 }
+
+/* home: ORIA launch + check-in side by side, compact */
+.home-camp-grid { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 16px; align-items: stretch; }
+.home-camp-grid .camp-feature { grid-column: auto; grid-row: auto; min-height: 0; }
+.home-camp-grid .camp-feature-body { justify-content: flex-start; gap: 16px; padding: 22px 24px; }
+.home-camp-grid .camp-feature-mark { top: -40px; }
+.home-camp-grid .camp-card { min-height: 0; }
+.camp-card .pill-up { background: rgba(5, 8, 14, 0.45); color: #6FF2B8; border: 1px solid rgba(255, 255, 255, 0.16); }
+@media (max-width: 1040px) {
+  .home-camp-grid { grid-template-columns: 1fr; }
+}
+.home-ck { cursor: default; justify-content: space-between; }
+.home-ck:hover { transform: none; }
+.hck-week { font-size: 13px; font-weight: 700; color: var(--b3); }
+.hck-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.hck-day { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 9px 2px; border-radius: 12px; background: rgba(5, 8, 14, 0.32); border: 1px solid rgba(255, 255, 255, 0.1); font-size: 11px; color: rgba(255, 255, 255, 0.7); min-width: 0; }
+.hck-day b { font-size: 13px; color: #fff; }
+.hck-day > span { height: 15px; display: grid; place-items: center; white-space: nowrap; }
+.hck-day.done { background: rgba(124, 245, 200, 0.18); border-color: rgba(124, 245, 200, 0.4); color: #7CF5C8; }
+.hck-day.today { border-color: #7CF5C8; box-shadow: 0 0 0 3px rgba(124, 245, 200, 0.18); }
+.hck-foot { display: flex; align-items: center; gap: 12px; }
+.hck-foot .btn { flex: 1; }
+.home-ck .btn-ghost { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); color: #fff; }
+.home-ck .hck-more { color: #7CF5C8; white-space: nowrap; }

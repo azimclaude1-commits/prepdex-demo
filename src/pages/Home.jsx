@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import {
   Sparkles, Wallet, ArrowDownToLine, Gift, ChevronRight, Rocket, CandlestickChart, Activity, ArrowLeftRight, Layers, Landmark,
-  BadgeDollarSign, ShieldCheck, Globe, ArrowUpRight, Flame, CalendarCheck, Vault, Headphones,
+  BadgeDollarSign, ShieldCheck, Globe, ArrowUpRight, Flame, CalendarCheck, Vault, Headphones, Check,
 } from 'lucide-react';
-import { COINS, COIN, PROJECTS, FREE_DROP, LEND_MARKETS, FIATS, MAX_LEV, STAKE_PRODUCTS } from '../core/data.js';
+import { CHECKIN_REWARDS, COINS, COIN, PROJECTS, FREE_DROP, LEND_MARKETS, FIATS, MAX_LEV, STAKE_PRODUCTS } from '../core/data.js';
 import { L } from '../core/lang.js';
-import { useApp, go, openModal, claimables, claimableUsd, checkinState } from '../core/store.js';
+import { useApp, go, openModal, toast, claimables, claimableUsd, checkinState, checkIn } from '../core/store.js';
 import { useMarket, price, change24, volume24, getCandles } from '../core/market.js';
 import { fmt, fp, usd, compact, amt } from '../core/fmt.js';
 import { Btn, Tabs, CoinIcon, ProjLogo, Spark, Delta, Flash, cx, useMedia, PHONE } from '../ui/kit.jsx';
-import { CAMP_IDS, DropFeature, CampCard } from './Rewards.jsx';
+import { DropFeature, CampArt, campMeta } from './Rewards.jsx';
+import { AirdropModal } from './DropFlows.jsx';
 import { TickerTape, TradeShowcase, EarnSection, SecuritySection, NewsCommunity, Faq, CampBanner } from './HomeSections.jsx';
 
 const spark = (sym, n = 48) => getCandles(sym, '1h').slice(-n).map((x) => x.close);
@@ -121,11 +122,54 @@ function CampaignStrip() {
         <button className="link-btn" onClick={() => go('rewards')}>{L('全部活動', 'All campaigns')}<ChevronRight size={14} /></button>
       </div>
       <CampBanner />
-      <div className="camp-grid">
+      <div className="home-camp-grid">
         <DropFeature ready={ready.drop} />
-        {CAMP_IDS.slice(1).map((id) => <CampCard key={id} id={id} s={s} ready={ready[id]} />)}
+        <HomeCheckin />
       </div>
     </section>
+  );
+}
+
+// Check-in card on the home page: this week's progress and a check-in button
+function HomeCheckin() {
+  const s = useApp();
+  const st = checkinState();
+  const [rid, setRid] = useState(null);
+  const m = campMeta('checkin');
+  const weekMax = CHECKIN_REWARDS.reduce((a, b) => a + b, 0);
+  const doCheckIn = () => {
+    const r = checkIn();
+    if (r.err) toast(r.err, 'err'); else setRid(r.rid);
+  };
+  return (
+    <div className="camp-card home-ck" style={{ '--b1': m.colors[0], '--b2': m.colors[1], '--b3': m.colors[2] }}>
+      <span className="banner-grid" aria-hidden="true" />
+      <div className="camp-card-top">
+        <CampArt id="checkin" size={46} ring />
+        <span className="camp-reward"><Gift size={13} />{m.reward}</span>
+      </div>
+      <div className="row-between">
+        <h3>{m.title}</h3>
+        <span className="hck-week mono">{st.week} / {weekMax} USDT</span>
+      </div>
+      <div className="hck-days">
+        {CHECKIN_REWARDS.map((r, i) => (
+          <div key={i} className={cx('hck-day', i < st.filled && 'done', !st.doneToday && i === st.filled && 'today')}>
+            <span>{i < st.filled ? <Check size={13} /> : L(`${i + 1} 天`, `D${i + 1}`)}</span>
+            <b className="mono">+{r}</b>
+          </div>
+        ))}
+      </div>
+      <div className="hck-foot">
+        {!s.wallet.connected
+          ? <Btn block onClick={() => openModal('connect')}><Wallet size={16} />{L('連接錢包後簽到', 'Connect wallet to check in')}</Btn>
+          : st.doneToday
+            ? <Btn block variant="ghost" onClick={() => go('rewards', 'checkin')}><CalendarCheck size={16} />{L(`今日已簽到 · 明天 +${st.nextReward} USDT`, `Done today · +${st.nextReward} USDT tomorrow`)}</Btn>
+            : <Btn block onClick={doCheckIn}><CalendarCheck size={16} />{L(`立即簽到 +${CHECKIN_REWARDS[st.filled]} USDT`, `Check in +${CHECKIN_REWARDS[st.filled]} USDT`)}</Btn>}
+        <button className="link-btn hck-more" onClick={() => go('rewards', 'checkin')}>{L('簽到詳情', 'Details')}<ChevronRight size={14} /></button>
+      </div>
+      {rid && <AirdropModal rid={rid} onClose={() => setRid(null)} />}
+    </div>
   );
 }
 

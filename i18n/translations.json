@@ -2197,6 +2197,20 @@
 "Listo",
 "Tapos"
 ],
+"Done today · +{0} USDT tomorrow": [
+"오늘 출석 완료 · 내일 +{0} USDT",
+"本日チェックイン済み · 明日 +{0} USDT",
+"Selesai hari ini · esok +{0} USDT",
+"Hecho hoy · mañana +{0} USDT",
+"Tapos ngayon · bukas +{0} USDT"
+],
+"D{0}": [
+"{0}일",
+"{0}日目",
+"H{0}",
+"D{0}",
+"A{0}"
+],
 "Each wallet can subscribe to {0} {1} for free.": [
 "지갑당 {0} {1}를 무료로 신청할 수 있습니다.",
 "1ウォレットにつき{0} {1}を無料で申し込めます。",
