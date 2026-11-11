@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Check, Copy, Search, ChevronDown, Inbox, Loader2 } from 'lucide-react';
 import { COIN, PROJECTS, FREE_DROP } from '../core/data.js';
+import { COIN_LOGOS } from '../core/logos.js';
 import { L } from '../core/lang.js';
 import { toast } from '../core/store.js';
 
@@ -242,6 +243,7 @@ export function CoinIcon({ sym, size = 24 }) {
   const launch = c?.launch && PROJECTS.find((p) => p.sym === sym);
   if (launch) return <ProjLogo p={launch} size={size} />;
   if (sym === 'NVX') return <BrandMark size={size} />;
+  if (COIN_LOGOS[sym]) return <img className="coin-ico coin-img" src={COIN_LOGOS[sym]} width={size} height={size} alt="" draggable="false" />;
   const color = c?.color || '#7A8599';
   const g = GLYPH[sym] || sym?.[0] || '?';
   return (

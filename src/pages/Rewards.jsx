@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState } from 'react';
 import {
   Gift, Users, CalendarCheck, Megaphone, GraduationCap, ArrowLeft, Share2, QrCode, Send, AtSign, MessagesSquare, Repeat2,
   Youtube, Check, CheckCircle2, Loader2, Clock, Sparkles, ShieldCheck, PenLine, FlaskConical, FastForward, ChevronRight,
-  Trophy, Wallet, Info, XCircle, UserPlus, Zap, ArrowUpRight, Lock, ArrowDownToLine, PartyPopper,
+  Trophy, Wallet, Info, XCircle, UserPlus, Zap, ArrowUpRight, Lock, ArrowDownToLine, PartyPopper, ChevronDown,
 } from 'lucide-react';
 import {
   FREE_DROP, INVITE_REWARD, INVITEE_REWARD, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
   NETWORKS, WALLETS, BRAND,
 } from '../core/data.js';
+import { SOCIAL_LOGOS } from '../core/logos.js';
 import { L } from '../core/lang.js';
 import {
   useApp, go, openModal, toast, now, fastForward, valueOf, airdropAddress, airdropNet, claimables, claimableUsd, airdropTotals,
@@ -113,6 +114,7 @@ function Hub() {
             <span><PenLine size={15} />{L('簽名不消耗 Gas', 'Signing costs no gas')}</span>
             <span><Zap size={15} />{L('領取後即時空投', 'Airdropped on claim')}</span>
           </div>
+          <PoolStats />
         </div>
         <RewardWallet />
       </section>
@@ -128,8 +130,107 @@ function Hub() {
         </div>
       </section>
 
-      {s.wallet.connected && <AirdropFeed />}
+      <HowItWorks />
+      <div className="rw-duo">
+        <Leaderboard />
+        {s.wallet.connected ? <AirdropFeed /> : <RewardFaq />}
+      </div>
+      {s.wallet.connected && <RewardFaq />}
     </div>
+  );
+}
+
+// Campaign-wide totals; they grow slowly with the clock so the page feels live
+function PoolStats() {
+  const s = useApp();
+  const hrs = Math.max(0, (now() - s.epoch) / 3600e3);
+  const people = Math.round(86420 + hrs * 37);
+  const paid = 412300 + hrs * 1150;
+  return (
+    <div className="pool-stats">
+      <div><span>{L('獎池總額', 'Reward pool')}</span><b className="mono">$1,250,000</b></div>
+      <div><span>{L('參與人數', 'Participants')}</span><b className="mono">{fmt(people, 0)}</b></div>
+      <div><span>{L('已發放', 'Paid out')}</span><b className="mono up">${compact(paid, 1)}</b></div>
+    </div>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    [CheckCircle2, L('完成任務', 'Finish a task'), L('簽名申購、簽到、關注或邀請好友。', 'Sign up for the launch, check in, follow or invite.')],
+    [Gift, L('點擊領取', 'Tap claim'), L('獎勵立即從獎勵池發出。', 'The reward leaves the pool right away.')],
+    [ArrowDownToLine, L('空投到交易所地址', 'Airdrop to your address'), L('發送到你在 Novarix 的專屬地址。', 'It is sent to your own Novarix address.')],
+    [Wallet, L('自動計入現貨帳戶', 'Lands in spot'), L('區塊確認後即可交易或提幣。', 'Trade or withdraw after confirmations.')],
+  ];
+  return (
+    <section className="card how">
+      <h2 className="display sec-title">{L('獎勵如何到帳', 'How rewards arrive')}</h2>
+      <div className="how-grid">
+        {steps.map(([Icon, t, d], i) => (
+          <div key={i} className="how-step">
+            <span className="how-ico"><Icon size={22} /><i className="mono">{i + 1}</i></span>
+            <b>{t}</b>
+            <span>{d}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// Fixed demo leaderboard plus the user's own position
+function Leaderboard() {
+  const s = useApp();
+  const rows = [['0x7a3f…91c2', 412], ['0x19be…0d4a', 365], ['0xc04e…7b13', 298], ['0x5d21…ee80', 251], ['0x88a9…3f6c', 204], ['0x2f7c…a915', 176], ['0xe631…58d7', 143], ['0x4b0d…c2a1', 121]];
+  const mine = s.camp.invites.length;
+  return (
+    <section className="card lb">
+      <div className="row-between">
+        <h2 className="display sec-title"><Trophy size={19} className="accent-text" />{L('邀請排行榜', 'Invite leaderboard')}</h2>
+        <button className="link-btn" onClick={() => go('rewards', 'invite')}>{L('去邀請', 'Invite')}<ChevronRight size={14} /></button>
+      </div>
+      <div className="lb-list">
+        {rows.map(([addr, n], i) => (
+          <div key={addr} className={cx('lb-row', i < 3 && 'top')}>
+            <span className={cx('lb-rank mono', 'r' + (i + 1))}>{i + 1}</span>
+            <span className="mono">{addr}</span>
+            <span className="muted small">{L(`${n} 人`, `${n} friends`)}</span>
+            <b className="mono up">{fmt(n * INVITE_REWARD + (n >= 30 ? 2600 : 0), 0)} NVX</b>
+          </div>
+        ))}
+        {s.wallet.connected && (
+          <div className="lb-row me">
+            <span className="lb-rank mono">{mine >= rows[rows.length - 1][1] ? '8+' : '--'}</span>
+            <span className="mono">{L('我', 'Me')} · {shortAddr(s.wallet.address)}</span>
+            <span className="muted small">{L(`${mine} 人`, `${mine} friends`)}</span>
+            <b className="mono">{fmt(mine * INVITE_REWARD, 0)} NVX</b>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function RewardFaq() {
+  const [open, setOpen] = useState(0);
+  const items = [
+    [L('參加活動需要付費嗎？', 'Do campaigns cost anything?'), L('不需要。5 個活動全部免費，免費申購只需錢包簽名，簽名不發起交易，也不消耗 Gas。', 'No. All 5 are free. The free launch needs only a wallet signature, which sends no transaction and costs no gas.')],
+    [L('獎勵多久到帳？', 'How fast do rewards arrive?'), L('點擊領取後立即空投，通常幾秒內完成區塊確認並計入現貨帳戶。', 'They are airdropped as soon as you claim and usually confirm into your spot account within seconds.')],
+    [L('獎勵可以提幣嗎？', 'Can I withdraw rewards?'), L('可以。到帳後與充值的資產相同，可以交易、質押或提到外部錢包。', 'Yes. Once received they work like deposits: trade, stake or withdraw them.')],
+    [L('空投地址是什麼？', 'What is the airdrop address?'), L('每個錢包在 Novarix 都有專屬的交易所地址，與充值地址相同，獎勵會直接發送到這裡。', 'Each wallet has its own Novarix exchange address, the same as its deposit address. Rewards are sent there.')],
+  ];
+  return (
+    <section className="card faq">
+      <h2 className="display sec-title">{L('常見問題', 'FAQ')}</h2>
+      <div className="faq-list">
+        {items.map(([q, a], i) => (
+          <div key={i} className={cx('faq-item', open === i && 'open')}>
+            <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>{q}<ChevronDown size={18} /></button>
+            {open === i && <p className="faq-a">{a}</p>}
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -229,6 +330,7 @@ function CampCard({ id, s, ready }) {
   const [text, prog] = campProgress(id, s);
   return (
     <button className="camp-card" style={{ '--tone': m.tone }} onClick={() => go('rewards', id)}>
+      <span className="camp-card-bg" aria-hidden="true"><Icon size={140} strokeWidth={1.2} /></span>
       <div className="camp-card-top">
         <span className="camp-ico"><Icon size={22} /></span>
         {ready ? <Pill tone="up" dot>{L('可領取', 'Claimable')} {amtLabel(ready)}</Pill> : <span className="camp-reward"><Gift size={13} />{m.reward}</span>}
@@ -590,8 +692,8 @@ function InviteMain() {
           <div className="invite-link-box"><span className="mono">{link}</span><CopyBtn text={link} label={L('複製', 'Copy')} /></div>
         </div>
         <div className="invite-share">
-          <Btn variant="ghost" size="sm" onClick={() => share('X')}><AtSign size={15} />X</Btn>
-          <Btn variant="ghost" size="sm" onClick={() => share('Telegram')}><Send size={15} />Telegram</Btn>
+          <Btn variant="ghost" size="sm" onClick={() => share('X')}><img className="share-logo" src={SOCIAL_LOGOS.x} alt="" width={14} height={14} />X</Btn>
+          <Btn variant="ghost" size="sm" onClick={() => share('Telegram')}><img className="share-logo tg" src={SOCIAL_LOGOS.telegram} alt="" width={14} height={14} />Telegram</Btn>
           <Btn variant="soft" size="sm" onClick={() => setPoster(true)}><QrCode size={15} />{L('生成海報', 'Poster')}</Btn>
         </div>
       </div>
@@ -718,7 +820,8 @@ function CheckinMain({ onClaim }) {
 // ----------------------------------------------------------------------------
 // Social tasks
 // ----------------------------------------------------------------------------
-const SOCIAL_ICON = { x: AtSign, tg: Send, dc: MessagesSquare, rt: Repeat2, yt: Youtube };
+const SOCIAL_LOGO = { x: 'x', tg: 'telegram', dc: 'discord', rt: 'x', yt: 'youtube' };
+const SOCIAL_BG = { x: '#000000', tg: '#26A5E4', dc: '#5865F2', rt: '#000000', yt: '#FF0000' };
 
 function SocialMain() {
   const s = useApp();
@@ -734,11 +837,11 @@ function SocialMain() {
         <h3 className="sub-h"><Megaphone size={16} />{L('社媒任務', 'Social tasks')}</h3>
         <div className="soc-list">
           {SOCIAL_TASKS.map((x) => {
-            const Icon = SOCIAL_ICON[x.icon];
+
             const st = socialStatus(x.id);
             return (
               <div key={x.id} className={cx('soc-row', st)}>
-                <span className="soc-ico" style={{ '--c': x.color }}><Icon size={19} /></span>
+                <span className="soc-ico real" style={{ background: SOCIAL_BG[x.icon] }}><img src={SOCIAL_LOGOS[SOCIAL_LOGO[x.icon]]} alt="" width={20} height={20} />{x.icon === 'rt' && <i className="soc-badge"><Repeat2 size={11} /></i>}</span>
                 <div className="soc-txt"><b>{L(...x.name)}</b><span className="mono muted small">{x.handle}</span></div>
                 <span className="soc-reward mono">+{x.reward} NVX</span>
                 <div className="soc-act">

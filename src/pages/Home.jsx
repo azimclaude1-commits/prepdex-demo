@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   Sparkles, Wallet, ArrowDownToLine, Gift, ChevronRight, Rocket, CandlestickChart, Activity, ArrowLeftRight, Layers, Landmark,
-  BadgeDollarSign, ShieldCheck, Globe, ArrowUpRight, Flame, CalendarCheck,
+  BadgeDollarSign, ShieldCheck, Globe, ArrowUpRight, Flame, CalendarCheck, Vault, Headphones,
 } from 'lucide-react';
 import { COINS, COIN, PROJECTS, FREE_DROP, LEND_MARKETS, FIATS, MAX_LEV, STAKE_PRODUCTS } from '../core/data.js';
 import { L } from '../core/lang.js';
@@ -10,6 +10,7 @@ import { useMarket, price, change24, volume24, getCandles } from '../core/market
 import { fmt, fp, usd, compact } from '../core/fmt.js';
 import { Btn, Tabs, CoinIcon, ProjLogo, Spark, Delta, Flash, cx, useMedia, PHONE } from '../ui/kit.jsx';
 import { CAMP_IDS, campMeta } from './Rewards.jsx';
+import { TickerTape, LaunchShowcase, TradeShowcase, EarnSection, SecuritySection, NewsCommunity, Faq, FinalCta } from './HomeSections.jsx';
 
 const spark = (sym, n = 48) => getCandles(sym, '1h').slice(-n).map((x) => x.close);
 
@@ -19,6 +20,7 @@ export function Home() {
   const claim = claimableUsd();
   return (
     <div className="page home">
+      <TickerTape />
       <section className="home-hero">
         <div className="home-hero-copy">
           <div className="eyebrow"><Sparkles size={14} />Novarix Exchange</div>
@@ -38,15 +40,27 @@ export function Home() {
             <span><b>{L(`${FREE_DROP.sym} 免費申購進行中`, `Free ${FREE_DROP.sym} launch is live`)}</b>{L(`簽名即可領 ${FREE_DROP.perUser} ${FREE_DROP.sym}，無需付款`, `Sign to get ${FREE_DROP.perUser} ${FREE_DROP.sym}. No payment.`)}</span>
             <ChevronRight size={16} />
           </button>
+          <div className="hero-trust">
+            <span><ShieldCheck size={15} />{L('儲備金率 108%', '108% reserves')}</span>
+            <span><Vault size={15} />{L('95% 冷錢包', '95% cold storage')}</span>
+            <span><Headphones size={15} />{L('7×24 小時客服', '24/7 support')}</span>
+          </div>
         </div>
         <HeroBoard />
       </section>
 
       <StatsStrip />
       <CampaignStrip />
+      <LaunchShowcase />
       <Markets />
+      <TradeShowcase />
+      <EarnSection />
       <Products />
+      <SecuritySection />
+      <NewsCommunity />
       <GetStarted />
+      <Faq />
+      <FinalCta />
     </div>
   );
 }

@@ -15,6 +15,7 @@ import { useMarket, price } from '../core/market.js';
 import { fmt, usd, shortAddr, dateTime, floorTo, adp, pdp, randHex } from '../core/fmt.js';
 import { Modal, Btn, Tabs, NumInput, CoinIcon, CoinSelect, QR, CopyBtn, KV, cx, Progress, Pill, BrandMark } from '../ui/kit.jsx';
 import { orbStyle } from './Shell.jsx';
+import { WALLET_LOGOS, CHAIN_LOGOS } from '../core/logos.js';
 
 export function ModalHost() {
   const { modal } = useUI();
@@ -32,12 +33,16 @@ export function ModalHost() {
 }
 
 export function WalletGlyph({ w, size = 36 }) {
-  const letter = w.name[0];
+  if (WALLET_LOGOS[w.id]) return <img className="wglyph wglyph-img" src={WALLET_LOGOS[w.id]} width={size} height={size} alt="" draggable="false" />;
   return (
     <span className="wglyph" style={{ width: size, height: size, background: `linear-gradient(140deg, ${w.color}, ${w.color}99)` }}>
-      {w.id === 'walletconnect' ? <Link2 size={size * 0.5} /> : <b style={{ fontSize: size * 0.42 }}>{letter}</b>}
+      <b style={{ fontSize: size * 0.42 }}>{w.name[0]}</b>
     </span>
   );
+}
+
+export function ChainIcon({ c, size = 16 }) {
+  return CHAIN_LOGOS[c.id] ? <img className="chain-ico" src={CHAIN_LOGOS[c.id]} width={size} height={size} alt="" /> : <i className="dot" style={{ background: c.color }} />;
 }
 
 // ----------------------------------------------------------------------------
@@ -133,12 +138,12 @@ function AccountModal() {
     <Modal onClose={closeModal} width={400} className="acct" title={null}>
       <div className="acct-top">
         <div className="chain-pick">
-          <button className="chip-btn" onClick={() => setChainOpen(!chainOpen)}><i className="dot" style={{ background: chain.color }} />{chain.name}<ChevronDown size={14} /></button>
+          <button className="chip-btn" onClick={() => setChainOpen(!chainOpen)}><ChainIcon c={chain} />{chain.name}<ChevronDown size={14} /></button>
           {chainOpen && (
             <div className="lang-pop">
               {CHAINS.map((c) => (
                 <button key={c.id} className={cx(c.id === chain.id && 'on')} onClick={() => { switchChain(c.id); setChainOpen(false); toast(L('已切換網路', 'Network switched'), 'ok', c.name); }}>
-                  <i className="dot" style={{ background: c.color }} />{c.name}
+                  <ChainIcon c={c} />{c.name}
                 </button>
               ))}
             </div>
