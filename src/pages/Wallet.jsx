@@ -187,7 +187,7 @@ function Records() {
                     {r.kind === 'withdraw' && <>{NETWORKS[r.net]?.short} → <span className="mono">{shortAddr(r.address)}</span> · {L('手續費', 'fee')} {r.fee}</>}
                     {r.kind === 'transfer' && <>{accN(r.from)} → {accN(r.to)}</>}
                     {(r.kind === 'convert' || r.kind === 'swap') && <>→ <span className="mono">{fmt(r.out, 6)} {r.to}</span></>}
-                    {r.kind === 'airdrop' && <>{src[r.source]} · {NETWORKS[r.net]?.short} → <span className="mono">{shortAddr(r.address)}</span></>}
+                    {r.kind === 'airdrop' && <>{src[r.source]} · {r.internal ? L('平台入帳', 'Platform credit') : NETWORKS[r.net]?.short} → <span className="mono">{shortAddr(r.address)}</span></>}
                     {r.kind === 'otc' && <>{fmt(r.fiatAmt, 2)} {r.fiat}{r.via ? ' · ' + r.via : ''}</>}
                   </td>
                   <td><StatusPill r={r} /></td>

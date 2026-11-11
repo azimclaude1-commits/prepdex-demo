@@ -399,7 +399,7 @@ function AirdropFeed() {
               <CoinIcon sym={r.sym} size={30} />
               <div className="ad-row-main">
                 <b>{src[r.source]}</b>
-                <span className="muted small mono">{dateTime(r.ts)} · {NETWORKS[r.net]?.short} → {shortAddr(r.address)}</span>
+                <span className="muted small mono">{dateTime(r.ts)} · {r.internal ? L('平台入帳', 'Platform credit') : NETWORKS[r.net]?.short} → {shortAddr(r.address)}</span>
               </div>
               <b className="mono up">+{amt(r.amount)} {r.sym}</b>
               {r.status === 'done' ? <Pill tone="up">{L('已到帳', 'Received')}</Pill> : <Pill tone="accent" dot>{L('確認中', 'Confirming')} {r.conf}/{r.need}</Pill>}
@@ -501,13 +501,13 @@ function ClaimCard({ id, onClaim, openClaim }) {
       <div className="claim-dest">
         <ArrowDownToLine size={15} />
         <div>
-          <div className="small">{L('空投到你的交易所地址', 'Airdropped to your exchange address')}</div>
-          <div className="mono muted small">{s.wallet.connected ? `${NETWORKS[airdropNet(sym)].short} · ${shortAddr(airdropAddress(sym))}` : '--'}</div>
+          <div className="small">{id === 'checkin' ? L('記入你的交易所帳戶，即時到帳', 'Credited to your exchange account instantly') : L('空投到你的交易所地址', 'Airdropped to your exchange address')}</div>
+          <div className="mono muted small">{s.wallet.connected ? (id === 'checkin' ? shortAddr(airdropAddress(sym)) : `${NETWORKS[airdropNet(sym)].short} · ${shortAddr(airdropAddress(sym))}`) : '--'}</div>
         </div>
       </div>
       {last && (
         <div className="claim-last">
-          <span className="muted small">{L('最近一次空投', 'Latest airdrop')}</span>
+          <span className="muted small">{last.internal ? L('最近一次到帳', 'Latest credit') : L('最近一次空投', 'Latest airdrop')}</span>
           <span className="row-gap"><b className="mono up">+{amt(last.amount)} {last.sym}</b>{last.status === 'done' ? <Pill tone="up">{L('已到帳', 'Received')}</Pill> : <Pill tone="accent" dot>{last.conf}/{last.need}</Pill>}</span>
         </div>
       )}
@@ -533,6 +533,7 @@ function RulesCard({ id }) {
     checkin: [
       L(`每天可簽到一次，連續 7 天為一週，第 1–7 天分別獲得 ${CHECKIN_REWARDS.join(' / ')} USDT，每週最多 ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT。`, `Check in once a day. Seven days in a row make a week; days 1–7 pay ${CHECKIN_REWARDS.join(' / ')} USDT, up to ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT a week.`),
       L('中斷一天後，從第 1 天重新開始。', 'Miss a day and you start again from day 1.'),
+      L('連接錢包並簽名登入後即可簽到，獎勵由平台直接記入你的交易所帳戶，即時到帳，不需要上鏈。', 'Connect and sign in with your wallet to check in. Rewards are booked straight to your exchange account, instantly and off-chain.'),
       L('完成第 7 天後，第二天開始新的一週。', 'After day 7, a new week starts the next day.'),
     ],
     social: [

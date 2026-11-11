@@ -304,6 +304,7 @@ export function AirdropModal({ rid, onClose }) {
   const s = useApp();
   const r = s.records.find((x) => x.id === rid);
   if (!r) return null;
+  if (r.internal) return <CreditReceipt r={r} onClose={onClose} />;
   const done = r.status === 'done';
   const net = NETWORKS[r.net];
   return (
@@ -351,6 +352,37 @@ export function AirdropModal({ rid, onClose }) {
           </div>
         </div>
       )}
+    </Modal>
+  );
+}
+
+// Centralised reward (check-in): booked to the exchange account, no chain involved
+function CreditReceipt({ r, onClose }) {
+  return (
+    <Modal title={L('獎勵已到帳', 'Reward received')} onClose={onClose} width={440} icon={<Gift size={18} />} className="flow-modal">
+      <div className="fl-result">
+        <span className="fl-ico ok"><CoinIcon sym={r.sym} size={46} /><i><Check size={14} /></i></span>
+        <div className="ad-amt mono">+{amt(r.amount)} {r.sym}</div>
+        <p className="muted small">{L('已記入你的交易所帳戶，即時到帳，不需要上鏈。', 'Booked to your exchange account instantly, with nothing on-chain.')}</p>
+        <div className="cr-steps">
+          <span><CheckCircle2 size={15} />{L('錢包簽名登入', 'Wallet sign-in')}</span>
+          <span><CheckCircle2 size={15} />{sourceLabel(r.source)}</span>
+          <span><CheckCircle2 size={15} />{L('記入現貨帳戶', 'Credited to spot')}</span>
+        </div>
+        <div className="rc">
+          <Line k={L('來源', 'Source')}>{sourceLabel(r.source)}</Line>
+          <Line k={L('流水號', 'Reference')} copy={r.ref}><span className="mono">{r.ref}</span></Line>
+          <Line k={L('到帳方式', 'Method')}>{L('平台內部入帳', 'Platform credit')}</Line>
+          <Line k={L('到帳帳戶', 'Credited to')}>{L('現貨帳戶', 'Spot account')}</Line>
+          <Line k={L('交易所地址', 'Exchange address')} copy={r.address}><span className="mono">{shortAddr(r.address)}</span></Line>
+          <Line k={L('到帳時間', 'Received at')}><span className="mono">{dateTime(r.doneAt || r.ts, true)}</span></Line>
+          <Line k={L('現貨餘額', 'Spot balance')}><span className="mono">{fmt(bal(r.sym), 2)} {r.sym}</span></Line>
+        </div>
+        <div className="btn-row">
+          <Btn variant="ghost" onClick={() => { onClose(); go('wallet'); }}><Wallet size={16} />{L('查看資產', 'View assets')}</Btn>
+          <Btn onClick={onClose}>{L('完成', 'Done')}</Btn>
+        </div>
+      </div>
     </Modal>
   );
 }

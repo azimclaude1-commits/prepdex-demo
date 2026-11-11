@@ -986,6 +986,13 @@
 "Bonificación de {0} NVX con {1} amigos.",
 "Bonus na {0} NVX sa {1} kaibigan."
 ],
+"Booked to your exchange account instantly, with nothing on-chain.": [
+"거래소 계정에 즉시 입금되었으며, 온체인 처리가 필요 없습니다.",
+"取引所口座に即時入金されました。オンチェーン処理は不要です。",
+"Dikreditkan ke akaun bursa anda serta-merta, tanpa on-chain.",
+"Abonado al instante en tu cuenta del exchange, sin pasar por la cadena.",
+"Agad na naipasok sa exchange account mo, walang on-chain."
+],
 "Borrow": [
 "대출",
 "借入",
@@ -1756,6 +1763,13 @@
 "Conéctate e inicia sesión para depositar, retirar y mover fondos entre cuentas.",
 "Kumonekta at mag-sign in para mag-deposit, mag-withdraw at maglipat ng pondo."
 ],
+"Connect and sign in with your wallet to check in. Rewards are booked straight to your exchange account, instantly and off-chain.": [
+"지갑을 연결해 서명 로그인하면 출석할 수 있습니다. 보상은 플랫폼이 거래소 계정에 바로 입금하며, 즉시 반영되고 온체인 처리가 없습니다.",
+"ウォレットを接続して署名ログインすればチェックインできます。報酬はプラットフォームが取引所口座に直接入金し、即時反映・オンチェーン処理なしです。",
+"Sambung dan log masuk dengan dompet untuk daftar masuk. Ganjaran dikreditkan terus ke akaun bursa anda, serta-merta dan di luar rantaian.",
+"Conecta e inicia sesión con tu wallet para registrar asistencia. Las recompensas se abonan directamente en tu cuenta del exchange, al instante y fuera de la cadena.",
+"Ikonekta at mag-sign in gamit ang wallet para mag-check in. Direktang ipinapasok ang reward sa exchange account mo, agad at off-chain."
+],
 "Connect to see your assets": [
 "연결하여 자산 확인",
 "接続して資産を表示",
@@ -1909,6 +1923,13 @@
 "Dikreditkan ke spot selepas {0} pengesahan.",
 "Se abona en spot tras {0} confirmaciones.",
 "Mapupunta sa spot pagkatapos ng {0} kumpirmasyon."
+],
+"Credited to your exchange account instantly": [
+"거래소 계정에 즉시 입금",
+"取引所口座に即時入金",
+"Dikreditkan ke akaun bursa anda serta-merta",
+"Abonado al instante en tu cuenta del exchange",
+"Agad na naipapasok sa exchange account mo"
 ],
 "Cross": [
 "교차",
@@ -2497,6 +2518,13 @@
 "Melebihi had tahap anda",
 "Supera el límite de tu nivel",
 "Lampas sa tier cap mo"
+],
+"Exchange address": [
+"거래소 주소",
+"取引所アドレス",
+"Alamat bursa",
+"Dirección del exchange",
+"Exchange address"
 ],
 "Exit": [
 "청산가",
@@ -3534,6 +3562,13 @@
 "Último airdrop",
 "Pinakabagong airdrop"
 ],
+"Latest credit": [
+"최근 입금",
+"最新の入金",
+"Kredit terkini",
+"Último abono",
+"Pinakabagong credit"
+],
 "Launchpad": [
 "런치패드",
 "ローンチパッド",
@@ -3932,6 +3967,13 @@
 "MetaMask, OKX dan dompet sambungan lain",
 "MetaMask, OKX y otras wallets de extensión",
 "MetaMask, OKX at iba pang extension wallet"
+],
+"Method": [
+"입금 방식",
+"入金方法",
+"Kaedah",
+"Método",
+"Paraan"
 ],
 "Milestones": [
 "초대 마일스톤",
@@ -4955,6 +4997,13 @@
 "Hacer pedido",
 "Mag-order"
 ],
+"Platform credit": [
+"플랫폼 내부 입금",
+"プラットフォーム内入金",
+"Kredit platform",
+"Abono de la plataforma",
+"Platform credit"
+],
 "Platform quiz": [
 "플랫폼 지식 퀴즈",
 "プラットフォームクイズ",
@@ -5563,6 +5612,13 @@
 "Kumpulan ganjaran",
 "Fondo de recompensas",
 "Reward pool"
+],
+"Reward received": [
+"보상 입금 완료",
+"報酬が入金されました",
+"Ganjaran diterima",
+"Recompensa recibida",
+"Natanggap ang reward"
 ],
 "Rewards": [
 "이벤트",
@@ -7383,6 +7439,13 @@
 "Faucet dompet",
 "Faucet de billetera",
 "Wallet faucet"
+],
+"Wallet sign-in": [
+"지갑 서명 로그인",
+"ウォレット署名ログイン",
+"Log masuk dompet",
+"Inicio de sesión con wallet",
+"Wallet sign-in"
 ],
 "Wallet upgrade complete; deposits and withdrawals resumed": [
 "지갑 시스템 업그레이드 완료, 입출금 재개",

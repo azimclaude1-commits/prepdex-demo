@@ -944,6 +944,14 @@ function airdrop(s, sym, amount, source) {
   lastDrop = uid('r');
   s.records.unshift({ id: lastDrop, kind: 'airdrop', sym, amount, net, source, address: depositAddress(net), status: 'confirming', conf: 0, need: 6, ts: now(), started: Date.now(), txid: '0x' + randHex(64) });
 }
+// Centralised credit (check-in): booked straight to the user's exchange account, nothing on-chain
+function credit(s, sym, amount, source) {
+  lastDrop = uid('r');
+  const net = airdropNet(sym);
+  const ref = 'NVX' + new Date(now()).toISOString().slice(2, 10).replace(/-/g, '') + randHex(8).toUpperCase();
+  s.records.unshift({ id: lastDrop, kind: 'airdrop', internal: true, ref, sym, amount, net, source, address: depositAddress(net), status: 'done', ts: now(), doneAt: now() });
+  add(s.spot, sym, amount);
+}
 const needWallet = () => (!state.wallet.connected ? { err: L('請先連接錢包', 'Connect your wallet first') } : null);
 
 // Free launch: subscribe with a signature, claim after the window closes
@@ -1053,7 +1061,7 @@ export function checkIn() {
     c.last = dayKey();
     c.total = (c.total || 0) + reward;
     c.count = (c.count || 0) + 1;
-    airdrop(s, REWARD_SYM, reward, 'checkin');
+    credit(s, REWARD_SYM, reward, 'checkin');
   });
   return { ok: true, reward, day: st.filled + 1, rid: lastDrop };
 }
