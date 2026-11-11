@@ -28,31 +28,31 @@ export const CAMP_IDS = ['drop', 'invite', 'checkin', 'social', 'quiz'];
 export function campMeta(id) {
   return {
     drop: {
-      icon: Gift, tone: '#9B6BFF',
+      icon: Gift, tone: '#9B6BFF', colors: FREE_DROP.colors,
       title: L(`${FREE_DROP.sym} 免費申購`, `Free ${FREE_DROP.sym} launch`),
       desc: L('無需付款，連接錢包並簽名即可申購。', 'No payment. Connect your wallet and sign to subscribe.'),
       reward: L(`每個錢包 ${FREE_DROP.perUser} ${FREE_DROP.sym}`, `${FREE_DROP.perUser} ${FREE_DROP.sym} per wallet`),
     },
     invite: {
-      icon: UserPlus, tone: '#FF9A3D',
+      icon: UserPlus, tone: '#FF9A3D', colors: ['#2B1104', '#C2500C', '#FFC27A'],
       title: L('邀請好友', 'Invite friends'),
       desc: L(`分享邀請連結，好友註冊並連接錢包後，你和好友各得 ${INVITE_REWARD} USDT，邀請人數不限。`, `Share your link. When a friend signs up and connects a wallet, you each get ${INVITE_REWARD} USDT. No limit on friends.`),
       reward: L(`每位好友 ${INVITE_REWARD} USDT`, `${INVITE_REWARD} USDT per friend`),
     },
     checkin: {
-      icon: CalendarCheck, tone: '#22D39B',
+      icon: CalendarCheck, tone: '#22D39B', colors: ['#04211A', '#0E7D5D', '#7CF5C8'],
       title: L('每日簽到', 'Daily check-in'),
       desc: L('每天簽到一次，連續 7 天為一週，每次簽到領取 USDT。', 'Check in once a day; 7 days in a row make a week, with USDT each day.'),
       reward: L(`每週 ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT`, `${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT a week`),
     },
     social: {
-      icon: Megaphone, tone: '#5B8CFF',
+      icon: Megaphone, tone: '#5B8CFF', colors: ['#09122E', '#2848CF', '#9DB8FF'],
       title: L('關注社媒', 'Follow us'),
       desc: L('關注 Novarix 的 X、Telegram、Discord 與 YouTube 帳號，完成後領取 USDT。', 'Follow Novarix on X, Telegram, Discord and YouTube, then claim USDT.'),
       reward: L(`最高 ${amt(SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS)} USDT`, `Up to ${amt(SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS)} USDT`),
     },
     quiz: {
-      icon: GraduationCap, tone: '#FFC24D',
+      icon: GraduationCap, tone: '#FFC24D', colors: ['#241904', '#A87908', '#FFE08A'],
       title: L('答題學院', 'Learn & earn'),
       desc: L('回答平台知識題，全部答對即可領取。', 'Answer the platform questions; get them all right to claim.'),
       reward: `${QUIZ_REWARD} USDT`,
@@ -87,6 +87,43 @@ function campProgress(id, s) {
   if (q.claimed) return [L('已領取', 'Claimed'), 1];
   if (q.passed) return [L('已全部答對', 'All correct'), 1];
   return [q.tries ? L(`最佳成績 ${q.best}/${QUIZ.length}`, `Best score ${q.best}/${QUIZ.length}`) : L('尚未作答', 'Not started'), q.best / QUIZ.length];
+}
+
+// Campaign artwork: a gradient disc with a line glyph, in the same style as the project logos
+export function CampArt({ id, size = 44, ring }) {
+  if (id === 'drop') return <ProjLogo p={FREE_DROP} size={size} ring={ring} />;
+  const [a, b, c] = campMeta(id).colors;
+  const gid = 'ca-' + id;
+  const stroke = { fill: 'none', stroke: c, strokeWidth: 2.2, strokeLinecap: 'round', strokeLinejoin: 'round' };
+  const glyph = {
+    invite: (
+      <>
+        <g {...stroke}><circle cx="16" cy="15.5" r="4.6" /><path d="M7.5 30c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5" /><circle cx="25.5" cy="17" r="3.6" strokeOpacity="0.7" /><path d="M24.6 23.2c3.9.4 6.9 3.3 6.9 7.3" strokeOpacity="0.7" /></g>
+        <circle cx="30.5" cy="10" r="4.6" fill={c} /><path d="M30.5 7.7v4.6M28.2 10h4.6" stroke={a} strokeWidth="1.9" strokeLinecap="round" />
+      </>
+    ),
+    checkin: (
+      <g {...stroke}><rect x="9" y="11.5" width="22" height="19.5" rx="4.5" /><path d="M9 17.5h22M15 8.5v5M25 8.5v5" /><path d="M15.2 24.4l3.3 3.3 6.4-6.4" strokeWidth="2.6" /></g>
+    ),
+    social: (
+      <g {...stroke}><path d="M9 18.2v5.4h4.2l9.3 5.2V13l-9.3 5.2z" /><path d="M13.4 23.6l1.4 5.6h3l-1.1-5" /><path d="M26.6 16.8a5.2 5.2 0 0 1 0 7.6" /><path d="M29.6 13.6a9.4 9.4 0 0 1 0 14" strokeOpacity="0.6" /></g>
+    ),
+    quiz: (
+      <>
+        <g {...stroke}><path d="M6.5 17.2 20 10.5l13.5 6.7L20 24z" /><path d="M12.5 20.4v6.3c0 2.1 3.4 4 7.5 4s7.5-1.9 7.5-4v-6.3" /><path d="M33.5 17.2v7" /></g>
+        <circle cx="33.5" cy="26.4" r="1.9" fill={c} />
+      </>
+    ),
+  }[id];
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden="true" className={cx('proj-logo', ring && 'proj-logo-ring')}>
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={b} /><stop offset="1" stopColor={a} /></linearGradient>
+      </defs>
+      <circle cx="20" cy="20" r="20" fill={`url(#${gid})`} />
+      {glyph}
+    </svg>
+  );
 }
 
 const amtLabel = (list) => list.map(([sym, n]) => `${amt(n)} ${sym}`).join(' + ');
@@ -327,10 +364,11 @@ function CampCard({ id, s, ready }) {
   const Icon = m.icon;
   const [text, prog] = campProgress(id, s);
   return (
-    <button className="camp-card" style={{ '--tone': m.tone }} onClick={() => go('rewards', id)}>
-      <span className="camp-card-bg" aria-hidden="true"><Icon size={140} strokeWidth={1.2} /></span>
+    <button className="camp-card" style={{ '--tone': m.tone, '--b1': m.colors[0], '--b2': m.colors[1], '--b3': m.colors[2] }} onClick={() => go('rewards', id)}>
+      <span className="banner-grid" aria-hidden="true" />
+      <span className="camp-card-bg" aria-hidden="true"><CampArt id={id} size={150} /></span>
       <div className="camp-card-top">
-        <span className="camp-ico"><Icon size={22} /></span>
+        <CampArt id={id} size={46} ring />
         {ready ? <Pill tone="up" dot>{L('可領取', 'Claimable')} {amtLabel(ready)}</Pill> : <span className="camp-reward"><Gift size={13} />{m.reward}</span>}
       </div>
       <h3>{m.title}</h3>
@@ -398,8 +436,8 @@ function CampaignPage({ id }) {
   return (
     <div className="page">
       <button className="back" onClick={() => go('rewards')}><ArrowLeft size={16} />{L('返回活動中心', 'Rewards hub')}</button>
-      <div className="camp-head" style={{ '--tone': m.tone }}>
-        <span className="camp-ico big"><Icon size={30} /></span>
+      <div className="camp-head" style={{ '--tone': m.tone, '--b1': m.colors[0], '--b2': m.colors[1], '--b3': m.colors[2] }}>
+        <CampArt id={id} size={64} ring />
         <div className="camp-head-txt">
           <h1 className="display">{m.title}</h1>
           <p>{m.desc}</p>

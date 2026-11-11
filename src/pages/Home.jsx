@@ -9,7 +9,7 @@ import { useApp, go, openModal, phase, claimableUsd, checkinState } from '../cor
 import { useMarket, price, change24, volume24, getCandles } from '../core/market.js';
 import { fmt, fp, usd, compact, amt } from '../core/fmt.js';
 import { Btn, Tabs, CoinIcon, ProjLogo, Spark, Delta, Flash, cx, useMedia, PHONE } from '../ui/kit.jsx';
-import { CAMP_IDS, campMeta } from './Rewards.jsx';
+import { CAMP_IDS, campMeta, CampArt } from './Rewards.jsx';
 import { TickerTape, LaunchShowcase, TradeShowcase, EarnSection, SecuritySection, NewsCommunity, Faq, FinalCta } from './HomeSections.jsx';
 
 const spark = (sym, n = 48) => getCandles(sym, '1h').slice(-n).map((x) => x.close);
@@ -127,8 +127,8 @@ function CampaignStrip() {
           const m = campMeta(id);
           const Icon = m.icon;
           return (
-            <button key={id} className={cx('camp-mini', id === 'drop' && 'hot')} style={{ '--tone': m.tone }} onClick={() => go('rewards', id)}>
-              <span className="camp-ico"><Icon size={20} /></span>
+            <button key={id} className={cx('camp-mini', id === 'drop' && 'hot')} style={{ '--tone': m.tone, '--b1': m.colors[0], '--b2': m.colors[1], '--b3': m.colors[2] }} onClick={() => go('rewards', id)}>
+              <CampArt id={id} size={42} ring />
               <b>{m.title}</b>
               <span className="camp-reward"><Gift size={12} />{m.reward}</span>
               {id === 'drop' && s.camp.drop == null && <span className="free-badge sm">{L('免費', 'FREE')}</span>}
