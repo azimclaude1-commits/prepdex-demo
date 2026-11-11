@@ -191,8 +191,8 @@ function HowItWorks() {
   const steps = [
     [CheckCircle2, L('完成任務', 'Finish a task'), L('簽名申購、簽到、關注或邀請好友。', 'Sign up for the launch, check in, follow or invite.')],
     [Gift, L('點擊領取', 'Tap claim'), L('獎勵立即從獎勵池發出。', 'The reward leaves the pool right away.')],
-    [ArrowDownToLine, L('空投到交易所地址', 'Airdrop to your address'), L('發送到你在 Novarix 的專屬地址。', 'It is sent to your own Novarix address.')],
-    [Wallet, L('自動計入現貨帳戶', 'Lands in spot'), L('區塊確認後即可交易或提幣。', 'Trade or withdraw after confirmations.')],
+    [ArrowDownToLine, L('存入交易所帳戶', 'Credited to your account'), L(`USDT 獎勵即時到帳；${FREE_DROP.sym} 通過鏈上空投到你的交易所地址。`, `USDT rewards arrive instantly; ${FREE_DROP.sym} is airdropped on-chain to your exchange address.`)],
+    [Wallet, L('交易或提幣', 'Trade or withdraw'), L('到帳後可直接交易、質押或提幣。', 'Trade, stake or withdraw once it arrives.')],
   ];
   return (
     <section className="card how">
@@ -249,9 +249,9 @@ function RewardFaq() {
   const items = [
     [L('參加活動需要付費嗎？', 'Do campaigns cost anything?'), L(`不需要付費。${FREE_DROP.sym} 申購只需要用錢包簽名一次，簽名不發起交易，也不消耗 Gas。`, `No. The ${FREE_DROP.sym} launch only needs one wallet signature, which sends no transaction and costs no gas.`)],
     [L('各活動的獎勵是多少？', 'What does each campaign pay?'), L(`邀請好友每位 ${INVITE_REWARD} USDT，人數不限，滿 ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} 人另得 ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT；每日簽到每週 ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT；關注社媒共 ${SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS} USDT；答題 ${QUIZ_REWARD} USDT；${FREE_DROP.sym} 申購每個錢包 ${FREE_DROP.perUser} ${FREE_DROP.sym}。`, `Invites pay ${INVITE_REWARD} USDT per friend with no limit, plus ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT at ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} friends; check-in pays ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT a week; social pays ${SOCIAL_TASKS.reduce((a, x) => a + x.reward, 0) + SOCIAL_BONUS} USDT; the quiz pays ${QUIZ_REWARD} USDT; the ${FREE_DROP.sym} launch gives ${FREE_DROP.perUser} ${FREE_DROP.sym} per wallet.`)],
-    [L('獎勵多久到帳？', 'How fast do rewards arrive?'), L('點擊領取後立即空投，通常幾秒內完成區塊確認並計入現貨帳戶。', 'They are airdropped as soon as you claim and usually confirm into your spot account within seconds.')],
+    [L('獎勵多久到帳？', 'How fast do rewards arrive?'), L(`USDT 獎勵由平台直接記入現貨帳戶，點擊領取即到帳；${FREE_DROP.sym} 通過鏈上空投發放，幾秒內完成區塊確認。`, `USDT rewards are booked straight to your spot account the moment you claim; ${FREE_DROP.sym} is airdropped on-chain and confirms within seconds.`)],
     [L('獎勵可以提幣嗎？', 'Can I withdraw rewards?'), L('可以。到帳後與充值的資產相同，可以交易、質押或提到外部錢包。', 'Yes. Once received they work like deposits: trade, stake or withdraw them.')],
-    [L('空投地址是什麼？', 'What is the airdrop address?'), L('每個錢包在 Novarix 都有專屬的交易所地址，與充值地址相同，獎勵會直接發送到這裡。', 'Each wallet has its own Novarix exchange address, the same as its deposit address. Rewards are sent there.')],
+    [L('交易所地址是什麼？', 'What is my exchange address?'), L('每個錢包在 Novarix 都有專屬的交易所地址，與充值地址相同。活動獎勵都記入這個地址對應的帳戶。', 'Each wallet has its own Novarix exchange address, the same as its deposit address. Campaign rewards go to that account.')],
   ];
   return (
     <section className="card faq">
@@ -301,8 +301,7 @@ function RewardWallet() {
       ) : <p className="muted small">{L('暫無可領取的獎勵，去完成下面的活動吧。', 'Nothing to claim yet. Try the campaigns below.')}</p>}
       <div className="rw-addr">
         <div className="row-between small">
-          <span className="muted">{L('空投地址', 'Airdrop address')}</span>
-          <Pill tone="accent">{NETWORKS[airdropNet(REWARD_SYM)].short}</Pill>
+          <span className="muted">{L('交易所地址', 'Exchange address')}</span>
         </div>
         <div className="rw-addr-line"><span className="mono">{shortAddr(airdropAddress())}</span><CopyBtn text={airdropAddress()} /></div>
         <p className="fine">{L('這是你在 Novarix 的專屬地址，獎勵到帳後自動計入現貨帳戶。', 'Your own Novarix address. Rewards are added to your spot account on arrival.')}</p>
@@ -389,10 +388,10 @@ function AirdropFeed() {
   return (
     <section className="card">
       <div className="row-between">
-        <h3 className="sub-h" style={{ margin: 0 }}><ArrowDownToLine size={17} />{L('空投記錄', 'Airdrops')}</h3>
+        <h3 className="sub-h" style={{ margin: 0 }}><ArrowDownToLine size={17} />{L('獎勵記錄', 'Reward history')}</h3>
         <button className="link-btn" onClick={() => go('wallet', 'records')}>{L('全部記錄', 'All records')}<ChevronRight size={14} /></button>
       </div>
-      {rows.length === 0 ? <Empty text={L('還沒有空投記錄', 'No airdrops yet')} /> : (
+      {rows.length === 0 ? <Empty text={L('還沒有獎勵記錄', 'No rewards yet')} /> : (
         <div className="ad-list">
           {rows.map((r) => (
             <button key={r.id} className="ad-row" onClick={() => setView(r.id)}>
@@ -501,8 +500,8 @@ function ClaimCard({ id, onClaim, openClaim }) {
       <div className="claim-dest">
         <ArrowDownToLine size={15} />
         <div>
-          <div className="small">{id === 'checkin' ? L('記入你的交易所帳戶，即時到帳', 'Credited to your exchange account instantly') : L('空投到你的交易所地址', 'Airdropped to your exchange address')}</div>
-          <div className="mono muted small">{s.wallet.connected ? (id === 'checkin' ? shortAddr(airdropAddress(sym)) : `${NETWORKS[airdropNet(sym)].short} · ${shortAddr(airdropAddress(sym))}`) : '--'}</div>
+          <div className="small">{id !== 'drop' ? L('記入你的交易所帳戶，即時到帳', 'Credited to your exchange account instantly') : L('空投到你的交易所地址', 'Airdropped to your exchange address')}</div>
+          <div className="mono muted small">{s.wallet.connected ? (id !== 'drop' ? shortAddr(airdropAddress(sym)) : `${NETWORKS[airdropNet(sym)].short} · ${shortAddr(airdropAddress(sym))}`) : '--'}</div>
         </div>
       </div>
       {last && (
@@ -529,6 +528,7 @@ function RulesCard({ id }) {
       L(`好友通過你的連結註冊並連接錢包，你獲得 ${INVITE_REWARD} USDT，好友獲得 ${INVITEE_REWARD} USDT。`, `When a friend signs up through your link and connects a wallet, you get ${INVITE_REWARD} USDT and they get ${INVITEE_REWARD} USDT.`),
       L(`邀請人數不限；邀請滿 ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} 人可額外獲得 ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT。`, `No limit on friends; reaching ${INVITE_MILESTONES.map((x) => x[0]).join(' / ')} friends adds ${INVITE_MILESTONES.map((x) => x[1]).join(' / ')} USDT.`),
       L('同一裝置或同一錢包重複註冊不計入邀請。', 'Repeat sign-ups from the same device or wallet do not count.'),
+      L('獎勵由平台直接記入你的交易所帳戶，即時到帳。', 'Rewards are booked straight to your exchange account, instantly.'),
     ],
     checkin: [
       L(`每天可簽到一次，連續 7 天為一週，第 1–7 天分別獲得 ${CHECKIN_REWARDS.join(' / ')} USDT，每週最多 ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT。`, `Check in once a day. Seven days in a row make a week; days 1–7 pay ${CHECKIN_REWARDS.join(' / ')} USDT, up to ${CHECKIN_REWARDS.reduce((a, b) => a + b, 0)} USDT a week.`),
@@ -540,11 +540,13 @@ function RulesCard({ id }) {
       L('點擊「前往」打開官方帳號並完成關注，系統會在幾秒內自動驗證。', 'Tap "Go" to open the official account and follow. Verification takes a few seconds.'),
       L(`全部任務完成後額外獎勵 ${SOCIAL_BONUS} USDT。`, `Finish every task for a ${SOCIAL_BONUS} USDT bonus.`),
       L('取消關注後，平台有權收回已發放的獎勵。', 'Unfollowing may void rewards already paid.'),
+      L('獎勵由平台直接記入你的交易所帳戶，即時到帳。', 'Rewards are booked straight to your exchange account, instantly.'),
     ],
     quiz: [
       L(`共 ${QUIZ.length} 道題，全部答對才能領取 ${QUIZ_REWARD} USDT。`, `${QUIZ.length} questions. Answer all correctly to claim ${QUIZ_REWARD} USDT.`),
       L('答錯可以無限次重答。', 'You can retry as many times as you like.'),
       L('每個帳戶限領一次。', 'One reward per account.'),
+      L('獎勵由平台直接記入你的交易所帳戶，即時到帳。', 'Rewards are booked straight to your exchange account, instantly.'),
     ],
   }[id];
   return (

@@ -162,7 +162,7 @@ function Records() {
   const [k, setK] = useState('all');
   const [view, setView] = useState(null);
   const rows = s.records.filter((r) => k === 'all' || r.kind === k);
-  const kind = { deposit: L('充值', 'Deposit'), withdraw: L('提幣', 'Withdraw'), transfer: L('劃轉', 'Transfer'), convert: L('閃兌', 'Convert'), swap: L('兌換', 'Swap'), otc: 'OTC', lend: L('借貸', 'Lending'), airdrop: L('空投', 'Airdrop') };
+  const kind = { deposit: L('充值', 'Deposit'), withdraw: L('提幣', 'Withdraw'), transfer: L('劃轉', 'Transfer'), convert: L('閃兌', 'Convert'), swap: L('兌換', 'Swap'), otc: 'OTC', lend: L('借貸', 'Lending'), airdrop: L('活動獎勵', 'Rewards') };
   const src = { drop: L('免費申購', 'Free launch'), invite: L('邀請好友', 'Invite friends'), checkin: L('每日簽到', 'Daily check-in'), social: L('社媒任務', 'Social tasks'), quiz: L('答題學院', 'Learn & earn') };
   const lendAct = { supply: L('存入', 'Supply'), withdraw: L('取出', 'Withdraw'), borrow: L('借出', 'Borrow'), repay: L('還款', 'Repay') };
   const accN = (x) => (x === 'spot' ? L('現貨', 'Spot') : L('合約', 'Futures'));
@@ -177,7 +177,7 @@ function Records() {
               {rows.slice(0, 80).map((r) => (
                 <tr key={r.id} className={cx(r.kind === 'airdrop' && 'clickable')} onClick={r.kind === 'airdrop' ? () => setView(r.id) : undefined}>
                   <td className="mono muted">{dateTime(r.ts, true)}</td>
-                  <td>{kind[r.kind]}{r.kind === 'lend' ? ' · ' + lendAct[r.action] : ''}{r.kind === 'otc' ? ' · ' + (r.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')) : ''}</td>
+                  <td>{r.kind === 'airdrop' && !r.internal ? L('空投', 'Airdrop') : kind[r.kind]}{r.kind === 'lend' ? ' · ' + lendAct[r.action] : ''}{r.kind === 'otc' ? ' · ' + (r.side === 'buy' ? L('買入', 'Buy') : L('賣出', 'Sell')) : ''}</td>
                   <td><span className="row-gap"><CoinIcon sym={r.sym} size={18} />{r.sym}</span></td>
                   <td className={cx('mono', ['deposit', 'otc', 'airdrop'].includes(r.kind) && r.side !== 'sell' ? 'up' : r.kind === 'withdraw' ? 'down' : '')}>
                     {r.kind === 'deposit' || r.kind === 'airdrop' || (r.kind === 'otc' && r.side === 'buy') ? '+' : r.kind === 'withdraw' ? '-' : ''}{fmt(r.amount, 6)}

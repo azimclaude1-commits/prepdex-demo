@@ -1924,6 +1924,13 @@
 "Se abona en spot tras {0} confirmaciones.",
 "Mapupunta sa spot pagkatapos ng {0} kumpirmasyon."
 ],
+"Credited to your account": [
+"거래소 계정 입금",
+"取引所口座に入金",
+"Dikreditkan ke akaun anda",
+"Abonado en tu cuenta",
+"Naipasok sa account mo"
+],
 "Credited to your exchange account instantly": [
 "거래소 계정에 즉시 입금",
 "取引所口座に即時入金",
@@ -2245,6 +2252,13 @@
 "Setiap dompet mendapat alamat bursa sendiri. Semua ganjaran kempen di-airdrop ke situ.",
 "Cada wallet recibe su propia dirección del exchange. Todas las recompensas se envían allí.",
 "Bawat wallet ay may sariling exchange address. Doon ina-airdrop ang lahat ng reward."
+],
+"Each wallet has its own Novarix exchange address, the same as its deposit address. Campaign rewards go to that account.": [
+"지갑마다 Novarix 전용 거래소 주소가 있으며 입금 주소와 같습니다. 이벤트 보상은 이 주소의 계정으로 입금됩니다.",
+"ウォレットごとにNovarixの専用取引所アドレスがあり、入金アドレスと同じです。キャンペーン報酬はこの口座に入ります。",
+"Setiap dompet mempunyai alamat bursa Novarix sendiri, sama dengan alamat depositnya. Ganjaran kempen masuk ke akaun itu.",
+"Cada wallet tiene su propia dirección en Novarix, la misma que su dirección de depósito. Las recompensas van a esa cuenta.",
+"Bawat wallet ay may sariling Novarix exchange address, kapareho ng deposit address. Doon napupunta ang campaign rewards."
 ],
 "Each wallet has its own Novarix exchange address, the same as its deposit address. Rewards are sent there.": [
 "지갑마다 Novarix 전용 거래소 주소가 있으며 입금 주소와 같습니다. 보상은 이 주소로 바로 전송됩니다.",
@@ -4395,6 +4409,13 @@
 "Ningún proveedor admite este método",
 "Walang provider na sumusuporta rito"
 ],
+"No rewards yet": [
+"아직 보상 기록이 없습니다",
+"報酬の記録はまだありません",
+"Belum ada ganjaran",
+"Aún no hay recompensas",
+"Wala pang reward"
+],
 "No spot assets": [
 "현물 자산 없음",
 "現物資産なし",
@@ -5606,6 +5627,13 @@
 "Recompensa reclamada",
 "Na-claim ang reward"
 ],
+"Reward history": [
+"보상 기록",
+"報酬の履歴",
+"Sejarah ganjaran",
+"Historial de recompensas",
+"Kasaysayan ng reward"
+],
 "Reward limit reached": [
 "보상 인원 한도에 도달했습니다",
 "報酬の上限人数に達しました",
@@ -5640,6 +5668,13 @@
 "Ganjaran",
 "Recompensas",
 "Rewards"
+],
+"Rewards are booked straight to your exchange account, instantly.": [
+"보상은 플랫폼이 거래소 계정에 바로 입금하며 즉시 반영됩니다.",
+"報酬はプラットフォームが取引所口座に直接入金し、即時に反映されます。",
+"Ganjaran dikreditkan terus ke akaun bursa anda, serta-merta.",
+"Las recompensas se abonan directamente en tu cuenta del exchange, al instante.",
+"Direktang ipinapasok ang reward sa exchange account mo, agad-agad."
 ],
 "Rewards claimed": [
 "보상 수령 완료",
@@ -7062,6 +7097,13 @@
 "Opera o únete a una campaña",
 "Mag-trade o sumali sa campaign"
 ],
+"Trade or withdraw": [
+"거래 또는 출금",
+"取引または出金",
+"Dagang atau keluarkan",
+"Opera o retira",
+"Mag-trade o mag-withdraw"
+],
 "Trade or withdraw after confirmations.": [
 "블록 확인 후 거래하거나 출금할 수 있습니다.",
 "承認後に取引・出金できます。",
@@ -7103,6 +7145,13 @@
 "Berdagang, lancar, peroleh.",
 "Opera, invierte, gana.",
 "Mag-trade, mag-launch, kumita."
+],
+"Trade, stake or withdraw once it arrives.": [
+"입금 후 바로 거래, 스테이킹, 출금할 수 있습니다.",
+"入金後すぐに取引・ステーキング・出金できます。",
+"Dagang, pertaruh atau keluarkan sebaik tiba.",
+"Opera, haz staking o retira en cuanto llegue.",
+"Mag-trade, mag-stake o mag-withdraw pagdating."
 ],
 "Trades": [
 "체결",
@@ -7187,6 +7236,27 @@
 "USDC daripada akaun spot anda sahaja. Tukar USDT kepada USDC dengan Tukar.",
 "Solo USDC de tu cuenta spot. Convierte USDT a USDC con Convertir.",
 "USDC lang mula sa spot account mo. I-convert ang USDT sa USDC gamit ang Convert."
+],
+"USDT rewards are booked straight to your spot account the moment you claim; {0} is airdropped on-chain and confirms within seconds.": [
+"USDT 보상은 수령 즉시 플랫폼이 현물 계정에 입금하며, {0}는 온체인 에어드랍으로 몇 초 안에 확인됩니다.",
+"USDT報酬は受け取ると同時にプラットフォームが現物口座へ入金します。{0}はオンチェーンでエアドロップされ、数秒で承認されます。",
+"Ganjaran USDT dikreditkan terus ke akaun spot sebaik dituntut; {0} di-airdrop on-chain dan disahkan dalam beberapa saat.",
+"Las recompensas en USDT se abonan en tu cuenta spot al reclamarlas; {0} se envía on-chain y se confirma en segundos.",
+"Agad na ipinapasok sa spot account ang USDT rewards pag-claim; ina-airdrop on-chain ang {0} at nako-confirm sa loob ng ilang segundo."
+],
+"USDT rewards arrive instantly; {0} is airdropped on-chain to your exchange address.": [
+"USDT 보상은 즉시 입금되며, {0}는 온체인으로 거래소 주소에 에어드랍됩니다.",
+"USDT報酬は即時入金、{0}はオンチェーンで取引所アドレスへエアドロップ。",
+"Ganjaran USDT tiba serta-merta; {0} di-airdrop on-chain ke alamat bursa anda.",
+"Las recompensas en USDT llegan al instante; {0} se envía on-chain a tu dirección del exchange.",
+"Agad dumarating ang USDT rewards; ina-airdrop on-chain ang {0} sa exchange address mo."
+],
+"USDT rewards from check-in, invites, social tasks and the quiz are booked straight to your spot account when you claim; the ORIA launch is airdropped on-chain to your exchange address.": [
+"출석, 초대, SNS, 퀴즈의 USDT 보상은 수령 즉시 플랫폼이 현물 계정에 입금하며, ORIA 신청분은 온체인으로 거래소 주소에 에어드랍됩니다.",
+"チェックイン・招待・SNS・クイズのUSDT報酬は受け取ると同時に現物口座へ入金されます。ORIAの申込分はオンチェーンで取引所アドレスへエアドロップされます。",
+"Ganjaran USDT daripada daftar masuk, jemputan, tugasan sosial dan kuiz dikreditkan terus ke akaun spot apabila dituntut; pelancaran ORIA di-airdrop on-chain ke alamat bursa anda.",
+"Las recompensas en USDT de asistencia, invitaciones, redes y cuestionario se abonan en tu cuenta spot al reclamarlas; el lanzamiento de ORIA se envía on-chain a tu dirección del exchange.",
+"Agad na ipinapasok sa spot account ang USDT rewards mula sa check-in, imbitasyon, social at quiz pag-claim; ina-airdrop on-chain sa exchange address mo ang ORIA launch."
 ],
 "Undersubscribed: full {0} {1} allocated": [
 "인원 미달, 전액 {0} {1} 배정",
@@ -7523,6 +7593,13 @@
 "Apakah fungsi staking NVX di Novarix?",
 "¿Qué hace el staking de NVX en Novarix?",
 "Ano ang nagagawa ng pag-stake ng NVX sa Novarix?"
+],
+"What is my exchange address?": [
+"거래소 주소란 무엇인가요?",
+"取引所アドレスとは?",
+"Apakah alamat bursa saya?",
+"¿Qué es mi dirección del exchange?",
+"Ano ang exchange address ko?"
 ],
 "What is the airdrop address?": [
 "에어드랍 주소란 무엇인가요?",

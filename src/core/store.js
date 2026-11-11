@@ -944,7 +944,7 @@ function airdrop(s, sym, amount, source) {
   lastDrop = uid('r');
   s.records.unshift({ id: lastDrop, kind: 'airdrop', sym, amount, net, source, address: depositAddress(net), status: 'confirming', conf: 0, need: 6, ts: now(), started: Date.now(), txid: '0x' + randHex(64) });
 }
-// Centralised credit (check-in): booked straight to the user's exchange account, nothing on-chain
+// Centralised credit (USDT campaigns): booked straight to the user's exchange account, nothing on-chain
 function credit(s, sym, amount, source) {
   lastDrop = uid('r');
   const net = airdropNet(sym);
@@ -1029,7 +1029,7 @@ export function claimInvite() {
   if (e) return e;
   const { amt, ms } = inviteClaimable();
   if (!(amt > 0)) return { err: L('暫無可領取的獎勵', 'Nothing to claim yet') };
-  set((s) => { s.camp.inviteClaimed = s.camp.invites.length; s.camp.msClaimed.push(...ms.map((m) => m[0])); airdrop(s, REWARD_SYM, amt, 'invite'); });
+  set((s) => { s.camp.inviteClaimed = s.camp.invites.length; s.camp.msClaimed.push(...ms.map((m) => m[0])); credit(s, REWARD_SYM, amt, 'invite'); });
   return { ok: true, amt, rid: lastDrop };
 }
 
@@ -1091,7 +1091,7 @@ export function claimSocial() {
   set((s) => {
     for (const x of ready) s.camp.social[x.id].claimed = true;
     if (bonus) s.camp.socialBonus = true;
-    airdrop(s, REWARD_SYM, amt, 'social');
+    credit(s, REWARD_SYM, amt, 'social');
   });
   return { ok: true, amt, rid: lastDrop };
 }
@@ -1113,7 +1113,7 @@ export function claimQuiz() {
   const q = state.camp.quiz;
   if (!q.passed) return { err: L('全部答對後才能領取', 'Answer every question correctly first') };
   if (q.claimed) return { err: L('已領取', 'Already claimed') };
-  set((s) => { s.camp.quiz.claimed = true; airdrop(s, REWARD_SYM, QUIZ_REWARD, 'quiz'); });
+  set((s) => { s.camp.quiz.claimed = true; credit(s, REWARD_SYM, QUIZ_REWARD, 'quiz'); });
   return { ok: true, amt: QUIZ_REWARD, rid: lastDrop };
 }
 
