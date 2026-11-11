@@ -315,7 +315,7 @@ function RewardWallet() {
   );
 }
 
-function DropFeature({ ready }) {
+export function DropFeature({ ready }) {
   const s = useApp();
   const ph = dropPhase();
   const { start, end } = dropTimes();
@@ -359,7 +359,7 @@ function DropFeature({ ready }) {
   );
 }
 
-function CampCard({ id, s, ready }) {
+export function CampCard({ id, s, ready }) {
   const m = campMeta(id);
   const Icon = m.icon;
   const [text, prog] = campProgress(id, s);

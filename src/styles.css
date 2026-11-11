@@ -1856,3 +1856,36 @@ button.ad-row:hover { background: var(--panel-2); }
 .camp-head-reward { background: rgba(5, 8, 14, 0.38); border: 1px solid rgba(255, 255, 255, 0.16); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .camp-head-reward span { color: rgba(255, 255, 255, 0.7); }
 .camp-head-reward b { color: var(--b3); }
+
+/* ---------- Home: campaigns block, paged news, community card ---------- */
+.home-camps { gap: 16px; }
+.home-camps .final-cta { padding: 26px 32px; }
+.home-camps .final-cta h2 { font-size: clamp(22px, 2.6vw, 30px); }
+.nc { align-items: stretch; }
+.nc-news { display: flex; flex-direction: column; }
+.nc-news .news-list { flex: 1; display: flex; flex-direction: column; }
+.nc-news .news-row { flex: 1; }
+.pager { display: flex; justify-content: center; align-items: center; gap: 6px; padding-top: 14px; margin-top: 4px; border-top: 1px solid var(--line); }
+.pager-btn { min-width: 34px; height: 34px; padding: 0 8px; border-radius: 10px; display: inline-grid; place-items: center; font-weight: 700; font-size: 13px; color: var(--fg-2); background: var(--panel-2); border: 1px solid var(--line); font-family: var(--f-mono); }
+.pager-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.pager-btn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.pager-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nc-social { display: flex; flex-direction: column; gap: 12px; }
+.nc-social .soc-grid { flex: 1; grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.nc-social .soc-card { flex-direction: column; align-items: stretch; justify-content: space-between; gap: 10px; padding: 14px; }
+.soc-top { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.soc-top .soc-logo { width: 42px; height: 42px; }
+.soc-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; text-align: left; }
+.nc-social .soc-n { display: flex; align-items: baseline; gap: 6px; }
+.nc-social .soc-n b { font-size: 20px; font-weight: 700; }
+.nc-social .soc-n small { font-size: 11.5px; color: var(--muted); font-weight: 600; }
+.soc-cta { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 13px; text-align: left; border: 1px solid transparent; }
+.soc-cta span { flex: 1; }
+.soc-cta:hover { border-color: var(--accent); }
+@media (max-width: 640px) {
+  .home-camps .final-cta { padding: 22px 18px; }
+  .nc-social .soc-grid { grid-template-columns: 1fr 1fr; }
+  .nc-social .soc-card { padding: 12px; }
+  .soc-top .soc-logo { width: 36px; height: 36px; }
+  .soc-desc { display: none; }
+}

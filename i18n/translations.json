@@ -1567,6 +1567,13 @@
 "Comprometido",
 "Nakalaan"
 ],
+"Community chat with 24/7 support": [
+"커뮤니티 채팅, 24시간 고객 지원",
+"コミュニティチャット、24時間サポート",
+"Sembang komuniti dengan sokongan 24/7",
+"Chat de la comunidad con soporte 24/7",
+"Community chat na may 24/7 na suporta"
+],
 "Community holders": [
 "커뮤니티 보유자",
 "コミュニティ保有者",
@@ -1972,6 +1979,13 @@
 "Daftar masuk harian",
 "Asistencia diaria",
 "Araw-araw na check-in"
+],
+"Daily check-in now runs weekly: 10 USDT for 7 days in a row": [
+"매일 출석이 주간 단위로 변경: 연속 7일 총 10 USDT",
+"デイリーチェックインが週単位に:連続7日で合計10 USDT",
+"Daftar masuk harian kini mingguan: 10 USDT untuk 7 hari berturut-turut",
+"La asistencia diaria ahora es semanal: 10 USDT por 7 días seguidos",
+"Lingguhan na ang daily check-in: 10 USDT sa 7 sunod-sunod na araw"
 ],
 "Day {0}": [
 "{0}일째",
@@ -2672,6 +2686,13 @@
 "Ikuti kami",
 "Síguenos",
 "I-follow kami"
+],
+"Follow us and claim up to 15 USDT in the rewards hub": [
+"공식 계정을 팔로우하고 이벤트 센터에서 최대 15 USDT 받기",
+"公式アカウントをフォローして、キャンペーンセンターで最大15 USDT",
+"Ikuti kami dan tuntut sehingga 15 USDT di hab ganjaran",
+"Síguenos y reclama hasta 15 USDT en el centro de recompensas",
+"I-follow kami at mag-claim ng hanggang 15 USDT sa rewards hub"
 ],
 "Free ORIA launch: connect and sign to claim": [
 "ORIA 무료 신청 오픈: 지갑 연결 후 서명만 하면 수령",
@@ -3457,6 +3478,13 @@
 "LTV / Umbral de liq.",
 "LTV / Liq. threshold"
 ],
+"LUMN launchpad sale closed, 4.2x oversubscribed": [
+"LUMN 런치패드 청약 마감, 4.2배 초과 청약",
+"LUMNのローンチパッド申込が終了、4.2倍の超過申込",
+"Jualan launchpad LUMN ditutup, 4.2x terlebih langganan",
+"Venta de LUMN en launchpad cerrada, 4,2x sobresuscrita",
+"Sarado na ang LUMN launchpad sale, 4.2x oversubscribed"
+],
 "Lands in spot": [
 "현물 계정 자동 입금",
 "現物口座に自動入金",
@@ -3519,6 +3547,13 @@
 "Pinjaman",
 "Préstamos",
 "Lending"
+],
+"Lending launched with 6 collateral assets": [
+"대출 마켓 오픈, 6종 자산 담보 지원",
+"レンディング開始、6種類の担保資産に対応",
+"Pinjaman dilancarkan dengan 6 aset cagaran",
+"Préstamos lanzados con 6 activos de garantía",
+"Inilunsad ang lending na may 6 na collateral asset"
 ],
 "Lev.": [
 "레버리지",
@@ -3625,6 +3660,13 @@
 "Listado",
 "Listing"
 ],
+"Listings and campaigns first": [
+"신규 상장과 이벤트를 가장 먼저",
+"新規上場とキャンペーンをいち早く",
+"Penyenaraian dan kempen terlebih dahulu",
+"Listados y campañas antes que nadie",
+"Unang balita sa listing at campaign"
+],
 "Live": [
 "진행 중",
 "開催中",
@@ -3701,6 +3743,13 @@
 "Beta mainnet",
 "Mainnet beta",
 "Mainnet beta"
+],
+"Maintenance": [
+"점검",
+"メンテナンス",
+"Penyelenggaraan",
+"Mantenimiento",
+"Maintenance"
 ],
 "Margin": [
 "증거금",
@@ -3975,6 +4024,13 @@
 "Meses tras el TGE",
 "Buwan pagkatapos ng TGE"
 ],
+"MoonPay and Banxa card on-ramps added to OTC": [
+"OTC에 MoonPay·Banxa 카드 구매 채널 추가",
+"OTCにMoonPay・Banxaのカード購入チャネルを追加",
+"Saluran kad MoonPay dan Banxa ditambah ke OTC",
+"MoonPay y Banxa añadidos como compra con tarjeta en OTC",
+"Naidagdag sa OTC ang MoonPay at Banxa card on-ramp"
+],
 "More than supplied": [
 "예치액을 초과합니다",
 "預入額を超えています",
@@ -4142,6 +4198,20 @@
 "Baharu",
 "Nuevas",
 "Bago"
+],
+"News on listings, campaigns and airdrops.": [
+"신규 상장, 이벤트, 에어드랍 소식.",
+"新規上場・キャンペーン・エアドロップの情報。",
+"Berita penyenaraian, kempen dan airdrop.",
+"Novedades de listados, campañas y airdrops.",
+"Balita sa listing, campaign at airdrop."
+],
+"Next page": [
+"다음 페이지",
+"次のページ",
+"Halaman seterusnya",
+"Página siguiente",
+"Susunod na pahina"
 ],
 "No": [
 "아니요",
@@ -4947,6 +5017,13 @@
 "Pratonton",
 "Vista previa",
 "Preview"
+],
+"Previous page": [
+"이전 페이지",
+"前のページ",
+"Halaman sebelumnya",
+"Página anterior",
+"Nakaraang pahina"
 ],
 "Price": [
 "가격",
@@ -6362,6 +6439,13 @@
 "Intercambio completado",
 "Kumpleto ang swap"
 ],
+"Swap launched with 21 coins": [
+"스왑 오픈, 21종 코인 지원",
+"スワップ開始、21銘柄に対応",
+"Swap dilancarkan dengan 21 syiling",
+"Swap lanzado con 21 monedas",
+"Inilunsad ang swap na may 21 coin"
+],
 "Swap straight from your spot balance. We pick the best route and settle instantly.": [
 "현물 잔액으로 바로 스왑하세요. 최적 경로를 자동으로 선택하고 즉시 정산합니다.",
 "現物残高からそのままスワップ。最適なルートを自動で選び、即時に決済します。",
@@ -6943,6 +7027,13 @@
 "Operaciones",
 "Mga trade"
 ],
+"Trading talk and AMAs": [
+"트레이딩 토론과 AMA",
+"トレード談義とAMA",
+"Perbincangan dagangan dan AMA",
+"Charlas de trading y AMAs",
+"Usapang trading at AMA"
+],
 "Traditional private credit is a $1.7T market that is hard to access, opaque and illiquid. Vela records every disbursement, repayment and delinquency in smart contracts, turning monthly reports into verifiable on-chain state, and lets LP shares trade on a secondary market.": [
 "전통적인 사모 대출은 1.7조 달러 규모지만 접근이 어렵고 불투명하며 유동성이 낮습니다. Vela는 모든 대출 실행·상환·연체를 스마트 컨트랙트에 기록해 월간 보고서를 검증 가능한 온체인 상태로 바꾸고, LP 지분을 2차 시장에서 거래할 수 있게 합니다.",
 "従来のプライベートクレジットは 1.7 兆ドル規模ですが、参入が難しく不透明で流動性に乏しい市場です。Vela はすべての貸付・返済・延滞をスマートコントラクトに記録し、月次報告を検証可能なオンチェーン状態に変え、LP 持分をセカンダリー市場で取引可能にします。",
@@ -6991,6 +7082,13 @@
 "Trend",
 "Tendencia",
 "Trend"
+],
+"Tutorials and weekly market recaps": [
+"상품 가이드와 주간 시황",
+"使い方ガイドと週間マーケット",
+"Tutorial dan ringkasan pasaran mingguan",
+"Tutoriales y resumen semanal del mercado",
+"Tutorials at lingguhang market recap"
 ],
 "Type": [
 "유형",
@@ -7271,6 +7369,13 @@
 "Faucet dompet",
 "Faucet de billetera",
 "Wallet faucet"
+],
+"Wallet upgrade complete; deposits and withdrawals resumed": [
+"지갑 시스템 업그레이드 완료, 입출금 재개",
+"ウォレットのアップグレード完了、入出金を再開",
+"Naik taraf dompet selesai; deposit dan pengeluaran disambung semula",
+"Actualización de wallets completada; depósitos y retiros reanudados",
+"Tapos ang wallet upgrade; balik na ang deposit at withdrawal"
 ],
 "Watch": [
 "주의",
@@ -7608,6 +7713,13 @@
 "Tu dirección de depósito de {0}",
 "Ang {0} deposit address mo"
 ],
+"ZEPH/USDT spot pair listed": [
+"ZEPH/USDT 현물 거래쌍 상장",
+"ZEPH/USDT現物ペアを上場",
+"Pasangan spot ZEPH/USDT disenaraikan",
+"Par spot ZEPH/USDT listado",
+"Nailista ang ZEPH/USDT spot pair"
+],
 "confirmations": [
 "회 컨펌",
 "承認",
@@ -7649,6 +7761,13 @@
 "yuran",
 "comisión",
 "fee"
+],
+"followers": [
+"팔로워",
+"フォロワー",
+"pengikut",
+"seguidores",
+"followers"
 ],
 "min": [
 "분",
@@ -7873,6 +7992,13 @@
 "Minimum {0} ialah {1} {2}",
 "El mínimo de {0} es {1} {2}",
 "Ang minimum sa {0} ay {1} {2}"
+],
+"{0} posts": [
+"총 {0}건",
+"全{0}件",
+"{0} siaran",
+"{0} publicaciones",
+"{0} post"
 ],
 "{0} questions. Answer all correctly to claim {1} USDT.": [
 "총 {0}문제이며 모두 맞혀야 {1} USDT를 받을 수 있습니다.",

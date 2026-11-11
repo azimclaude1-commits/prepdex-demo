@@ -5,12 +5,12 @@ import {
 } from 'lucide-react';
 import { COINS, COIN, PROJECTS, FREE_DROP, LEND_MARKETS, FIATS, MAX_LEV, STAKE_PRODUCTS } from '../core/data.js';
 import { L } from '../core/lang.js';
-import { useApp, go, openModal, phase, claimableUsd, checkinState } from '../core/store.js';
+import { useApp, go, openModal, claimables, claimableUsd, checkinState } from '../core/store.js';
 import { useMarket, price, change24, volume24, getCandles } from '../core/market.js';
 import { fmt, fp, usd, compact, amt } from '../core/fmt.js';
 import { Btn, Tabs, CoinIcon, ProjLogo, Spark, Delta, Flash, cx, useMedia, PHONE } from '../ui/kit.jsx';
-import { CAMP_IDS, campMeta, CampArt } from './Rewards.jsx';
-import { TickerTape, LaunchShowcase, TradeShowcase, EarnSection, SecuritySection, NewsCommunity, Faq, FinalCta } from './HomeSections.jsx';
+import { CAMP_IDS, DropFeature, CampCard } from './Rewards.jsx';
+import { TickerTape, TradeShowcase, EarnSection, SecuritySection, NewsCommunity, Faq, CampBanner } from './HomeSections.jsx';
 
 const spark = (sym, n = 48) => getCandles(sym, '1h').slice(-n).map((x) => x.close);
 
@@ -51,16 +51,12 @@ export function Home() {
 
       <StatsStrip />
       <CampaignStrip />
-      <LaunchShowcase />
       <Markets />
       <TradeShowcase />
       <EarnSection />
-      <Products />
       <SecuritySection />
       <NewsCommunity />
-      <GetStarted />
       <Faq />
-      <FinalCta />
     </div>
   );
 }
@@ -114,27 +110,20 @@ function StatsStrip() {
   );
 }
 
+// Campaign banner and the campaign cards, the same cards as the rewards hub
 function CampaignStrip() {
   const s = useApp();
+  const ready = claimables();
   return (
-    <section className="lp-sec">
+    <section className="lp-sec home-camps">
       <div className="sec-head">
         <h2 className="display sec-title"><Flame size={20} className="accent-text" />{L('熱門活動', 'Campaigns')}</h2>
         <button className="link-btn" onClick={() => go('rewards')}>{L('全部活動', 'All campaigns')}<ChevronRight size={14} /></button>
       </div>
-      <div className="camp-strip">
-        {CAMP_IDS.map((id) => {
-          const m = campMeta(id);
-          const Icon = m.icon;
-          return (
-            <button key={id} className={cx('camp-mini', id === 'drop' && 'hot')} style={{ '--tone': m.tone, '--b1': m.colors[0], '--b2': m.colors[1], '--b3': m.colors[2] }} onClick={() => go('rewards', id)}>
-              <CampArt id={id} size={42} ring />
-              <b>{m.title}</b>
-              <span className="camp-reward"><Gift size={12} />{m.reward}</span>
-              {id === 'drop' && s.camp.drop == null && <span className="free-badge sm">{L('免費', 'FREE')}</span>}
-            </button>
-          );
-        })}
+      <CampBanner />
+      <div className="camp-grid">
+        <DropFeature ready={ready.drop} />
+        {CAMP_IDS.slice(1).map((id) => <CampCard key={id} id={id} s={s} ready={ready[id]} />)}
       </div>
     </section>
   );
@@ -175,63 +164,3 @@ function Markets() {
   );
 }
 
-function Products() {
-  const live = PROJECTS.filter((p) => phase(p) === 'live').length;
-  const maxApr = Math.max(...STAKE_PRODUCTS.map((x) => x.apr));
-  const maxLev = Math.max(...Object.values(MAX_LEV));
-  const items = [
-    ['launchpad', Rocket, L('認購 Launchpad', 'Launchpad'), L('經過盡調的早期項目，USDC 認購，超募自動退款。', 'Vetted early projects in USDC, with automatic refunds when oversubscribed.'), L(`${live} 個項目認購中`, `${live} sales live`)],
-    ['spot', CandlestickChart, L('現貨交易', 'Spot trading'), L('限價與市價單，即時深度與 K 線。', 'Limit and market orders with live depth and charts.'), L(`${COINS.length - 2} 個幣種`, `${COINS.length - 2} coins`)],
-    ['futures', Activity, L('永續合約', 'Perpetual futures'), L('全倉或逐倉，支援止盈止損。', 'Cross or isolated margin with take-profit and stop-loss.'), L(`最高 ${maxLev} 倍`, `Up to ${maxLev}x`)],
-    ['swap', ArrowLeftRight, L('一鍵兌換', 'Swap'), L('自動選擇最優路徑，即時成交。', 'Best route picked automatically, filled instantly.'), L('手續費 0.1%', '0.1% fee')],
-    ['staking', Layers, L('質押理財', 'Staking'), L('活期與定期產品，質押 NVX 提升等級。', 'Flexible and fixed terms. Stake NVX to raise your tier.'), L(`年化最高 ${Math.round(maxApr * 100)}%`, `Up to ${Math.round(maxApr * 100)}% APR`)],
-    ['lending', Landmark, L('借貸', 'Lending'), L('存入賺利息，或抵押資產借款。', 'Supply to earn interest or borrow against collateral.'), L(`${LEND_MARKETS.length} 個市場`, `${LEND_MARKETS.length} markets`)],
-    ['otc', BadgeDollarSign, L('OTC 買幣', 'Buy crypto'), L('銀行卡快捷買幣與 P2P 商家交易。', 'Card purchases and P2P merchant trades.'), L(`${FIATS.length} 種法幣`, `${FIATS.length} currencies`)],
-  ];
-  return (
-    <section className="lp-sec">
-      <div className="sec-head"><h2 className="display sec-title">{L('一個帳戶，全部產品', 'Every product, one account')}</h2></div>
-      <div className="prod-grid">
-        {items.map(([k, Icon, title, desc, stat]) => (
-          <button key={k} className="prod-card" onClick={() => go(k)}>
-            <span className="prod-ico"><Icon size={22} /></span>
-            <b>{title}</b>
-            <p>{desc}</p>
-            <span className="prod-stat">{stat}<ArrowUpRight size={15} /></span>
-          </button>
-        ))}
-        <div className="prod-card trust">
-          <span className="prod-ico"><ShieldCheck size={22} /></span>
-          <b>{L('資產安全', 'Security')}</b>
-          <p>{L('95% 資產冷錢包存放，每月公佈儲備金證明。', '95% of assets in cold storage, with monthly proof of reserves.')}</p>
-          <span className="prod-stat"><Globe size={14} />{L('支援 8 種語言', '8 languages')}</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function GetStarted() {
-  const s = useApp();
-  const steps = [
-    [Wallet, L('連接錢包', 'Connect a wallet'), L('用 MetaMask 等插件錢包簽名登入，不消耗 Gas。', 'Sign in with MetaMask or another extension wallet. No gas.'), s.wallet.connected, () => openModal('connect'), L('連接', 'Connect')],
-    [ArrowDownToLine, L('充值到專屬地址', 'Deposit to your address'), L('平台為你分配專屬充值地址，區塊確認後自動到帳。', 'You get your own deposit address. Funds arrive after confirmations.'), s.records.some((r) => r.kind === 'deposit'), () => openModal(s.wallet.connected ? 'deposit' : 'connect'), L('充值', 'Deposit')],
-    [Rocket, L('交易或參與活動', 'Trade or join a campaign'), L('開始交易、認購新項目，或在活動中心完成任務領取 USDT。', 'Trade, join a token sale, or finish tasks in the rewards hub for USDT.'), false, () => go('rewards'), L('去看看', 'Explore')],
-  ];
-  return (
-    <section className="card get-started">
-      <h2 className="display sec-title">{L('三步開始', 'Get started in 3 steps')}</h2>
-      <div className="gs-grid">
-        {steps.map(([Icon, title, desc, done, act, label], i) => (
-          <div key={i} className={cx('gs-step', done && 'done')}>
-            <span className="gs-n mono">0{i + 1}</span>
-            <span className="prod-ico"><Icon size={20} /></span>
-            <b>{title}</b>
-            <p>{desc}</p>
-            {done ? <span className="gs-ok">{L('已完成', 'Done')}</span> : <Btn size="sm" variant="soft" onClick={act}>{label}<ChevronRight size={14} /></Btn>}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}

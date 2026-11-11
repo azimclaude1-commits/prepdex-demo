@@ -1,7 +1,7 @@
 // Extra home page sections: ticker tape, launches, trading, earn, security, news, FAQ and a closing call to action.
 import { useState } from 'react';
 import {
-  Rocket, Clock, ChevronRight, ChevronDown, Zap, Target, ShieldCheck, Lock, Vault, KeyRound, Landmark, Layers, Megaphone,
+  Rocket, Clock, ChevronRight, ChevronDown, ChevronLeft, Zap, Target, ShieldCheck, Lock, Vault, KeyRound, Landmark, Layers, Megaphone,
   CandlestickChart, Activity, Gauge, LineChart, Wallet, Gift, ArrowUpRight, Users, BadgeCheck,
 } from 'lucide-react';
 import { COINS, COIN, PROJECTS, STAKE_PRODUCTS, FUTURES, MAX_LEV, BRAND } from '../core/data.js';
@@ -29,58 +29,6 @@ export function TickerTape() {
     <div className="tape" aria-hidden="true">
       <div className="tape-track">{row}{row}</div>
     </div>
-  );
-}
-
-// Live and upcoming token sales
-export function LaunchShowcase() {
-  const list = PROJECTS.filter((p) => phase(p) !== 'ended').slice(0, 3);
-  const t = now();
-  return (
-    <section className="lp-sec">
-      <div className="sec-head">
-        <h2 className="display sec-title"><Rocket size={20} className="accent-text" />{L('熱門申購', 'Hot launches')}</h2>
-        <span className="count">{list.length}</span>
-        <button className="link-btn" onClick={() => go('launchpad')}>{L('全部項目', 'All projects')}<ChevronRight size={14} /></button>
-      </div>
-      <div className="ls-grid">
-        {list.map((p) => {
-          const ph = phase(p);
-          const { start, end } = projTimes(p);
-          const r = raised(p);
-          const [a, b, c] = p.colors;
-          return (
-            <button key={p.id} className="ls-card" style={{ '--b1': a, '--b2': b, '--b3': c }} onClick={() => go('project', p.id)}>
-              <div className="ls-top">
-                <div className="banner-grid" />
-                <div className="ls-mark"><ProjLogo p={p} size={120} /></div>
-                <span className={cx('ls-chip', ph)}>
-                  {ph === 'live' ? <><i className="live-dot" />{L('認購中', 'Live')} · <b className="mono">{countdown(end - t)}</b></> : <><Clock size={12} />{L('距開始', 'starts in')} <b className="mono">{countdown(start - t)}</b></>}
-                </span>
-                <div className="ls-id">
-                  <ProjLogo p={p} size={44} ring />
-                  <div><b className="display">{p.sym}</b><span>{p.name}</span></div>
-                </div>
-              </div>
-              <div className="ls-body">
-                <p>{L(...p.tagline)}</p>
-                <div className="ls-kv">
-                  <div><span>{L('認購價', 'Sale price')}</span><b className="mono">{p.price} USDC</b></div>
-                  <div><span>{L('硬頂', 'Hard cap')}</span><b className="mono">${compact(p.hardCap, 1)}</b></div>
-                  <div><span>{L('參與人數', 'Participants')}</span><b className="mono">{ph === 'live' ? fmt(participants(p), 0) : '--'}</b></div>
-                </div>
-                {ph === 'live' && (
-                  <div className="ls-prog">
-                    <div className="row-between small"><span className="muted">{L('募集進度', 'Raised')}</span><b className="mono accent-text">{((r / p.hardCap) * 100).toFixed(1)}%</b></div>
-                    <Progress value={Math.min(1, r / p.hardCap)} glow />
-                  </div>
-                )}
-              </div>
-            </button>
-          );
-        })}
-      </div>
-    </section>
   );
 }
 
@@ -220,47 +168,74 @@ export function SecuritySection() {
 }
 
 // Announcements and community links
+const NEWS_PAGE = 5;
+
+// Announcements (paged) and community links
 export function NewsCommunity() {
   const t = now();
+  const [page, setPage] = useState(0);
   const news = [
     [L('上新', 'Listing'), L('ORIA 免費申購開啟：連接錢包簽名即可領取', 'Free ORIA launch: connect and sign to claim'), t - 1 * DAY, () => go('rewards', 'drop')],
     [L('活動', 'Campaign'), L('邀請好友活動上線，好友連接錢包後雙方各得 2 USDT', 'Invite friends: you and each friend get 2 USDT when they connect'), t - 3 * DAY, () => go('rewards', 'invite')],
+    [L('活動', 'Campaign'), L('每日簽到改為每週一輪，連續 7 天共 10 USDT', 'Daily check-in now runs weekly: 10 USDT for 7 days in a row'), t - 4 * DAY, () => go('rewards', 'checkin')],
     [L('產品', 'Product'), L('合約新增 TON、LINK 永續，最高 50 倍槓桿', 'TON and LINK perpetuals added, up to 50x'), t - 6 * DAY, () => go('futures', 'TON')],
+    [L('上新', 'Listing'), L('ZEPH/USDT 現貨交易對上線', 'ZEPH/USDT spot pair listed'), t - 8 * DAY, () => go('spot', 'ZEPH_USDT')],
     [L('公告', 'Notice'), L('10 月儲備金證明報告已發佈，總儲備率 108%', 'October proof of reserves published: 108% total'), t - 10 * DAY, null],
+    [L('產品', 'Product'), L('一鍵兌換上線，支援 21 個幣種', 'Swap launched with 21 coins'), t - 12 * DAY, () => go('swap')],
     [L('理財', 'Earn'), L('NVX 180 天定期上線，年化 36%', 'NVX 180-day fixed term launched at 36% APR'), t - 14 * DAY, () => go('staking')],
+    [L('公告', 'Notice'), L('OTC 新增 MoonPay、Banxa 銀行卡買幣渠道', 'MoonPay and Banxa card on-ramps added to OTC'), t - 17 * DAY, () => go('otc')],
+    [L('維護', 'Maintenance'), L('錢包系統升級完成，充提已恢復', 'Wallet upgrade complete; deposits and withdrawals resumed'), t - 20 * DAY, null],
+    [L('上新', 'Listing'), L('LUMN Launchpad 認購完成，超募 4.2 倍', 'LUMN launchpad sale closed, 4.2x oversubscribed'), t - 24 * DAY, () => go('launchpad')],
+    [L('產品', 'Product'), L('借貸市場上線，支援 6 種資產抵押借款', 'Lending launched with 6 collateral assets'), t - 28 * DAY, () => go('lending')],
   ];
+  const pages = Math.ceil(news.length / NEWS_PAGE);
+  const rows = news.slice(page * NEWS_PAGE, page * NEWS_PAGE + NEWS_PAGE);
   const socials = [
-    ['x', 'X', '@NovarixHQ', '486K', '#000000'],
-    ['telegram', 'Telegram', 't.me/novarix', '312K', '#26A5E4'],
-    ['discord', 'Discord', 'discord.gg/novarix', '128K', '#5865F2'],
-    ['youtube', 'YouTube', '@novarix', '54K', '#FF0000'],
+    ['x', 'X', '@NovarixHQ', '486K', '#000000', L('上新與活動第一時間發佈', 'Listings and campaigns first')],
+    ['telegram', 'Telegram', 't.me/novarix', '312K', '#26A5E4', L('中文社群，客服全天在線', 'Community chat with 24/7 support')],
+    ['discord', 'Discord', 'discord.gg/novarix', '128K', '#5865F2', L('交易討論與 AMA 活動', 'Trading talk and AMAs')],
+    ['youtube', 'YouTube', '@novarix', '54K', '#FF0000', L('產品教學與每週行情', 'Tutorials and weekly market recaps')],
   ];
   return (
     <section className="nc">
       <div className="card nc-news">
-        <div className="row-between"><h2 className="display sec-title"><Megaphone size={19} className="accent-text" />{L('最新公告', 'Announcements')}</h2></div>
+        <div className="row-between"><h2 className="display sec-title"><Megaphone size={19} className="accent-text" />{L('最新公告', 'Announcements')}</h2><span className="muted small">{L(`共 ${news.length} 條`, `${news.length} posts`)}</span></div>
         <div className="news-list">
-          {news.map(([tag, title, ts, act], i) => (
-            <button key={i} className="news-row" onClick={act || (() => toast(L('公告詳情（演示）', 'Announcement details (demo)'), 'ok', title))}>
+          {rows.map(([tag, title, ts, act], i) => (
+            <button key={page + '-' + i} className="news-row" onClick={act || (() => toast(L('公告詳情（演示）', 'Announcement details (demo)'), 'ok', title))}>
               <span className="news-tag">{tag}</span>
               <span className="news-title">{title}</span>
               <span className="mono muted small">{dateOnly(ts)}</span>
             </button>
           ))}
         </div>
+        <div className="pager">
+          <button className="pager-btn" disabled={page === 0} onClick={() => setPage(page - 1)} aria-label={L('上一頁', 'Previous page')}><ChevronLeft size={16} /></button>
+          {Array.from({ length: pages }, (_, i) => (
+            <button key={i} className={cx('pager-btn', i === page && 'on')} onClick={() => setPage(i)}>{i + 1}</button>
+          ))}
+          <button className="pager-btn" disabled={page === pages - 1} onClick={() => setPage(page + 1)} aria-label={L('下一頁', 'Next page')}><ChevronRight size={16} /></button>
+        </div>
       </div>
       <div className="card nc-social">
         <h2 className="display sec-title"><Users size={19} className="accent-text" />{L('加入社群', 'Join the community')}</h2>
-        <p className="muted small">{L('獲取上新、活動與空投消息。關注官方帳號後，可在活動中心領取 USDT。', 'Get news on listings, campaigns and airdrops. After following, claim USDT in the rewards hub.')}</p>
+        <p className="muted small">{L('獲取上新、活動與空投消息。', 'News on listings, campaigns and airdrops.')}</p>
         <div className="soc-grid">
-          {socials.map(([k, name, handle, n, bg]) => (
+          {socials.map(([k, name, handle, n, bg, desc]) => (
             <button key={k} className="soc-card" onClick={() => go('rewards', 'social')}>
-              <span className="soc-logo" style={{ background: bg }}><img src={SOCIAL_LOGOS[k]} alt="" width={20} height={20} /></span>
-              <span className="soc-meta"><b>{name}</b><small className="mono">{handle}</small></span>
-              <span className="soc-n mono">{n}</span>
+              <span className="soc-top">
+                <span className="soc-logo" style={{ background: bg }}><img src={SOCIAL_LOGOS[k]} alt="" width={22} height={22} /></span>
+                <span className="soc-meta"><b>{name}</b><small className="mono">{handle}</small></span>
+                <ArrowUpRight size={16} className="muted" />
+              </span>
+              <span className="soc-desc">{desc}</span>
+              <span className="soc-n"><b className="mono">{n}</b><small>{L('關注者', 'followers')}</small></span>
             </button>
           ))}
         </div>
+        <button className="soc-cta" onClick={() => go('rewards', 'social')}>
+          <Gift size={16} /><span>{L('關注官方帳號，在活動中心領取最高 15 USDT', 'Follow us and claim up to 15 USDT in the rewards hub')}</span><ChevronRight size={16} />
+        </button>
       </div>
     </section>
   );
@@ -290,24 +265,25 @@ export function Faq() {
   );
 }
 
-export function FinalCta() {
+// Banner shown above the campaign cards on the home page
+export function CampBanner() {
   const s = useApp();
   return (
-    <section className="final-cta">
+    <div className="final-cta">
       <div className="banner-grid" />
       <div className="final-cta-in">
         <h2 className="display">{L('連接錢包，參與活動', 'Connect a wallet and join in')}</h2>
         <p>{L('完成簽到、關注社媒、答題或邀請好友，領取 USDT 獎勵；簽名申購 ORIA 不需要付款。', 'Check in, follow us, take the quiz or invite friends to earn USDT. Subscribing to ORIA takes a signature, no payment.')}</p>
         <div className="hero-cta">
           {s.wallet.connected
-            ? <Btn size="lg" onClick={() => go('rewards')}><Gift size={17} />{L('前往活動中心', 'Go to rewards')}</Btn>
-            : <Btn size="lg" onClick={() => openModal('connect')}><Wallet size={17} />{L('連接錢包', 'Connect wallet')}</Btn>}
-          <Btn size="lg" variant="ghost" onClick={() => go('spot')}>{L('先看看行情', 'Browse markets')}<ArrowUpRight size={16} /></Btn>
+            ? <Btn onClick={() => go('rewards')}><Gift size={16} />{L('前往活動中心', 'Go to rewards')}</Btn>
+            : <Btn onClick={() => openModal('connect')}><Wallet size={16} />{L('連接錢包', 'Connect wallet')}</Btn>}
+          <Btn variant="ghost" onClick={() => go('spot')}>{L('先看看行情', 'Browse markets')}<ArrowUpRight size={16} /></Btn>
         </div>
       </div>
       <div className="final-coins">
         {['BTC', 'ETH', 'SOL', 'BNB', 'TON', 'NVX'].map((x) => <CoinIcon key={x} sym={x} size={52} />)}
       </div>
-    </section>
+    </div>
   );
 }
