@@ -2,7 +2,7 @@
 import { useSyncExternalStore } from 'react';
 import {
   COIN, ONCHAIN_START, PROJECTS, PROJECT, TIERS, STAKE_PRODUCTS, EARLY_REDEEM_PENALTY,
-  LEND_MARKETS, borrowRate, supplyRate, NETWORKS, netFee, PLATFORM_TOKEN,
+  LEND_MARKETS, borrowRate, supplyRate, NETWORKS, netFee, PLATFORM_TOKEN, WALLETS,
   FREE_DROP, REWARD_SYM, INVITE_REWARD, INVITE_MILESTONES, CHECKIN_REWARDS, SOCIAL_TASKS, SOCIAL_BONUS, QUIZ, QUIZ_REWARD,
 } from './data.js';
 import { price, pairPrice, volume24, subscribe as subscribeMarket } from './market.js';
@@ -195,6 +195,28 @@ export function connectWallet(provider) {
 }
 export function disconnectWallet() {
   set((s) => { s.wallet.connected = false; });
+}
+// Real wallet via WalletConnect: the app follows the wallet's connection state and address.
+// Returns 'connected' when a new connection (or a different account) was picked up.
+export function syncWallet({ address, isConnected, walletName, walletIcon }) {
+  const w = state.wallet;
+  if (isConnected && address) {
+    const first = (walletName || '').toLowerCase().split(' ')[0];
+    const known = first ? WALLETS.find((x) => x.name.toLowerCase().split(' ')[0] === first) : null;
+    const provider = known ? known.id : 'external';
+    const fresh = !w.connected || w.address.toLowerCase() !== address.toLowerCase();
+    if (!fresh && w.provider === provider && w.providerName === walletName && w.providerIcon === walletIcon) return null;
+    set((s) => {
+      s.wallet.connected = true;
+      s.wallet.address = address;
+      s.wallet.provider = provider;
+      s.wallet.providerName = walletName || '';
+      s.wallet.providerIcon = walletIcon || '';
+    });
+    return fresh ? 'connected' : null;
+  }
+  if (w.connected) set((s) => { s.wallet.connected = false; });
+  return null;
 }
 export function switchChain(chain) {
   set((s) => { s.wallet.chain = chain; });

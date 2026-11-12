@@ -14,7 +14,7 @@ import { useMarket } from '../core/market.js';
 import { fmt, amt, usd, countdown, dateTime, shortAddr, randHex } from '../core/fmt.js';
 import { Btn, Progress, Pill, ProjLogo, BrandMark, CoinIcon, CopyBtn, Modal, Portal, Empty, cx } from '../ui/kit.jsx';
 import { orbStyle } from '../layout/Shell.jsx';
-import { WalletGlyph, ChainIcon } from '../layout/Modals.jsx';
+import { WalletGlyph, ChainIcon, currentWallet } from '../layout/Modals.jsx';
 
 // Where campaign rewards are sent from (display only)
 const BASE = CHAINS.find((c) => c.id === 'base');
@@ -28,7 +28,7 @@ const sourceLabel = (src) => ({
 }[src] || src);
 
 function walletOf(s) {
-  return WALLETS.find((x) => x.id === s.wallet.provider) || WALLETS[0];
+  return currentWallet(s);
 }
 
 // The typed data the user signs to subscribe

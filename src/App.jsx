@@ -3,6 +3,7 @@ import { setLang, LANGS } from './core/lang.js';
 import { useApp, useUI } from './core/store.js';
 import { Header, Footer, Toasts, DemoPanel, Backdrop } from './layout/Shell.jsx';
 import { ModalHost } from './layout/Modals.jsx';
+import { setWalletTheme } from './core/walletconnect.js';
 import { Launchpad, ProjectPage } from './pages/Launchpad.jsx';
 import { Spot } from './pages/Spot.jsx';
 import { Futures } from './pages/Futures.jsx';
@@ -38,6 +39,7 @@ export default function App() {
   if (s.theme) root.setAttribute('data-theme', s.theme);
   root.dataset.resolved = resolved;
   root.lang = LANGS.find((x) => x.code === s.lang)?.html || 'zh-Hant';
+  useEffect(() => setWalletTheme(resolved), [resolved]);
 
   let page;
   switch (route.page) {

@@ -11,6 +11,9 @@
     "build:artifact": "npm run build && node scripts/to-artifact.mjs"
   },
   "dependencies": {
+    "@reown/appkit": "1.8.24",
+    "@reown/appkit-adapter-ethers": "1.8.24",
+    "ethers": "6.17.0",
     "lightweight-charts": "4.2.3",
     "lucide-react": "^0.460.0",
     "qrcode-generator": "1.4.4",

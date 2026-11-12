@@ -8,7 +8,7 @@ import {
 } from '../core/data.js';
 import { L } from '../core/lang.js';
 import {
-  useApp, useUI, closeModal, openModal, connectWallet, disconnectWallet, switchChain, faucet, prepareAddress, depositAddress,
+  useApp, useUI, closeModal, openModal, disconnectWallet, switchChain, faucet, depositAddress,
   depositFromWallet, simulateIncoming, withdraw, transfer, convert, bal, go, toast, now,
 } from '../core/store.js';
 import { useMarket, price } from '../core/market.js';
@@ -16,13 +16,14 @@ import { fmt, usd, shortAddr, dateTime, floorTo, adp, pdp, randHex } from '../co
 import { Modal, Btn, Tabs, NumInput, CoinIcon, CoinSelect, QR, CopyBtn, KV, cx, Progress, Pill, BrandMark } from '../ui/kit.jsx';
 import { orbStyle } from './Shell.jsx';
 import { WALLET_LOGOS, CHAIN_LOGOS } from '../core/logos.js';
+import { openWalletModal, disconnectWallet as wcDisconnect } from '../core/walletconnect.js';
 
 export function ModalHost() {
   const { modal } = useUI();
   if (!modal) return null;
   const P = modal.props || {};
   switch (modal.name) {
-    case 'connect': return <ConnectModal {...P} />;
+    case 'connect': return <ConnectBridge />;
     case 'account': return <AccountModal {...P} />;
     case 'deposit': return <DepositModal {...P} />;
     case 'withdraw': return <WithdrawModal {...P} />;
@@ -33,6 +34,7 @@ export function ModalHost() {
 }
 
 export function WalletGlyph({ w, size = 36 }) {
+  if (w.icon) return <img className="wglyph wglyph-img" src={w.icon} width={size} height={size} alt="" draggable="false" />;
   if (WALLET_LOGOS[w.id]) return <img className="wglyph wglyph-img" src={WALLET_LOGOS[w.id]} width={size} height={size} alt="" draggable="false" />;
   return (
     <span className="wglyph" style={{ width: size, height: size, background: `linear-gradient(140deg, ${w.color}, ${w.color}99)` }}>
@@ -46,81 +48,21 @@ export function ChainIcon({ c, size = 16 }) {
 }
 
 // ----------------------------------------------------------------------------
-// Connect + sign-in
+// Connect: opens the real wallet picker (WalletConnect / AppKit)
 // ----------------------------------------------------------------------------
-function ConnectModal() {
-  const [step, setStep] = useState('pick');
-  const [w, setW] = useState(null);
-  const [addr, setAddr] = useState('');
-  const nonce = useMemo(() => randHex(16), []);
-  const pick = (wallet) => {
-    setW(wallet);
-    setStep('connecting');
-    setTimeout(() => { setAddr(prepareAddress()); setStep('sign'); }, 1300);
-  };
-  const sign = () => {
-    setStep('signing');
-    setTimeout(() => {
-      connectWallet(w.id);
-      closeModal();
-      toast(L('已連接並登入', 'Connected and signed in'), 'ok', `${w.name} · ${shortAddr(addr)}`);
-    }, 1100);
-  };
-  return (
-    <Modal title={step === 'pick' ? L('連接錢包', 'Connect a wallet') : w?.name} onClose={closeModal} width={440}>
-      {step === 'pick' && (
-        <>
-          <div className="wallet-list">
-            {WALLETS.map((x) => (
-              <button key={x.id} className="wallet-item" onClick={() => pick(x)}>
-                <WalletGlyph w={x} />
-                <span className="wallet-meta"><b>{x.name}</b><small>{L(...x.hint)}</small></span>
-                {x.installed && <Pill tone="up">{L('已檢測到', 'Detected')}</Pill>}
-                <ChevronRight size={16} className="muted" />
-              </button>
-            ))}
-          </div>
-          <p className="fine">{L('連接即表示你同意《服務條款》與《隱私政策》。本原型不會讀取任何真實錢包。', 'By connecting you accept the Terms and Privacy Policy. This prototype never touches a real wallet.')}</p>
-        </>
-      )}
-      {(step === 'connecting' || step === 'sign' || step === 'signing') && (
-        <div className="connect-flow">
-          <div className="connect-orbit">
-            <WalletGlyph w={w} size={58} />
-            <span className="connect-line" />
-            <BrandMark size={58} />
-          </div>
-          {step === 'connecting' && (
-            <>
-              <h3>{L(`在 ${w.name} 中確認連接`, `Approve the connection in ${w.name}`)}</h3>
-              <p className="muted">{L('請在彈出的錢包窗口中選擇帳戶並授權', 'Pick an account and approve in the wallet pop-up')}</p>
-              <Loader2 className="spin big-spin" size={26} />
-            </>
-          )}
-          {(step === 'sign' || step === 'signing') && (
-            <>
-              <h3>{L('簽名登入', 'Sign in with your wallet')}</h3>
-              <p className="muted">{L('簽名用於驗證你擁有該地址，不會發起交易，也不消耗 Gas。', 'Signing proves you own this address. It sends no transaction and costs no gas.')}</p>
-              <pre className="sign-msg">{`${BRAND.toLowerCase()}.app wants you to sign in with your Ethereum account:
-${addr}
+function ConnectBridge() {
+  useEffect(() => {
+    openWalletModal();
+    closeModal();
+  }, []);
+  return null;
+}
 
-Sign in to ${BRAND}.
-
-URI: https://${BRAND.toLowerCase()}.app
-Version: 1
-Chain ID: 1
-Nonce: ${nonce}
-Issued At: ${new Date(now()).toISOString()}`}</pre>
-              <div className="btn-row">
-                <Btn variant="ghost" onClick={closeModal}>{L('取消', 'Cancel')}</Btn>
-                <Btn onClick={sign} loading={step === 'signing'}><PenLine size={16} />{L('簽名', 'Sign')}</Btn>
-              </div>
-            </>
-          )}
-        </div>
-      )}
-    </Modal>
-  );
+// The connected wallet for display: a known brand, or the name/icon the wallet reported
+export function currentWallet(s) {
+  const known = WALLETS.find((w) => w.id === s.wallet.provider);
+  if (known) return known;
+  return { id: 'external', name: s.wallet.providerName || 'Wallet', color: '#3B99FC', icon: s.wallet.providerIcon, hint: ['', ''] };
 }
 
 // ----------------------------------------------------------------------------
@@ -133,7 +75,7 @@ function AccountModal() {
   const chain = CHAINS.find((c) => c.id === s.wallet.chain) || CHAINS[0];
   const entries = Object.entries(s.wallet.onchain).filter(([, v]) => v > 0);
   const total = entries.reduce((a, [k, v]) => a + v * price(k), 0);
-  const wallet = WALLETS.find((w) => w.id === s.wallet.provider) || WALLETS[0];
+  const wallet = currentWallet(s);
   return (
     <Modal onClose={closeModal} width={400} className="acct" title={null}>
       <div className="acct-top">
@@ -170,7 +112,7 @@ function AccountModal() {
         <button onClick={() => openModal('deposit', { sym: 'USDT' })}><span><ArrowDownToLine size={17} /></span>{L('充值到交易帳戶', 'Deposit to exchange')}<ChevronRight size={16} /></button>
         <button onClick={() => { faucet(); toast(L('已領取測試幣', 'Test tokens received')); }}><span><Droplets size={17} /></span>{L('領取測試幣', 'Get test tokens')}<ChevronRight size={16} /></button>
         <button onClick={() => { closeModal(); go('wallet', 'records'); }}><span><History size={17} /></span>{L('資金記錄', 'Activity')}<ChevronRight size={16} /></button>
-        <button className="danger" onClick={() => { disconnectWallet(); closeModal(); toast(L('已斷開連接', 'Disconnected')); }}><span><LogOut size={17} /></span>{L('斷開連接', 'Disconnect')}</button>
+        <button className="danger" onClick={() => { disconnectWallet(); wcDisconnect(); closeModal(); toast(L('已斷開連接', 'Disconnected')); }}><span><LogOut size={17} /></span>{L('斷開連接', 'Disconnect')}</button>
       </div>
     </Modal>
   );
