@@ -995,7 +995,7 @@ export function dropPhase(t = now()) {
 export function dropTaken() {
   return Math.min(FREE_DROP.slots, FREE_DROP.taken + (state.camp.drop ? 1 : 0));
 }
-export function signDrop({ sig, nonce, provider }) {
+export function signDrop({ sig, nonce, provider, message }) {
   const e = needWallet();
   if (e) return e;
   if (dropPhase() !== 'live') return { err: L('當前不在申購期', 'The subscription window is closed') };
@@ -1004,7 +1004,7 @@ export function signDrop({ sig, nonce, provider }) {
   const id = 'FS' + new Date(now()).toISOString().slice(2, 10).replace(/-/g, '') + randHex(6).toUpperCase();
   set((s) => {
     s.camp.drop = {
-      id, sig, nonce, provider, ts: now(), anchor: dropAnchor(), wallet: s.wallet.address, to: depositAddress(FREE_DROP.net),
+      id, sig, nonce, provider, message, ts: now(), anchor: dropAnchor(), wallet: s.wallet.address, to: depositAddress(FREE_DROP.net),
       amount: FREE_DROP.perUser, queue: FREE_DROP.taken + 1, claimed: false,
     };
   });

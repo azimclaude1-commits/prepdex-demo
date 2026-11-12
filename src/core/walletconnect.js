@@ -1,8 +1,9 @@
 // Real wallet connection through WalletConnect (Reown AppKit).
-// Only the connected address is used; everything else in the prototype stays simulated.
+// The connected address is used as the account, and campaign signatures are real wallet signatures.
 import { createAppKit } from '@reown/appkit';
 import { EthersAdapter } from '@reown/appkit-adapter-ethers';
 import { mainnet, arbitrum, base, bsc } from '@reown/appkit/networks';
+import { verifyMessage } from 'ethers';
 
 // Reown Cloud project ID (public, client-side). Add the site's domain to the project's allowlist.
 export const WC_PROJECT_ID = 'c34b3bde7397ea7ed6780e9ce1d5194d';
@@ -68,4 +69,22 @@ export function watchWallet(cb) {
   const offInfo = k.subscribeWalletInfo((w) => { info = w || null; emit(); });
   const offAcc = k.subscribeAccount((acc) => emit(acc));
   return () => { offInfo?.(); offAcc?.(); };
+}
+
+// Asks the connected wallet to sign a plain-text message (personal_sign). Resolves with the signature.
+export async function signMessage(message, address) {
+  const provider = getKit().getWalletProvider();
+  if (!provider?.request) throw Object.assign(new Error('No wallet connected'), { code: 'NO_WALLET' });
+  const hex = '0x' + Array.from(new TextEncoder().encode(message), (b) => b.toString(16).padStart(2, '0')).join('');
+  return provider.request({ method: 'personal_sign', params: [hex, address] });
+}
+
+// The user pressed Reject / Cancel in the wallet
+export function isUserRejection(e) {
+  return e?.code === 4001 || e?.code === 5000 || e?.code === 'ACTION_REJECTED' || /reject|denied|cancel/i.test(e?.message || '');
+}
+
+// Address that produced the signature (checks it really came from the connected wallet)
+export function recoverSigner(message, signature) {
+  return verifyMessage(message, signature);
 }

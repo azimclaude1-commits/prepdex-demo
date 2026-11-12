@@ -6887,6 +6887,13 @@
 "La solicitud está en tu wallet. La firma solo confirma la suscripción y no puede mover tus fondos.",
 "Nasa wallet mo ang request. Kinukumpirma lang ng signature ang subscription at hindi nito maililipat ang pondo mo."
 ],
+"The request is in your wallet; review and confirm it there. The signature only confirms the subscription and cannot move your funds.": [
+"서명 요청이 지갑으로 전송되었습니다. 지갑에서 확인해 주세요. 서명은 신청 확인용이며 자산을 이동시킬 수 없습니다.",
+"署名リクエストがウォレットに届いています。ウォレットで内容を確認してください。署名は申込の確認のみで、資産を動かすことはできません。",
+"Permintaan ada dalam dompet anda; semak dan sahkan di sana. Tandatangan hanya mengesahkan langganan dan tidak boleh memindahkan dana anda.",
+"La solicitud está en tu wallet; revísala y confírmala allí. La firma solo confirma la suscripción y no puede mover tus fondos.",
+"Nasa wallet mo ang request; suriin at kumpirmahin doon. Kinukumpirma lang ng signature ang subscription at hindi nito maililipat ang pondo mo."
+],
 "The reward leaves the pool right away.": [
 "보상 풀에서 즉시 발송됩니다.",
 "報酬プールから即時に送られます。",
@@ -6901,6 +6908,13 @@
 "La venta no está abierta",
 "Hindi bukas ang sale"
 ],
+"The signature does not match the connected wallet": [
+"서명이 연결된 지갑 주소와 일치하지 않습니다",
+"署名が接続中のウォレットと一致しません",
+"Tandatangan tidak sepadan dengan dompet yang disambung",
+"La firma no coincide con la wallet conectada",
+"Hindi tugma ang signature sa naka-connect na wallet"
+],
 "The subscription window is closed": [
 "신청 기간이 아닙니다",
 "申込期間外です",
@@ -6914,6 +6928,13 @@
 "Token disenaraikan di spot Novarix, dan pelanggan dibuka kunci secara linear mengikut jadual peletakhakan.",
 "El token cotiza en spot de Novarix y los suscriptores desbloquean de forma lineal según el calendario de vesting.",
 "Naka-list ang token sa Novarix spot, at linear na nag-a-unlock ang subscribers ayon sa vesting schedule."
+],
+"The wallet could not sign. Please try again.": [
+"지갑 서명에 실패했습니다. 다시 시도해 주세요.",
+"ウォレットで署名できませんでした。もう一度お試しください。",
+"Dompet tidak dapat menandatangani. Sila cuba lagi.",
+"La wallet no pudo firmar. Inténtalo de nuevo.",
+"Hindi nakapag-sign ang wallet. Subukan ulit."
 ],
 "The window has closed. Claim is open.": [
 "신청이 종료되어 이제 수령할 수 있습니다.",
@@ -7971,6 +7992,13 @@
 "Akaun spot anda kosong. Deposit untuk mula menukar.",
 "Tu cuenta spot está vacía. Deposita para empezar a intercambiar.",
 "Walang laman ang spot account mo. Mag-deposito para makapag-swap."
+],
+"Your wallet is not connected. Reconnect and try again.": [
+"지갑이 연결되어 있지 않습니다. 다시 연결한 후 시도해 주세요.",
+"ウォレットが接続されていません。再接続してからお試しください。",
+"Dompet anda tidak disambung. Sambung semula dan cuba lagi.",
+"Tu wallet no está conectada. Vuelve a conectarla e inténtalo de nuevo.",
+"Hindi naka-connect ang wallet mo. Ikonekta ulit at subukan."
 ],
 "Your {0} deposit address": [
 "내 {0} 입금 주소",

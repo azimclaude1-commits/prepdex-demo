@@ -38,5 +38,6 @@ node scripts/build-i18n.mjs  # 生成多语言字典与简体中文对照表，�
 
 - 配置在 `src/core/walletconnect.js`：Project ID、支持的网络（Ethereum、Arbitrum、Base、BNB Chain）与主题色。
 - 只读取已连接钱包的地址（`syncWallet` 写入 `wallet.address`），其余功能保持原样。
+- ORIA 申购的签名是真实钱包签名（`personal_sign`）：点「唤起钱包签名」后由钱包弹窗确认；拒绝签名会显示「签名已取消」可重签；签名后在本地用 ethers 校验签名地址与已连接地址一致，签名原文与签名保存在申购记录里，可在「我的 ORIA 申购」中查看。
 - 部署前请在 Reown Cloud（cloud.reown.com）项目的 Domain 白名单里加入站点域名，否则 WalletConnect 扫码连接会被拒绝。
 - AppKit 打包进单文件后，`build/index.html` 约 5 MB（gzip 约 1.5 MB）。

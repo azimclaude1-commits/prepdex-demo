@@ -1,6 +1,6 @@
 // Free ORIA launch: subscribe by wallet signature, claim to the spot account, and the subscription page.
 // Also the reward pop-up used by every campaign and the wallet records.
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Check, CheckCircle2, Loader2, Clock, ShieldCheck, PenLine, FlaskConical, FastForward, ArrowLeft, XCircle, Gift, Wallet,
   ArrowDownToLine, FileSignature, ChevronDown, Hourglass, Calculator, Coins, Receipt, ArrowRight,
@@ -14,6 +14,7 @@ import { useMarket } from '../core/market.js';
 import { fmt, amt, usd, countdown, dateTime, shortAddr, randHex } from '../core/fmt.js';
 import { Btn, Progress, Pill, ProjLogo, BrandMark, CoinIcon, CopyBtn, Modal, Portal, Empty, cx } from '../ui/kit.jsx';
 import { orbStyle } from '../layout/Shell.jsx';
+import { signMessage, isUserRejection, recoverSigner } from '../core/walletconnect.js';
 import { WalletGlyph, ChainIcon, currentWallet } from '../layout/Modals.jsx';
 
 // Where campaign rewards are sent from (display only)
@@ -31,17 +32,24 @@ function walletOf(s) {
   return currentWallet(s);
 }
 
-// The typed data the user signs to subscribe
-function typedData(wallet, receiver, nonce, deadline) {
+// The plain-text message the user signs in their wallet to subscribe (personal_sign)
+export function dropMessage(wallet, nonce, issuedAt, deadline) {
+  const en = 'This signature only confirms the subscription. It sends no transaction and costs no gas.';
+  const local = L('此簽名僅用於確認申購，不會發起交易，也不消耗 Gas。', en);
   return [
-    ['Primary type', 'FreeSubscription'],
-    ['Project', `${FREE_DROP.name} (${FREE_DROP.sym})`],
-    ['Amount', `${FREE_DROP.perUser} ${FREE_DROP.sym}`],
-    ['Payment', '0 USDC'],
-    ['Wallet', wallet],
-    ['Nonce', nonce],
-    ['Deadline', new Date(deadline).toISOString()],
-  ];
+    `${BRAND} · ${L(`${FREE_DROP.sym} 免費申購`, `Free ${FREE_DROP.sym} launch`)}`,
+    '',
+    `Project: ${FREE_DROP.name} (${FREE_DROP.sym})`,
+    `Amount: ${FREE_DROP.perUser} ${FREE_DROP.sym}`,
+    'Payment: 0 USDC',
+    `Wallet: ${wallet}`,
+    `Nonce: ${nonce}`,
+    `Issued At: ${new Date(issuedAt).toISOString()}`,
+    `Expiration Time: ${new Date(deadline).toISOString()}`,
+    '',
+    local,
+    ...(local !== en ? [en] : []),
+  ].join('\n');
 }
 
 // Row of label / value used in receipts
@@ -68,56 +76,6 @@ function FlowSteps({ cur }) {
 }
 
 // ----------------------------------------------------------------------------
-// Browser-wallet style signature request
-// ----------------------------------------------------------------------------
-export function WalletPrompt({ fields, onSigned, onReject, onClose }) {
-  const s = useApp();
-  const w = walletOf(s);
-  const [stage, setStage] = useState('opening');
-  useEffect(() => {
-    const t = setTimeout(() => setStage('review'), 900);
-    return () => clearTimeout(t);
-  }, []);
-  const sign = () => {
-    setStage('signing');
-    setTimeout(() => { onSigned('0x' + randHex(130)); onClose(); }, 1100);
-  };
-  const reject = () => { onReject?.(); onClose(); };
-  return (
-    <Portal>
-      <div className="wp-veil" onClick={stage === 'review' ? reject : undefined} />
-      <div className="wp" role="dialog" aria-label={w.name}>
-        <div className="wp-bar">
-          <WalletGlyph w={w} size={22} />
-          <b>{w.name}</b>
-          <span className="wp-chain"><ChainIcon c={BASE} size={14} />Base</span>
-        </div>
-        {stage === 'opening' ? (
-          <div className="wp-opening"><Loader2 size={28} className="spin" /><span>{L(`正在喚起 ${w.name}…`, `Opening ${w.name}…`)}</span></div>
-        ) : (
-          <>
-            <div className="wp-acct"><span className="orb" style={orbStyle(s.wallet.address)} /><span className="mono">{shortAddr(s.wallet.address)}</span></div>
-            <div className="wp-body">
-              <div className="wp-site"><BrandMark size={20} /><span className="mono">https://{BRAND.toLowerCase()}.app</span></div>
-              <h3>{L('簽名請求', 'Signature request')}</h3>
-              <p className="muted small">{L('只有在你信任此網站時才簽名。', 'Only sign if you trust this site.')}</p>
-              <div className="wp-data">
-                {fields.map(([k, v]) => <div key={k}><span>{k}</span><b className="mono">{v}</b></div>)}
-              </div>
-              <div className="wp-safe"><ShieldCheck size={15} />{L('此簽名不會發起交易，也不消耗 Gas。', 'This signature sends no transaction and costs no gas.')}</div>
-            </div>
-            <div className="wp-foot">
-              <Btn variant="ghost" onClick={reject} disabled={stage === 'signing'}>{L('拒絕', 'Reject')}</Btn>
-              <Btn onClick={sign} loading={stage === 'signing'}>{L('簽名', 'Sign')}</Btn>
-            </div>
-          </>
-        )}
-      </div>
-    </Portal>
-  );
-}
-
-// ----------------------------------------------------------------------------
 // Subscribe: review → wallet signature → verification → result
 // ----------------------------------------------------------------------------
 export function SubscribeFlow({ onClose }) {
@@ -131,6 +89,22 @@ export function SubscribeFlow({ onClose }) {
   const [sig, setSig] = useState('');
   const [checks, setChecks] = useState(0);
   const [err, setErr] = useState('');
+  const [issuedAt] = useState(() => now());
+  const message = useMemo(() => dropMessage(s.wallet.address, nonce, issuedAt, end), [s.wallet.address, nonce, issuedAt, end]);
+  const attempt = useRef(0);
+  // Ask the real wallet to sign; the user may approve, reject, or cancel here
+  useEffect(() => {
+    if (step !== 'wallet') return;
+    const id = ++attempt.current;
+    signMessage(message, s.wallet.address)
+      .then((x) => { if (id !== attempt.current) return; setSig(x); setChecks(0); setStep('verify'); })
+      .catch((e) => {
+        if (id !== attempt.current) return;
+        if (isUserRejection(e)) setStep('rejected');
+        else { setErr(e?.code === 'NO_WALLET' ? L('錢包未連接，請重新連接後再試', 'Your wallet is not connected. Reconnect and try again.') : L('錢包簽名失敗，請重試', 'The wallet could not sign. Please try again.')); setStep('error'); }
+      });
+  }, [step]);
+  const cancelWait = () => { attempt.current++; setStep('review'); };
   const verify = [
     L('驗證簽名與錢包地址一致', 'Signature matches the wallet address'),
     L('檢查申購資格（每個錢包限 1 次）', 'Eligibility check (one per wallet)'),
@@ -139,11 +113,17 @@ export function SubscribeFlow({ onClose }) {
   ];
   useEffect(() => {
     if (step !== 'verify') return;
+    if (checks === 0) {
+      // check the signature really came from the connected wallet
+      let signer = '';
+      try { signer = recoverSigner(message, sig); } catch (e) { /* malformed */ }
+      if (signer.toLowerCase() !== s.wallet.address.toLowerCase()) { setErr(L('簽名與已連接的錢包地址不一致', 'The signature does not match the connected wallet')); setStep('error'); return; }
+    }
     if (checks < verify.length) {
       const t = setTimeout(() => setChecks((c) => c + 1), 550);
       return () => clearTimeout(t);
     }
-    const r = signDrop({ sig, nonce, provider: w.id });
+    const r = signDrop({ sig, nonce, provider: w.id, message });
     if (r.err) { setErr(r.err); setStep('error'); } else setStep('done');
   }, [step, checks]);
   const d = s.camp.drop;
@@ -185,14 +165,9 @@ export function SubscribeFlow({ onClose }) {
         <div className="fl-wait">
           <span className="fl-pulse"><WalletGlyph w={w} size={56} /></span>
           <h3>{L(`請在 ${w.name} 中確認簽名`, `Confirm the signature in ${w.name}`)}</h3>
-          <p className="muted small">{L('簽名請求已發送到你的錢包。簽名僅用於確認申購，不會轉走任何資產。', 'The request is in your wallet. The signature only confirms the subscription and cannot move your funds.')}</p>
+          <p className="muted small">{L('簽名請求已發送到你的錢包，請在錢包中查看並確認。簽名僅用於確認申購，不會轉走任何資產。', 'The request is in your wallet; review and confirm it there. The signature only confirms the subscription and cannot move your funds.')}</p>
           <span className="fl-wait-line"><Loader2 size={15} className="spin" />{L('等待確認…', 'Waiting…')}</span>
-          <WalletPrompt
-            fields={typedData(s.wallet.address, to, nonce, end)}
-            onSigned={(x) => { setSig(x); setChecks(0); setStep('verify'); }}
-            onReject={() => setStep('rejected')}
-            onClose={() => {}}
-          />
+          <div className="btn-row" style={{ alignSelf: 'stretch' }}><Btn variant="ghost" onClick={cancelWait}>{L('取消', 'Cancel')}</Btn></div>
         </div>
       )}
 
@@ -403,9 +378,7 @@ export function DropRecord() {
             </div>
             <button className="link-btn rc-toggle" onClick={() => setShowData(!showData)}>{L('查看簽名內容', 'Show signed message')}<ChevronDown size={14} style={{ transform: showData ? 'rotate(180deg)' : 'none' }} /></button>
             {showData && (
-              <div className="wp-data rc-data">
-                {typedData(d.wallet, d.to, d.nonce, end).map(([k, v]) => <div key={k}><span>{k}</span><b className="mono">{v}</b></div>)}
-              </div>
+              <pre className="sign-msg rc-data">{d.message || dropMessage(d.wallet, d.nonce, d.ts, end)}</pre>
             )}
           </div>
         </aside>
